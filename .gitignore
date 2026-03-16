@@ -1,0 +1,25 @@
+docs/
+
+# Python
+__pycache__/
+*.pyc
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Node
+node_modules/
+.next/
+
+# Environment
+.env
+.env.local
+.env*.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
