@@ -3,6 +3,7 @@ from pydantic_settings import BaseSettings
 
 class Settings(BaseSettings):
     openai_api_key: str = ""
+    openai_model: str = "gpt-4o-mini"
     supabase_url: str = ""
     supabase_key: str = ""
     twilio_account_sid: str = ""

@@ -34,5 +34,19 @@ async def parse_syllabus(
             status_code=400, detail="Provide file(s) or a google_doc_url."
         )
 
-    events = await extract_events(text)
+    try:
+        events = await extract_events(text)
+    except ValueError as e:
+        raise HTTPException(
+            status_code=502,
+            detail=f"Failed to parse LLM response: {e}",
+        )
+    except HTTPException:
+        raise
+    except Exception:
+        raise HTTPException(
+            status_code=502,
+            detail="LLM service unavailable. Please try again.",
+        )
+
     return ParseResponse(events=events)
