@@ -1,3 +1,4 @@
+import logging
 from typing import Optional
 
 from fastapi import APIRouter, File, Form, HTTPException, UploadFile
@@ -8,6 +9,7 @@ from app.services.google_docs import fetch_google_doc
 from app.services.llm import extract_events
 
 router = APIRouter()
+logger = logging.getLogger(__name__)
 
 
 @router.post("/", response_model=ParseResponse)
@@ -44,6 +46,7 @@ async def parse_syllabus(
     except HTTPException:
         raise
     except Exception:
+        logger.exception("LLM request failed during syllabus parsing")
         raise HTTPException(
             status_code=502,
             detail="LLM service unavailable. Please try again.",

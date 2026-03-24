@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #b9e4c9;
+  --foreground: #1a2e1c;
 }
 
 @theme inline {
@@ -10,17 +10,61 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+
+  /* Sage green theme colors */
+  --color-sage-50: #f6f8f6;
+  --color-sage-100: #e8eeea;
+  --color-sage-200: #d1ddd4;
+  --color-sage-300: #a8c0ad;
+  --color-sage-400: #7a9f82;
+  --color-sage-500: #6b8f71;
+  --color-sage-600: #4a6b50;
+  --color-sage-700: #3d5842;
+  --color-sage-800: #334738;
+  --color-sage-900: #2b3b2f;
+
+  /* Coral accent colors */
+  --color-coral-50: #fff5f2;
+  --color-coral-100: #ffe4db;
+  --color-coral-200: #ffc9b8;
+  --color-coral-300: #ffa28a;
+  --color-coral-400: #fb7c5c;
+  --color-coral-500: #f97352;
+  --color-coral-600: #e45a3b;
+  --color-coral-700: #c4472d;
+  --color-coral-800: #9e3a27;
+  --color-coral-900: #7a3024;
+
+  /* Teal accent colors */
+  --color-teal-50: #f0fdfa;
+  --color-teal-100: #ccfbf1;
+  --color-teal-200: #99f6e4;
+  --color-teal-300: #5eead4;
+  --color-teal-400: #2dd4bf;
+  --color-teal-500: #14b8a6;
+  --color-teal-600: #0d9488;
+  --color-teal-700: #0f766e;
+  --color-teal-800: #115e59;
+  --color-teal-900: #134e4a;
+
+  /* Amber accent colors */
+  --color-amber-50: #fffbeb;
+  --color-amber-100: #fef3c7;
+  --color-amber-200: #fde68a;
+  --color-amber-300: #fcd34d;
+  --color-amber-400: #fbbf24;
+  --color-amber-500: #f59e0b;
+  --color-amber-600: #d97706;
+  --color-amber-700: #b45309;
+  --color-amber-800: #92400e;
+  --color-amber-900: #78350f;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+/* Dark mode disabled - always use light mode */
 
 body {
-  background: var(--background);
+  background: linear-gradient(180deg, #4ade60 0%, #6ee770 50%, #8cf590 100%);
+  min-height: 100vh;
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }

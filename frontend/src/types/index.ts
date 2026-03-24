@@ -1,13 +1,28 @@
-export type ParsedEvent = {
+export type ApiEvent = {
   title: string;
-  date: string; // ISO date string (YYYY-MM-DD)
+  due_date: string;
+  course: string;
+  event_type: string;
+  description: string;
+};
+
+export type ApiParseResponse = {
+  events: ApiEvent[];
+};
+
+export type ParsedEvent = {
+  id: string;
+  title: string;
+  date: string;
+  time?: string;
   description?: string;
+  course: string;
   type: "assignment" | "exam" | "quiz" | "project" | "other";
-  isAmbiguous: boolean; // true if the date was inferred by the LLM
+  isAmbiguous: boolean;
 };
 
 export type ParseResponse = {
   events: ParsedEvent[];
-  semesterStart?: string;
-  semesterEnd?: string;
 };
+
+export type UploadMode = "file" | "url" | "paste";
