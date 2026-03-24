@@ -17,7 +17,7 @@ export type ParsedEvent = {
   time?: string;
   description?: string;
   course: string;
-  type: "assignment" | "exam" | "quiz" | "project" | "other";
+  type: string;
   isAmbiguous: boolean;
 };
 
