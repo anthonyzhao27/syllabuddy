@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import type { ParsedEvent } from "@/types";
+import type { EventType, ParsedEvent } from "@/types";
 
 type EventListProps = {
   events: ParsedEvent[];
@@ -9,12 +9,16 @@ type EventListProps = {
   onDelete: (id: string) => void;
 };
 
-// Color-coded badges for event types
-const TYPE_STYLES: Record<ParsedEvent["type"], string> = {
+const TYPE_STYLES: Record<EventType, string> = {
   assignment: "bg-blue-100 text-blue-700",
   exam: "bg-red-100 text-red-700",
   quiz: "bg-amber-100 text-amber-700",
   project: "bg-purple-100 text-purple-700",
+  lab: "bg-emerald-100 text-emerald-700",
+  presentation: "bg-pink-100 text-pink-700",
+  milestone: "bg-indigo-100 text-indigo-700",
+  deadline: "bg-orange-100 text-orange-700",
+  discussion: "bg-cyan-100 text-cyan-700",
   other: "bg-gray-100 text-gray-600",
 };
 
@@ -70,7 +74,8 @@ function EventCard({
 }: EventCardProps) {
   const [title, setTitle] = useState(event.title);
   const [date, setDate] = useState(event.date);
-  const [type, setType] = useState(event.type);
+  const [time, setTime] = useState(event.time || "");
+  const [type, setType] = useState<EventType>(event.type);
   const [description, setDescription] = useState(event.description || "");
 
   if (isEditing) {
@@ -81,22 +86,34 @@ function EventCard({
           onChange={(e) => setTitle(e.target.value)}
           className="w-full bg-transparent border-b-2 border-sage-300 text-lg font-semibold text-sage-800 focus:outline-none focus:border-sage-500 pb-1"
         />
-        <div className="flex gap-3">
+        <div className="flex flex-wrap gap-3">
           <input
             type="date"
             value={date}
             onChange={(e) => setDate(e.target.value)}
             className="bg-sage-50 border border-sage-300 rounded-md px-3 py-1.5 text-sm text-sage-800 focus:outline-none focus:border-sage-500"
           />
+          <input
+            type="time"
+            value={time}
+            onChange={(e) => setTime(e.target.value)}
+            placeholder="Time (optional)"
+            className="bg-sage-50 border border-sage-300 rounded-md px-3 py-1.5 text-sm text-sage-800 focus:outline-none focus:border-sage-500"
+          />
           <select
             value={type}
-            onChange={(e) => setType(e.target.value as ParsedEvent["type"])}
+            onChange={(e) => setType(e.target.value as EventType)}
             className="bg-sage-50 border border-sage-300 rounded-md px-3 py-1.5 text-sm text-sage-800 focus:outline-none focus:border-sage-500"
           >
             <option value="assignment">Assignment</option>
             <option value="exam">Exam</option>
             <option value="quiz">Quiz</option>
             <option value="project">Project</option>
+            <option value="lab">Lab</option>
+            <option value="presentation">Presentation</option>
+            <option value="milestone">Milestone</option>
+            <option value="deadline">Deadline</option>
+            <option value="discussion">Discussion</option>
             <option value="other">Other</option>
           </select>
         </div>
@@ -109,7 +126,15 @@ function EventCard({
         />
         <div className="flex gap-3 pt-1">
           <button
-            onClick={() => onSave({ title, date, type, description })}
+            onClick={() =>
+              onSave({
+                title,
+                date,
+                time: time || undefined,
+                type,
+                description: description || undefined,
+              })
+            }
             className="px-4 py-1.5 text-sm font-medium bg-teal-600 text-white rounded-md hover:bg-teal-700 cursor-pointer transition-colors"
           >
             Save

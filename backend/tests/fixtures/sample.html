@@ -1,0 +1,1438 @@
+
+<!DOCTYPE html>
+<html dir="ltr" lang="en-CA">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#002a5c">
+  
+  <meta name="robots" content="noindex,nofollow" />
+  <meta name="apple-itunes-app" content="app-id=480883488">
+<link rel="manifest" href="/web-app-manifest/manifest.json">
+  <meta name="sentry-trace" content="bae27eb10d384aa8b009ed95c0009371-a006d8161f1b4d9b-0"/>
+  <title>CSC343H1S 20261 (All Sections): Introduction to Databases</title>
+
+  <link rel="preload" href="https://du11hjcvx0uqb.cloudfront.net/dist/fonts/lato/extended/Lato-Regular-bd03a2cc27.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="https://du11hjcvx0uqb.cloudfront.net/dist/fonts/lato/extended/Lato-Bold-cccb897485.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="https://du11hjcvx0uqb.cloudfront.net/dist/fonts/lato/extended/Lato-Italic-4eb103b4d1.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://du11hjcvx0uqb.cloudfront.net/dist/brandable_css/no_variables/bundles/fonts-eb4a10fb18.css" media="screen" />
+  <link rel="stylesheet" href="https://du11hjcvx0uqb.cloudfront.net/dist/brandable_css/0976b3638d0604c8fdc3c2118e22f3cf/variables-9dec371ad57e3dd0396f0b2eddb63479.css" media="all" />
+  <link rel="stylesheet" href="https://du11hjcvx0uqb.cloudfront.net/dist/brandable_css/new_styles_normal_contrast/bundles/common-6e20521342.css" media="all" />
+  <link rel="stylesheet" href="https://du11hjcvx0uqb.cloudfront.net/dist/brandable_css/new_styles_normal_contrast/bundles/dashboard-ef57d7396b.css" media="screen" />
+  <link rel="stylesheet" href="https://du11hjcvx0uqb.cloudfront.net/dist/brandable_css/new_styles_normal_contrast/bundles/react_todo_sidebar-df089b77a5.css" media="screen" />
+  <link rel="stylesheet" href="https://du11hjcvx0uqb.cloudfront.net/dist/brandable_css/new_styles_normal_contrast/bundles/syllabus-fb2159ce7d.css" media="screen" />
+  <link rel="stylesheet" href="https://du11hjcvx0uqb.cloudfront.net/dist/brandable_css/new_styles_normal_contrast/bundles/tinymce-5fc893f669.css" media="screen" />
+  <link rel="stylesheet" href="https://du11hjcvx0uqb.cloudfront.net/dist/brandable_css/new_styles_normal_contrast/bundles/course_show-23cd9e1560.css" media="screen" />
+  <link rel="stylesheet" href="https://du11hjcvx0uqb.cloudfront.net/dist/brandable_css/no_variables/bundles/course_show_secondary-cdb1b416c5.css" media="screen" />
+  <link rel="stylesheet" href="https://du11hjcvx0uqb.cloudfront.net/dist/brandable_css/new_styles_normal_contrast/bundles/syllabus-fb2159ce7d.css" media="screen" />
+  <link rel="stylesheet" href="https://du11hjcvx0uqb.cloudfront.net/dist/brandable_css/new_styles_normal_contrast/bundles/new_user_tutorials-6b15f87caf.css" media="screen" />
+  <link rel="apple-touch-icon" href="https://du11hjcvx0uqb.cloudfront.net/dist/images/apple-touch-icon-585e5d997d.png" />
+  <link rel="icon" type="image/x-icon" href="https://du11hjcvx0uqb.cloudfront.net/dist/images/favicon-e10d657a73.ico" />
+  <link rel="preload" href="https://du11hjcvx0uqb.cloudfront.net/dist/javascripts/translations/en-CA-c63783ca75.json" as="fetch" type="application/json" crossorigin="anonymous">  <link rel="alternate" type="application/atom+xml" title="Course Atom Feed" href="/feeds/courses/enrollment_kKdTmZhfNJMsCXudPvy1j3DKxD4cSehV7NBJYgTr.atom" />
+  <link rel="stylesheet" href="https://instructure-uploads-yul.s3.ca-central-1.amazonaws.com/account_118340000000000001/attachments/434590/uoft-new.css" media="all" />
+  
+  <script>if (navigator.userAgent.match(/(MSIE|Trident\/)/)) location.replace('/ie-is-not-supported.html')</script>
+  <script>
+    INST = {"environment":"production","allowMediaComments":true,"kalturaSettings":{"domain":"yul.nv.instructuremedia.com","resource_domain":"yul.nv.instructuremedia.com","rtmp_domain":"yul.rtmp.instructuremedia.com","partner_id":7,"subpartner_id":0,"player_ui_conf":0,"kcw_ui_conf":0,"upload_ui_conf":0,"max_file_size_bytes":534773760,"js_uploader":"yes"},"disableGooglePreviews":true,"logPageViews":true,"editorButtons":[{"name":"YouTube","id":50,"favorite":false,"url":"https://www.edu-apps.org/lti_public_resources/?tool_id=youtube","icon_url":"https://www.edu-apps.org/assets/lti_public_resources/youtube_icon.png","canvas_icon_class":null,"width":560,"height":600,"use_tray":false,"on_by_default":false,"description":"\u003cp\u003eSearch publicly available YouTube videos. A new icon will show up in your course rich editor letting you search YouTube and click to embed videos in your course material.\u003c/p\u003e\n"},{"name":"O365 OneDrive","id":5716,"favorite":true,"url":"https://office365-yul-prod.instructure.com/lti/rce-content-item","icon_url":"https://office365-yul-prod.instructure.com/images/office365_icon.png","canvas_icon_class":null,"width":900,"height":600,"use_tray":false,"on_by_default":false,"description":"\u003cp\u003eAllows you to pull in documents from Office 365 OneDrive to Canvas\u003c/p\u003e\n"},{"name":"Insert a Wiley Resource","id":14754,"favorite":false,"url":"https://lti.education.wiley.com/wpng/api/v1/lti/resourcediscoverytool","icon_url":"https://education.wiley.com/assets/images/wp.svg","canvas_icon_class":null,"width":1160,"height":660,"use_tray":false,"on_by_default":false,"description":"\u003cp\u003eOutcomes-based learning.\u003c/p\u003e\n"},{"name":"Import citations","id":17413,"favorite":false,"url":"https://utoronto.alma.exlibrisgroup.com/lti/v3/launch/01UTORONTO_INST/LMS_CANVAS_1","icon_url":"https://utoronto.alma.exlibrisgroup.com/lti/images/editor-btn.png","canvas_icon_class":null,"width":900,"height":650,"use_tray":false,"on_by_default":false,"description":"\u003cp\u003eLibrary Reading List\u003c/p\u003e\n"},{"name":"Pearson Links","id":25978,"favorite":false,"url":"https://interop.pearson.com/launch","icon_url":"https://www.pearson.com/us/content/dam/one-dot-com/one-dot-com/us/en/images/PearsonThumbprint-RGB-127x138.png/_jcr_content/renditions/cq5dam.web.1600.9600.png","canvas_icon_class":null,"width":800,"height":400,"use_tray":false,"on_by_default":false,"description":"\u003cp\u003eAccess Pearson\u003c/p\u003e\n"},{"name":"Cogniti UAT","id":26422,"favorite":false,"url":"https://cognitiproject.arc.utoronto.ca/lti/launch","icon_url":"https://q.utoronto.ca/lti/tool_default_icon?name=Cogniti+UAT","canvas_icon_class":null,"width":800,"height":400,"use_tray":false,"on_by_default":false,"description":"\u003cp\u003eCogniti integration testing\u003c/p\u003e\n"}]};
+    ENV = {"ASSET_HOST":"https://du11hjcvx0uqb.cloudfront.net","active_brand_config_json_url":"https://du11hjcvx0uqb.cloudfront.net/dist/brandable_css/0976b3638d0604c8fdc3c2118e22f3cf/variables-9dec371ad57e3dd0396f0b2eddb63479.json","active_brand_config":{"md5":"0976b3638d0604c8fdc3c2118e22f3cf","variables":{"ic-brand-primary":"#002a5c","ic-brand-global-nav-bgd":"#002a5c","ic-brand-global-nav-menu-item__badge-bgd":"#008ee2","ic-brand-global-nav-logo-bgd":"#002a5c","ic-brand-header-image":"https://instructure-uploads-yul.s3.ca-central-1.amazonaws.com/account_118340000000000001/attachments/113470/tree%20logo.png","ic-brand-watermark-opacity":"1","ic-brand-msapplication-tile-wide":"https://instructure-uploads-yul.s3.ca-central-1.amazonaws.com/account_118340000000000001/attachments/113471/tree%20logo.png","ic-brand-right-sidebar-logo":"https://instructure-uploads-yul.s3.ca-central-1.amazonaws.com/account_118340000000000001/attachments/113518/20171219_Quercus-01.png"},"share":false,"name":null,"created_at":"2023-02-06T18:41:17Z","js_overrides":"https://instructure-uploads-yul.s3.ca-central-1.amazonaws.com/account_118340000000000001/attachments/24721051/UT_CustomJS_20210412-PRD-GTM.js","css_overrides":"https://instructure-uploads-yul.s3.ca-central-1.amazonaws.com/account_118340000000000001/attachments/434590/uoft-new.css","mobile_js_overrides":"","mobile_css_overrides":"","parent_md5":null},"confetti_branding_enabled":false,"url_to_what_gets_loaded_inside_the_tinymce_editor_css":["https://du11hjcvx0uqb.cloudfront.net/dist/brandable_css/0976b3638d0604c8fdc3c2118e22f3cf/variables-9dec371ad57e3dd0396f0b2eddb63479.css","https://du11hjcvx0uqb.cloudfront.net/dist/brandable_css/new_styles_normal_contrast/bundles/what_gets_loaded_inside_the_tinymce_editor-a370c48efb.css","https://du11hjcvx0uqb.cloudfront.net/dist/brandable_css/no_variables/bundles/fonts-eb4a10fb18.css"],"url_for_high_contrast_tinymce_editor_css":["https://du11hjcvx0uqb.cloudfront.net/dist/brandable_css/default/variables-high_contrast-9dec371ad57e3dd0396f0b2eddb63479.css","https://du11hjcvx0uqb.cloudfront.net/dist/brandable_css/new_styles_high_contrast/bundles/what_gets_loaded_inside_the_tinymce_editor-1d2c45ff3b.css","https://du11hjcvx0uqb.cloudfront.net/dist/brandable_css/no_variables/bundles/fonts-eb4a10fb18.css"],"captcha_site_key":"6LftyLgZAAAAAC10tel8XGucbApMIY8-uFB_yVcN","current_user_id":"728596","current_user_global_id":"118340000000728596","current_user_uuid":"3VYyXSMImchZ6Chj1k22pUHQZ0TTysFkyrssAyAD","current_user_usage_metrics_id":"7240e7c2e08e320727032775f8ee01dc013ce0d1be6a16f18efcddb75ed2bd25","current_user_roles":["user","student"],"current_user_is_student":true,"current_user_types":[],"current_user_disabled_inbox":false,"current_user_visited_tabs":null,"discussions_reporting":false,"files_domain":"cluster75.canvas-user-content.com","group_information":null,"DOMAIN_ROOT_ACCOUNT_ID":"118340000000000001","DOMAIN_ROOT_ACCOUNT_UUID":"dsWzekD5khhODOqBAcRfXKcKKo0XpVhgmkX973K4","CAREER_THEME_URL":null,"CAREER_DARK_THEME_URL":null,"k12":false,"help_link_name":"Help","help_link_icon":"help","ADA_CHATBOT_ENABLED":false,"use_high_contrast":false,"auto_show_cc":false,"disable_celebrations":false,"disable_keyboard_shortcuts":false,"LTI_LAUNCH_FRAME_ALLOWANCES":["geolocation *","microphone *","camera *","midi *","encrypted-media *","autoplay *","clipboard-write *","display-capture *"],"DEEP_LINKING_POST_MESSAGE_ORIGIN":"https://q.utoronto.ca","comment_library_suggestions_enabled":false,"SETTINGS":{"open_registration":false,"collapse_global_nav":false,"release_notes_badge_disabled":false,"can_add_pronouns":false,"show_sections_in_course_tray":true,"enable_content_a11y_checker":false,"suppress_assignments":false},"RAILS_ENVIRONMENT":"production","use_dyslexic_font":false,"IN_PACED_COURSE":false,"SENTRY_FRONTEND":{"dsn":"https://355a1d96717e4038ac25aa852fa79a8f@relay-yul.sentry.insops.net/388","org_slug":"instructure","base_url":"https://sentry.insops.net","normalized_route":"/courses/{id}","errors_sample_rate":"0.005","traces_sample_rate":"0.005","url_deny_pattern":"instructure-uploads.*amazonaws.com","revision":"canvas-lms@20260311.411"},"DATA_COLLECTION_ENDPOINT":"https://canvas-frontend-data-yul-prod.inscloudgate.net/submit","DOMAIN_ROOT_ACCOUNT_SFID":"001A000000YLIoa","DIRECT_SHARE_ENABLED":false,"CAN_VIEW_CONTENT_SHARES":false,"FEATURES":{"account_level_blackout_dates":false,"assignment_edit_placement_not_on_announcements":false,"a11y_checker_ga2_features":false,"block_content_editor_toolbar_reorder":false,"commons_new_quizzes":true,"consolidated_media_player":true,"courses_popout_sisid":true,"create_external_apps_side_tray_overrides":false,"dashboard_graphql_integration":false,"developer_key_user_agent_alert":true,"disallow_threaded_replies_fix_alert":true,"disallow_threaded_replies_manage":true,"discussion_ai_survey_link":false,"discussion_checkpoints":false,"discussion_permalink":true,"enhanced_course_creation_account_fetching":false,"explicit_latex_typesetting":false,"feature_flag_ui_sorting":true,"files_a11y_rewrite":true,"files_a11y_rewrite_toggle":true,"horizon_course_setting":false,"instui_for_import_page":true,"instui_header":false,"media_links_use_attachment_id":true,"multiselect_gradebook_filters":true,"nav_menu_links":false,"new_quizzes_media_type":true,"new_quizzes_navigation_updates":true,"permanent_page_links":true,"rce_a11y_resize":true,"rce_asr_captioning_improvements":false,"rce_find_replace":true,"render_both_to_do_lists":false,"scheduled_feedback_releases":true,"speedgrader_studio_media_capture":true,"student_access_token_management":true,"validate_call_to_action":false,"block_content_editor_ai_alt_text":true,"ux_list_concluded_courses_in_bp":true,"account_level_mastery_scales":false,"ams_root_account_integration":false,"ams_advanced_content_organization":false,"api_rate_limits":true,"buttons_and_icons_root_account":true,"canvas_apps_sub_account_access":true,"course_pace_allow_bulk_pace_assign":false,"course_pace_download_document":false,"course_pace_draft_state":false,"course_pace_pacing_status_labels":false,"course_pace_pacing_with_mastery_paths":false,"course_pace_time_selection":false,"course_pace_weighted_assignments":false,"course_paces_skip_selected_days":false,"create_course_subaccount_picker":true,"disable_iframe_sandbox_file_show":false,"extended_submission_state":false,"file_verifiers_for_quiz_links":true,"instui_nav":false,"login_registration_ui_identity":true,"lti_apps_page_ai_translation":true,"lti_apps_page_instructors":false,"lti_asset_processor":true,"lti_asset_processor_discussions":false,"lti_deactivate_registrations":false,"lti_link_to_apps_from_developer_keys":true,"lti_registrations_discover_page":true,"lti_registrations_next":true,"lti_registrations_templates":false,"lti_registrations_usage_data":true,"lti_registrations_usage_data_dev":false,"lti_registrations_usage_data_low_usage":false,"lti_registrations_usage_tab":false,"lti_toggle_placements":true,"mobile_offline_mode":true,"modules_requirements_allow_percentage":false,"non_scoring_rubrics":true,"open_tools_in_new_tab":true,"pendo_extended":false,"product_tours":false,"rce_lite_enabled_speedgrader_comments":true,"rce_transform_loaded_content":false,"react_discussions_post":true,"restrict_student_access":false,"rubric_criterion_range":true,"scheduled_page_publication":true,"send_usage_metrics":false,"top_navigation_placement":false,"youtube_migration":false,"widget_dashboard":false,"account_survey_notifications":false,"embedded_release_notes":false,"canvas_k6_theme":false,"lti_asset_processor_course":false,"new_math_equation_handling":true,"youtube_overlay":false,"rce_studio_embed_improvements":false,"a11y_checker_ai_table_caption_generation":false,"a11y_checker_ai_alt_text_generation":false,"a11y_checker_close_issues":false,"a11y_checker_additional_resources":false,"peer_review_allocation_and_grading":false},"current_user":{"id":"728596","anonymous_id":"fm6s","display_name":"Anthony Zhao","avatar_image_url":"https://q.utoronto.ca/images/messages/avatar-50.png","html_url":"https://q.utoronto.ca/about/728596","pronouns":null,"avatar_is_fallback":true,"email":"anthonyz.zhao@mail.utoronto.ca"},"current_user_is_admin":false,"page_view_update_url":"/page_views/f977c206-e4bb-4ce5-92c1-98f5d28a26b4?page_view_token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpIjoiZjk3N2MyMDYtZTRiYi00Y2U1LTkyYzEtOThmNWQyOGEyNmI0IiwidSI6MTE4MzQwMDAwMDAwNzI4NTk2LCJjIjoiMjAyNi0wMy0xOVQyMDo1NToyNC4wMVoifQ.owoPtHxXTPaQv01y2-s7w-6x47B6YSKpf2RpdgzFhrs","context_asset_string":"course_416611","ping_url":"https://q.utoronto.ca/api/v1/courses/416611/ping","TIMEZONE":"America/New_York","CONTEXT_TIMEZONE":"America/New_York","LOCALES":["en-CA","en"],"BIGEASY_LOCALE":"en_CA","FULLCALENDAR_LOCALE":"en-ca","MOMENT_LOCALE":"en-ca","rce_auto_save_max_age_ms":86400000,"K5_USER":false,"USE_CLASSIC_FONT":false,"K5_HOMEROOM_COURSE":false,"K5_SUBJECT_COURSE":false,"LOCALE_TRANSLATION_FILE":"https://du11hjcvx0uqb.cloudfront.net/dist/javascripts/translations/en-CA-c63783ca75.json","ACCOUNT_ID":"53","user_cache_key":"d3ed5fc28849459615525d6c63f5c71ef44cfad21ccf3c5cdd4ac32adf9248545e73b41cb29ef665952460b83d535db0f7b53b5b3fe6d2bd21f6cae2d12f01f6","horizon_course":false,"HORIZON_ACCOUNT":false,"current_context":{"id":"416611","name":"CSC343H1S 20261 (All Sections): Introduction to Databases","type":"Course","url":"https://q.utoronto.ca/courses/416611"},"OBSERVER_OPTIONS":{"OBSERVED_USERS_LIST":[{"id":"728596","name":"Anthony Zhao","created_at":"2023-05-03T01:22:35-04:00","sortable_name":"Zhao, Anthony","short_name":"Anthony Zhao","avatar_url":"https://q.utoronto.ca/images/messages/avatar-50.png"}],"CAN_ADD_OBSERVEE":false},"INCOMPLETE_REGISTRATION":null,"USER_EMAIL":"anthonyz.zhao@mail.utoronto.ca","badge_counts":{"submissions":6},"NEW_USER_TUTORIALS":{"is_enabled":false},"NEW_USER_TUTORIALS_ENABLED_AT_ACCOUNT":{"is_enabled":true},"COURSE":{"id":"416611","long_name":"CSC343H1S 20261 (All Sections): Introduction to Databases - CSC343H1S 20261 (All Sections)","pages_url":"https://q.utoronto.ca/courses/416611/pages","is_student":true,"is_instructor":false,"is_published":true,"front_page_title":null,"default_view":"syllabus"},"RICH_CONTENT_APP_HOST":"rich-content-yul.inscloudgate.net","JWT":"ZXlKaGJHY2lPaUprYVhJaUxDSmxibU1pT2lKQk1qVTJSME5OSWl3aWNtVm5hVzl1SWpvaVkyRXRZMlZ1ZEhKaGJDMHhJaXdpWlc1MmFYSnZibTFsYm5RaU9pSndjbTlrZFdOMGFXOXVJbjAuLld6MU1QNVdVZlpCWW45UDYuSXVrUXpZT2owS3B0T3BLaEN0QXMwQ0ZZNzd0OGRKYmxjYWMwZWdjSVlSSldWX2llRFFwSmV1SVYyWUJkaklUMW1BY0hIUEcwZmVpU3VjMzVQZnhiVzZ4RjRENTJIWEJRUksxM1N3UnZaai13ZDNJNldzalh2cjUtQ2ZSaktGSU1RQ3lzaDFpaHQ2WkhUVmxjMjhfemVKQmVrVGM3M2s0WUFJR1BNOFJFX0FKYlRLbW9hTEJ6bVVJMU4zdk56NWppbzNOZHJ2SlJfdzBjSDMtUVhabjhPUXN0REJaalp4MGd5R3lkd09TUVNNOHQzSmlqdEFsUWRja0hYSFFlaUh2ZTg2VUp5VW5wUGpYbXUyYXZqRGZJNWxHR0dmSlU1SEdfbWxLcFA2Um4wTGxoV2VtcWE0dElfZk5HaElVbTE4UldlVGpCSkVoNFBxTDVkMWVic3ZGS2ZoTWdTRlltSGNsUkdQbFdvRThoRDcwRDZRV1lNRGctcDJZY1c4MHdkTXI0Tmp0eEIzWG4wanBDUmhTMkpkd2dxb2J6ak1RaGUtNVFBcGVBTDRlM0pzYWRmZkV2OEptNGxWV3R4aFdEVGhBTlV5WlpkQVRpeVg5WDc1RTBDMmZzVXJseTQtd2lfMWpadl91NUQ3OUpja0ZZLVZ4MDN0Skc1czhyR3U0SUFLcDAzenkyRFNiUEhvcFVlU0xmSWFjVWsyTVpPSlFDdGJ2cUM4N3o5OW1FaU9XZGlTRnFfMUIxV19zRTVlRVZBZmktWVpiUG43SVlRci1BQjlKbFN5UjczY0JuLVFYM29OLUtINHI5WV9VN3RIbFJmTVJQc05ZRzBqX3NKM0dwd2JqZXBpb3Q1b1Jlb0EwUVF2bXFSamFveTVRVjF4UlVJZkt2QlFaVHZoV1RCNVBVRGp2ZmQwT2tXR1FzQTVzeGJKWWtBeWhGbkRWcmhDNjJXdk82WWFMMXFucnkxeXpITmZ4bm80SDdCQnZ2c2lZWE9sZnFxSm9Dc0FmNjEtMWdjeXFrVy1KUktMRkJsNzhRRWp6TlhTVnd1TlB4Vy1QWW9ucFhmSHFEZ3JSU1Q2bTJZd25nMk1zWWVSNlZkVW02Rk5HR3dVVXlCQThUbFV1MzhmS2dVakJWWU94MVNzZzJDWlpHREtuMjdHbW5kam15eTdidVZmNEVCNW90Q0ZWMVdudkpaM0Y2Yy1SRU5XMktwQ0g4a2dmTUFDdmJHa1BaaVlLSjNjdkUuX2RDeHE3TURhcGdJRjM0Yml3RFktZw==","RICH_CONTENT_CAN_UPLOAD_FILES":false,"RICH_CONTENT_CAN_EDIT_FILES":false,"RICH_CONTENT_FILES_TAB_DISABLED":true,"RICH_CONTENT_INST_RECORD_TAB_DISABLED":false,"RICH_CONTENT_AI_TEXT_TOOLS":false,"CAN_READ":true,"SYLLABUS_BODY":"\u003cp\u003e\u0026nbsp;\u003c/p\u003e\n\u003cp style=\"text-align: justify;\"\u003eWelcome to CSC343H1S! This course provides an Introduction to Databases, and prepares you for later study in the implementation of Database Management Systems.\u003c/p\u003e\n\u003cp style=\"text-align: justify;\"\u003e\u003cspan style=\"font-size: 1rem;\"\u003eThe material posted on Quercus is required reading.\u0026nbsp; It contains important information, including assignment handouts, the policy on missed work, links to the online discussion forum (Piazza), and announcements. You are responsible for all announcements made in lecture and on Quercus.\u003c/span\u003e\u003c/p\u003e\n\u003cp style=\"text-align: justify;\"\u003e\u003cspan style=\"font-size: 1rem;\"\u003eNote to Engineers: This course operates under \u003ca class=\"inline_disabled\" href=\"https://artsci.calendar.utoronto.ca/term-work-tests-and-final-exams\" target=\"_blank\"\u003eFaculty of Arts and Science rules.\u003c/a\u003e\u003cbr\u003e\u003c/span\u003e\u003c/p\u003e\n\u003chr\u003e\n\u003ch3\u003eTable of Contents:\u003c/h3\u003e\n\u003cul id=\"quicklinks\"\u003e\n\u003cli\u003e\u003ca class=\"inline_disabled\" href=\"/courses/416611#contact\"\u003eContact Information\u003c/a\u003e\u003c/li\u003e\n\u003cli\u003e\u003ca class=\"inline_disabled\" href=\"/courses/416611#prerequisites\"\u003ePrerequisites\u003c/a\u003e\u003c/li\u003e\n\u003cli\u003e\u003ca class=\"inline_disabled\" href=\"/courses/416611#format\"\u003eCourse Format\u003c/a\u003e\u003c/li\u003e\n\u003cli\u003e\u003ca class=\"inline_disabled\" href=\"/courses/416611#markingscheme\"\u003eMarking Scheme\u003c/a\u003e\u003c/li\u003e\n\u003cli\u003e\u003ca class=\"inline_disabled\" href=\"/courses/416611#help\"\u003eGetting Help\u003c/a\u003e\u003c/li\u003e\n\u003cli\u003e\u003ca class=\"inline_disabled\" href=\"/courses/416611#environment\"\u003eCreating a Positive Learning Environment\u003c/a\u003e\u003c/li\u003e\n\u003cli\u003e\u003ca class=\"inline_disabled\" href=\"/courses/416611#resources\"\u003eResources\u003c/a\u003e\u003c/li\u003e\n\u003cli\u003e\u003ca class=\"inline_disabled\" href=\"/courses/416611#partners\"\u003eWorking with a Partner\u003c/a\u003e\u003c/li\u003e\n\u003cli\u003e\u003ca class=\"inline_disabled\" href=\"/courses/416611#policies\"\u003eCourse Policies\u003c/a\u003e\u003c/li\u003e\n\u003cli\u003e\u003ca class=\"inline_disabled\" href=\"/courses/416611#specialconsideration\"\u003eSpecial Consideration\u003c/a\u003e\u003c/li\u003e\n\u003cli\u003e\u003ca class=\"inline_disabled\" href=\"/courses/416611#remarks\"\u003eRemark Requests\u003c/a\u003e\u003c/li\u003e\n\u003cli\u003e\u003ca class=\"inline_disabled\" href=\"/courses/416611#integrity\"\u003eAcademic Integrity\u003c/a\u003e\u003c/li\u003e\n\u003cli\u003e\u003ca class=\"inline_disabled\" href=\"/courses/416611#genAI\"\u003eUsing Generative AI\u003c/a\u003e\u003c/li\u003e\n\u003cli\u003e\u003ca class=\"inline_disabled\" href=\"/courses/416611#accessibility\"\u003eAccessibility Accommodations\u003c/a\u003e\u003c/li\u003e\n\u003c/ul\u003e\n\u003chr\u003e\n\u003ch2 id=\"contact\"\u003eContact Information\u003c/h2\u003e\n\u003ctable style=\"border-collapse: collapse; margin-left: auto; margin-right: auto; width: 94.5%; height: 1053.7px;\" border=\"1\" cellspacing=\"10\" cellpadding=\"10\"\u003e\n\u003ctbody style=\"text-align: center;\"\u003e\n\u003ctr style=\"height: 84px;\"\u003e\n\u003ctd style=\"width: 38.7926%; height: 84px;\"\u003e\u003cstrong\u003eInstructors\u003c/strong\u003e\u003c/td\u003e\n\u003ctd style=\"text-align: center; width: 61.2406%; height: 84px;\"\u003e\n\u003cp\u003eDiane Horton and Marina Tawfik\u003cstrong\u003e\u003cbr\u003e\u003c/strong\u003e\u003c/p\u003e\n\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr style=\"height: 250px;\"\u003e\n\u003ctd style=\"width: 38.7926%; height: 478px;\" rowspan=\"2\"\u003e\u003cstrong\u003eLectures\u003cbr\u003e\u003c/strong\u003e\u003cstrong\u003e\u003cbr\u003e\u003c/strong\u003e\u003cstrong\u003e\u003cbr\u003e\u003c/strong\u003e\u003c/td\u003e\n\u003ctd style=\"text-align: left; height: 250px; width: 61.2406%;\" rowspan=\"2\"\u003e\n\u003cp style=\"text-align: center;\"\u003e\u003cspan style=\"background-color: #ffffff;\"\u003eL0101/L2001 (Diane Horton):\u003c/span\u003e\u003cbr\u003e\u003cspan style=\"background-color: #ffffff;\"\u003eWednesdays 10-11am in \u003ca class=\"inline_disabled\" style=\"background-color: #ffffff;\" href=\"https://map.utoronto.ca/?id=1809#!m/494510?s/\" target=\"_blank\"\u003eSS 2117\u003c/a\u003e\u003c/span\u003e\u003cbr\u003e\u003cspan style=\"background-color: #ffffff;\"\u003eFridays 9-11am in \u003ca class=\"inline_disabled\" style=\"background-color: #ffffff;\" href=\"https://map.utoronto.ca/?id=1809#!m/494474?s/\" target=\"_blank\"\u003eMC 254\u003c/a\u003e\u003c/span\u003e\u003c/p\u003e\n\u003chr\u003e\n\u003cp style=\"text-align: center;\"\u003e\u003cspan style=\"background-color: #ffffff;\"\u003eL0201/L2101 (Marina Tawfik):\u003c/span\u003e\u003cbr\u003e\u003cspan style=\"background-color: #ffffff;\"\u003eWednesdays 12-1pm in \u003ca class=\"inline_disabled\" style=\"background-color: #ffffff;\" href=\"https://map.utoronto.ca/?id=1809#!m/494490?s/\" target=\"_blank\"\u003eMP 103\u003c/a\u003e\u003c/span\u003e\u003cbr\u003e\u003cspan style=\"background-color: #ffffff;\"\u003eFridays 11am-1pm in \u003ca class=\"inline_disabled\" style=\"background-color: #ffffff;\" href=\"https://map.utoronto.ca/?id=1809#!m/494474?s/\" target=\"_blank\"\u003eMC 102\u003c/a\u003e\u003c/span\u003e\u003c/p\u003e\n\u003chr\u003e\n\u003cp style=\"text-align: center;\"\u003e\u003cspan style=\"background-color: #ffffff;\"\u003eL0301/L2201 (Diane Horton):\u003c/span\u003e\u003cbr\u003e\u003cspan style=\"background-color: #ffffff;\"\u003eWednesdays 2-3pm in \u003ca class=\"inline_disabled\" style=\"background-color: #ffffff;\" href=\"https://map.utoronto.ca/?id=1809#!ct/45469?m/1055921?s/wi\" target=\"_blank\"\u003eWI 1016\u003c/a\u003e\u003c/span\u003e\u003cbr\u003e\u003cspan style=\"background-color: #ffffff;\"\u003eFridays 1-3pm in \u003ca class=\"inline_disabled\" style=\"background-color: #ffffff;\" href=\"https://map.utoronto.ca/?id=1809#!m/494490?s/\" target=\"_blank\"\u003eMP 103\u003c/a\u003e\u003c/span\u003e\u003c/p\u003e\n\u003chr\u003e\n\u003cp style=\"text-align: center;\"\u003e\u003cspan style=\"background-color: #ffffff;\"\u003eL2501/L5101 (Marina Tawfik):\u003c/span\u003e\u003cbr\u003e\u003cspan style=\"background-color: #ffffff;\"\u003eWednesdays 6-9pm in \u003ca class=\"inline_disabled\" style=\"background-color: #ffffff;\" href=\"https://map.utoronto.ca/?id=1809#!m/494481?s/\" target=\"_blank\"\u003eSF 1101\u003c/a\u003e\u003c/span\u003e\u003c/p\u003e\n\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr style=\"height: 228px;\"\u003e\u003c/tr\u003e\n\u003ctr style=\"height: 214.9px;\"\u003e\n\u003ctd style=\"width: 38.7926%; height: 214.9px;\"\u003e\u003cstrong\u003eOffice Hours\u003c/strong\u003e\u003c/td\u003e\n\u003ctd style=\"width: 61.2406%; height: 214.9px; text-align: left;\"\u003e\n\u003cp style=\"text-align: center;\"\u003eBeginning Monday, January 12th\u003c/p\u003e\n\u003cp style=\"text-align: center;\"\u003e\u003cspan style=\"background-color: #ffffff;\"\u003eMondays 3:30-5:30: Marina in BA 4230\u003c/span\u003e\u003cbr\u003e\u003cspan style=\"background-color: #ffffff;\"\u003eTuesdays 2:30-3:30: Diane in BA 4236\u003c/span\u003e\u003cbr\u003e\u003cspan style=\"color: #000000; background-color: #ffffff;\"\u003eThursdays 2:30-3:30: Diane in BA 4236\u003c/span\u003e\u003c/p\u003e\n\u003cp\u003eThe schedule may change. Please see the \u003ca class=\"inline_disabled\" href=\"/calendar?include_contexts=course_416611#view_name=month\u0026amp;view_start=2026-01-01\" target=\"_blank\"\u003eCSC343 Course calendar\u003c/a\u003e for the most up to date information.\u003c/p\u003e\n\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr style=\"height: 58.9px;\"\u003e\n\u003ctd style=\"width: 38.7926%; height: 58.9px;\"\u003e\u003cstrong\u003eEmail \u003cbr\u003e(for \u003cspan style=\"font-size: 1rem;\"\u003epersonal issues)\u003c/span\u003e\u003cbr\u003e\u003c/strong\u003e\u003c/td\u003e\n\u003ctd style=\"width: 61.2406%; height: 58.9px;\"\u003e\u003ca class=\"inline_disabled\" href=\"mailto:csc343-2026-01@cs.toronto.edu\" target=\"_blank\"\u003e\u003cspan class=\"TextRun Underlined SCXW35723921 BCX0\" lang=\"EN-US\" data-contrast=\"none\"\u003e\u003cspan class=\"NormalTextRun SCXW35723921 BCX0\" data-ccp-charstyle=\"Hyperlink\"\u003ecsc343-2026-01@cs.toronto.edu\u003c/span\u003e\u003c/span\u003e\u003c/a\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr style=\"height: 85.9px;\"\u003e\n\u003ctd style=\"width: 38.7926%; height: 85.9px;\"\u003e\u003cstrong\u003eDiscussion Board\u003cbr\u003e(for issues relevant also to other students)\u003cbr\u003e\u003c/strong\u003e\u003c/td\u003e\n\u003ctd style=\"width: 61.2406%; height: 85.9px;\"\u003ePiazza. Please find our class signup link at\u003cbr\u003e\u003ca class=\"inline_disabled\" title=\"Link\" href=\"https://piazza.com/utoronto.ca/winter2026/csc343\" target=\"_blank\"\u003ehttps://piazza.com/utoronto.ca/winter2026/csc343\u003c/a\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr style=\"height: 62px;\"\u003e\n\u003ctd style=\"width: 38.7926%; height: 62px;\"\u003e\u003cstrong\u003eMarkUs link\u003cbr\u003e\u003c/strong\u003e\u003c/td\u003e\n\u003ctd style=\"width: 61.2406%; height: 62px;\"\u003e\n\u003cp\u003e\u003ca href=\"https://markus.teach.cs.toronto.edu/markus/courses/132\" target=\"_blank\"\u003ehttps://markus.teach.cs.toronto.edu/markus/courses/132\u003c/a\u003e\u003c/p\u003e\n\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr style=\"height: 70px;\"\u003e\n\u003ctd style=\"width: 38.7926%; height: 70px;\"\u003e\u003cstrong\u003eCourse readings\u003c/strong\u003e\u003c/td\u003e\n\u003ctd style=\"width: 61.2406%; height: 70px;\"\u003e\u003ca class=\"inline_disabled\" title=\"Link\" href=\"https://www.teach.cs.toronto.edu/~csc343h/fall/readings\" target=\"_blank\"\u003ehttps://www.teach.cs.toronto.edu/~csc343h/fall/readings\u003c/a\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003c/tbody\u003e\n\u003c/table\u003e\n\u003chr\u003e\n\u003ch2 id=\"prerequisites\"\u003ePrerequisites\u003c/h2\u003e\n\u003cp\u003eIf you don't have the course prerequisites listed in the\u0026nbsp;\u003cspan style=\"background-color: #ffffff;\"\u003e\u003ca style=\"background-color: #ffffff;\" href=\"https://artsci.calendar.utoronto.ca/search-courses?course_keyword=CSC343\u0026amp;field_section_value=Computer+Science\u0026amp;field_prerequisite_value=\u0026amp;field_breadth_requirements_value=All\"\u003ecalendar entry\u003c/a\u003e,\u003c/span\u003e the undergraduate office will contact you with a form to complete in order to request a prerequisite waiver.\u0026nbsp; Waivers are not granted automatically; a decision is made based on whether or not we feel you are well prepared to succeed in the course.\u003c/p\u003e\n\u003chr\u003e\n\u003ch2 id=\"format\"\u003eCourse format\u003c/h2\u003e\n\u003cp\u003eThis is an in-person course. Lectures in csc343 course are not \"lectures\". In class you will test out the knowledge and skills you are acquiring, and learn the most challenging new material in a context where we can adjust the teaching to match your learning. In some cases you will discover the trickiest ideas yourself. Be prepared to get your gears turning! Experience (and the literature) tells us that this is a fun and very effective way to learn, and it can only happen if you are there. For this reason, part of \u003ca class=\"inline_disabled\" href=\"/courses/416611#markingscheme\"\u003eyour course grade\u003c/a\u003e\u0026nbsp;will be for your active engagement in class.\u003c/p\u003e\n\u003ch3\u003ePreparing for class\u003c/h3\u003e\n\u003cp\u003eTo prepare for our active classes, you will do weekly \"prep\" activities outside of class. These will involve learning some of the more basic material on your own, through readings or videos, and practicing things we've learned in class.\u0026nbsp; They will always culminate in some small exercises that you hand in.\u0026nbsp; These weekly preps are not intended to be greatly difficult or time consuming, but they will be pivotal in your learning.\u003c/p\u003e\n\u003ch3\u003eLecture recordings\u003c/h3\u003e\n\u003cp\u003eThe sound quality on classroom recordings is poor, so we are providing instead a full set of\u003cspan style=\"background-color: #ffffff;\"\u003e \u003ca class=\"inline_disabled\" style=\"background-color: #ffffff;\" href=\"https://utoronto.sharepoint.com/:u:/s/artsci-DCS-horton/EVdy8PY7HApLm46GwYVUoOYBTYo_mGQjYDApqzsKL2P31g\" target=\"_blank\"\u003electure recordings\u003c/a\u003e\u003c/span\u003e made on Zoom. These are indexed in detail so you can find exactly what you're looking for without having to listen through a long recording.\u003c/p\u003e\n\u003cp\u003eReading/viewing recorded materials will provide a poorer experience than the live lecture. We hope you will choose to attend in person and participate (and earn your participation marks too). If you have to miss a lecture, we encourage you to pause the video and do the exercises where noted.\u003c/p\u003e\n\u003cp\u003eCourse videos and materials are protected by copyright. In this course, you are permitted to download videos and materials for your own academic use, but you should not copy, share, or use them for any other purpose without the explicit permission of the instructor. For example, you are not permitted to post any course materials (worksheets, assignments, starter code, etc.) online.\u003c/p\u003e\n\u003chr\u003e\n\u003ch2 id=\"markingscheme\"\u003eMarking Scheme\u003c/h2\u003e\n\u003cp\u003eYou will notice that assignments have a relatively low weight in this course. Because you are allowed to work with a partner and to use AI to help you with your assignments, the grades you earn on these don't tell us nearly as much about what you've learned as the midterms and exam do. This is why the assignment weights are low. Please don't use the weights to gauge how much work each each assignment entails. Assignments 1, 2, and 3 are fairly typical CS assignments and will likely feel to you as though they could have been worth 10% (if you did them alone). On the other hand, the A2 warmup is quite small in comparison, and is worth 1,5% only to encourage everyone to do it so they'll sort out very early any technical challenges running their A2 code.\u003c/p\u003e\n\u003ctable style=\"border-collapse: collapse; margin-left: auto; margin-right: auto; width: 99.7418%; height: 915.923px;\" border=\"1\" cellspacing=\"10\" cellpadding=\"10\"\u003e\n\u003ctbody\u003e\n\u003ctr style=\"height: 124.641px;\"\u003e\n\u003ctd style=\"width: 19.2719%; height: 124.641px;\"\u003e\n\u003cp\u003eLecture Preps\u003c/p\u003e\n\u003c/td\u003e\n\u003ctd style=\"width: 7.30233%; height: 124.641px;\"\u003e\n\u003cp\u003e10%\u003c/p\u003e\n\u003c/td\u003e\n\u003ctd style=\"width: 38.2184%; height: 124.641px;\"\u003e\n\u003cdiv class=\"page\" title=\"Page 1\"\u003e\n\u003cdiv class=\"section\"\u003e\n\u003cdiv class=\"layoutArea\"\u003e\n\u003cdiv class=\"column\"\u003e\n\u003cp\u003e10 Weekly lecture preparation activities (for weeks 2 to 11 inclusive), each worth 1%\u003c/p\u003e\n\u003c/div\u003e\n\u003c/div\u003e\n\u003c/div\u003e\n\u003c/div\u003e\n\u003c/td\u003e\n\u003ctd style=\"width: 28.4781%; height: 124.641px;\"\u003e\n\u003cdiv class=\"page\" title=\"Page 1\"\u003e\n\u003cdiv class=\"section\"\u003e\n\u003cdiv class=\"layoutArea\"\u003e\n\u003cdiv class=\"column\"\u003e\n\u003cp\u003eDue \u003cspan style=\"background-color: #ffffff;\"\u003eWednesdays before 10am\u003c/span\u003e\u003cbr\u003eThe first prep is due \u003cspan style=\"background-color: #ffffff;\"\u003eWed Jan 14th\u003c/span\u003e\u003c/p\u003e\n\u003c/div\u003e\n\u003c/div\u003e\n\u003c/div\u003e\n\u003c/div\u003e\n\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr style=\"height: 100.641px;\"\u003e\n\u003ctd style=\"width: 19.2719%; height: 100.641px;\"\u003e\n\u003cp\u003eClass engagement\u003c/p\u003e\n\u003c/td\u003e\n\u003ctd style=\"width: 7.30233%; height: 100.641px;\"\u003e\n\u003cp\u003e7%\u003c/p\u003e\n\u003c/td\u003e\n\u003ctd style=\"width: 38.2184%; height: 100.641px;\"\u003e\n\u003cdiv class=\"page\" title=\"Page 1\"\u003e\n\u003cdiv class=\"section\"\u003e\n\u003cdiv class=\"layoutArea\"\u003e\n\u003cdiv class=\"column\"\u003e\n\u003cp\u003e12 Weekly in-person activities that are graded for making a good effort.\u003c/p\u003e\n\u003c/div\u003e\n\u003c/div\u003e\n\u003c/div\u003e\n\u003c/div\u003e\n\u003c/td\u003e\n\u003ctd style=\"width: 28.4781%; height: 100.641px;\"\u003e\n\u003cdiv class=\"page\" title=\"Page 1\"\u003e\n\u003cdiv class=\"section\"\u003e\n\u003cdiv class=\"layoutArea\"\u003e\n\u003cdiv class=\"column\"\u003e\n\u003cp\u003eBest 9 of 12\u003c/p\u003e\n\u003c/div\u003e\n\u003c/div\u003e\n\u003c/div\u003e\n\u003c/div\u003e\n\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr style=\"height: 172.641px;\"\u003e\n\u003ctd style=\"width: 19.2719%; height: 172.641px;\"\u003e\n\u003cp\u003eResearch surveys\u003c/p\u003e\n\u003c/td\u003e\n\u003ctd style=\"width: 7.30233%; height: 172.641px;\"\u003e\n\u003cp\u003e1.5%\u003c/p\u003e\n\u003c/td\u003e\n\u003ctd style=\"width: 38.2184%; height: 172.641px;\"\u003e\n\u003cdiv class=\"page\" title=\"Page 1\"\u003e\n\u003cdiv class=\"section\"\u003e\n\u003cdiv class=\"layoutArea\"\u003e\n\u003cdiv class=\"column\"\u003e\n\u003cp\u003eThree short surveys. The first two surveys will be included in Lecture Preps. The final survey is due on the last day of classes (Monday, April 6th, at 11:59pm), and a link to it will be sent via Quercus announcement near then.\u003c/p\u003e\n\u003c/div\u003e\n\u003c/div\u003e\n\u003c/div\u003e\n\u003c/div\u003e\n\u003c/td\u003e\n\u003ctd style=\"width: 28.4781%; height: 172.641px;\"\u003e\n\u003cdiv class=\"page\" title=\"Page 1\"\u003e\n\u003cdiv class=\"section\"\u003e\n\u003cdiv class=\"layoutArea\"\u003e\n\u003cdiv class=\"column\"\u003e\n\u003cp\u003eWorth 0.5% each\u003c/p\u003e\n\u003c/div\u003e\n\u003c/div\u003e\n\u003c/div\u003e\n\u003c/div\u003e\n\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr style=\"height: 60.625px;\"\u003e\n\u003ctd style=\"width: 19.2719%; height: 60.625px;\"\u003eMidterm 1\u003c/td\u003e\n\u003ctd style=\"width: 7.30233%; height: 60.625px;\"\u003e10%\u003c/td\u003e\n\u003ctd style=\"width: 38.2184%; height: 60.625px;\"\u003e\n\u003cp\u003eIn person; \u003cdel\u003etwo hours\u003c/del\u003e \u003cspan style=\"color: #e62429;\"\u003eone hour,\u003c/span\u003e during lecture time\u003c/p\u003e\n\u003c/td\u003e\n\u003ctd style=\"width: 28.4781%; height: 60.625px;\"\u003e\n\u003cp\u003e\u003cspan style=\"background-color: #ffffff;\"\u003eWednesday, February 4th (in your section's time slot but in \u003cstrong\u003eanother location\u003c/strong\u003e TBA)\u003c/span\u003e\u003c/p\u003e\n\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr style=\"height: 58.875px;\"\u003e\n\u003ctd style=\"width: 19.2719%; height: 58.875px;\"\u003eAssignment 1\u003c/td\u003e\n\u003ctd style=\"width: 7.30233%; height: 58.875px;\"\u003e5%\u003c/td\u003e\n\u003ctd style=\"width: 38.2184%; height: 58.875px;\"\u003eRelational Algebra\u003c/td\u003e\n\u003ctd style=\"width: 28.4781%; height: 58.875px;\"\u003eWednesday, February 11th before 3pm\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr style=\"height: 58.625px;\"\u003e\n\u003ctd style=\"width: 19.2719%; height: 58.625px;\"\u003eAssignment 2 warm-up\u003c/td\u003e\n\u003ctd style=\"width: 7.30233%; height: 58.625px;\"\u003e1.5%\u003c/td\u003e\n\u003ctd style=\"width: 38.2184%; height: 58.625px;\"\u003eSQL and embedding SQL in Python\u003c/td\u003e\n\u003ctd style=\"width: 28.4781%; height: 58.625px;\"\u003eWednesday, February 25th before 3pm\u003cspan style=\"background-color: #f1c40f;\"\u003e\u003cbr\u003e\u003c/span\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr style=\"height: 62.9844px;\"\u003e\n\u003ctd style=\"width: 19.2719%; height: 62.9844px;\"\u003eMidterm 2\u003c/td\u003e\n\u003ctd style=\"width: 7.30233%; height: 62.9844px;\"\u003e10%\u003c/td\u003e\n\u003ctd style=\"width: 38.2184%; height: 62.9844px;\"\u003eIn person; \u003cdel\u003etwo hours\u003c/del\u003e \u003cspan style=\"color: #e62429;\"\u003eone hour,\u003c/span\u003e during lecture time\u003c/td\u003e\n\u003ctd style=\"width: 28.4781%; height: 62.9844px;\"\u003eWednesday, March 11th \u003cspan style=\"background-color: #ffffff;\"\u003e(in your section's time slot but in \u003cstrong\u003eanother location\u003c/strong\u003e TBA)\u003c/span\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr style=\"height: 64.625px;\"\u003e\n\u003ctd style=\"width: 19.2719%; height: 64.625px;\"\u003eAssignment 2\u003c/td\u003e\n\u003ctd style=\"width: 7.30233%; height: 64.625px;\"\u003e5%\u003c/td\u003e\n\u003ctd style=\"width: 38.2184%; height: 64.625px;\"\u003eSQL and embedding SQL in Python\u003c/td\u003e\n\u003ctd style=\"width: 28.4781%; height: 64.625px;\"\u003eWednesday, March 18th before 3pm\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr style=\"height: 63.625px;\"\u003e\n\u003ctd style=\"width: 19.2719%; height: 63.625px;\"\u003eAssignment 3\u003c/td\u003e\n\u003ctd style=\"width: 7.30233%; height: 63.625px;\"\u003e5%\u003c/td\u003e\n\u003ctd style=\"width: 38.2184%; height: 63.625px;\"\u003eDatabase Design\u003c/td\u003e\n\u003ctd style=\"width: 28.4781%; height: 63.625px;\"\u003e\n\u003cp\u003e\u003cspan style=\"background-color: #ffffff;\"\u003eWednesday, April 1st, \u003c/span\u003e\u003cspan style=\"background-color: #ffffff;\"\u003ebefore 3pm\u003c/span\u003e\u003c/p\u003e\n\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr style=\"height: 148.641px;\"\u003e\n\u003ctd style=\"width: 19.2719%; height: 148.641px;\"\u003eFinal exam\u003c/td\u003e\n\u003ctd style=\"width: 7.30233%; height: 148.641px;\"\u003e\u003cspan style=\"background-color: #fbeeb8;\"\u003e45%\u003c/span\u003e\u003c/td\u003e\n\u003ctd style=\"width: 38.2184%; height: 148.641px;\"\u003e\u003cspan style=\"color: #000000;\"\u003eIn person;\u003c/span\u003e three hours.\u003cspan style=\"background-color: #ffffff;\"\u003e\u0026nbsp; \u003cspan style=\"background-color: #fbeeb8;\"\u003eYou must get 40% or above on the final exam to pass the course; otherwise, your final course grade will be no higher than 47%.\u003c/span\u003e\u003c/span\u003e\u003c/td\u003e\n\u003ctd style=\"width: 28.4781%; height: 148.641px;\"\u003eTBA, during the final assessment period.\u003c/td\u003e\n\u003c/tr\u003e\n\u003c/tbody\u003e\n\u003c/table\u003e\n\u003cp\u003e\u0026nbsp;\u003c/p\u003e\n\u003chr\u003e\n\u003cdiv class=\"center\" style=\"text-align: justify;\"\u003e\n\u003ch2 id=\"help\"\u003eGetting Help\u003c/h2\u003e\n\u003ch3 id=\"discussionboard\"\u003eDiscussion Board: for sharable questions\u003c/h3\u003e\n\u003cp\u003ePlease post your questions about the course material and assignments on our \u003ca class=\"inline_disabled\" href=\"https://piazza.com/utoronto.ca/winter2026/csc343\" target=\"_blank\"\u003ePiazza discussion board\u003c/a\u003e so that everyone can benefit from your questions. Feel free to answer other students' questions!\u0026nbsp; Helping someone else learn is one of the most effective ways of deeply learning a subject.\u003c/p\u003e\n\u003cp\u003eWe will monitor the discussion board regularly and answer as many questions as we can. It may take longer near due dates, so try to start assignments early in case you have questions.\u003c/p\u003e\n\u003ch3\u003eCourse email account: for personal matters\u003c/h3\u003e\n\u003cp\u003ePlease use the course email account, \u003ca class=\"inline_disabled\" title=\"Link\" href=\"mailto:%20csc343-2026-01@cs.toronto.edu\" target=\"_blank\"\u003ecsc343-2026-01@cs.toronto.edu\u003c/a\u003e for personal matters such as missing course work due to illness.\u003c/p\u003e\n\u003ch3\u003eInstructor office hours: for everything\u003c/h3\u003e\n\u003cp\u003eWe welcome all kinds of conversations at office hours. For example, if you are stuck on a problem and unable to make progress, or confused about a concept in the course, or having difficulty working effectively with your partner, please come to see us. We'd love to help!\u003c/p\u003e\n\u003ch3\u003eGenerative AI: use it well\u003c/h3\u003e\n\u003cp\u003eYou are encouraged to us generative AI to support your learning (not circumvent your learning). See \u003ca class=\"inline_disabled\" href=\"/courses/416611#genAI\"\u003eUsing Generative AI\u003c/a\u003e below for more information.\u003c/p\u003e\n\u003chr\u003e\n\u003ch2 id=\"environment\"\u003eCreating a Positive Learning Environment\u003c/h2\u003e\n\u003cp style=\"text-align: justify;\"\u003eWe are committed to creating a respectful learning environment in computer science courses for all students and expect that you will adhere to the University of Toronto \u003ca class=\"inline_disabled\" href=\"https://governingcouncil.utoronto.ca/secretariat/policies/code-student-conduct-december-13-2019\" target=\"_blank\"\u003eCode of Student Conduct\u003c/a\u003e.\u0026nbsp; Please be mindful of how your behaviour influences the atmosphere in our learning community, not just in classes, but also in office hours, on our discussion board, and anywhere that you interact with other students and members of the department.\u003c/p\u003e\n\u003cp style=\"text-align: justify;\"\u003eThe University of Toronto is committed to equity, human rights and respect for diversity. All members of the learning environment in this course should strive to create an atmosphere of mutual respect where all members of our community can express themselves, engage with each other, and respect one another’s differences. U of T does not condone discrimination or harassment against any persons or communities.\u003c/p\u003e\n\u003chr\u003e\u003c/div\u003e\n\u003ch2 id=\"resources\"\u003eResources\u003c/h2\u003e\n\u003cp\u003eThese two resources are suggested to support your learning in the course:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003eA complete set of lecture recordings for csc343 by Professor Horton (see the \u003ca class=\"inline_disabled\" href=\"/courses/416611/pages/lectures\" target=\"_blank\"\u003eLectures page\u003c/a\u003e\u0026nbsp;for details).\u003c/li\u003e\n\u003cli\u003e\n\u003cp\u003eThe textbook \"A First Course in Database Systems\" by Jeffrey D. Ullman and Jennifer Widom, 2008 (3rd Edition), available online from the\u0026nbsp;\u003ca href=\"http://www.mypearsonstore.com/bookstore/product.asp?isbn=013600637X\u0026amp;xid=PSED\"\u003epublisher \u003c/a\u003eor \u003ca href=\"https://www.amazon.ca/s?k=%22A+First+Course+in+Database+Systems\u0026amp;crid=1IJMXEK4J1KE4\u0026amp;sprefix=a+first+course+in+database+systems%2Caps%2C142\u0026amp;ref=nb_sb_noss_2\"\u003eAmazon\u003c/a\u003e.\u0026nbsp; It is also available on two-hour loan at the Engineering Library in the Sandford Fleming Building. It may or may not be available at the UofT Bookstore at this time.\u003c/p\u003e\n\u003c/li\u003e\n\u003cli\u003e\n\u003cp\u003eJennifer Widom at Stanford University has several free mini-courses \u003ca class=\"inline_disabled\" href=\"https://www.edx.org/school/stanfordonline\" target=\"_blank\"\u003eavailable on edX\u003c/a\u003e, but in a somewhat synchronous mode that starts September 2nd.\u003c/p\u003e\n\u003c/li\u003e\n\u003c/ul\u003e\n\u003chr\u003e\n\u003ch2 id=\"partners\"\u003eWorking with a Partner\u003c/h2\u003e\n\u003cp\u003e\u003cstrong\u003ePreps: \u003c/strong\u003eAll weekly preps must be done individually.\u003c/p\u003e\n\u003cp\u003e\u003cstrong\u003eAssignments: \u003c/strong\u003eFor the assignments, you have the option of partnering with one other CSC343 student, and we encourage you to do so.\u0026nbsp; You may choose your own partner, and it need not be the same person for each assignment.\u0026nbsp; Your partner may come from any section of the course. Both partners will receive the same mark for joint assignments.\u0026nbsp; Once you begin working on an assignment, you may not dissolve your partnership without our permission; request permission via the course email account. The deadline for requesting this is 3 days before the original assignment due date.\u003c/p\u003e\n\u003cp\u003eIf you choose to work with a partner for an assignment, you must declare your group on MarkUs.\u0026nbsp; You should declare it as soon as your group is formed, and certainly well before the deadline.\u0026nbsp; Groups cannot be declared once the original assignment due date has passed, even if you have an extension. Please note that if you are working alone on an assignment, you must still declare your \"group\" on MarkUs.\u0026nbsp; Email the course account (\u003ca class=\"inline_disabled\" href=\"mailto:%20csc343-2026-01@cs.toronto.edu%20\" target=\"_blank\"\u003e\u003cspan class=\"TextRun Underlined SCXW35723921 BCX0\" lang=\"EN-US\" data-contrast=\"none\"\u003e\u003cspan class=\"NormalTextRun SCXW35723921 BCX0\" data-ccp-charstyle=\"Hyperlink\"\u003ecsc343-2026-01@cs.toronto.edu\u003c/span\u003e\u003c/span\u003e\u003c/a\u003e)\u0026nbsp;for help if you’re having trouble forming a group.\u003cstrong\u003e\u003c/strong\u003e\u003c/p\u003e\n\u003cp\u003e\u003cstrong\u003eChoose well:\u003c/strong\u003e Before partnering, have a conversation about expectations and work habits. What mark are you aiming for on this assignment? Do you like to start early or are you a procrastinator? Do you typically work late at night or during business hours? Sharing your answers and working out any differences is probably far more important that comparing your technical backgrounds.\u003c/p\u003e\n\u003cp\u003e\u003cstrong\u003eWorking together:\u003c/strong\u003e Working with a partner has the potential to lighten your workload and enhance your learning or to increase your workload and impair your learning, depending on how you work together.\u0026nbsp; Remember that you are responsible for learning the course material underlying all parts of the assignments.\u0026nbsp; Just dividing up the work can result in a less successful assignment, as you won't benefit from your partner's insights, and could lead to disaster on the tests, as you won't have become proficient in all aspects of the course. You will have the most success if you truly work together.\u003c/p\u003e\n\u003cp\u003e\u003cstrong\u003eIf a partner doesn't meet a commitment:\u003c/strong\u003e Don't avoid talking with your partner in these situations. It doesn't have to be a conflict; you can start by asking what's happening with them, and work together on a resolution. If you need help, please come talk to us. If your partner misses several commitments, be \u003cem\u003esure\u003c/em\u003e to talk with us.\u003c/p\u003e\n\u003chr\u003e\n\u003ch2 id=\"policies\"\u003eCourse Policies\u003c/h2\u003e\n\u003ch3\u003eLate Assignments\u003c/h3\u003e\n\u003cp\u003eThere is a one-hour grace period for assignments. You may submit at any time during this period without penalty.\u003c/p\u003e\n\u003cp\u003eWe recognize that unexpected problems, illness, and disability-related barriers sometimes make it difficult to submit assignments on time. For this reason, we are adopting a generous late policy with respect to assignment submissions. You may request an extension of up to \u003cstrong\u003efour days\u003c/strong\u003e for an assignment submission by completing the \u003ca class=\"inline_disabled\" title=\"Link\" href=\"https://forms.office.com/r/WfeyQsbp9a\" target=\"_blank\"\u003eForm for Special Consideration and Accommodations on Assignments\u003c/a\u003e.\u003c/p\u003e\n\u003cp\u003eNotes:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e\u003cstrong\u003eMarkUs\u003c/strong\u003e: After making this request, the extension will automatically appear on MarkUs within two business days; please do not contact us if you don't see it right away.\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003ePartner\u003c/strong\u003e: If you are working with a partner\n\u003cul\u003e\n\u003cli\u003eYou must create your group on MarkUs and make sure your partner has been invited before requesting the extension.\u003c/li\u003e\n\u003cli\u003eOnly one partner needs to request the extension.\u003c/li\u003e\n\u003cli\u003eYou may not dissolve your partnership after requesting an extension without contacting the course email address first.\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003eDeadline to request an extension\u003c/strong\u003e: You may request this extension up to 4 days after the assignment due date. However, note that the extended time will be relative to the assignment deadline, not relative to when you request the extension.\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003eAsking for a shorter then a longer extension\u003c/strong\u003e: If you initially request a shorter (e.g., 2-day) extension, you can fill out the form again to request a longer extension. We will always apply the most recent extension request you have submitted (for a total extension of up to 4 days after the assignment due date).\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003eIf you miss your extended deadline\u003c/strong\u003e: Any work submitted beyond whatever extension you received plus the one-hour grace period (even 1 second beyond) will not be graded.\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003eUsing this policy more than once\u003c/strong\u003e: You may make use of this policy on as many assignments as you require. However, if you submit extension requests for more than one assignment, we may reach out to connect you with campus supports to help you stay on track in the future (e.g. your college registrar).\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003eIf you get an extension and then fall ill\u003c/strong\u003e: If a student has been granted an extension of 4 days and then becomes ill on the extended deadline, no further extension will be given unless the student has been ill for more than 4 days and further documentation is provided.\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003eWhile it may seem like a \"no-brainer\" to always request a four-day extension for each assignment, we strongly recommend not making this request lightly. We have designed your assignments so that they can be completed by their actual deadlines, and we believe that for the vast majority of students, meeting these deadlines is the best way to keep up with the course material.\u0026nbsp; Please do not use this policy to simply shift the original deadline in your mind.\u003c/p\u003e\n\u003ch3\u003eLonger Extensions\u003c/h3\u003e\n\u003cp\u003eStudents who are registered with Accessibility Services are free to use the policy above, or to request up to 7 days of extra time to complete an assignment. Please fill out the \u003ca class=\"inline_disabled\" href=\"https://forms.office.com/r/WfeyQsbp9a\" target=\"_blank\"\u003eForm for Special Consideration and Accommodations on Assignments\u003c/a\u003e before the original assignment deadline.\u003c/p\u003e\n\u003cp\u003eIf you find yourself in a serious medical or emergency situation where a 4-day extension (or 7-day extension for those registered with Accessibility Services) will not be sufficient, please email the course account. before the original assignment due date. We may require further documentation or confirmation from your college registrar, and further extensions are not always granted. So, you should submit any partial work that you've completed before the original assignment due date. Please also complete an Absence Declaration on ACORN when appropriate, and send the notification to the course email address.\u003c/p\u003e\n\u003cdiv class=\"center\" style=\"text-align: justify;\"\u003e\n\u003ch3 id=\"lateassignments\"\u003eLate Preps\u003c/h3\u003e\n\u003cp\u003eFor weekly preps, \u003cstrong\u003eno late submissions will be graded\u003c/strong\u003e, as their purpose is to prepare everyone for lecture.\u003c/p\u003e\n\u003ch3\u003eMissed Midterm\u003c/h3\u003e\n\u003cp\u003eYou may request special consideration if you missed the midterm due to illness or other extenuating circumstances. To make this request, email the course account and include your name, student number, utorid, reason for missing the midterm, and any relevant documentation. You should also complete an Absence Declaration on ACORN when appropriate, and send the notification to the course email address. Special consideration is NOT always granted. If it is granted, the weight of your midterm will be transferred to both the other midterm and the final exam. \u003cstrong\u003eThere won't be a make-up test\u003c/strong\u003e.\u003c/p\u003e\n\u003cp dir=\"ltr\" data-testid=\"message_title\"\u003e\u003cspan\u003eSince the midterms are during class time, the time should be fine for most of you. However, if you have a conflict, we may be able to accommodate you in another section. To request this, please complete the\u0026nbsp;\u003ca class=\"inline_disabled external\" href=\"https://forms.office.com/r/yHH3t22ZXM\" target=\"_blank\"\u003eForm for Requesting to Write the Midterm with Another Section\u003c/a\u003e. We will respond by email to let you know if we are able to accommodate your request. \u003c/span\u003e\u003cstrong style=\"font-family: inherit; font-size: 1rem;\"\u003eYou may write with the other section\u0026nbsp;\u003cem\u003eonly\u0026nbsp;\u003c/em\u003eif you hear back from us confirming that we have been able to accommodate your request.\u0026nbsp;\u003c/strong\u003e\u003cspan style=\"font-family: inherit; font-size: 1rem;\"\u003eWe can't confirm any swaps until after the form deadline, as it will depend on demand and available space in the rooms. Also, p\u003c/span\u003e\u003cspan style=\"font-family: inherit; font-size: 1rem;\"\u003elease note that if another course is holding an out-of-class test that conflicts, that course is required to accommodate you.\u0026nbsp;\u003c/span\u003e\u003c/p\u003e\n\u003c/div\u003e\n\u003cdiv class=\"center\" style=\"text-align: justify;\"\u003e\u003chr\u003e\n\u003cdiv id=\"special\"\u003e\u003c/div\u003e\n\u003c/div\u003e\n\u003ch2 id=\"specialconsideration\"\u003eSpecial Consideration\u003c/h2\u003e\n\u003cdiv style=\"text-align: justify;\"\u003e\n\u003cp\u003eIf you need to request special consideration (as described above), you will be required to affirm that you are abiding by the \u003ca href=\"http://www.governingcouncil.utoronto.ca/Assets/Governing+Council+Digital+Assets/Policies/PDF/ppjun011995.pdf\"\u003eCode of Behaviour on Academic Matters\u003c/a\u003e, in particular that it is an offence\u003c/p\u003e\n\u003cblockquote\u003e\u003cem\u003eto engage in any form of cheating, academic dishonesty or misconduct, fraud or misrepresentation not herein otherwise described, in order to obtain academic credit or other academic advantage of any kind.\u003c/em\u003e\u003c/blockquote\u003e\n\u003cp\u003eThat is, you must confirm that you are truly experiencing an emergency, and acknowledge that to falsely claim so is an academic offence. Applying does not guarantee that you will be granted special consideration.\u003c/p\u003e\nThe Special Consideration Request Form will be available here.\u0026nbsp; Please carefully read the policy above on late work before submitting a request.\u003cbr\u003e\n\u003cp\u003e\u003cstrong\u003eIMPORTANT: \u003c/strong\u003eSubmit a request for special consideration as soon as possible. It is easier to resolve situations earlier rather than later.\u0026nbsp; If your emergency will affect your ability to complete coursework for more than a few days, or in multiple courses, we recommend you also talk to your Registrar -- they are very helpful in such situations.\u003cstrong\u003e\u003c/strong\u003e\u003c/p\u003e\n\u003c/div\u003e\n\u003chr\u003e\n\u003cdiv id=\"remarkrequests\"\u003e\n\u003ch2 id=\"remarks\"\u003eRemark Requests\u003c/h2\u003e\n\u003cp\u003eMistakes sometimes happen when marking.\u0026nbsp; If you feel there is an issue with the marking of your assignment or test, you may request that it be remarked. Remark requests are accepted for two weeks after the item is returned, and are submitted via MarkUs. You must give a specific reason for a remark request, referring to a possible error or omission by the marker. Remark requests without a specific reason will not be accepted.\u003c/p\u003e\n\u003cp\u003eWe will respond to remark requests before the final grades are submitted at the end of the term.\u0026nbsp; We aim to do these sooner, but it is not always possible.\u003c/p\u003e\n\u003chr\u003e\u003c/div\u003e\n\u003ch2 id=\"integrity\"\u003eAcademic Integrity\u003c/h2\u003e\n\u003cp\u003eThe work you submit must be your own.\u0026nbsp; It is an academic offence to copy someone else's work.\u0026nbsp; This includes their code, their words, and even their ideas.\u0026nbsp; Whether you copy or let someone else copy, it is an offence.\u0026nbsp; Academic offences are taken very seriously, and penalties can go well beyond 0 on the piece of work.\u003c/p\u003e\n\u003cp\u003eAt the same time, we want you to benefit from working with other students. You are welcome to work with other csc343 students on learning and understanding course material. For example, you may work through examples that help you understand course material or a new technology, or help each other configure your system to run a supporting piece of software.\u0026nbsp; You are also welcome to work with other csc343 students on \u003cstrong\u003elearning and understanding\u003c/strong\u003e related to assignments, including:\u003c/p\u003e\n\u003cp\u003e\u0026nbsp; \u0026nbsp; Understanding the handout\u003cbr\u003e\u0026nbsp; \u0026nbsp; Understanding the architecture of starter code\u003cbr\u003e\u0026nbsp; \u0026nbsp; Understanding specifications for a query, update or method\u003cbr\u003e\u0026nbsp; \u0026nbsp; Getting more familiar with Python (some Engineering students may not have learned this language)\u003cbr\u003e\u0026nbsp; \u0026nbsp; Learning an unfamiliar library (we'll be using psycopg2)\u003cbr\u003e\u0026nbsp; \u0026nbsp; Making connections to other course material or concepts\u003cbr\u003e\u0026nbsp; \u0026nbsp; Understanding error messages (without looking at the code)\u003c/p\u003e\n\u003cp\u003eHowever, other than between partners,\u0026nbsp;\u003cem\u003ecollaboration on assignment \u003cstrong\u003esolutions\u003c/strong\u003e is strictly forbidden\u003c/em\u003e. For example, these are not allowed:\u003c/p\u003e\n\u003cp\u003e\u0026nbsp; \u0026nbsp; Working out the steps of a solution together\u003cbr\u003e\u0026nbsp; \u0026nbsp; Drafting code together\u003cbr\u003e\u0026nbsp; \u0026nbsp; Understanding solution code generated by generative AI\u003cbr\u003e\u0026nbsp; \u0026nbsp; Improving code quality\u003cbr\u003e\u0026nbsp; \u0026nbsp; Debugging (i.e., diagnosing the source of an error message or incorrect results)\u003cbr\u003e\u0026nbsp; \u0026nbsp; Fixing code (i.e., changing the code to eliminate an error message or produce correct results)\u003c/p\u003e\n\u003cp\u003eThe most certain way to protect yourself is not to discuss assignment solutions or the ideas behind them with students other than your partner. Certainly you must not let others see your assignment solutions, even in draft form, or even your rough work.\u003c/p\u003e\n\u003cp\u003eBe cautious with private tutors, as some cross the line and tell students the answers - and they routinely engage with multiple students who all end up submitting nearly identical work.\u003c/p\u003e\n\u003ch2 id=\"genAI\"\u003eUsing Generative AI\u003c/h2\u003e\n\u003cp\u003eIn this course, you may use generative artificial intelligence (AI) tools as learning aids and to help complete assignments. We strongly recommend that you use UofT's Copilot because it is free, has no limits on your use, your data stays within the UofT ecosystem, and your conversations are not used to train any models. This means that you may upload copyrighted material to Copilot, whereas you are not allowed to do so with other genAI tools. We encourage you to review the privacy policy of any other generative AI tool you plan to use, in particular, to understand how your interactions will be stored and used by the tool in the future.\u003c/p\u003e\n\u003cp\u003eWe recommend that you focus your use of generative AI on the learning and understanding side. Keep in mind that it may produce content which is incorrect or misleading. It may also produce content that is inconsistent with the expectations of this course. This is a particular issue in databases where some terminology and notation is not standardized.\u003c/p\u003e\n\u003cp\u003eIf you use generative AI more specifically to help you \u003cem\u003esolve\u003c/em\u003e course work, please be careful not to rely heavily on these tools. Ultimately, you (and not any AI tool) are responsible for your own learning in this course, and for all the work you submit for credit. It is your responsibility to critically evaluate the content generated, and to regularly assess your own learning independent of generative AI tools. Over reliance on generative AI may give you a false sense of how much you’ve actually learned, which can lead to poor performance on the midterm test or final exam, in later courses, or in future work or studies after graduation.\u003c/p\u003e\n\u003cp\u003eTo help you use it well, we have prepared some advice about genAI (see the link to \u003ca class=\"inline_disabled\" href=\"/courses/416611/pages/genai-advice\" target=\"_blank\"\u003eGenAI advice\u003c/a\u003e on the side) including pitfalls that are specific to CSC343, and to your assignment work in this course.\u003c/p\u003e\n\u003chr\u003e\n\u003ch2 id=\"accessibility\"\u003eAccessibility Accommodations\u003c/h2\u003e\n\u003cp\u003eThe University provides academic accommodations for students with disabilities in accordance with the terms of the Ontario Human Rights Code. This occurs through a collaborative process that acknowledges a collective obligation to develop an accessible learning environment that both meets the needs of students and preserves the essential academic requirements of the University’s courses and programs.\u003c/p\u003e\n\u003cp\u003eStudents with diverse learning styles and needs are welcome in this course. If you have a disability that may require accommodations, please feel free to contact us at \u003ca class=\"inline_disabled\" href=\"mailto:%20csc343-2026-01@cs.toronto.edu%20\" target=\"_blank\"\u003e\u003cspan class=\"TextRun Underlined SCXW35723921 BCX0\" lang=\"EN-US\" data-contrast=\"none\"\u003e\u003cspan class=\"NormalTextRun SCXW35723921 BCX0\" data-ccp-charstyle=\"Hyperlink\"\u003ecsc343-2026-01@cs.toronto.edu\u003c/span\u003e\u003c/span\u003e\u003c/a\u003e\u0026nbsp;and/or the St George Campus \u003ca class=\"inline_disabled\" href=\"https://studentlife.utoronto.ca/department/accessibility-services/\" target=\"_blank\"\u003eAccessibility Services\u003c/a\u003e office.\u003c/p\u003e","notices":[],"active_context_tab":"syllabus"};
+    BRANDABLE_CSS_HANDLEBARS_INDEX = [["new_styles_normal_contrast","new_styles_high_contrast","new_styles_normal_contrast_rtl","new_styles_high_contrast_rtl","new_styles_normal_contrast_dyslexic","new_styles_high_contrast_dyslexic","new_styles_normal_contrast_dyslexic_rtl","new_styles_high_contrast_dyslexic_rtl"],{"10":["908ffbc673",0,"d5c9044c6e",2,0,0,2,2],"15":["c8540c43a4",0,"0a2196be1d",2,0,0,2,2],"19":["df5777ed9c"],"61":["d5c4afc14e","ebb835cdef","384361a056","2e0ba247d5",0,1,2,3],"67":["db2aeb63d1",0,"32c90f1518",2,0,0,2,2],"71":["b848cc547a","83ae671549","d1c7bac7c6","0888a4a9e7",0,1,2,3],"06":["ba28819778",0,"96b99aafe5",2,0,0,2,2],"f0":["b349f31f5e",0,0,0,0,0,0,0],"c8":["aeda914f8b","c49cb30680","817080456d","ea2c01509e",0,1,2,3],"1e":["834e660fc6","35fd7c2fa0","99d344b95a","3de47096dc",0,1,2,3],"0c":["4dae5befd2",0,"c18876be89",2,0,0,2,2],"da":["b5a7f9cd8f","6e65f5abf7","773390ae11","6481b459be",0,1,2,3],"1d":["2128789890",0,"e568085637",2,0,0,2,2],"08":["64bff5a97d"],"e2":["79d37f210d"],"9f":["d39b291ba6",0,0,0,0,0,0,0],"2b":["20b6964699","b11dc54da6","62fe3ea30b","6bb4a7ae9e",0,1,2,3],"2c":["8a926fc28b",0,0,0,0,0,0,0],"c2":["6f2721ae01"],"9c":["c31821c764",0,"1693aba1da",2,0,0,2,2],"c5":["b5d5bef953","09b4a0b487","27a133737e","2098769aea",0,1,2,3],"f2":["51574f9b13"]}]
+      REMOTES = {};
+  </script>
+  <script src="https://du11hjcvx0uqb.cloudfront.net/dist/brandable_css/0976b3638d0604c8fdc3c2118e22f3cf/variables-9dec371ad57e3dd0396f0b2eddb63479.js" defer="defer"></script>
+  <script src="https://du11hjcvx0uqb.cloudfront.net/dist/timezone/America/New_York-692f7d27e4.js" defer="defer"></script>
+  <script src="https://du11hjcvx0uqb.cloudfront.net/dist/timezone/America/New_York-692f7d27e4.js" defer="defer"></script>
+  <script src="https://du11hjcvx0uqb.cloudfront.net/dist/timezone/en_CA-21c9309bc0.js" defer="defer"></script>
+  <script src="https://du11hjcvx0uqb.cloudfront.net/dist/webpack-production/moment/locale/en-ca-chunk-9d0e0de20461fcfa.js" defer="defer"></script>
+  <script src="https://du11hjcvx0uqb.cloudfront.net/dist/webpack-production/react-entry-be1bde4765d8e661.js" crossorigin="anonymous" defer="defer"></script>
+  <script src="https://du11hjcvx0uqb.cloudfront.net/dist/webpack-production/main-entry-6435e9f685a3516d.js" crossorigin="anonymous" defer="defer"></script>
+<script>
+//<![CDATA[
+(window.deferredBundles || (window.deferredBundles = [])).push('syllabus');
+(window.bundles || (window.bundles = [])).push('course');
+(window.bundles || (window.bundles = [])).push('course_show');
+(window.bundles || (window.bundles = [])).push('course_show_secondary');
+(window.bundles || (window.bundles = [])).push('navigation_header');
+//]]>
+</script>
+  
+</head>
+
+<body class="with-left-side course-menu-expanded with-right-side syllabus primary-nav-expanded full-width context-course_416611 responsive_student_grades_page">
+
+<noscript>
+  <div role="alert" class="ic-flash-static ic-flash-error">
+    <div class="ic-flash__icon" aria-hidden="true">
+      <i class="icon-warning"></i>
+    </div>
+    <h1>You need to have JavaScript enabled in order to access this site.</h1>
+  </div>
+</noscript>
+
+
+
+
+<div id="flash_message_holder"></div>
+<div id="flash_screenreader_holder"></div>
+
+<div id="application" class="ic-app ">
+  
+
+
+
+
+<header id="mobile-header" class="no-print">
+  <button type="button" class="Button Button--icon-action-rev Button--large mobile-header-hamburger">
+    <i class="icon-solid icon-hamburger"></i>
+    <span id="mobileHeaderInboxUnreadBadge" class="menu-item__badge" style="min-width: 0; top: 12px; height: 12px; right: 6px; display:none;"></span>
+    <span class="screenreader-only">Global Navigation Menu</span>
+  </button>
+  <div class="mobile-header-space"></div>
+    <a class="mobile-header-title expandable" href="https://q.utoronto.ca/courses/416611" role="button" aria-controls="mobileContextNavContainer">
+      <div>CSC343H1S 20261 (All Sections)</div>
+        <div>Syllabus</div>
+    </a>
+
+  <div id="nutrition_facts_mobile_container"></div>
+
+    <div id="immersive_reader_mobile_mount_point"></div>
+
+    <div class="mobile-header-space"></div>
+    <button type="button" class="Button Button--icon-action-rev Button--large mobile-header-arrow" aria-label="Navigation Menu">
+      <i class="icon-arrow-open-down" id="mobileHeaderArrowIcon"></i>
+    </button>
+</header>
+<nav id="mobileContextNavContainer"></nav>
+
+<header id="header" class="ic-app-header no-print " aria-label="Global Header">
+  <a href="#content" id="skip_navigation_link">Skip To Content</a>
+  <div role="region" class="ic-app-header__main-navigation" aria-label="Global Navigation">
+      <div class="ic-app-header__logomark-container">
+        <a href="https://q.utoronto.ca/" class="ic-app-header__logomark">
+          <span class="screenreader-only">Dashboard</span>
+        </a>
+      </div>
+    <ul id="menu" class="ic-app-header__menu-list">
+        <li class="menu-item ic-app-header__menu-list-item ">
+          <a id="global_nav_profile_link" role="button" href="/profile/settings" class="ic-app-header__menu-list-link">
+            <div class="menu-item-icon-container">
+              <div aria-hidden="true" class="fs-exclude ic-avatar ">
+                <img src="https://q.utoronto.ca/images/messages/avatar-50.png" alt="Anthony Zhao" />
+              </div>
+              <span class="menu-item__badge"></span>
+            </div>
+            <div class="menu-item__text">
+              Account
+            </div>
+          </a>
+        </li>
+      <li class="ic-app-header__menu-list-item ">
+        <a id="global_nav_dashboard_link" href="https://q.utoronto.ca/" class="ic-app-header__menu-list-link">
+          <div class="menu-item-icon-container" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" class="ic-icon-svg ic-icon-svg--dashboard" version="1.1" x="0" y="0" viewBox="0 0 280 200" enable-background="new 0 0 280 200" xml:space="preserve"><path d="M273.09,180.75H197.47V164.47h62.62A122.16,122.16,0,1,0,17.85,142a124,124,0,0,0,2,22.51H90.18v16.29H6.89l-1.5-6.22A138.51,138.51,0,0,1,1.57,142C1.57,65.64,63.67,3.53,140,3.53S278.43,65.64,278.43,142a137.67,137.67,0,0,1-3.84,32.57ZM66.49,87.63,50.24,71.38,61.75,59.86,78,76.12Zm147,0L202,76.12l16.25-16.25,11.51,11.51ZM131.85,53.82v-23h16.29v23Zm15.63,142.3a31.71,31.71,0,0,1-28-16.81c-6.4-12.08-15.73-72.29-17.54-84.25a8.15,8.15,0,0,1,13.58-7.2c8.88,8.21,53.48,49.72,59.88,61.81a31.61,31.61,0,0,1-27.9,46.45ZM121.81,116.2c4.17,24.56,9.23,50.21,12,55.49A15.35,15.35,0,1,0,161,157.3C158.18,152,139.79,133.44,121.81,116.2Z" /></svg>
+
+          </div>
+          <div class="menu-item__text">
+            Dashboard
+          </div>
+        </a>
+      </li>
+        <li class="menu-item ic-app-header__menu-list-item ic-app-header__menu-list-item--active">
+          <a id="global_nav_courses_link" role="button" href="/courses" class="ic-app-header__menu-list-link">
+            <div class="menu-item-icon-container" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" class="ic-icon-svg ic-icon-svg--courses" version="1.1" x="0" y="0" viewBox="0 0 280 259" enable-background="new 0 0 280 259" xml:space="preserve"><path d="M73.31,198c-11.93,0-22.22,8-24,18.73a26.67,26.67,0,0,0-.3,3.63v.3a22,22,0,0,0,5.44,14.65,22.47,22.47,0,0,0,17.22,8H200V228.19h-134V213.08H200V198Zm21-105.74h90.64V62H94.3ZM79.19,107.34V46.92H200v60.42Zm7.55,30.21V122.45H192.49v15.11ZM71.65,16.71A22.72,22.72,0,0,0,49,39.36V190.88a41.12,41.12,0,0,1,24.32-8h157V16.71ZM33.88,39.36A37.78,37.78,0,0,1,71.65,1.6H245.36V198H215.15v45.32h22.66V258.4H71.65a37.85,37.85,0,0,1-37.76-37.76Z"/></svg>
+
+            </div>
+            <div class="menu-item__text">
+              Courses
+            </div>
+          </a>
+        </li>
+        <li class="menu-item ic-app-header__menu-list-item ">
+          <a id="global_nav_groups_link" role="button" href="/groups" class="ic-app-header__menu-list-link">
+            <div class="menu-item-icon-container" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" class="ic-icon-svg ic-icon-svg--groups" viewBox="0 0 200 135"><path d="M134.5 129.4c0-1.1 0-19.8-6.2-31.1-4.5-8.5-16.4-12.4-35-19.2-1.7-.6-3.4-1.1-5.1-1.7v-8.5c5.6-5.1 8.5-12.4 8.5-20.3V29.4C96.6 13 83.6 0 67.2 0S37.9 13 37.9 29.4v19.2c0 7.3 3.4 14.7 8.5 20.3v8.5c-1.7.6-3.4 1.1-5.1 1.7-18.6 6.2-30.5 10.7-35 19.2C0 109.6 0 128.8 0 129.4c0 3.4 2.3 5.6 5.6 5.6h123.7c3.5 0 5.7-2.3 5.2-5.6zm-123.2-5.7c.6-5.6 1.7-14.7 3.4-19.8C17 98.8 30 94.3 43.5 89.8c2.8-1.1 5.6-2.3 9-3.4 2.3-.6 4-2.8 4-5.1V66.7c0-1.7-.6-3.4-1.7-4.5-4-3.4-6.2-8.5-6.2-13.6V29.4c0-10.2 7.9-18.1 18.1-18.1s18.1 7.9 18.1 18.1v19.2c0 5.1-2.3 10.2-6.2 13.6-1.1 1.1-1.7 2.8-1.7 4.5v14.7c0 2.3 1.7 4.5 4 5.1 2.8 1.1 6.2 2.3 9 3.4 13.6 5.1 26.6 9.6 28.8 14.1 2.8 5.1 4 13.6 4.5 19.8H11.3zM196 79.1c-2.8-6.2-11.3-9.6-22.6-13.6l-1.7-.6v-3.4c4.5-4 6.8-9.6 6.8-15.8V35c0-12.4-9.6-22-22-22s-22 10.2-22 22v10.7c0 6.2 2.3 11.9 6.8 15.8V65l-1.7.6c-7.3 2.8-13 4.5-16.9 7.3-1.7 1.1-2.3 2.8-2.3 5.1.6 1.7 1.7 3.4 3.4 4.5 7.9 4 12.4 7.3 14.1 10.7 2.3 4.5 4 10.2 5.1 18.1.6 2.3 2.8 4.5 5.6 4.5h45.8c3.4 0 5.6-2.8 5.6-5.1 0-3.9 0-24.3-4-31.6zm-42.9 25.4c-1.1-6.8-2.8-12.4-5.1-16.9-1.7-4-5.1-6.8-9.6-10.2 1.7-1.1 3.4-1.7 5.1-2.3l5.6-2.3c1.7-.6 3.4-2.8 3.4-5.1v-9.6c0-1.7-.6-3.4-2.3-4.5-2.8-1.7-4.5-5.1-4.5-8.5V34.5c0-6.2 4.5-10.7 10.7-10.7s10.7 5.1 10.7 10.7v10.7c0 3.4-1.7 6.2-4.5 8.5-1.1 1.1-2.3 2.8-2.3 4.5v10.2c0 2.3 1.1 4.5 3.4 5.1l5.6 2.3c6.8 2.3 15.3 5.6 16.4 7.9 1.7 2.8 2.8 12.4 2.8 20.9h-35.4z"/></svg>
+
+            </div>
+            <div class="menu-item__text">
+              Groups
+            </div>
+          </a>
+        </li>
+      <li class="menu-item ic-app-header__menu-list-item ">
+        <a id="global_nav_calendar_link" href="/calendar" class="ic-app-header__menu-list-link">
+          <div class="menu-item-icon-container" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" class="ic-icon-svg ic-icon-svg--calendar" version="1.1" x="0" y="0" viewBox="0 0 280 280" enable-background="new 0 0 280 280" xml:space="preserve"><path d="M197.07,213.38h16.31V197.07H197.07Zm-16.31,16.31V180.76h48.92v48.92Zm-48.92-16.31h16.31V197.07H131.85Zm-16.31,16.31V180.76h48.92v48.92ZM66.62,213.38H82.93V197.07H66.62ZM50.32,229.68V180.76H99.24v48.92Zm146.75-81.53h16.31V131.85H197.07Zm-16.31,16.31V115.54h48.92v48.92Zm-48.92-16.31h16.31V131.85H131.85Zm-16.31,16.31V115.54h48.92v48.92ZM66.62,148.15H82.93V131.85H66.62ZM50.32,164.46V115.54H99.24v48.92ZM34,262.29H246V82.93H34ZM246,66.62V42.16A8.17,8.17,0,0,0,237.84,34H213.38v8.15a8.15,8.15,0,1,1-16.31,0V34H82.93v8.15a8.15,8.15,0,0,1-16.31,0V34H42.16A8.17,8.17,0,0,0,34,42.16V66.62Zm-8.15-48.92a24.49,24.49,0,0,1,24.46,24.46V278.6H17.71V42.16A24.49,24.49,0,0,1,42.16,17.71H66.62V9.55a8.15,8.15,0,0,1,16.31,0v8.15H197.07V9.55a8.15,8.15,0,1,1,16.31,0v8.15Z"/></svg>
+
+          </div>
+          <div class="menu-item__text">
+            Calendar
+          </div>
+        </a>
+      </li>
+      <li class="menu-item ic-app-header__menu-list-item ">
+      <!-- TODO: Add back global search when available -->
+        <a id="global_nav_conversations_link" href="/conversations" class="ic-app-header__menu-list-link">
+          <div class="menu-item-icon-container">
+            <span aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" class="ic-icon-svg ic-icon-svg--inbox" version="1.1" x="0" y="0" viewBox="0 0 280 280" enable-background="new 0 0 280 280" xml:space="preserve"><path d="M91.72,120.75h96.56V104.65H91.72Zm0,48.28h80.47V152.94H91.72Zm0-96.56h80.47V56.37H91.72Zm160.94,34.88H228.52V10.78h-177v96.56H27.34A24.17,24.17,0,0,0,3.2,131.48V244.14a24.17,24.17,0,0,0,24.14,24.14H252.66a24.17,24.17,0,0,0,24.14-24.14V131.48A24.17,24.17,0,0,0,252.66,107.34Zm0,16.09a8.06,8.06,0,0,1,8,8v51.77l-32.19,19.31V123.44ZM67.58,203.91v-177H212.42v177ZM27.34,123.44H51.48v79.13L19.29,183.26V131.48A8.06,8.06,0,0,1,27.34,123.44ZM252.66,252.19H27.34a8.06,8.06,0,0,1-8-8V202l30,18H230.75l30-18v42.12A8.06,8.06,0,0,1,252.66,252.19Z"/></svg>
+</span>
+            <span class="menu-item__badge"></span>
+          </div>
+          <div class="menu-item__text">
+            Inbox
+          </div>
+        </a>
+      </li>
+        <li class="menu-item ic-app-header__menu-list-item" >
+          <a id="global_nav_history_link" role="button" href="#" class="ic-app-header__menu-list-link">
+            <div class="menu-item-icon-container" aria-hidden="true">
+              <svg viewBox="0 0 1920 1920" class="ic-icon-svg menu-item__icon svg-icon-history" version="1.1" xmlns="http://www.w3.org/2000/svg">
+    <path d="M960 112.941c-467.125 0-847.059 379.934-847.059 847.059 0 467.125 379.934 847.059 847.059 847.059 467.125 0 847.059-379.934 847.059-847.059 0-467.125-379.934-847.059-847.059-847.059M960 1920C430.645 1920 0 1489.355 0 960S430.645 0 960 0s960 430.645 960 960-430.645 960-960 960m417.905-575.955L903.552 988.28V395.34h112.941v536.47l429.177 321.77-67.765 90.465z" stroke="none" stroke-width="1" fill-rule="evenodd"/>
+</svg>
+            </div>
+            <div class="menu-item__text">
+              History
+            </div>
+          </a>
+        </li>
+        
+    <li id="context_external_tool_24014_menu_item" data-tool-id="materials-costs-24014" class="globalNavExternalTool menu-item ic-app-header__menu-list-item">
+      <a class='ic-app-header__menu-list-link' href="/accounts/1/external_tools/24014?display=borderless&amp;launch_type=global_navigation&amp;toolId=materials-costs-24014" target="_blank">
+          <img src="https://canvas-utprd.s3.us-east-1.amazonaws.com/papers-q.svg" alt="Materials Costs Global Nav Link" class="lti_tool_icon_large"/>
+        <div class="menu-item__text">
+          Materials Costs
+        </div>
+      </a>
+    </li>
+    <li id="context_external_tool_2015_menu_item" data-tool-id="course-evals-2015" class="globalNavExternalTool menu-item ic-app-header__menu-list-item">
+      <a class='ic-app-header__menu-list-link' href="/accounts/1/external_tools/2015?launch_type=global_navigation&amp;toolId=course-evals-2015" target="">
+          <img src="https://s3.amazonaws.com/canvas-utprd/Course_Evals.svg" alt="Course Evals no highlight" class="lti_tool_icon_large"/>
+        <div class="menu-item__text">
+          Course Evals
+        </div>
+      </a>
+    </li>
+
+      <li class="ic-app-header__menu-list-item">
+        <a id="global_nav_help_link" role="button" class="ic-app-header__menu-list-link" data-track-category="help system" data-track-label="help button" href="#">
+          <div class="menu-item-icon-container" role="presentation">
+              <svg xmlns="http://www.w3.org/2000/svg" class="ic-icon-svg menu-item__icon svg-icon-help" version="1.1" x="0" y="0" viewBox="0 0 200 200" enable-background="new 0 0 200 200" xml:space="preserve" fill="currentColor"><path d="M100,127.88A11.15,11.15,0,1,0,111.16,139,11.16,11.16,0,0,0,100,127.88Zm8.82-88.08a33.19,33.19,0,0,1,23.5,23.5,33.54,33.54,0,0,1-24,41.23,3.4,3.4,0,0,0-2.74,3.15v9.06H94.42v-9.06a14.57,14.57,0,0,1,11.13-14,22.43,22.43,0,0,0,13.66-10.27,22.73,22.73,0,0,0,2.31-17.37A21.92,21.92,0,0,0,106,50.59a22.67,22.67,0,0,0-19.68,3.88,22.18,22.18,0,0,0-8.65,17.64H66.54a33.25,33.25,0,0,1,13-26.47A33.72,33.72,0,0,1,108.82,39.8ZM100,5.2A94.8,94.8,0,1,0,194.8,100,94.91,94.91,0,0,0,100,5.2m0,178.45A83.65,83.65,0,1,1,183.65,100,83.73,83.73,0,0,1,100,183.65" transform="translate(-5.2 -5.2)"/></svg>
+
+            <span class="menu-item__badge"></span>
+          </div>
+          <div class="menu-item__text">
+            Help
+          </div>
+</a>      </li>
+    </ul>
+  </div>
+  <div class="ic-app-header__secondary-navigation">
+    <ul class="ic-app-header__menu-list">
+      <li class="menu-item ic-app-header__menu-list-item">
+        <a
+          id="primaryNavToggle"
+          role="button"
+          href="#"
+          class="ic-app-header__menu-list-link ic-app-header__menu-list-link--nav-toggle"
+          aria-label="Minimize global navigation"
+          title="Minimize global navigation"
+        >
+          <div class="menu-item-icon-container" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" class="ic-icon-svg ic-icon-svg--navtoggle" version="1.1" x="0" y="0" width="40" height="32" viewBox="0 0 40 32" xml:space="preserve">
+  <path d="M39.5,30.28V2.48H37.18v27.8Zm-4.93-13.9L22.17,4,20.53,5.61l9.61,9.61H.5v2.31H30.14l-9.61,9.61,1.64,1.64Z"/>
+</svg>
+
+          </div>
+        </a>
+      </li>
+    </ul>
+  </div>
+  <div id="global_nav_tray_container"></div>
+  <div id="global_nav_tour"></div>
+</header>
+
+
+  <div id="instructure_ajax_error_box">
+    <div style="text-align: right; background-color: #fff;"><a href="#" class="close_instructure_ajax_error_box_link">Close</a></div>
+    <iframe id="instructure_ajax_error_result" src="about:blank" style="border: 0;" title="Error"></iframe>
+  </div>
+
+  <div id="wrapper" class="ic-Layout-wrapper">
+        <div class="ic-app-nav-toggle-and-crumbs no-print">
+            <button type="button" id="courseMenuToggle" class="Button Button--link ic-app-course-nav-toggle" aria-live="polite" aria-label="Hide Courses Navigation Menu">
+              <i class="icon-hamburger" aria-hidden="true"></i>
+            </button>
+
+          <div class="ic-app-crumbs ">
+              <nav id="breadcrumbs" role="navigation" aria-label="breadcrumbs"><ol><li class="home"><a href="/"><span class="ellipsible"><i class="icon-home"
+   title="My Dashboard">
+  <span class="screenreader-only">My Dashboard</span>
+</i>
+</span></a></li><li id="crumb_course_416611"><a href="https://q.utoronto.ca/courses/416611"><span class="ellipsible">CSC343H1S 20261 (All Sections)</span></a></li><li aria-current="page"><span class="ellipsible">Syllabus</span></li></ol></nav>
+          </div>
+
+
+          <div id="nutrition_facts_container"></div>
+          <div class="right-of-crumbs right-of-crumbs-no-reverse">
+              <div id="immersive_reader_mount_point"></div>
+              <div class="TutorialToggleHolder"></div>
+            <div id="ai-information-mount"></div>
+          </div>
+
+        </div>
+    <div id="main" class="ic-Layout-columns">
+        <div class="ic-Layout-watermark" aria-hidden="true"></div>
+        <div id="left-side"
+          class="ic-app-course-menu ic-sticky-on list-view"
+          style="display: block"
+          >
+          <div id="sticky-container" class="ic-sticky-frame">
+              <span id="section-tabs-header-subtitle" class="ellipsis">2026 Winter</span>
+            <nav role="navigation" aria-label="Courses Navigation Menu"><ul id="section-tabs"><li class="section"><a id="home-link" href="/courses/416611" class="home">Home</a></li><li class="section"><a id="announcements-link" href="/courses/416611/announcements" class="announcements">Announcements</a></li><li class="section"><a id="context_external_tool_26502-link" href="/courses/416611/external_tools/26502" class="context_external_tool_26502">Lectures</a></li><li class="section"><a id="context_external_tool_26517-link" href="/courses/416611/external_tools/26517" class="context_external_tool_26517">Lecture Preps</a></li><li class="section"><a id="context_external_tool_26709-link" href="/courses/416611/external_tools/26709" class="context_external_tool_26709">Piazza</a></li><li class="section"><a id="context_external_tool_26521-link" href="/courses/416611/external_tools/26521" class="context_external_tool_26521">Office Hours</a></li><li class="section"><a id="context_external_tool_26539-link" href="/courses/416611/external_tools/26539" class="context_external_tool_26539">CS Teaching Labs</a></li><li class="section"><a id="context_external_tool_26540-link" href="/courses/416611/external_tools/26540" class="context_external_tool_26540">PostgreSQL</a></li><li class="section"><a id="context_external_tool_26541-link" href="/courses/416611/external_tools/26541" class="context_external_tool_26541">Files and File Systems</a></li><li class="section"><a id="assignments-link" href="/courses/416611/assignments" class="assignments">Assignments</a></li><li class="section"><a id="context_external_tool_26542-link" href="/courses/416611/external_tools/26542" class="context_external_tool_26542">Midterm and Final</a></li><li class="section"><a id="context_external_tool_26592-link" href="/courses/416611/external_tools/26592" class="context_external_tool_26592">Course Team</a></li><li class="section"><a id="context_external_tool_26591-link" href="/courses/416611/external_tools/26591" class="context_external_tool_26591">GenAI advice</a></li><li class="section"><a id="modules-link" href="/courses/416611/modules" class="modules">Modules</a></li><li class="section"><a id="pages-link" href="/courses/416611/wiki" class="pages">Pages</a></li><li class="section"><a id="quizzes-link" href="/courses/416611/quizzes" class="quizzes">Quizzes</a></li></ul></nav>
+          </div>
+        </div>
+      <div id="not_right_side" class="ic-app-main-content">
+        <div id="content-wrapper" class="ic-Layout-contentWrapper">
+          
+          <div id="content" class="ic-Layout-contentMain" role="main">
+            
+
+
+
+
+<div id="course_home_content">
+    
+<div class="ic-Action-header">
+  <div class="ic-Action-header__Primary">
+    <h1 class="ic-Action-header__Heading">CSC343H1S 20261 (All Sections): Introduction to Databases</h1>
+  </div>
+  <div class="ic-Action-header__Secondary">
+    <a href="#" class="jump_to_today_link">Jump to Today</a>
+  </div>
+</div>
+
+<div id="course_syllabus" style="margin-bottom: 10px;" class="user_content" data-resource-type="syllabus.body" data-resource-id="416611">
+  <p>&nbsp;</p>
+<p style="text-align: justify;">Welcome to CSC343H1S! This course provides an Introduction to Databases, and prepares you for later study in the implementation of Database Management Systems.</p>
+<p style="text-align: justify;"><span style="font-size: 1rem;">The material posted on Quercus is required reading.&nbsp; It contains important information, including assignment handouts, the policy on missed work, links to the online discussion forum (Piazza), and announcements. You are responsible for all announcements made in lecture and on Quercus.</span></p>
+<p style="text-align: justify;"><span style="font-size: 1rem;">Note to Engineers: This course operates under <a class="inline_disabled" href="https://artsci.calendar.utoronto.ca/term-work-tests-and-final-exams" target="_blank">Faculty of Arts and Science rules.</a><br></span></p>
+<hr>
+<h3>Table of Contents:</h3>
+<ul id="quicklinks">
+<li><a class="inline_disabled" href="/courses/416611#contact">Contact Information</a></li>
+<li><a class="inline_disabled" href="/courses/416611#prerequisites">Prerequisites</a></li>
+<li><a class="inline_disabled" href="/courses/416611#format">Course Format</a></li>
+<li><a class="inline_disabled" href="/courses/416611#markingscheme">Marking Scheme</a></li>
+<li><a class="inline_disabled" href="/courses/416611#help">Getting Help</a></li>
+<li><a class="inline_disabled" href="/courses/416611#environment">Creating a Positive Learning Environment</a></li>
+<li><a class="inline_disabled" href="/courses/416611#resources">Resources</a></li>
+<li><a class="inline_disabled" href="/courses/416611#partners">Working with a Partner</a></li>
+<li><a class="inline_disabled" href="/courses/416611#policies">Course Policies</a></li>
+<li><a class="inline_disabled" href="/courses/416611#specialconsideration">Special Consideration</a></li>
+<li><a class="inline_disabled" href="/courses/416611#remarks">Remark Requests</a></li>
+<li><a class="inline_disabled" href="/courses/416611#integrity">Academic Integrity</a></li>
+<li><a class="inline_disabled" href="/courses/416611#genAI">Using Generative AI</a></li>
+<li><a class="inline_disabled" href="/courses/416611#accessibility">Accessibility Accommodations</a></li>
+</ul>
+<hr>
+<h2 id="contact">Contact Information</h2>
+<table style="border-collapse: collapse; margin-left: auto; margin-right: auto; width: 94.5%; height: 1053.7px;" border="1" cellspacing="10" cellpadding="10">
+<tbody style="text-align: center;">
+<tr style="height: 84px;">
+<td style="width: 38.7926%; height: 84px;"><strong>Instructors</strong></td>
+<td style="text-align: center; width: 61.2406%; height: 84px;">
+<p>Diane Horton and Marina Tawfik<strong><br></strong></p>
+</td>
+</tr>
+<tr style="height: 250px;">
+<td style="width: 38.7926%; height: 478px;" rowspan="2"><strong>Lectures<br></strong><strong><br></strong><strong><br></strong></td>
+<td style="text-align: left; height: 250px; width: 61.2406%;" rowspan="2">
+<p style="text-align: center;"><span style="background-color: #ffffff;">L0101/L2001 (Diane Horton):</span><br><span style="background-color: #ffffff;">Wednesdays 10-11am in <a class="inline_disabled" style="background-color: #ffffff;" href="https://map.utoronto.ca/?id=1809#!m/494510?s/" target="_blank">SS 2117</a></span><br><span style="background-color: #ffffff;">Fridays 9-11am in <a class="inline_disabled" style="background-color: #ffffff;" href="https://map.utoronto.ca/?id=1809#!m/494474?s/" target="_blank">MC 254</a></span></p>
+<hr>
+<p style="text-align: center;"><span style="background-color: #ffffff;">L0201/L2101 (Marina Tawfik):</span><br><span style="background-color: #ffffff;">Wednesdays 12-1pm in <a class="inline_disabled" style="background-color: #ffffff;" href="https://map.utoronto.ca/?id=1809#!m/494490?s/" target="_blank">MP 103</a></span><br><span style="background-color: #ffffff;">Fridays 11am-1pm in <a class="inline_disabled" style="background-color: #ffffff;" href="https://map.utoronto.ca/?id=1809#!m/494474?s/" target="_blank">MC 102</a></span></p>
+<hr>
+<p style="text-align: center;"><span style="background-color: #ffffff;">L0301/L2201 (Diane Horton):</span><br><span style="background-color: #ffffff;">Wednesdays 2-3pm in <a class="inline_disabled" style="background-color: #ffffff;" href="https://map.utoronto.ca/?id=1809#!ct/45469?m/1055921?s/wi" target="_blank">WI 1016</a></span><br><span style="background-color: #ffffff;">Fridays 1-3pm in <a class="inline_disabled" style="background-color: #ffffff;" href="https://map.utoronto.ca/?id=1809#!m/494490?s/" target="_blank">MP 103</a></span></p>
+<hr>
+<p style="text-align: center;"><span style="background-color: #ffffff;">L2501/L5101 (Marina Tawfik):</span><br><span style="background-color: #ffffff;">Wednesdays 6-9pm in <a class="inline_disabled" style="background-color: #ffffff;" href="https://map.utoronto.ca/?id=1809#!m/494481?s/" target="_blank">SF 1101</a></span></p>
+</td>
+</tr>
+<tr style="height: 228px;"></tr>
+<tr style="height: 214.9px;">
+<td style="width: 38.7926%; height: 214.9px;"><strong>Office Hours</strong></td>
+<td style="width: 61.2406%; height: 214.9px; text-align: left;">
+<p style="text-align: center;">Beginning Monday, January 12th</p>
+<p style="text-align: center;"><span style="background-color: #ffffff;">Mondays 3:30-5:30: Marina in BA 4230</span><br><span style="background-color: #ffffff;">Tuesdays 2:30-3:30: Diane in BA 4236</span><br><span style="color: #000000; background-color: #ffffff;">Thursdays 2:30-3:30: Diane in BA 4236</span></p>
+<p>The schedule may change. Please see the <a class="inline_disabled" href="/calendar?include_contexts=course_416611#view_name=month&amp;view_start=2026-01-01" target="_blank">CSC343 Course calendar</a> for the most up to date information.</p>
+</td>
+</tr>
+<tr style="height: 58.9px;">
+<td style="width: 38.7926%; height: 58.9px;"><strong>Email <br>(for <span style="font-size: 1rem;">personal issues)</span><br></strong></td>
+<td style="width: 61.2406%; height: 58.9px;"><a class="inline_disabled" href="mailto:csc343-2026-01@cs.toronto.edu" target="_blank"><span class="TextRun Underlined SCXW35723921 BCX0" lang="EN-US" data-contrast="none"><span class="NormalTextRun SCXW35723921 BCX0" data-ccp-charstyle="Hyperlink">csc343-2026-01@cs.toronto.edu</span></span></a></td>
+</tr>
+<tr style="height: 85.9px;">
+<td style="width: 38.7926%; height: 85.9px;"><strong>Discussion Board<br>(for issues relevant also to other students)<br></strong></td>
+<td style="width: 61.2406%; height: 85.9px;">Piazza. Please find our class signup link at<br><a class="inline_disabled" title="Link" href="https://piazza.com/utoronto.ca/winter2026/csc343" target="_blank">https://piazza.com/utoronto.ca/winter2026/csc343</a></td>
+</tr>
+<tr style="height: 62px;">
+<td style="width: 38.7926%; height: 62px;"><strong>MarkUs link<br></strong></td>
+<td style="width: 61.2406%; height: 62px;">
+<p><a href="https://markus.teach.cs.toronto.edu/markus/courses/132" target="_blank">https://markus.teach.cs.toronto.edu/markus/courses/132</a></p>
+</td>
+</tr>
+<tr style="height: 70px;">
+<td style="width: 38.7926%; height: 70px;"><strong>Course readings</strong></td>
+<td style="width: 61.2406%; height: 70px;"><a class="inline_disabled" title="Link" href="https://www.teach.cs.toronto.edu/~csc343h/fall/readings" target="_blank">https://www.teach.cs.toronto.edu/~csc343h/fall/readings</a></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="prerequisites">Prerequisites</h2>
+<p>If you don't have the course prerequisites listed in the&nbsp;<span style="background-color: #ffffff;"><a style="background-color: #ffffff;" href="https://artsci.calendar.utoronto.ca/search-courses?course_keyword=CSC343&amp;field_section_value=Computer+Science&amp;field_prerequisite_value=&amp;field_breadth_requirements_value=All">calendar entry</a>,</span> the undergraduate office will contact you with a form to complete in order to request a prerequisite waiver.&nbsp; Waivers are not granted automatically; a decision is made based on whether or not we feel you are well prepared to succeed in the course.</p>
+<hr>
+<h2 id="format">Course format</h2>
+<p>This is an in-person course. Lectures in csc343 course are not "lectures". In class you will test out the knowledge and skills you are acquiring, and learn the most challenging new material in a context where we can adjust the teaching to match your learning. In some cases you will discover the trickiest ideas yourself. Be prepared to get your gears turning! Experience (and the literature) tells us that this is a fun and very effective way to learn, and it can only happen if you are there. For this reason, part of <a class="inline_disabled" href="/courses/416611#markingscheme">your course grade</a>&nbsp;will be for your active engagement in class.</p>
+<h3>Preparing for class</h3>
+<p>To prepare for our active classes, you will do weekly "prep" activities outside of class. These will involve learning some of the more basic material on your own, through readings or videos, and practicing things we've learned in class.&nbsp; They will always culminate in some small exercises that you hand in.&nbsp; These weekly preps are not intended to be greatly difficult or time consuming, but they will be pivotal in your learning.</p>
+<h3>Lecture recordings</h3>
+<p>The sound quality on classroom recordings is poor, so we are providing instead a full set of<span style="background-color: #ffffff;"> <a class="inline_disabled" style="background-color: #ffffff;" href="https://utoronto.sharepoint.com/:u:/s/artsci-DCS-horton/EVdy8PY7HApLm46GwYVUoOYBTYo_mGQjYDApqzsKL2P31g" target="_blank">lecture recordings</a></span> made on Zoom. These are indexed in detail so you can find exactly what you're looking for without having to listen through a long recording.</p>
+<p>Reading/viewing recorded materials will provide a poorer experience than the live lecture. We hope you will choose to attend in person and participate (and earn your participation marks too). If you have to miss a lecture, we encourage you to pause the video and do the exercises where noted.</p>
+<p>Course videos and materials are protected by copyright. In this course, you are permitted to download videos and materials for your own academic use, but you should not copy, share, or use them for any other purpose without the explicit permission of the instructor. For example, you are not permitted to post any course materials (worksheets, assignments, starter code, etc.) online.</p>
+<hr>
+<h2 id="markingscheme">Marking Scheme</h2>
+<p>You will notice that assignments have a relatively low weight in this course. Because you are allowed to work with a partner and to use AI to help you with your assignments, the grades you earn on these don't tell us nearly as much about what you've learned as the midterms and exam do. This is why the assignment weights are low. Please don't use the weights to gauge how much work each each assignment entails. Assignments 1, 2, and 3 are fairly typical CS assignments and will likely feel to you as though they could have been worth 10% (if you did them alone). On the other hand, the A2 warmup is quite small in comparison, and is worth 1,5% only to encourage everyone to do it so they'll sort out very early any technical challenges running their A2 code.</p>
+<table style="border-collapse: collapse; margin-left: auto; margin-right: auto; width: 99.7418%; height: 915.923px;" border="1" cellspacing="10" cellpadding="10">
+<tbody>
+<tr style="height: 124.641px;">
+<td style="width: 19.2719%; height: 124.641px;">
+<p>Lecture Preps</p>
+</td>
+<td style="width: 7.30233%; height: 124.641px;">
+<p>10%</p>
+</td>
+<td style="width: 38.2184%; height: 124.641px;">
+<div class="page" title="Page 1">
+<div class="section">
+<div class="layoutArea">
+<div class="column">
+<p>10 Weekly lecture preparation activities (for weeks 2 to 11 inclusive), each worth 1%</p>
+</div>
+</div>
+</div>
+</div>
+</td>
+<td style="width: 28.4781%; height: 124.641px;">
+<div class="page" title="Page 1">
+<div class="section">
+<div class="layoutArea">
+<div class="column">
+<p>Due <span style="background-color: #ffffff;">Wednesdays before 10am</span><br>The first prep is due <span style="background-color: #ffffff;">Wed Jan 14th</span></p>
+</div>
+</div>
+</div>
+</div>
+</td>
+</tr>
+<tr style="height: 100.641px;">
+<td style="width: 19.2719%; height: 100.641px;">
+<p>Class engagement</p>
+</td>
+<td style="width: 7.30233%; height: 100.641px;">
+<p>7%</p>
+</td>
+<td style="width: 38.2184%; height: 100.641px;">
+<div class="page" title="Page 1">
+<div class="section">
+<div class="layoutArea">
+<div class="column">
+<p>12 Weekly in-person activities that are graded for making a good effort.</p>
+</div>
+</div>
+</div>
+</div>
+</td>
+<td style="width: 28.4781%; height: 100.641px;">
+<div class="page" title="Page 1">
+<div class="section">
+<div class="layoutArea">
+<div class="column">
+<p>Best 9 of 12</p>
+</div>
+</div>
+</div>
+</div>
+</td>
+</tr>
+<tr style="height: 172.641px;">
+<td style="width: 19.2719%; height: 172.641px;">
+<p>Research surveys</p>
+</td>
+<td style="width: 7.30233%; height: 172.641px;">
+<p>1.5%</p>
+</td>
+<td style="width: 38.2184%; height: 172.641px;">
+<div class="page" title="Page 1">
+<div class="section">
+<div class="layoutArea">
+<div class="column">
+<p>Three short surveys. The first two surveys will be included in Lecture Preps. The final survey is due on the last day of classes (Monday, April 6th, at 11:59pm), and a link to it will be sent via Quercus announcement near then.</p>
+</div>
+</div>
+</div>
+</div>
+</td>
+<td style="width: 28.4781%; height: 172.641px;">
+<div class="page" title="Page 1">
+<div class="section">
+<div class="layoutArea">
+<div class="column">
+<p>Worth 0.5% each</p>
+</div>
+</div>
+</div>
+</div>
+</td>
+</tr>
+<tr style="height: 60.625px;">
+<td style="width: 19.2719%; height: 60.625px;">Midterm 1</td>
+<td style="width: 7.30233%; height: 60.625px;">10%</td>
+<td style="width: 38.2184%; height: 60.625px;">
+<p>In person; <del>two hours</del> <span style="color: #e62429;">one hour,</span> during lecture time</p>
+</td>
+<td style="width: 28.4781%; height: 60.625px;">
+<p><span style="background-color: #ffffff;">Wednesday, February 4th (in your section's time slot but in <strong>another location</strong> TBA)</span></p>
+</td>
+</tr>
+<tr style="height: 58.875px;">
+<td style="width: 19.2719%; height: 58.875px;">Assignment 1</td>
+<td style="width: 7.30233%; height: 58.875px;">5%</td>
+<td style="width: 38.2184%; height: 58.875px;">Relational Algebra</td>
+<td style="width: 28.4781%; height: 58.875px;">Wednesday, February 11th before 3pm</td>
+</tr>
+<tr style="height: 58.625px;">
+<td style="width: 19.2719%; height: 58.625px;">Assignment 2 warm-up</td>
+<td style="width: 7.30233%; height: 58.625px;">1.5%</td>
+<td style="width: 38.2184%; height: 58.625px;">SQL and embedding SQL in Python</td>
+<td style="width: 28.4781%; height: 58.625px;">Wednesday, February 25th before 3pm<span style="background-color: #f1c40f;"><br></span></td>
+</tr>
+<tr style="height: 62.9844px;">
+<td style="width: 19.2719%; height: 62.9844px;">Midterm 2</td>
+<td style="width: 7.30233%; height: 62.9844px;">10%</td>
+<td style="width: 38.2184%; height: 62.9844px;">In person; <del>two hours</del> <span style="color: #e62429;">one hour,</span> during lecture time</td>
+<td style="width: 28.4781%; height: 62.9844px;">Wednesday, March 11th <span style="background-color: #ffffff;">(in your section's time slot but in <strong>another location</strong> TBA)</span></td>
+</tr>
+<tr style="height: 64.625px;">
+<td style="width: 19.2719%; height: 64.625px;">Assignment 2</td>
+<td style="width: 7.30233%; height: 64.625px;">5%</td>
+<td style="width: 38.2184%; height: 64.625px;">SQL and embedding SQL in Python</td>
+<td style="width: 28.4781%; height: 64.625px;">Wednesday, March 18th before 3pm</td>
+</tr>
+<tr style="height: 63.625px;">
+<td style="width: 19.2719%; height: 63.625px;">Assignment 3</td>
+<td style="width: 7.30233%; height: 63.625px;">5%</td>
+<td style="width: 38.2184%; height: 63.625px;">Database Design</td>
+<td style="width: 28.4781%; height: 63.625px;">
+<p><span style="background-color: #ffffff;">Wednesday, April 1st, </span><span style="background-color: #ffffff;">before 3pm</span></p>
+</td>
+</tr>
+<tr style="height: 148.641px;">
+<td style="width: 19.2719%; height: 148.641px;">Final exam</td>
+<td style="width: 7.30233%; height: 148.641px;"><span style="background-color: #fbeeb8;">45%</span></td>
+<td style="width: 38.2184%; height: 148.641px;"><span style="color: #000000;">In person;</span> three hours.<span style="background-color: #ffffff;">&nbsp; <span style="background-color: #fbeeb8;">You must get 40% or above on the final exam to pass the course; otherwise, your final course grade will be no higher than 47%.</span></span></td>
+<td style="width: 28.4781%; height: 148.641px;">TBA, during the final assessment period.</td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+<hr>
+<div class="center" style="text-align: justify;">
+<h2 id="help">Getting Help</h2>
+<h3 id="discussionboard">Discussion Board: for sharable questions</h3>
+<p>Please post your questions about the course material and assignments on our <a class="inline_disabled" href="https://piazza.com/utoronto.ca/winter2026/csc343" target="_blank">Piazza discussion board</a> so that everyone can benefit from your questions. Feel free to answer other students' questions!&nbsp; Helping someone else learn is one of the most effective ways of deeply learning a subject.</p>
+<p>We will monitor the discussion board regularly and answer as many questions as we can. It may take longer near due dates, so try to start assignments early in case you have questions.</p>
+<h3>Course email account: for personal matters</h3>
+<p>Please use the course email account, <a class="inline_disabled" title="Link" href="mailto:%20csc343-2026-01@cs.toronto.edu" target="_blank">csc343-2026-01@cs.toronto.edu</a> for personal matters such as missing course work due to illness.</p>
+<h3>Instructor office hours: for everything</h3>
+<p>We welcome all kinds of conversations at office hours. For example, if you are stuck on a problem and unable to make progress, or confused about a concept in the course, or having difficulty working effectively with your partner, please come to see us. We'd love to help!</p>
+<h3>Generative AI: use it well</h3>
+<p>You are encouraged to us generative AI to support your learning (not circumvent your learning). See <a class="inline_disabled" href="/courses/416611#genAI">Using Generative AI</a> below for more information.</p>
+<hr>
+<h2 id="environment">Creating a Positive Learning Environment</h2>
+<p style="text-align: justify;">We are committed to creating a respectful learning environment in computer science courses for all students and expect that you will adhere to the University of Toronto <a class="inline_disabled" href="https://governingcouncil.utoronto.ca/secretariat/policies/code-student-conduct-december-13-2019" target="_blank">Code of Student Conduct</a>.&nbsp; Please be mindful of how your behaviour influences the atmosphere in our learning community, not just in classes, but also in office hours, on our discussion board, and anywhere that you interact with other students and members of the department.</p>
+<p style="text-align: justify;">The University of Toronto is committed to equity, human rights and respect for diversity. All members of the learning environment in this course should strive to create an atmosphere of mutual respect where all members of our community can express themselves, engage with each other, and respect one another’s differences. U of T does not condone discrimination or harassment against any persons or communities.</p>
+<hr></div>
+<h2 id="resources">Resources</h2>
+<p>These two resources are suggested to support your learning in the course:</p>
+<ul>
+<li>A complete set of lecture recordings for csc343 by Professor Horton (see the <a class="inline_disabled" href="/courses/416611/pages/lectures" target="_blank">Lectures page</a>&nbsp;for details).</li>
+<li>
+<p>The textbook "A First Course in Database Systems" by Jeffrey D. Ullman and Jennifer Widom, 2008 (3rd Edition), available online from the&nbsp;<a href="http://www.mypearsonstore.com/bookstore/product.asp?isbn=013600637X&amp;xid=PSED">publisher </a>or <a href="https://www.amazon.ca/s?k=%22A+First+Course+in+Database+Systems&amp;crid=1IJMXEK4J1KE4&amp;sprefix=a+first+course+in+database+systems%2Caps%2C142&amp;ref=nb_sb_noss_2">Amazon</a>.&nbsp; It is also available on two-hour loan at the Engineering Library in the Sandford Fleming Building. It may or may not be available at the UofT Bookstore at this time.</p>
+</li>
+<li>
+<p>Jennifer Widom at Stanford University has several free mini-courses <a class="inline_disabled" href="https://www.edx.org/school/stanfordonline" target="_blank">available on edX</a>, but in a somewhat synchronous mode that starts September 2nd.</p>
+</li>
+</ul>
+<hr>
+<h2 id="partners">Working with a Partner</h2>
+<p><strong>Preps: </strong>All weekly preps must be done individually.</p>
+<p><strong>Assignments: </strong>For the assignments, you have the option of partnering with one other CSC343 student, and we encourage you to do so.&nbsp; You may choose your own partner, and it need not be the same person for each assignment.&nbsp; Your partner may come from any section of the course. Both partners will receive the same mark for joint assignments.&nbsp; Once you begin working on an assignment, you may not dissolve your partnership without our permission; request permission via the course email account. The deadline for requesting this is 3 days before the original assignment due date.</p>
+<p>If you choose to work with a partner for an assignment, you must declare your group on MarkUs.&nbsp; You should declare it as soon as your group is formed, and certainly well before the deadline.&nbsp; Groups cannot be declared once the original assignment due date has passed, even if you have an extension. Please note that if you are working alone on an assignment, you must still declare your "group" on MarkUs.&nbsp; Email the course account (<a class="inline_disabled" href="mailto:%20csc343-2026-01@cs.toronto.edu%20" target="_blank"><span class="TextRun Underlined SCXW35723921 BCX0" lang="EN-US" data-contrast="none"><span class="NormalTextRun SCXW35723921 BCX0" data-ccp-charstyle="Hyperlink">csc343-2026-01@cs.toronto.edu</span></span></a>)&nbsp;for help if you’re having trouble forming a group.<strong></strong></p>
+<p><strong>Choose well:</strong> Before partnering, have a conversation about expectations and work habits. What mark are you aiming for on this assignment? Do you like to start early or are you a procrastinator? Do you typically work late at night or during business hours? Sharing your answers and working out any differences is probably far more important that comparing your technical backgrounds.</p>
+<p><strong>Working together:</strong> Working with a partner has the potential to lighten your workload and enhance your learning or to increase your workload and impair your learning, depending on how you work together.&nbsp; Remember that you are responsible for learning the course material underlying all parts of the assignments.&nbsp; Just dividing up the work can result in a less successful assignment, as you won't benefit from your partner's insights, and could lead to disaster on the tests, as you won't have become proficient in all aspects of the course. You will have the most success if you truly work together.</p>
+<p><strong>If a partner doesn't meet a commitment:</strong> Don't avoid talking with your partner in these situations. It doesn't have to be a conflict; you can start by asking what's happening with them, and work together on a resolution. If you need help, please come talk to us. If your partner misses several commitments, be <em>sure</em> to talk with us.</p>
+<hr>
+<h2 id="policies">Course Policies</h2>
+<h3>Late Assignments</h3>
+<p>There is a one-hour grace period for assignments. You may submit at any time during this period without penalty.</p>
+<p>We recognize that unexpected problems, illness, and disability-related barriers sometimes make it difficult to submit assignments on time. For this reason, we are adopting a generous late policy with respect to assignment submissions. You may request an extension of up to <strong>four days</strong> for an assignment submission by completing the <a class="inline_disabled" title="Link" href="https://forms.office.com/r/WfeyQsbp9a" target="_blank">Form for Special Consideration and Accommodations on Assignments</a>.</p>
+<p>Notes:</p>
+<ul>
+<li><strong>MarkUs</strong>: After making this request, the extension will automatically appear on MarkUs within two business days; please do not contact us if you don't see it right away.</li>
+<li><strong>Partner</strong>: If you are working with a partner
+<ul>
+<li>You must create your group on MarkUs and make sure your partner has been invited before requesting the extension.</li>
+<li>Only one partner needs to request the extension.</li>
+<li>You may not dissolve your partnership after requesting an extension without contacting the course email address first.</li>
+</ul>
+</li>
+<li><strong>Deadline to request an extension</strong>: You may request this extension up to 4 days after the assignment due date. However, note that the extended time will be relative to the assignment deadline, not relative to when you request the extension.</li>
+<li><strong>Asking for a shorter then a longer extension</strong>: If you initially request a shorter (e.g., 2-day) extension, you can fill out the form again to request a longer extension. We will always apply the most recent extension request you have submitted (for a total extension of up to 4 days after the assignment due date).</li>
+<li><strong>If you miss your extended deadline</strong>: Any work submitted beyond whatever extension you received plus the one-hour grace period (even 1 second beyond) will not be graded.</li>
+<li><strong>Using this policy more than once</strong>: You may make use of this policy on as many assignments as you require. However, if you submit extension requests for more than one assignment, we may reach out to connect you with campus supports to help you stay on track in the future (e.g. your college registrar).</li>
+<li><strong>If you get an extension and then fall ill</strong>: If a student has been granted an extension of 4 days and then becomes ill on the extended deadline, no further extension will be given unless the student has been ill for more than 4 days and further documentation is provided.</li>
+</ul>
+<p>While it may seem like a "no-brainer" to always request a four-day extension for each assignment, we strongly recommend not making this request lightly. We have designed your assignments so that they can be completed by their actual deadlines, and we believe that for the vast majority of students, meeting these deadlines is the best way to keep up with the course material.&nbsp; Please do not use this policy to simply shift the original deadline in your mind.</p>
+<h3>Longer Extensions</h3>
+<p>Students who are registered with Accessibility Services are free to use the policy above, or to request up to 7 days of extra time to complete an assignment. Please fill out the <a class="inline_disabled" href="https://forms.office.com/r/WfeyQsbp9a" target="_blank">Form for Special Consideration and Accommodations on Assignments</a> before the original assignment deadline.</p>
+<p>If you find yourself in a serious medical or emergency situation where a 4-day extension (or 7-day extension for those registered with Accessibility Services) will not be sufficient, please email the course account. before the original assignment due date. We may require further documentation or confirmation from your college registrar, and further extensions are not always granted. So, you should submit any partial work that you've completed before the original assignment due date. Please also complete an Absence Declaration on ACORN when appropriate, and send the notification to the course email address.</p>
+<div class="center" style="text-align: justify;">
+<h3 id="lateassignments">Late Preps</h3>
+<p>For weekly preps, <strong>no late submissions will be graded</strong>, as their purpose is to prepare everyone for lecture.</p>
+<h3>Missed Midterm</h3>
+<p>You may request special consideration if you missed the midterm due to illness or other extenuating circumstances. To make this request, email the course account and include your name, student number, utorid, reason for missing the midterm, and any relevant documentation. You should also complete an Absence Declaration on ACORN when appropriate, and send the notification to the course email address. Special consideration is NOT always granted. If it is granted, the weight of your midterm will be transferred to both the other midterm and the final exam. <strong>There won't be a make-up test</strong>.</p>
+<p dir="ltr" data-testid="message_title"><span>Since the midterms are during class time, the time should be fine for most of you. However, if you have a conflict, we may be able to accommodate you in another section. To request this, please complete the&nbsp;<a class="inline_disabled external" href="https://forms.office.com/r/yHH3t22ZXM" target="_blank">Form for Requesting to Write the Midterm with Another Section</a>. We will respond by email to let you know if we are able to accommodate your request. </span><strong style="font-family: inherit; font-size: 1rem;">You may write with the other section&nbsp;<em>only&nbsp;</em>if you hear back from us confirming that we have been able to accommodate your request.&nbsp;</strong><span style="font-family: inherit; font-size: 1rem;">We can't confirm any swaps until after the form deadline, as it will depend on demand and available space in the rooms. Also, p</span><span style="font-family: inherit; font-size: 1rem;">lease note that if another course is holding an out-of-class test that conflicts, that course is required to accommodate you.&nbsp;</span></p>
+</div>
+<div class="center" style="text-align: justify;"><hr>
+<div id="special"></div>
+</div>
+<h2 id="specialconsideration">Special Consideration</h2>
+<div style="text-align: justify;">
+<p>If you need to request special consideration (as described above), you will be required to affirm that you are abiding by the <a href="http://www.governingcouncil.utoronto.ca/Assets/Governing+Council+Digital+Assets/Policies/PDF/ppjun011995.pdf">Code of Behaviour on Academic Matters</a>, in particular that it is an offence</p>
+<blockquote><em>to engage in any form of cheating, academic dishonesty or misconduct, fraud or misrepresentation not herein otherwise described, in order to obtain academic credit or other academic advantage of any kind.</em></blockquote>
+<p>That is, you must confirm that you are truly experiencing an emergency, and acknowledge that to falsely claim so is an academic offence. Applying does not guarantee that you will be granted special consideration.</p>
+The Special Consideration Request Form will be available here.&nbsp; Please carefully read the policy above on late work before submitting a request.<br>
+<p><strong>IMPORTANT: </strong>Submit a request for special consideration as soon as possible. It is easier to resolve situations earlier rather than later.&nbsp; If your emergency will affect your ability to complete coursework for more than a few days, or in multiple courses, we recommend you also talk to your Registrar -- they are very helpful in such situations.<strong></strong></p>
+</div>
+<hr>
+<div id="remarkrequests">
+<h2 id="remarks">Remark Requests</h2>
+<p>Mistakes sometimes happen when marking.&nbsp; If you feel there is an issue with the marking of your assignment or test, you may request that it be remarked. Remark requests are accepted for two weeks after the item is returned, and are submitted via MarkUs. You must give a specific reason for a remark request, referring to a possible error or omission by the marker. Remark requests without a specific reason will not be accepted.</p>
+<p>We will respond to remark requests before the final grades are submitted at the end of the term.&nbsp; We aim to do these sooner, but it is not always possible.</p>
+<hr></div>
+<h2 id="integrity">Academic Integrity</h2>
+<p>The work you submit must be your own.&nbsp; It is an academic offence to copy someone else's work.&nbsp; This includes their code, their words, and even their ideas.&nbsp; Whether you copy or let someone else copy, it is an offence.&nbsp; Academic offences are taken very seriously, and penalties can go well beyond 0 on the piece of work.</p>
+<p>At the same time, we want you to benefit from working with other students. You are welcome to work with other csc343 students on learning and understanding course material. For example, you may work through examples that help you understand course material or a new technology, or help each other configure your system to run a supporting piece of software.&nbsp; You are also welcome to work with other csc343 students on <strong>learning and understanding</strong> related to assignments, including:</p>
+<p>&nbsp; &nbsp; Understanding the handout<br>&nbsp; &nbsp; Understanding the architecture of starter code<br>&nbsp; &nbsp; Understanding specifications for a query, update or method<br>&nbsp; &nbsp; Getting more familiar with Python (some Engineering students may not have learned this language)<br>&nbsp; &nbsp; Learning an unfamiliar library (we'll be using psycopg2)<br>&nbsp; &nbsp; Making connections to other course material or concepts<br>&nbsp; &nbsp; Understanding error messages (without looking at the code)</p>
+<p>However, other than between partners,&nbsp;<em>collaboration on assignment <strong>solutions</strong> is strictly forbidden</em>. For example, these are not allowed:</p>
+<p>&nbsp; &nbsp; Working out the steps of a solution together<br>&nbsp; &nbsp; Drafting code together<br>&nbsp; &nbsp; Understanding solution code generated by generative AI<br>&nbsp; &nbsp; Improving code quality<br>&nbsp; &nbsp; Debugging (i.e., diagnosing the source of an error message or incorrect results)<br>&nbsp; &nbsp; Fixing code (i.e., changing the code to eliminate an error message or produce correct results)</p>
+<p>The most certain way to protect yourself is not to discuss assignment solutions or the ideas behind them with students other than your partner. Certainly you must not let others see your assignment solutions, even in draft form, or even your rough work.</p>
+<p>Be cautious with private tutors, as some cross the line and tell students the answers - and they routinely engage with multiple students who all end up submitting nearly identical work.</p>
+<h2 id="genAI">Using Generative AI</h2>
+<p>In this course, you may use generative artificial intelligence (AI) tools as learning aids and to help complete assignments. We strongly recommend that you use UofT's Copilot because it is free, has no limits on your use, your data stays within the UofT ecosystem, and your conversations are not used to train any models. This means that you may upload copyrighted material to Copilot, whereas you are not allowed to do so with other genAI tools. We encourage you to review the privacy policy of any other generative AI tool you plan to use, in particular, to understand how your interactions will be stored and used by the tool in the future.</p>
+<p>We recommend that you focus your use of generative AI on the learning and understanding side. Keep in mind that it may produce content which is incorrect or misleading. It may also produce content that is inconsistent with the expectations of this course. This is a particular issue in databases where some terminology and notation is not standardized.</p>
+<p>If you use generative AI more specifically to help you <em>solve</em> course work, please be careful not to rely heavily on these tools. Ultimately, you (and not any AI tool) are responsible for your own learning in this course, and for all the work you submit for credit. It is your responsibility to critically evaluate the content generated, and to regularly assess your own learning independent of generative AI tools. Over reliance on generative AI may give you a false sense of how much you’ve actually learned, which can lead to poor performance on the midterm test or final exam, in later courses, or in future work or studies after graduation.</p>
+<p>To help you use it well, we have prepared some advice about genAI (see the link to <a class="inline_disabled" href="/courses/416611/pages/genai-advice" target="_blank">GenAI advice</a> on the side) including pitfalls that are specific to CSC343, and to your assignment work in this course.</p>
+<hr>
+<h2 id="accessibility">Accessibility Accommodations</h2>
+<p>The University provides academic accommodations for students with disabilities in accordance with the terms of the Ontario Human Rights Code. This occurs through a collaborative process that acknowledges a collective obligation to develop an accessible learning environment that both meets the needs of students and preserves the essential academic requirements of the University’s courses and programs.</p>
+<p>Students with diverse learning styles and needs are welcome in this course. If you have a disability that may require accommodations, please feel free to contact us at <a class="inline_disabled" href="mailto:%20csc343-2026-01@cs.toronto.edu%20" target="_blank"><span class="TextRun Underlined SCXW35723921 BCX0" lang="EN-US" data-contrast="none"><span class="NormalTextRun SCXW35723921 BCX0" data-ccp-charstyle="Hyperlink">csc343-2026-01@cs.toronto.edu</span></span></a>&nbsp;and/or the St George Campus <a class="inline_disabled" href="https://studentlife.utoronto.ca/department/accessibility-services/" target="_blank">Accessibility Services</a> office.</p>
+</div>
+<div id="course_syllabus_details" style="display: none;">
+  <p>The syllabus page shows a table-oriented view of the course schedule, and the basics of
+course grading.  You can add any other comments, notes, or thoughts you have about the course
+structure, course policies or anything else.</p>
+
+<p>To add some comments, click the &quot;Edit&quot; link at the top.</p>
+</div>
+<form id="edit_course_syllabus_form" style="display: none; margin-bottom: 10px;" action="/courses/416611" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" autocomplete="off" /><input type="hidden" name="_method" value="put" autocomplete="off" /><input type="hidden" name="authenticity_token" value="BzQ+SXosTNQAdOCA5DBfwjtDgKJSk1gxqgVA2ocQTRdzenUIK00IjmoD18qqfymyVjnLkCL2aEfMcRi4sCQHTw==" autocomplete="off" />
+    <label for="course_syllabus_body">Syllabus Description:</label>
+  <div class="clear"></div>
+  <textarea style="width: 100%; height: 300px;" id="course_syllabus_body" name="course[syllabus_body]">
+</textarea>
+
+    <div class="ic-Form-control ic-Form-control--checkbox">
+      <input name="course[syllabus_course_summary]" type="hidden" value="0" autocomplete="off" /><input type="checkbox" value="1" checked="checked" name="course[syllabus_course_summary]" id="course_syllabus_course_summary" />
+      <label class="ic-Label" for="course_syllabus_course_summary">Show Course Summary</label>
+    </div>
+
+  <div class='form-actions'>
+    <button type="button" class="btn cancel_button">Cancel</button>
+    <button type="submit" class='btn btn-primary'>Update Syllabus</button>
+  </div>
+</form>
+
+<h2>Course Summary:</h2>
+
+<div id="syllabusContainer">
+  <div id="syllabus_links">
+  </div>
+  <table id="syllabus" class="ic-Table ic-Table--condensed">
+    <caption class="screenreader-only">
+      Course Summary
+    </caption>
+    <thead>
+      <tr>
+        <th scope="col">Date</th>
+        <th scope="col">Details</th>
+        <th scope="col" class='due'>Due</th>
+      </tr>
+    </thead>
+    <tbody id="syllabusTableBody">
+      <tr>
+        <td scope="row" colspan="3">
+          <div id="loading_indicator" />
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+</div>
+<div id="wizard_box"></div>
+
+          </div>
+        </div>
+        <div id="right-side-wrapper" class="ic-app-main-content__secondary">
+          <aside id="right-side" role="complementary">
+                
+<div id="course_show_secondary">
+
+
+  <div class="course-options">
+    <a href="https://q.utoronto.ca/courses/416611/external_tools/1812?launch_type=course_home_sub_navigation" data-tool-id="1812" data-tool-launch-type="course_home_sub_navigation" data-tool-launch-method="" id="import_from_commons_btn" class="btn button-sidebar-wide course-home-sub-navigation-lti">
+
+  <i class="icon-info"></i>
+
+
+
+Academic Integrity</a><a href="https://q.utoronto.ca/courses/416611/external_tools/26377?launch_type=course_home_sub_navigation" data-tool-id="26377" data-tool-launch-type="course_home_sub_navigation" data-tool-launch-method="" id="import_from_commons_btn" class="btn button-sidebar-wide course-home-sub-navigation-lti">
+
+  <i class="icon-info"></i>
+
+
+
+Quercus Privacy FAQ</a><a href="https://q.utoronto.ca/courses/416611/external_tools/7389?launch_type=course_home_sub_navigation" data-tool-id="7389" data-tool-launch-type="course_home_sub_navigation" data-tool-launch-method="" id="import_from_commons_btn" class="btn button-sidebar-wide course-home-sub-navigation-lti">
+
+  <i class="icon-info"></i>
+
+
+
+Student Mental Health</a>
+
+    <a id="view_course_stream_btn" class="btn button-sidebar-wide" href="/courses/416611?view=feed">
+      <i class="icon-stats"></i>
+      View Course Stream
+    </a>
+
+
+
+
+    </div>
+
+
+    <a class="btn button-sidebar-wide" href="https://q.utoronto.ca/calendar?include_contexts=course_416611">
+      <i class="icon-calendar-day"></i>
+      View Course Calendar
+    </a>
+
+    <a id="view_course_notifications_btn" class="btn button-sidebar-wide" href="/courses/416611?view=notifications">
+      <i class="icon-unmuted"></i>
+      View Course Notifications
+    </a>
+
+        <div class="todo-list Sidebar__TodoListContainer"></div>
+
+    
+
+    
+  </div>
+
+      
+<div id="sidebar_content">
+      
+<div class="mini_month">
+  <div class="mini-cal-header">
+    <button class="prev_month_link Button Button--icon-action"><i class="icon-arrow-open-left"></i><span class="screenreader-only">Prev month</span></button>
+    <button class="next_month_link Button Button--icon-action"><i class="icon-arrow-open-right"></i><span class="screenreader-only">Next month</span></button>
+    <span class="mini-cal-month-and-year">
+      <span class="month_name">March</span>
+      <span class="year_number">2026</span>
+    </span>
+  </div>
+  <div style="display: none;">
+    <span class="month_number">3</span>
+  </div>
+  <table class="mini_calendar" cellspacing="0">
+    <caption class="screenreader-only">Calendar</caption>
+    <thead>
+      <tr>
+          <th scope="col">
+            <span class="screenreader-only">
+              Sunday
+            </span>
+          </th>
+          <th scope="col">
+            <span class="screenreader-only">
+              Monday
+            </span>
+          </th>
+          <th scope="col">
+            <span class="screenreader-only">
+              Tuesday
+            </span>
+          </th>
+          <th scope="col">
+            <span class="screenreader-only">
+              Wednesday
+            </span>
+          </th>
+          <th scope="col">
+            <span class="screenreader-only">
+              Thursday
+            </span>
+          </th>
+          <th scope="col">
+            <span class="screenreader-only">
+              Friday
+            </span>
+          </th>
+          <th scope="col">
+            <span class="screenreader-only">
+              Saturday
+            </span>
+          </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="mini_calendar_week">
+          <td id="mini_day_2026_02_22" class="mini_calendar_day day other_month previous_month date_02_22_2026">
+            <div class="day_wrapper">
+              <span class="screenreader-only">22 February 2026</span>
+              <span class="day_number" aria-hidden="true">
+                22
+              </span>
+              <span class="screenreader-only previous_month_text">Previous month</span>
+              <span class="screenreader-only next_month_text">Next month</span>
+              <span class="screenreader-only today_text">Today</span>
+              <span class="screenreader-only event_link_text">Click to view event details</span>
+            </div>
+          </td>
+          <td id="mini_day_2026_02_23" class="mini_calendar_day day other_month previous_month date_02_23_2026">
+            <div class="day_wrapper">
+              <span class="screenreader-only">23 February 2026</span>
+              <span class="day_number" aria-hidden="true">
+                23
+              </span>
+              <span class="screenreader-only previous_month_text">Previous month</span>
+              <span class="screenreader-only next_month_text">Next month</span>
+              <span class="screenreader-only today_text">Today</span>
+              <span class="screenreader-only event_link_text">Click to view event details</span>
+            </div>
+          </td>
+          <td id="mini_day_2026_02_24" class="mini_calendar_day day other_month previous_month date_02_24_2026">
+            <div class="day_wrapper">
+              <span class="screenreader-only">24 February 2026</span>
+              <span class="day_number" aria-hidden="true">
+                24
+              </span>
+              <span class="screenreader-only previous_month_text">Previous month</span>
+              <span class="screenreader-only next_month_text">Next month</span>
+              <span class="screenreader-only today_text">Today</span>
+              <span class="screenreader-only event_link_text">Click to view event details</span>
+            </div>
+          </td>
+          <td id="mini_day_2026_02_25" class="mini_calendar_day day other_month previous_month date_02_25_2026">
+            <div class="day_wrapper">
+              <span class="screenreader-only">25 February 2026</span>
+              <span class="day_number" aria-hidden="true">
+                25
+              </span>
+              <span class="screenreader-only previous_month_text">Previous month</span>
+              <span class="screenreader-only next_month_text">Next month</span>
+              <span class="screenreader-only today_text">Today</span>
+              <span class="screenreader-only event_link_text">Click to view event details</span>
+            </div>
+          </td>
+          <td id="mini_day_2026_02_26" class="mini_calendar_day day other_month previous_month date_02_26_2026">
+            <div class="day_wrapper">
+              <span class="screenreader-only">26 February 2026</span>
+              <span class="day_number" aria-hidden="true">
+                26
+              </span>
+              <span class="screenreader-only previous_month_text">Previous month</span>
+              <span class="screenreader-only next_month_text">Next month</span>
+              <span class="screenreader-only today_text">Today</span>
+              <span class="screenreader-only event_link_text">Click to view event details</span>
+            </div>
+          </td>
+          <td id="mini_day_2026_02_27" class="mini_calendar_day day other_month previous_month date_02_27_2026">
+            <div class="day_wrapper">
+              <span class="screenreader-only">27 February 2026</span>
+              <span class="day_number" aria-hidden="true">
+                27
+              </span>
+              <span class="screenreader-only previous_month_text">Previous month</span>
+              <span class="screenreader-only next_month_text">Next month</span>
+              <span class="screenreader-only today_text">Today</span>
+              <span class="screenreader-only event_link_text">Click to view event details</span>
+            </div>
+          </td>
+          <td id="mini_day_2026_02_28" class="mini_calendar_day day other_month previous_month date_02_28_2026">
+            <div class="day_wrapper">
+              <span class="screenreader-only">28 February 2026</span>
+              <span class="day_number" aria-hidden="true">
+                28
+              </span>
+              <span class="screenreader-only previous_month_text">Previous month</span>
+              <span class="screenreader-only next_month_text">Next month</span>
+              <span class="screenreader-only today_text">Today</span>
+              <span class="screenreader-only event_link_text">Click to view event details</span>
+            </div>
+          </td>
+      </tr>
+      <tr class="mini_calendar_week">
+          <td id="mini_day_2026_03_01" class="mini_calendar_day day current_month date_03_01_2026">
+            <div class="day_wrapper">
+              <span class="screenreader-only"> 1 March 2026</span>
+              <span class="day_number" aria-hidden="true">
+                1
+              </span>
+              <span class="screenreader-only previous_month_text">Previous month</span>
+              <span class="screenreader-only next_month_text">Next month</span>
+              <span class="screenreader-only today_text">Today</span>
+              <span class="screenreader-only event_link_text">Click to view event details</span>
+            </div>
+          </td>
+          <td id="mini_day_2026_03_02" class="mini_calendar_day day current_month date_03_02_2026">
+            <div class="day_wrapper">
+              <span class="screenreader-only"> 2 March 2026</span>
+              <span class="day_number" aria-hidden="true">
+                2
+              </span>
+              <span class="screenreader-only previous_month_text">Previous month</span>
+              <span class="screenreader-only next_month_text">Next month</span>
+              <span class="screenreader-only today_text">Today</span>
+              <span class="screenreader-only event_link_text">Click to view event details</span>
+            </div>
+          </td>
+          <td id="mini_day_2026_03_03" class="mini_calendar_day day current_month date_03_03_2026">
+            <div class="day_wrapper">
+              <span class="screenreader-only"> 3 March 2026</span>
+              <span class="day_number" aria-hidden="true">
+                3
+              </span>
+              <span class="screenreader-only previous_month_text">Previous month</span>
+              <span class="screenreader-only next_month_text">Next month</span>
+              <span class="screenreader-only today_text">Today</span>
+              <span class="screenreader-only event_link_text">Click to view event details</span>
+            </div>
+          </td>
+          <td id="mini_day_2026_03_04" class="mini_calendar_day day current_month date_03_04_2026">
+            <div class="day_wrapper">
+              <span class="screenreader-only"> 4 March 2026</span>
+              <span class="day_number" aria-hidden="true">
+                4
+              </span>
+              <span class="screenreader-only previous_month_text">Previous month</span>
+              <span class="screenreader-only next_month_text">Next month</span>
+              <span class="screenreader-only today_text">Today</span>
+              <span class="screenreader-only event_link_text">Click to view event details</span>
+            </div>
+          </td>
+          <td id="mini_day_2026_03_05" class="mini_calendar_day day current_month date_03_05_2026">
+            <div class="day_wrapper">
+              <span class="screenreader-only"> 5 March 2026</span>
+              <span class="day_number" aria-hidden="true">
+                5
+              </span>
+              <span class="screenreader-only previous_month_text">Previous month</span>
+              <span class="screenreader-only next_month_text">Next month</span>
+              <span class="screenreader-only today_text">Today</span>
+              <span class="screenreader-only event_link_text">Click to view event details</span>
+            </div>
+          </td>
+          <td id="mini_day_2026_03_06" class="mini_calendar_day day current_month date_03_06_2026">
+            <div class="day_wrapper">
+              <span class="screenreader-only"> 6 March 2026</span>
+              <span class="day_number" aria-hidden="true">
+                6
+              </span>
+              <span class="screenreader-only previous_month_text">Previous month</span>
+              <span class="screenreader-only next_month_text">Next month</span>
+              <span class="screenreader-only today_text">Today</span>
+              <span class="screenreader-only event_link_text">Click to view event details</span>
+            </div>
+          </td>
+          <td id="mini_day_2026_03_07" class="mini_calendar_day day current_month date_03_07_2026">
+            <div class="day_wrapper">
+              <span class="screenreader-only"> 7 March 2026</span>
+              <span class="day_number" aria-hidden="true">
+                7
+              </span>
+              <span class="screenreader-only previous_month_text">Previous month</span>
+              <span class="screenreader-only next_month_text">Next month</span>
+              <span class="screenreader-only today_text">Today</span>
+              <span class="screenreader-only event_link_text">Click to view event details</span>
+            </div>
+          </td>
+      </tr>
+      <tr class="mini_calendar_week">
+          <td id="mini_day_2026_03_08" class="mini_calendar_day day current_month date_03_08_2026">
+            <div class="day_wrapper">
+              <span class="screenreader-only"> 8 March 2026</span>
+              <span class="day_number" aria-hidden="true">
+                8
+              </span>
+              <span class="screenreader-only previous_month_text">Previous month</span>
+              <span class="screenreader-only next_month_text">Next month</span>
+              <span class="screenreader-only today_text">Today</span>
+              <span class="screenreader-only event_link_text">Click to view event details</span>
+            </div>
+          </td>
+          <td id="mini_day_2026_03_09" class="mini_calendar_day day current_month date_03_09_2026">
+            <div class="day_wrapper">
+              <span class="screenreader-only"> 9 March 2026</span>
+              <span class="day_number" aria-hidden="true">
+                9
+              </span>
+              <span class="screenreader-only previous_month_text">Previous month</span>
+              <span class="screenreader-only next_month_text">Next month</span>
+              <span class="screenreader-only today_text">Today</span>
+              <span class="screenreader-only event_link_text">Click to view event details</span>
+            </div>
+          </td>
+          <td id="mini_day_2026_03_10" class="mini_calendar_day day current_month date_03_10_2026">
+            <div class="day_wrapper">
+              <span class="screenreader-only">10 March 2026</span>
+              <span class="day_number" aria-hidden="true">
+                10
+              </span>
+              <span class="screenreader-only previous_month_text">Previous month</span>
+              <span class="screenreader-only next_month_text">Next month</span>
+              <span class="screenreader-only today_text">Today</span>
+              <span class="screenreader-only event_link_text">Click to view event details</span>
+            </div>
+          </td>
+          <td id="mini_day_2026_03_11" class="mini_calendar_day day current_month date_03_11_2026">
+            <div class="day_wrapper">
+              <span class="screenreader-only">11 March 2026</span>
+              <span class="day_number" aria-hidden="true">
+                11
+              </span>
+              <span class="screenreader-only previous_month_text">Previous month</span>
+              <span class="screenreader-only next_month_text">Next month</span>
+              <span class="screenreader-only today_text">Today</span>
+              <span class="screenreader-only event_link_text">Click to view event details</span>
+            </div>
+          </td>
+          <td id="mini_day_2026_03_12" class="mini_calendar_day day current_month date_03_12_2026">
+            <div class="day_wrapper">
+              <span class="screenreader-only">12 March 2026</span>
+              <span class="day_number" aria-hidden="true">
+                12
+              </span>
+              <span class="screenreader-only previous_month_text">Previous month</span>
+              <span class="screenreader-only next_month_text">Next month</span>
+              <span class="screenreader-only today_text">Today</span>
+              <span class="screenreader-only event_link_text">Click to view event details</span>
+            </div>
+          </td>
+          <td id="mini_day_2026_03_13" class="mini_calendar_day day current_month date_03_13_2026">
+            <div class="day_wrapper">
+              <span class="screenreader-only">13 March 2026</span>
+              <span class="day_number" aria-hidden="true">
+                13
+              </span>
+              <span class="screenreader-only previous_month_text">Previous month</span>
+              <span class="screenreader-only next_month_text">Next month</span>
+              <span class="screenreader-only today_text">Today</span>
+              <span class="screenreader-only event_link_text">Click to view event details</span>
+            </div>
+          </td>
+          <td id="mini_day_2026_03_14" class="mini_calendar_day day current_month date_03_14_2026">
+            <div class="day_wrapper">
+              <span class="screenreader-only">14 March 2026</span>
+              <span class="day_number" aria-hidden="true">
+                14
+              </span>
+              <span class="screenreader-only previous_month_text">Previous month</span>
+              <span class="screenreader-only next_month_text">Next month</span>
+              <span class="screenreader-only today_text">Today</span>
+              <span class="screenreader-only event_link_text">Click to view event details</span>
+            </div>
+          </td>
+      </tr>
+      <tr class="mini_calendar_week">
+          <td id="mini_day_2026_03_15" class="mini_calendar_day day current_month date_03_15_2026">
+            <div class="day_wrapper">
+              <span class="screenreader-only">15 March 2026</span>
+              <span class="day_number" aria-hidden="true">
+                15
+              </span>
+              <span class="screenreader-only previous_month_text">Previous month</span>
+              <span class="screenreader-only next_month_text">Next month</span>
+              <span class="screenreader-only today_text">Today</span>
+              <span class="screenreader-only event_link_text">Click to view event details</span>
+            </div>
+          </td>
+          <td id="mini_day_2026_03_16" class="mini_calendar_day day current_month date_03_16_2026">
+            <div class="day_wrapper">
+              <span class="screenreader-only">16 March 2026</span>
+              <span class="day_number" aria-hidden="true">
+                16
+              </span>
+              <span class="screenreader-only previous_month_text">Previous month</span>
+              <span class="screenreader-only next_month_text">Next month</span>
+              <span class="screenreader-only today_text">Today</span>
+              <span class="screenreader-only event_link_text">Click to view event details</span>
+            </div>
+          </td>
+          <td id="mini_day_2026_03_17" class="mini_calendar_day day current_month date_03_17_2026">
+            <div class="day_wrapper">
+              <span class="screenreader-only">17 March 2026</span>
+              <span class="day_number" aria-hidden="true">
+                17
+              </span>
+              <span class="screenreader-only previous_month_text">Previous month</span>
+              <span class="screenreader-only next_month_text">Next month</span>
+              <span class="screenreader-only today_text">Today</span>
+              <span class="screenreader-only event_link_text">Click to view event details</span>
+            </div>
+          </td>
+          <td id="mini_day_2026_03_18" class="mini_calendar_day day current_month date_03_18_2026">
+            <div class="day_wrapper">
+              <span class="screenreader-only">18 March 2026</span>
+              <span class="day_number" aria-hidden="true">
+                18
+              </span>
+              <span class="screenreader-only previous_month_text">Previous month</span>
+              <span class="screenreader-only next_month_text">Next month</span>
+              <span class="screenreader-only today_text">Today</span>
+              <span class="screenreader-only event_link_text">Click to view event details</span>
+            </div>
+          </td>
+          <td id="mini_day_2026_03_19" class="mini_calendar_day day current_month today date_03_19_2026">
+            <div class="day_wrapper">
+              <span class="screenreader-only">19 March 2026</span>
+              <span class="day_number" aria-hidden="true">
+                19
+              </span>
+              <span class="screenreader-only previous_month_text">Previous month</span>
+              <span class="screenreader-only next_month_text">Next month</span>
+              <span class="screenreader-only today_text">Today</span>
+              <span class="screenreader-only event_link_text">Click to view event details</span>
+            </div>
+          </td>
+          <td id="mini_day_2026_03_20" class="mini_calendar_day day current_month date_03_20_2026">
+            <div class="day_wrapper">
+              <span class="screenreader-only">20 March 2026</span>
+              <span class="day_number" aria-hidden="true">
+                20
+              </span>
+              <span class="screenreader-only previous_month_text">Previous month</span>
+              <span class="screenreader-only next_month_text">Next month</span>
+              <span class="screenreader-only today_text">Today</span>
+              <span class="screenreader-only event_link_text">Click to view event details</span>
+            </div>
+          </td>
+          <td id="mini_day_2026_03_21" class="mini_calendar_day day current_month date_03_21_2026">
+            <div class="day_wrapper">
+              <span class="screenreader-only">21 March 2026</span>
+              <span class="day_number" aria-hidden="true">
+                21
+              </span>
+              <span class="screenreader-only previous_month_text">Previous month</span>
+              <span class="screenreader-only next_month_text">Next month</span>
+              <span class="screenreader-only today_text">Today</span>
+              <span class="screenreader-only event_link_text">Click to view event details</span>
+            </div>
+          </td>
+      </tr>
+      <tr class="mini_calendar_week">
+          <td id="mini_day_2026_03_22" class="mini_calendar_day day current_month date_03_22_2026">
+            <div class="day_wrapper">
+              <span class="screenreader-only">22 March 2026</span>
+              <span class="day_number" aria-hidden="true">
+                22
+              </span>
+              <span class="screenreader-only previous_month_text">Previous month</span>
+              <span class="screenreader-only next_month_text">Next month</span>
+              <span class="screenreader-only today_text">Today</span>
+              <span class="screenreader-only event_link_text">Click to view event details</span>
+            </div>
+          </td>
+          <td id="mini_day_2026_03_23" class="mini_calendar_day day current_month date_03_23_2026">
+            <div class="day_wrapper">
+              <span class="screenreader-only">23 March 2026</span>
+              <span class="day_number" aria-hidden="true">
+                23
+              </span>
+              <span class="screenreader-only previous_month_text">Previous month</span>
+              <span class="screenreader-only next_month_text">Next month</span>
+              <span class="screenreader-only today_text">Today</span>
+              <span class="screenreader-only event_link_text">Click to view event details</span>
+            </div>
+          </td>
+          <td id="mini_day_2026_03_24" class="mini_calendar_day day current_month date_03_24_2026">
+            <div class="day_wrapper">
+              <span class="screenreader-only">24 March 2026</span>
+              <span class="day_number" aria-hidden="true">
+                24
+              </span>
+              <span class="screenreader-only previous_month_text">Previous month</span>
+              <span class="screenreader-only next_month_text">Next month</span>
+              <span class="screenreader-only today_text">Today</span>
+              <span class="screenreader-only event_link_text">Click to view event details</span>
+            </div>
+          </td>
+          <td id="mini_day_2026_03_25" class="mini_calendar_day day current_month date_03_25_2026">
+            <div class="day_wrapper">
+              <span class="screenreader-only">25 March 2026</span>
+              <span class="day_number" aria-hidden="true">
+                25
+              </span>
+              <span class="screenreader-only previous_month_text">Previous month</span>
+              <span class="screenreader-only next_month_text">Next month</span>
+              <span class="screenreader-only today_text">Today</span>
+              <span class="screenreader-only event_link_text">Click to view event details</span>
+            </div>
+          </td>
+          <td id="mini_day_2026_03_26" class="mini_calendar_day day current_month date_03_26_2026">
+            <div class="day_wrapper">
+              <span class="screenreader-only">26 March 2026</span>
+              <span class="day_number" aria-hidden="true">
+                26
+              </span>
+              <span class="screenreader-only previous_month_text">Previous month</span>
+              <span class="screenreader-only next_month_text">Next month</span>
+              <span class="screenreader-only today_text">Today</span>
+              <span class="screenreader-only event_link_text">Click to view event details</span>
+            </div>
+          </td>
+          <td id="mini_day_2026_03_27" class="mini_calendar_day day current_month date_03_27_2026">
+            <div class="day_wrapper">
+              <span class="screenreader-only">27 March 2026</span>
+              <span class="day_number" aria-hidden="true">
+                27
+              </span>
+              <span class="screenreader-only previous_month_text">Previous month</span>
+              <span class="screenreader-only next_month_text">Next month</span>
+              <span class="screenreader-only today_text">Today</span>
+              <span class="screenreader-only event_link_text">Click to view event details</span>
+            </div>
+          </td>
+          <td id="mini_day_2026_03_28" class="mini_calendar_day day current_month date_03_28_2026">
+            <div class="day_wrapper">
+              <span class="screenreader-only">28 March 2026</span>
+              <span class="day_number" aria-hidden="true">
+                28
+              </span>
+              <span class="screenreader-only previous_month_text">Previous month</span>
+              <span class="screenreader-only next_month_text">Next month</span>
+              <span class="screenreader-only today_text">Today</span>
+              <span class="screenreader-only event_link_text">Click to view event details</span>
+            </div>
+          </td>
+      </tr>
+      <tr class="mini_calendar_week">
+          <td id="mini_day_2026_03_29" class="mini_calendar_day day current_month date_03_29_2026">
+            <div class="day_wrapper">
+              <span class="screenreader-only">29 March 2026</span>
+              <span class="day_number" aria-hidden="true">
+                29
+              </span>
+              <span class="screenreader-only previous_month_text">Previous month</span>
+              <span class="screenreader-only next_month_text">Next month</span>
+              <span class="screenreader-only today_text">Today</span>
+              <span class="screenreader-only event_link_text">Click to view event details</span>
+            </div>
+          </td>
+          <td id="mini_day_2026_03_30" class="mini_calendar_day day current_month date_03_30_2026">
+            <div class="day_wrapper">
+              <span class="screenreader-only">30 March 2026</span>
+              <span class="day_number" aria-hidden="true">
+                30
+              </span>
+              <span class="screenreader-only previous_month_text">Previous month</span>
+              <span class="screenreader-only next_month_text">Next month</span>
+              <span class="screenreader-only today_text">Today</span>
+              <span class="screenreader-only event_link_text">Click to view event details</span>
+            </div>
+          </td>
+          <td id="mini_day_2026_03_31" class="mini_calendar_day day current_month date_03_31_2026">
+            <div class="day_wrapper">
+              <span class="screenreader-only">31 March 2026</span>
+              <span class="day_number" aria-hidden="true">
+                31
+              </span>
+              <span class="screenreader-only previous_month_text">Previous month</span>
+              <span class="screenreader-only next_month_text">Next month</span>
+              <span class="screenreader-only today_text">Today</span>
+              <span class="screenreader-only event_link_text">Click to view event details</span>
+            </div>
+          </td>
+          <td id="mini_day_2026_04_01" class="mini_calendar_day day other_month next_month date_04_01_2026">
+            <div class="day_wrapper">
+              <span class="screenreader-only"> 1 April 2026</span>
+              <span class="day_number" aria-hidden="true">
+                1
+              </span>
+              <span class="screenreader-only previous_month_text">Previous month</span>
+              <span class="screenreader-only next_month_text">Next month</span>
+              <span class="screenreader-only today_text">Today</span>
+              <span class="screenreader-only event_link_text">Click to view event details</span>
+            </div>
+          </td>
+          <td id="mini_day_2026_04_02" class="mini_calendar_day day other_month next_month date_04_02_2026">
+            <div class="day_wrapper">
+              <span class="screenreader-only"> 2 April 2026</span>
+              <span class="day_number" aria-hidden="true">
+                2
+              </span>
+              <span class="screenreader-only previous_month_text">Previous month</span>
+              <span class="screenreader-only next_month_text">Next month</span>
+              <span class="screenreader-only today_text">Today</span>
+              <span class="screenreader-only event_link_text">Click to view event details</span>
+            </div>
+          </td>
+          <td id="mini_day_2026_04_03" class="mini_calendar_day day other_month next_month date_04_03_2026">
+            <div class="day_wrapper">
+              <span class="screenreader-only"> 3 April 2026</span>
+              <span class="day_number" aria-hidden="true">
+                3
+              </span>
+              <span class="screenreader-only previous_month_text">Previous month</span>
+              <span class="screenreader-only next_month_text">Next month</span>
+              <span class="screenreader-only today_text">Today</span>
+              <span class="screenreader-only event_link_text">Click to view event details</span>
+            </div>
+          </td>
+          <td id="mini_day_2026_04_04" class="mini_calendar_day day other_month next_month date_04_04_2026">
+            <div class="day_wrapper">
+              <span class="screenreader-only"> 4 April 2026</span>
+              <span class="day_number" aria-hidden="true">
+                4
+              </span>
+              <span class="screenreader-only previous_month_text">Previous month</span>
+              <span class="screenreader-only next_month_text">Next month</span>
+              <span class="screenreader-only today_text">Today</span>
+              <span class="screenreader-only event_link_text">Click to view event details</span>
+            </div>
+          </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+      
+<div aria-label="Assignment Weights">
+  <h2>Course assignments are not weighted.</h2>
+</div>
+
+</div>
+
+      
+<div class="events_list
+  recent_feedback"
+>
+  <div class="h2 shared-space">
+    <h2>Recent Feedback</h2>
+  </div>
+  <ul class="right-side-list events">
+      
+<li style="" class="event">
+
+
+  <a
+    data-track-category="dashboard"
+    data-track-label="recent feedback"
+    class="recent_feedback_icon" href="/courses/416611/assignments/1673109/submissions/728596"
+  >
+    <i class="icon-check"></i>
+    <div class="event-details">
+      <b class="event-details__title recent_feedback_title">
+        Lecture Prep for Week 10
+      </b>
+          <p><strong>5.67 out of 10</strong></p>
+    </div>
+    <div class="clear"></div>
+  </a>
+  <div class="clear"></div>
+
+</li>
+
+      
+<li style="" class="event">
+
+
+  <a
+    data-track-category="dashboard"
+    data-track-label="recent feedback"
+    class="recent_feedback_icon" href="/courses/416611/assignments/1673106/submissions/728596"
+  >
+    <i class="icon-check"></i>
+    <div class="event-details">
+      <b class="event-details__title recent_feedback_title">
+        Lecture Prep for Week 7
+      </b>
+          <p><strong>9 out of 9</strong></p>
+    </div>
+    <div class="clear"></div>
+  </a>
+  <div class="clear"></div>
+
+</li>
+
+  </ul>
+</div>
+
+
+          </aside>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+    <div style="display:none;"><!-- Everything inside of this should always stay hidden -->
+        <div id="page_view_id">f977c206-e4bb-4ce5-92c1-98f5d28a26b4</div>
+    </div>
+  <div id='aria_alerts' class='hide-text affix' role="alert" aria-live="assertive"></div>
+  <div id='StudentTray__Container'></div>
+    <div class="NewUserTutorialTray__Container"></div>
+  <div id="react-router-portals"></div>
+
+
+  
+
+  <iframe src="https://sso.canvaslms.com/post_message_forwarding?rev=e6aca5e55d-de8233d392aa15f4&amp;token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJwYXJlbnRfZG9tYWluIjoicS51dG9yb250by5jYSJ9.hQE2hZS9R_As8x6X7ei024F_9X09pQsovm6iajeneYWZghZQvYZJi6ufSFRR8yChxrqWgQt1B8EdDbiYJlTvxA" name="post_message_forwarding" title="post_message_forwarding" id="post_message_forwarding" sandbox="allow-scripts allow-same-origin" style="display:none;"></iframe>
+
+
+  <script>
+    Object.assign(
+      ENV,
+      {}
+    )
+  </script>
+
+<script>
+//<![CDATA[
+(window.bundles || (window.bundles = [])).push('inst_fs_service_worker');
+//]]>
+</script>
+<script src="https://instructure-uploads-yul.s3.ca-central-1.amazonaws.com/account_118340000000000001/attachments/24721051/UT_CustomJS_20210412-PRD-GTM.js" defer="defer"></script>
+
+
+</div> <!-- #application -->
+</body>
+</html>

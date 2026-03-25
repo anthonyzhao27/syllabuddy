@@ -13,16 +13,22 @@ Rules:
    - "title" (string): name of the assignment or event
    - "due_date" (string): ISO 8601 datetime, e.g. "2025-01-30T23:59:00"
    - "course" (string): course name/number if mentioned, else ""
-   - "event_type" (string): one of "assignment", "exam", "quiz", "project", "other"
+   - "event_type" (string): one of "assignment", "exam", "quiz", "project", \
+"lab", "presentation", "milestone", "deadline", "discussion", "other"
    - "description" (string): brief description if available, else ""
-3. If only a date is given with no time, assume 23:59:00 (end of day).
-4. If the year is not stated, infer it from context (semester, other dates). \
+   - "time_specified" (boolean): true if the syllabus explicitly states a time, \
+false if only a date was given and you inferred the time
+3. If only a date is given with no time, use 23:59:00 (end of day) and set \
+"time_specified": false.
+4. If a specific time is stated (e.g. "due at 11:59 PM", "exam at 2:00 PM"), \
+set "time_specified": true.
+5. If the year is not stated, infer it from context (semester, other dates). \
 If uninferable, use the current year.
-5. For recurring events (e.g. "weekly quizzes every Friday"), expand them \
+6. For recurring events (e.g. "weekly quizzes every Friday"), expand them \
 into individual events for each occurrence within the semester dates mentioned.
-6. Skip informational items that are not graded events (office hours, \
+7. Skip informational items that are not graded events (office hours, \
 reading lists, course policies).
-7. If no events are found, return an empty array: []
+8. If no events are found, return an empty array: []
 
 Example output:
 [
@@ -31,7 +37,16 @@ Example output:
     "due_date": "2025-01-30T23:59:00",
     "course": "CS 101",
     "event_type": "assignment",
-    "description": "Chapters 1-3 exercises"
+    "description": "Chapters 1-3 exercises",
+    "time_specified": false
+  },
+  {
+    "title": "Midterm Exam",
+    "due_date": "2025-02-15T14:00:00",
+    "course": "CS 101",
+    "event_type": "exam",
+    "description": "Covers chapters 1-5",
+    "time_specified": true
   }
 ]
 """

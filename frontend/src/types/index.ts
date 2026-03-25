@@ -1,9 +1,25 @@
+export const EVENT_TYPES = {
+  assignment: true,
+  exam: true,
+  quiz: true,
+  project: true,
+  lab: true,
+  presentation: true,
+  milestone: true,
+  deadline: true,
+  discussion: true,
+  other: true,
+} as const;
+
+export type EventType = keyof typeof EVENT_TYPES;
+
 export type ApiEvent = {
   title: string;
   due_date: string;
   course: string;
   event_type: string;
   description: string;
+  time_specified: boolean;
 };
 
 export type ApiParseResponse = {
@@ -17,7 +33,7 @@ export type ParsedEvent = {
   time?: string;
   description?: string;
   course: string;
-  type: string;
+  type: EventType;
   isAmbiguous: boolean;
 };
 
