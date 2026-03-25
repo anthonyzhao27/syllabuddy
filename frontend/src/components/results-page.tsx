@@ -14,9 +14,15 @@ function loadEvents(): ParsedEvent[] | null {
   return parsed.events;
 }
 
+function getDefaultTimezone(): string {
+  if (typeof window === "undefined") return "UTC";
+  return Intl.DateTimeFormat().resolvedOptions().timeZone;
+}
+
 export function ResultsPage() {
   const router = useRouter();
   const [events, setEvents] = useState<ParsedEvent[]>(() => loadEvents() ?? []);
+  const [exportTimezone, setExportTimezone] = useState(getDefaultTimezone);
   const hasData = loadEvents() !== null;
 
   if (!hasData) {
@@ -46,7 +52,22 @@ export function ResultsPage() {
         onUpdate={handleUpdateEvent}
         onDelete={handleDeleteEvent}
       />
-      <ExportButtons events={events} />
+      <div className="mt-6 w-full max-w-2xl">
+        <label className="block text-sm font-medium text-sage-700 mb-1">
+          Event timezone
+        </label>
+        <input
+          type="text"
+          value={exportTimezone}
+          onChange={(e) => setExportTimezone(e.target.value)}
+          placeholder="e.g. America/Toronto"
+          className="w-full max-w-xs bg-sage-50 border border-sage-300 rounded-md px-3 py-1.5 text-sm text-sage-800 focus:outline-none focus:border-sage-500"
+        />
+        <p className="text-xs text-sage-500 mt-1">
+          Timed events will be exported in this timezone
+        </p>
+      </div>
+      <ExportButtons events={events} timezone={exportTimezone} />
       <button
         onClick={() => router.push("/")}
         className="mt-6 text-sm text-sage-600 hover:text-sage-800 cursor-pointer transition-colors"

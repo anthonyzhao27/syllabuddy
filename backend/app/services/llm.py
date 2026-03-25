@@ -3,13 +3,52 @@
 import json
 import logging
 
+from fastapi import HTTPException
 from openai import AsyncOpenAI
 
 from app.config import settings
-from app.models.schemas import ParsedEvent
+from app.models.schemas import EventType, ParsedEvent
 from app.utils.prompts import EXTRACTION_PROMPT
 
 logger = logging.getLogger(__name__)
+
+EVENT_TYPE_SYNONYMS: dict[str, EventType] = {
+    "midterm": EventType.EXAM,
+    "final": EventType.EXAM,
+    "test": EventType.EXAM,
+    "homework": EventType.ASSIGNMENT,
+    "problem_set": EventType.ASSIGNMENT,
+    "hw": EventType.ASSIGNMENT,
+    "checkpoint": EventType.MILESTONE,
+    "due": EventType.DEADLINE,
+    "submission": EventType.DEADLINE,
+}
+
+
+def normalize_event_type(raw: str) -> EventType:
+    """Normalize LLM output to canonical EventType."""
+    if not raw:
+        return EventType.OTHER
+
+    lower = raw.lower().strip()
+
+    try:
+        return EventType(lower)
+    except ValueError:
+        pass
+
+    if lower in EVENT_TYPE_SYNONYMS:
+        return EVENT_TYPE_SYNONYMS[lower]
+
+    return EventType.OTHER
+
+
+def _normalize_event_payload(item: dict) -> dict:
+    """Normalize raw LLM event payload before Pydantic validation."""
+    normalized = dict(item)
+    normalized["event_type"] = normalize_event_type(normalized.get("event_type", ""))
+    normalized.setdefault("time_specified", True)
+    return normalized
 
 
 async def extract_events(text: str) -> list[ParsedEvent]:
@@ -31,12 +70,7 @@ async def extract_events(text: str) -> list[ParsedEvent]:
 
 
 def _parse_events(raw: str) -> list[ParsedEvent]:
-    """Parse raw JSON string from LLM into validated ParsedEvent list.
-
-    Handles two shapes:
-    - A JSON array: [{ ... }, { ... }]
-    - A JSON object with an array value: {"events": [{ ... }]}
-    """
+    """Parse raw JSON string from LLM into validated ParsedEvent list."""
     try:
         data = json.loads(raw)
     except json.JSONDecodeError:
@@ -54,6 +88,9 @@ def _parse_events(raw: str) -> list[ParsedEvent]:
             raise ValueError(f"Could not parse LLM response as JSON: {raw[:200]}")
 
     if isinstance(data, dict):
+        if not data:
+            # Empty object {} means no events found
+            return []
         for v in data.values():
             if isinstance(v, list):
                 data = v
@@ -69,7 +106,8 @@ def _parse_events(raw: str) -> list[ParsedEvent]:
     events: list[ParsedEvent] = []
     for item in data:
         try:
-            events.append(ParsedEvent(**item))
+            normalized = _normalize_event_payload(item)
+            events.append(ParsedEvent(**normalized))
         except Exception as e:
             logger.warning("Skipping malformed event %r: %s", item, e)
             continue

@@ -6,6 +6,7 @@ from unittest.mock import AsyncMock, MagicMock, patch
 
 import pytest
 
+from app.models.schemas import EventType
 from app.services.llm import _parse_events, extract_events
 
 
@@ -94,7 +95,7 @@ class TestParseEvents:
         raw = json.dumps([{"title": "HW1", "due_date": "2025-01-30T23:59:00"}])
         events = _parse_events(raw)
         assert events[0].course == ""
-        assert events[0].event_type == ""
+        assert events[0].event_type == EventType.OTHER
         assert events[0].description == ""
 
     def test_raises_on_total_garbage(self) -> None:
