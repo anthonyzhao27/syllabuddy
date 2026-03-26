@@ -1,70 +1,90 @@
 @import "tailwindcss";
 
 :root {
-  --background: #b9e4c9;
-  --foreground: #1a2e1c;
+  --background: #e8f5ee;
+  --foreground: #1f1e1b;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-nunito);
+  --font-heading: var(--font-quicksand);
 
-  /* Sage green theme colors */
-  --color-sage-50: #f6f8f6;
-  --color-sage-100: #e8eeea;
-  --color-sage-200: #d1ddd4;
-  --color-sage-300: #a8c0ad;
-  --color-sage-400: #7a9f82;
-  --color-sage-500: #6b8f71;
-  --color-sage-600: #4a6b50;
-  --color-sage-700: #3d5842;
-  --color-sage-800: #334738;
-  --color-sage-900: #2b3b2f;
+  /* Mint Greens (Primary) */
+  --color-mint-50: #f0fdf7;
+  --color-mint-100: #dcfce9;
+  --color-mint-200: #a7f3c9;
+  --color-mint-300: #6ee7a0;
+  --color-mint-400: #4ade80;
+  --color-mint-500: #22c55e;
+  --color-mint-600: #16a34a;
+  --color-mint-700: #15803d;
 
-  /* Coral accent colors */
-  --color-coral-50: #fff5f2;
-  --color-coral-100: #ffe4db;
-  --color-coral-200: #ffc9b8;
-  --color-coral-300: #ffa28a;
-  --color-coral-400: #fb7c5c;
-  --color-coral-500: #f97352;
-  --color-coral-600: #e45a3b;
-  --color-coral-700: #c4472d;
-  --color-coral-800: #9e3a27;
-  --color-coral-900: #7a3024;
+  /* Soft Peach (Complementary) */
+  --color-peach-50: #fff7f5;
+  --color-peach-100: #ffede8;
+  --color-peach-200: #ffd9cf;
+  --color-peach-300: #ffbfad;
+  --color-peach-400: #ffa08a;
+  --color-peach-500: #ff8066;
 
-  /* Teal accent colors */
-  --color-teal-50: #f0fdfa;
-  --color-teal-100: #ccfbf1;
-  --color-teal-200: #99f6e4;
-  --color-teal-300: #5eead4;
-  --color-teal-400: #2dd4bf;
-  --color-teal-500: #14b8a6;
-  --color-teal-600: #0d9488;
-  --color-teal-700: #0f766e;
-  --color-teal-800: #115e59;
-  --color-teal-900: #134e4a;
+  /* Warm Grays (Neutrals) */
+  --color-warm-50: #faf9f7;
+  --color-warm-100: #f3f2ef;
+  --color-warm-200: #e8e6e1;
+  --color-warm-300: #d4d1c9;
+  --color-warm-400: #a8a49c;
+  --color-warm-500: #78746b;
+  --color-warm-600: #5c5a53;
+  --color-warm-700: #4a4740;
+  --color-warm-900: #1f1e1b;
 
-  /* Amber accent colors */
-  --color-amber-50: #fffbeb;
-  --color-amber-100: #fef3c7;
-  --color-amber-200: #fde68a;
-  --color-amber-300: #fcd34d;
-  --color-amber-400: #fbbf24;
-  --color-amber-500: #f59e0b;
-  --color-amber-600: #d97706;
-  --color-amber-700: #b45309;
-  --color-amber-800: #92400e;
-  --color-amber-900: #78350f;
+  /* Light Mint Background */
+  --color-cream: #e8f5ee;
+
+  /* Semantic Colors */
+  --color-error: #ef4444;
+  --color-error-light: #fee2e2;
+  --color-warning: #f59e0b;
+  --color-warning-light: #fef3c7;
+  --color-success: #22c55e;
+  --color-success-light: #dcfce9;
+
+  /* Event Type Colors */
+  --color-event-assignment: #60a5fa;
+  --color-event-assignment-bg: #eff6ff;
+  --color-event-exam: #f87171;
+  --color-event-exam-bg: #fef2f2;
+  --color-event-quiz: #fbbf24;
+  --color-event-quiz-bg: #fffbeb;
+  --color-event-project: #a78bfa;
+  --color-event-project-bg: #f5f3ff;
+  --color-event-lab: #34d399;
+  --color-event-lab-bg: #ecfdf5;
+  --color-event-presentation: #f472b6;
+  --color-event-presentation-bg: #fdf2f8;
+  --color-event-milestone: #818cf8;
+  --color-event-milestone-bg: #eef2ff;
+  --color-event-deadline: #fb923c;
+  --color-event-deadline-bg: #fff7ed;
+  --color-event-discussion: #22d3ee;
+  --color-event-discussion-bg: #ecfeff;
+  --color-event-other: #9ca3af;
+  --color-event-other-bg: #f9fafb;
 }
 
-/* Dark mode disabled - always use light mode */
+html {
+  background: var(--color-cream);
+}
 
 body {
-  background: linear-gradient(180deg, #4ade60 0%, #6ee770 50%, #8cf590 100%);
+  background: var(--color-cream);
   min-height: 100vh;
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-nunito), system-ui, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-quicksand), system-ui, sans-serif;
 }

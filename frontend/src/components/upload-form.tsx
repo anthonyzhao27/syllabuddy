@@ -2,15 +2,17 @@
 
 import { useState, useRef } from "react";
 import { useRouter } from "next/navigation";
+import { Upload, Link, FileText } from "lucide-react";
 import { parseSyllabus } from "@/lib/api";
+import { LoadingScreen } from "./loading-screen";
 import type { UploadMode } from "@/types";
 
 const ACCEPTED_TYPES = ".pdf,.docx,.html,.htm,.png,.jpg,.jpeg,.webp";
 
-const MODES: { key: UploadMode; label: string }[] = [
-  { key: "file", label: "File Upload" },
-  { key: "url", label: "Google Docs URL" },
-  { key: "paste", label: "Paste HTML" },
+const MODES: { key: UploadMode; label: string; icon: React.ReactNode }[] = [
+  { key: "file", label: "File Upload", icon: <Upload className="w-4 h-4" /> },
+  { key: "url", label: "Google Docs URL", icon: <Link className="w-4 h-4" /> },
+  { key: "paste", label: "Paste HTML", icon: <FileText className="w-4 h-4" /> },
 ];
 
 export function UploadForm() {
@@ -76,132 +78,154 @@ export function UploadForm() {
       router.push("/results");
     } catch (err) {
       setError(err instanceof Error ? err.message : "Something went wrong");
-    } finally {
       setLoading(false);
     }
   }
 
   return (
-    <div className="w-full max-w-lg space-y-6">
-      {/* Mode tabs */}
-      <div className="flex gap-2 p-1 bg-white/50 rounded-lg">
-        {MODES.map((m) => (
-          <button
-            key={m.key}
-            onClick={() => setMode(m.key)}
-            className={`flex-1 px-4 py-2 text-sm font-medium rounded-md transition-all cursor-pointer ${
-              mode === m.key
-                ? "bg-white text-sage-800 shadow-sm"
-                : "text-sage-600/70 hover:text-sage-800 hover:bg-white/50"
+    <>
+      <LoadingScreen isVisible={loading} />
+      <div className="w-full space-y-6">
+        <div className="flex gap-2 p-1.5 bg-warm-50 rounded-xl">
+          {MODES.map((m) => (
+            <button
+              key={m.key}
+              onClick={() => setMode(m.key)}
+              className={`flex-1 flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-medium rounded-lg transition-all duration-200 cursor-pointer ${
+                mode === m.key
+                  ? "bg-white text-warm-700 shadow-sm"
+                  : "text-warm-400 hover:text-warm-600 hover:bg-white/50"
+              }`}
+            >
+              {m.icon}
+              {m.label}
+            </button>
+          ))}
+        </div>
+
+        {mode === "file" && (
+          <div
+            onDragEnter={handleDrag}
+            onDragOver={handleDrag}
+            onDragLeave={handleDrag}
+            onDrop={handleDrop}
+            onClick={() => fileInputRef.current?.click()}
+            className={`border-2 border-dashed rounded-xl p-12 text-center cursor-pointer transition-all duration-200 ${
+              dragActive
+                ? "border-mint-400 bg-mint-50"
+                : "border-warm-200 bg-white hover:border-mint-300 hover:bg-mint-50/30"
             }`}
           >
-            {m.label}
-          </button>
-        ))}
-      </div>
+            <input
+              ref={fileInputRef}
+              type="file"
+              accept={ACCEPTED_TYPES}
+              onChange={(e) => setFile(e.target.files?.[0] ?? null)}
+              className="hidden"
+            />
+            {file ? (
+              <div className="flex flex-col items-center gap-2">
+                <div className="w-12 h-12 rounded-full bg-mint-100 flex items-center justify-center">
+                  <FileText className="w-6 h-6 text-mint-600" />
+                </div>
+                <p className="text-sm font-medium text-warm-700">{file.name}</p>
+                <p className="text-xs text-warm-400">
+                  {(file.size / 1024).toFixed(1)} KB
+                </p>
+              </div>
+            ) : (
+              <div className="flex flex-col items-center gap-3">
+                <div className="w-14 h-14 rounded-full bg-mint-100 flex items-center justify-center">
+                  <Upload className="w-7 h-7 text-mint-500" />
+                </div>
+                <div>
+                  <p className="text-warm-700 font-medium mb-1">
+                    Drop a file here or click to browse
+                  </p>
+                  <p className="text-sm text-warm-400">
+                    PDF, DOCX, HTML, or image (PNG, JPG, WebP)
+                  </p>
+                </div>
+              </div>
+            )}
+          </div>
+        )}
 
-      {/* File upload drop zone */}
-      {mode === "file" && (
-        <div
-          onDragEnter={handleDrag}
-          onDragOver={handleDrag}
-          onDragLeave={handleDrag}
-          onDrop={handleDrop}
-          onClick={() => fileInputRef.current?.click()}
-          className={`border-2 border-dashed rounded-lg p-10 text-center cursor-pointer transition-all ${
-            dragActive
-              ? "border-sage-500 bg-sage-100/50"
-              : "border-sage-400 bg-white/60 hover:border-sage-500 hover:bg-white/80"
-          }`}
+        {mode === "url" && (
+          <div className="relative">
+            <Link className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-warm-300" />
+            <input
+              type="url"
+              value={url}
+              onChange={(e) => setUrl(e.target.value)}
+              placeholder="https://docs.google.com/document/d/..."
+              className="w-full bg-white border border-warm-200 rounded-xl pl-12 pr-4 py-3.5 text-sm text-warm-700 placeholder:text-warm-400 focus:outline-none focus:border-mint-400 focus:ring-2 focus:ring-mint-100 transition-all duration-200"
+            />
+          </div>
+        )}
+
+        {mode === "paste" && (
+          <textarea
+            value={html}
+            onChange={(e) => setHtml(e.target.value)}
+            placeholder="Paste your syllabus HTML content here..."
+            rows={6}
+            className="w-full bg-white border border-warm-200 rounded-xl px-4 py-3.5 text-sm text-warm-700 placeholder:text-warm-400 focus:outline-none focus:border-mint-400 focus:ring-2 focus:ring-mint-100 transition-all duration-200 resize-none"
+          />
+        )}
+
+        <div className="flex gap-4">
+          <div className="flex-1">
+            <label className="block text-sm font-medium text-warm-500 mb-1.5">
+              Semester start (optional)
+            </label>
+            <input
+              type="date"
+              value={semesterStart}
+              onChange={(e) => setSemesterStart(e.target.value)}
+              className="w-full bg-white border border-warm-200 rounded-lg px-3 py-2.5 text-sm text-warm-700 focus:outline-none focus:border-mint-400 focus:ring-2 focus:ring-mint-100 transition-all duration-200"
+            />
+          </div>
+          <div className="flex-1">
+            <label className="block text-sm font-medium text-warm-500 mb-1.5">
+              Semester end (optional)
+            </label>
+            <input
+              type="date"
+              value={semesterEnd}
+              onChange={(e) => setSemesterEnd(e.target.value)}
+              className="w-full bg-white border border-warm-200 rounded-lg px-3 py-2.5 text-sm text-warm-700 focus:outline-none focus:border-mint-400 focus:ring-2 focus:ring-mint-100 transition-all duration-200"
+            />
+          </div>
+        </div>
+
+        {error && (
+          <div className="bg-error-light border border-error/20 rounded-lg px-4 py-3">
+            <p className="text-sm text-error font-medium">{error}</p>
+          </div>
+        )}
+
+        <button
+          onClick={handleSubmit}
+          disabled={loading}
+          className="w-full py-3.5 rounded-xl text-white text-sm font-semibold disabled:opacity-50 transition-all duration-200 cursor-pointer shadow-sm hover:shadow-md active:scale-[0.98]"
+          style={{
+            background: "linear-gradient(to bottom, #4ade80, #22c55e)",
+          }}
+          onMouseEnter={(e) => {
+            if (!loading) {
+              e.currentTarget.style.background =
+                "linear-gradient(to bottom, #22c55e, #16a34a)";
+            }
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.background =
+              "linear-gradient(to bottom, #4ade80, #22c55e)";
+          }}
         >
-          <input
-            ref={fileInputRef}
-            type="file"
-            accept={ACCEPTED_TYPES}
-            onChange={(e) => setFile(e.target.files?.[0] ?? null)}
-            className="hidden"
-          />
-          {file ? (
-            <p className="text-sm text-sage-800">
-              {file.name}{" "}
-              <span className="text-sage-600">
-                ({(file.size / 1024).toFixed(1)} KB)
-              </span>
-            </p>
-          ) : (
-            <>
-              <p className="text-sage-700 mb-1 font-medium">
-                Drop a file here or click to browse
-              </p>
-              <p className="text-xs text-sage-600/70">
-                PDF, DOCX, HTML, or image (PNG, JPG, WebP)
-              </p>
-            </>
-          )}
-        </div>
-      )}
-
-      {/* URL input */}
-      {mode === "url" && (
-        <input
-          type="url"
-          value={url}
-          onChange={(e) => setUrl(e.target.value)}
-          placeholder="https://docs.google.com/document/d/..."
-          className="w-full bg-white/70 border border-sage-300 rounded-lg px-4 py-3 text-sm text-sage-800 placeholder:text-sage-500 focus:outline-none focus:border-sage-500 focus:bg-white/90 transition-colors"
-        />
-      )}
-
-      {/* HTML paste textarea */}
-      {mode === "paste" && (
-        <textarea
-          value={html}
-          onChange={(e) => setHtml(e.target.value)}
-          placeholder="Paste your syllabus HTML content here..."
-          rows={6}
-          className="w-full bg-white/70 border border-sage-300 rounded-lg px-4 py-3 text-sm text-sage-800 placeholder:text-sage-500 focus:outline-none focus:border-sage-500 focus:bg-white/90 transition-colors resize-none"
-        />
-      )}
-
-      {/* Semester date inputs */}
-      <div className="flex gap-4">
-        <div className="flex-1">
-          <label className="block text-xs text-sage-600 mb-1">
-            Semester start (optional)
-          </label>
-          <input
-            type="date"
-            value={semesterStart}
-            onChange={(e) => setSemesterStart(e.target.value)}
-            className="w-full bg-white/60 border border-sage-300 rounded-md px-3 py-2 text-sm text-sage-800 focus:outline-none focus:border-sage-500 transition-colors"
-          />
-        </div>
-        <div className="flex-1">
-          <label className="block text-xs text-sage-600 mb-1">
-            Semester end (optional)
-          </label>
-          <input
-            type="date"
-            value={semesterEnd}
-            onChange={(e) => setSemesterEnd(e.target.value)}
-            className="w-full bg-white/60 border border-sage-300 rounded-md px-3 py-2 text-sm text-sage-800 focus:outline-none focus:border-sage-500 transition-colors"
-          />
-        </div>
+          {loading ? "Parsing..." : "Parse Syllabus"}
+        </button>
       </div>
-
-      {/* Error message */}
-      {error && (
-        <p className="text-sm text-red-600 text-center font-medium">{error}</p>
-      )}
-
-      {/* Submit button */}
-      <button
-        onClick={handleSubmit}
-        disabled={loading}
-        className="w-full py-3 rounded-lg bg-teal-600 hover:bg-teal-700 text-white text-sm font-semibold disabled:opacity-50 transition-colors cursor-pointer shadow-sm hover:shadow-md"
-      >
-        {loading ? "Parsing..." : "Parse Syllabus"}
-      </button>
-    </div>
+    </>
   );
 }

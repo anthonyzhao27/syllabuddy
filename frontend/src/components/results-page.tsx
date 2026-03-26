@@ -2,6 +2,9 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { motion } from "framer-motion";
+import { ArrowLeft } from "lucide-react";
+import { Header } from "./header";
 import { EventList } from "./event-list";
 import { ExportButtons } from "./export-buttons";
 import type { ParsedEvent } from "@/types";
@@ -41,39 +44,58 @@ export function ResultsPage() {
   }
 
   return (
-    <main className="flex min-h-screen flex-col items-center p-8 pt-12">
-      <h1 className="text-3xl font-bold mb-2 text-sage-800">Parsed Assignments</h1>
-      <p className="text-sage-600 mb-8">
-        {events.length} assignment{events.length !== 1 ? "s" : ""} found. Edit
-        any details below.
-      </p>
-      <EventList
-        events={events}
-        onUpdate={handleUpdateEvent}
-        onDelete={handleDeleteEvent}
-      />
-      <div className="mt-6 w-full max-w-2xl">
-        <label className="block text-sm font-medium text-sage-700 mb-1">
-          Event timezone
-        </label>
-        <input
-          type="text"
-          value={exportTimezone}
-          onChange={(e) => setExportTimezone(e.target.value)}
-          placeholder="e.g. America/Toronto"
-          className="w-full max-w-xs bg-sage-50 border border-sage-300 rounded-md px-3 py-1.5 text-sm text-sage-800 focus:outline-none focus:border-sage-500"
-        />
-        <p className="text-xs text-sage-500 mt-1">
-          Timed events will be exported in this timezone
-        </p>
-      </div>
-      <ExportButtons events={events} timezone={exportTimezone} />
-      <button
-        onClick={() => router.push("/")}
-        className="mt-6 text-sm text-sage-600 hover:text-sage-800 cursor-pointer transition-colors"
-      >
-        ← Upload another syllabus
-      </button>
-    </main>
+    <div className="min-h-screen flex flex-col">
+      <Header />
+      <main className="flex-1 flex flex-col items-center px-8 pb-16">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+          className="w-full max-w-3xl"
+        >
+          <div className="text-center mb-8">
+            <h1 className="text-3xl font-semibold text-warm-700 mb-2 font-[family-name:var(--font-quicksand)]">
+              Your Assignments
+            </h1>
+            <p className="text-warm-500">
+              {events.length} assignment{events.length !== 1 ? "s" : ""} found.
+              Edit any details below.
+            </p>
+          </div>
+
+          <EventList
+            events={events}
+            onUpdate={handleUpdateEvent}
+            onDelete={handleDeleteEvent}
+          />
+
+          <div className="mt-8 p-4 bg-white rounded-xl border border-warm-100">
+            <label className="block text-sm font-medium text-warm-600 mb-2">
+              Event timezone
+            </label>
+            <input
+              type="text"
+              value={exportTimezone}
+              onChange={(e) => setExportTimezone(e.target.value)}
+              placeholder="e.g. America/Toronto"
+              className="w-full max-w-xs bg-warm-50 border border-warm-200 rounded-lg px-3 py-2 text-sm text-warm-700 focus:outline-none focus:border-mint-400 focus:ring-2 focus:ring-mint-100 transition-all duration-200"
+            />
+            <p className="text-xs text-warm-400 mt-1.5">
+              Timed events will be exported in this timezone
+            </p>
+          </div>
+
+          <ExportButtons events={events} timezone={exportTimezone} />
+
+          <button
+            onClick={() => router.push("/")}
+            className="mt-8 flex items-center gap-2 text-sm text-warm-500 hover:text-warm-700 cursor-pointer transition-colors mx-auto"
+          >
+            <ArrowLeft className="w-4 h-4" />
+            Upload another syllabus
+          </button>
+        </motion.div>
+      </main>
+    </div>
   );
 }

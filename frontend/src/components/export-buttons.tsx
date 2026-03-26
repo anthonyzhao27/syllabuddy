@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { Calendar, Apple, Mail, CheckCircle } from "lucide-react";
 import {
   exportToIcs,
   exportToOutlook,
@@ -78,37 +79,114 @@ export function ExportButtons({ events, timezone }: ExportButtonsProps) {
   };
 
   return (
-    <div className="space-y-3 mt-8">
-      <div className="flex flex-wrap gap-3">
-        <button
-          className="px-4 py-2 rounded-md bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer transition-colors shadow-sm hover:shadow-md"
-          disabled={isDisabled || googleStatus === "loading"}
+    <div className="mt-6 space-y-4">
+      <p className="text-sm font-medium text-warm-600 text-center">
+        Export to your calendar
+      </p>
+      <div className="flex flex-wrap justify-center gap-3">
+        <ExportButton
           onClick={handleGoogleExport}
-        >
-          {googleStatus === "loading" ? "Exporting..." : "Google Calendar"}
-        </button>
+          disabled={isDisabled}
+          loading={googleStatus === "loading"}
+          success={googleStatus === "success"}
+          icon={<Calendar className="w-4 h-4" />}
+          label="Google Calendar"
+          variant="google"
+        />
 
-        <button
-          className="px-4 py-2 rounded-md bg-teal-600 hover:bg-teal-700 text-white text-sm font-medium disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer transition-colors shadow-sm hover:shadow-md"
-          disabled={isDisabled || icsStatus === "loading"}
+        <ExportButton
           onClick={handleIcsExport}
-        >
-          {icsStatus === "loading" ? "Downloading..." : "Apple Calendar (.ics)"}
-        </button>
+          disabled={isDisabled}
+          loading={icsStatus === "loading"}
+          success={icsStatus === "success"}
+          icon={<Apple className="w-4 h-4" />}
+          label="Apple Calendar"
+          variant="apple"
+        />
 
-        <button
-          className="px-4 py-2 rounded-md bg-sky-600 hover:bg-sky-700 text-white text-sm font-medium disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer transition-colors shadow-sm hover:shadow-md"
-          disabled={isDisabled || outlookStatus === "loading"}
+        <ExportButton
           onClick={handleOutlookExport}
-        >
-          {outlookStatus === "loading" ? "Downloading..." : "Outlook (.ics)"}
-        </button>
+          disabled={isDisabled}
+          loading={outlookStatus === "loading"}
+          success={outlookStatus === "success"}
+          icon={<Mail className="w-4 h-4" />}
+          label="Outlook"
+          variant="outlook"
+        />
       </div>
 
       {successMessage && (
-        <p className="text-sm text-green-600">{successMessage}</p>
+        <div className="flex items-center justify-center gap-2 text-sm text-success font-medium">
+          <CheckCircle className="w-4 h-4" />
+          {successMessage}
+        </div>
       )}
-      {error && <p className="text-sm text-red-600">{error}</p>}
+      {error && (
+        <p className="text-sm text-error text-center font-medium">{error}</p>
+      )}
     </div>
+  );
+}
+
+type ExportButtonProps = {
+  onClick: () => void;
+  disabled: boolean;
+  loading: boolean;
+  success: boolean;
+  icon: React.ReactNode;
+  label: string;
+  variant: "google" | "apple" | "outlook";
+};
+
+const VARIANT_STYLES = {
+  google: {
+    gradient: "linear-gradient(to bottom, #60a5fa, #3b82f6)",
+    hoverGradient: "linear-gradient(to bottom, #3b82f6, #2563eb)",
+  },
+  apple: {
+    gradient: "linear-gradient(to bottom, #4ade80, #22c55e)",
+    hoverGradient: "linear-gradient(to bottom, #22c55e, #16a34a)",
+  },
+  outlook: {
+    gradient: "linear-gradient(to bottom, #38bdf8, #0ea5e9)",
+    hoverGradient: "linear-gradient(to bottom, #0ea5e9, #0284c7)",
+  },
+};
+
+function ExportButton({
+  onClick,
+  disabled,
+  loading,
+  success,
+  icon,
+  label,
+  variant,
+}: ExportButtonProps) {
+  const styles = VARIANT_STYLES[variant];
+
+  return (
+    <button
+      onClick={onClick}
+      disabled={disabled || loading}
+      className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-white text-sm font-semibold disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer transition-all duration-200 shadow-sm hover:shadow-md active:scale-[0.98]"
+      style={{ background: styles.gradient }}
+      onMouseEnter={(e) => {
+        if (!disabled && !loading) {
+          e.currentTarget.style.background = styles.hoverGradient;
+        }
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.background = styles.gradient;
+      }}
+    >
+      {loading ? (
+        <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+      ) : success ? (
+        <CheckCircle className="w-4 h-4" />
+      ) : (
+        icon
+      )}
+      {loading ? "Exporting..." : label}
+    </button>
   );
 }
