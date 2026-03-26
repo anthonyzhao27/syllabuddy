@@ -12,11 +12,16 @@ from app.models.schemas import (
     GoogleExportResponse,
     IcsExportRequest,
     OutlookExportRequest,
-    OutlookExportResponse,
+)
+from app.services.calendar_utils import (
+    validate_and_get_course_code,
+    get_calendar_name,
+    sanitize_filename,
+    MissingCourseCodeError,
+    MixedCourseError,
 )
 from app.services.google_calendar import export_to_google_calendar_sync
 from app.services.ics import create_ics
-from app.services.outlook import generate_outlook_deep_link
 
 logger = logging.getLogger(__name__)
 router = APIRouter()
@@ -34,11 +39,14 @@ async def export_ics(request: IcsExportRequest) -> Response:
     if not request.events:
         raise HTTPException(status_code=400, detail="No events to export")
 
-    ics_content = create_ics(request.events, request.timezone)
+    try:
+        course_code = validate_and_get_course_code(request.events)
+        calendar_name = get_calendar_name(course_code)
+    except (MissingCourseCodeError, MixedCourseError) as e:
+        raise HTTPException(status_code=400, detail=str(e))
 
-    filename = request.filename
-    if not filename.endswith(".ics"):
-        filename += ".ics"
+    ics_content = create_ics(request.events, request.timezone, calendar_name)
+    filename = f"{sanitize_filename(calendar_name)}.ics"
 
     return Response(
         content=ics_content,
@@ -48,23 +56,25 @@ async def export_ics(request: IcsExportRequest) -> Response:
 
 
 @router.post("/outlook")
-async def export_outlook(request: OutlookExportRequest):
-    """Export events to Outlook. Single event returns deep link, multiple returns ICS."""
+async def export_outlook(request: OutlookExportRequest) -> Response:
+    """Export events to Outlook as ICS file."""
     if not request.events:
         raise HTTPException(status_code=400, detail="No events to export")
 
-    if len(request.events) == 1:
-        url = generate_outlook_deep_link(request.events[0], request.timezone)
-        return OutlookExportResponse(method="deep_link", url=url)
-    else:
-        ics_content = create_ics(request.events, request.timezone)
-        return Response(
-            content=ics_content,
-            media_type="text/calendar; charset=utf-8",
-            headers={
-                "Content-Disposition": 'attachment; filename="syllabus-outlook.ics"'
-            },
-        )
+    try:
+        course_code = validate_and_get_course_code(request.events)
+        calendar_name = get_calendar_name(course_code)
+    except (MissingCourseCodeError, MixedCourseError) as e:
+        raise HTTPException(status_code=400, detail=str(e))
+
+    ics_content = create_ics(request.events, request.timezone, calendar_name)
+    filename = f"{sanitize_filename(calendar_name)}.ics"
+
+    return Response(
+        content=ics_content,
+        media_type="text/calendar; charset=utf-8",
+        headers={"Content-Disposition": f'attachment; filename="{filename}"'},
+    )
 
 
 @router.post("/google", response_model=GoogleExportResponse)
@@ -81,10 +91,11 @@ async def export_google(request: GoogleExportRequest):
             export_to_google_calendar_sync,
             request.events,
             request.access_token,
-            request.calendar_id,
             request.timezone,
         )
         return GoogleExportResponse(**result)
+    except (MissingCourseCodeError, MixedCourseError) as e:
+        raise HTTPException(status_code=400, detail=str(e))
     except Exception as e:
         logger.exception("Google Calendar export failed")
         raise HTTPException(status_code=502, detail=f"Google Calendar error: {str(e)}")

@@ -1,5 +1,5 @@
 const GOOGLE_CLIENT_ID = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID || "";
-const SCOPES = "https://www.googleapis.com/auth/calendar.events";
+const SCOPES = "https://www.googleapis.com/auth/calendar";
 
 export function getGoogleAccessToken(): Promise<string> {
   return new Promise((resolve, reject) => {

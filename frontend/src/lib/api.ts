@@ -69,15 +69,14 @@ export async function parseSyllabus(
 
 export async function exportToIcs(
   events: ParsedEvent[],
-  timezone: string,
-  filename = "syllabus.ics"
+  timezone: string
 ): Promise<void> {
   const res = await fetch(`${API_BASE}/export/ics`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       events: toApiEvents(events),
-      filename,
+      filename: "syllabus.ics",
       timezone,
     }),
   });
@@ -90,6 +89,10 @@ export async function exportToIcs(
   }
 
   const blob = await res.blob();
+  const contentDisposition = res.headers.get("content-disposition") || "";
+  const filenameMatch = contentDisposition.match(/filename="(.+)"/);
+  const filename = filenameMatch ? filenameMatch[1] : "calendar.ics";
+
   const url = URL.createObjectURL(blob);
   const link = document.createElement("a");
   link.href = url;
@@ -100,15 +103,10 @@ export async function exportToIcs(
   URL.revokeObjectURL(url);
 }
 
-type OutlookResponse = {
-  method: "deep_link";
-  url: string;
-};
-
 export async function exportToOutlook(
   events: ParsedEvent[],
   timezone: string
-): Promise<OutlookResponse | null> {
+): Promise<void> {
   const res = await fetch(`${API_BASE}/export/outlook`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -125,29 +123,26 @@ export async function exportToOutlook(
     throw new Error(body?.detail || `Export failed (${res.status})`);
   }
 
-  const contentType = res.headers.get("content-type") || "";
+  const blob = await res.blob();
+  const contentDisposition = res.headers.get("content-disposition") || "";
+  const filenameMatch = contentDisposition.match(/filename="(.+)"/);
+  const filename = filenameMatch ? filenameMatch[1] : "calendar.ics";
 
-  if (contentType.includes("application/json")) {
-    const data: OutlookResponse = await res.json();
-    return data;
-  } else {
-    const blob = await res.blob();
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement("a");
-    link.href = url;
-    link.download = "syllabus-outlook.ics";
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    URL.revokeObjectURL(url);
-    return null;
-  }
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = filename;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  URL.revokeObjectURL(url);
 }
 
 export type GoogleExportResponse = {
   created_count: number;
   created: Array<{ title: string; id: string; link: string }>;
   errors: Array<{ title: string; error: string }>;
+  calendar_name: string;
 };
 
 export async function exportToGoogleCalendar(

@@ -44,25 +44,11 @@ export function ExportButtons({ events, timezone }: ExportButtonsProps) {
     setError(null);
     setSuccessMessage(null);
 
-    const popup = events.length === 1 ? window.open("", "_blank") : null;
-
     try {
-      const response = await exportToOutlook(events, timezone);
-
-      if (response?.method === "deep_link" && popup) {
-        popup.location.href = response.url;
-      } else if (popup) {
-        popup.close();
-      }
-
+      await exportToOutlook(events, timezone);
       setOutlookStatus("success");
-      setSuccessMessage(
-        events.length === 1
-          ? "Opening Outlook..."
-          : "Calendar file downloaded for Outlook"
-      );
+      setSuccessMessage("Calendar file downloaded for Outlook");
     } catch (err) {
-      if (popup) popup.close();
       setOutlookStatus("error");
       setError(err instanceof Error ? err.message : "Export failed");
     }
@@ -79,7 +65,7 @@ export function ExportButtons({ events, timezone }: ExportButtonsProps) {
 
       setGoogleStatus("success");
       setSuccessMessage(
-        `${result.created_count} event(s) added to Google Calendar`
+        `${result.created_count} event(s) added to "${result.calendar_name}"`
       );
 
       if (result.errors.length > 0) {
@@ -115,7 +101,7 @@ export function ExportButtons({ events, timezone }: ExportButtonsProps) {
           disabled={isDisabled || outlookStatus === "loading"}
           onClick={handleOutlookExport}
         >
-          {outlookStatus === "loading" ? "Exporting..." : "Outlook"}
+          {outlookStatus === "loading" ? "Downloading..." : "Outlook (.ics)"}
         </button>
       </div>
 

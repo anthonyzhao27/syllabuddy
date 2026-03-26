@@ -91,7 +91,11 @@ def _timed_event_end(event: ParsedEvent, start: datetime) -> datetime:
     return start + timedelta(hours=1)
 
 
-def create_ics(events: list[ParsedEvent], timezone_name: str) -> str:
+def create_ics(
+    events: list[ParsedEvent],
+    timezone_name: str,
+    calendar_name: str = "Syllabus Events",
+) -> str:
     """Generate RFC 5545 compliant iCalendar content."""
     lines = [
         "BEGIN:VCALENDAR",
@@ -99,7 +103,7 @@ def create_ics(events: list[ParsedEvent], timezone_name: str) -> str:
         "PRODID:-//Syllabus Parser//EN",
         "CALSCALE:GREGORIAN",
         "METHOD:PUBLISH",
-        "X-WR-CALNAME:Syllabus Events",
+        f"X-WR-CALNAME:{_escape_ics(calendar_name)}",
     ]
 
     export_tz = _get_timezone(timezone_name)

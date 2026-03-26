@@ -10,6 +10,10 @@ from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 
 from app.models.schemas import ParsedEvent
+from app.services.calendar_utils import (
+    validate_and_get_course_code,
+    get_calendar_name,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -83,25 +87,130 @@ def _build_calendar_event(event: ParsedEvent, timezone: str) -> dict[str, Any]:
         }
 
 
+def _find_calendar_by_name(service, calendar_name: str) -> str | None:
+    """
+    Search for an existing calendar by exact name match using pagination.
+
+    Args:
+        service: Google Calendar API service instance.
+        calendar_name: The exact calendar name to search for.
+
+    Returns:
+        The calendar ID if found, None otherwise.
+    """
+    page_token = None
+
+    while True:
+        calendar_list = (
+            service.calendarList().list(pageToken=page_token, maxResults=250).execute()
+        )
+
+        for calendar in calendar_list.get("items", []):
+            if calendar.get("summary") == calendar_name:
+                logger.info(
+                    f"Found existing calendar: {calendar_name} (ID: {calendar['id']})"
+                )
+                return calendar["id"]
+
+        page_token = calendar_list.get("nextPageToken")
+        if not page_token:
+            break
+
+    return None
+
+
+def _create_calendar(
+    service, calendar_name: str, course_code: str, timezone: str
+) -> str:
+    """
+    Create a new secondary calendar for the course.
+
+    Args:
+        service: Google Calendar API service instance.
+        calendar_name: The calendar name (e.g., "Syllabuddy - CSC413").
+        course_code: The course code for the description.
+        timezone: The timezone for the calendar.
+
+    Returns:
+        The calendar ID of the newly created calendar.
+    """
+    new_calendar = {
+        "summary": calendar_name,
+        "description": f"Events from {course_code} syllabus - created by Syllabuddy",
+        "timeZone": timezone,
+    }
+
+    created = service.calendars().insert(body=new_calendar).execute()
+    logger.info(f"Created new calendar: {calendar_name} (ID: {created['id']})")
+
+    return created["id"]
+
+
+def _get_or_create_calendar(
+    service, calendar_name: str, course_code: str, timezone: str
+) -> str:
+    """
+    Get an existing calendar by name or create a new one.
+
+    Args:
+        service: Google Calendar API service instance.
+        calendar_name: The calendar name (e.g., "Syllabuddy - CSC413").
+        course_code: The course code for the description if creating.
+        timezone: The timezone for the calendar if creating.
+
+    Returns:
+        The calendar ID (existing or newly created).
+    """
+    existing_id = _find_calendar_by_name(service, calendar_name)
+    if existing_id:
+        return existing_id
+
+    return _create_calendar(service, calendar_name, course_code, timezone)
+
+
 def export_to_google_calendar_sync(
     events: list[ParsedEvent],
     access_token: str,
-    calendar_id: str = "primary",
     timezone: str = "UTC",
 ) -> dict[str, Any]:
-    """Synchronous Google Calendar export."""
+    """
+    Synchronous Google Calendar export.
+
+    Args:
+        events: List of events to export (must all have same course code).
+        access_token: OAuth2 access token.
+        timezone: Timezone for events and calendar.
+
+    Returns:
+        Dict with created_count, created list, errors list, and calendar_name.
+
+    Raises:
+        MissingCourseCodeError: If any event is missing a course code.
+        MixedCourseError: If events have different course codes.
+    """
+    course_code = validate_and_get_course_code(events)
+    calendar_name = get_calendar_name(course_code)
+
     credentials = Credentials(token=access_token)
     service = build("calendar", "v3", credentials=credentials)
 
     created: list[dict[str, str]] = []
     errors: list[dict[str, str]] = []
 
+    try:
+        target_calendar_id = _get_or_create_calendar(
+            service, calendar_name, course_code, timezone
+        )
+    except HttpError as e:
+        logger.error(f"Failed to get/create calendar '{calendar_name}': {e}")
+        raise
+
     for event in events:
         try:
             calendar_event = _build_calendar_event(event, timezone)
             result = (
                 service.events()
-                .insert(calendarId=calendar_id, body=calendar_event)
+                .insert(calendarId=target_calendar_id, body=calendar_event)
                 .execute()
             )
             created.append(
@@ -111,7 +220,7 @@ def export_to_google_calendar_sync(
                     "link": result.get("htmlLink", ""),
                 }
             )
-            logger.info(f"Created Google Calendar event: {event.title}")
+            logger.info(f"Created event '{event.title}' in calendar '{calendar_name}'")
         except HttpError as e:
             logger.error(f"Failed to create event '{event.title}': {e}")
             errors.append(
@@ -125,4 +234,5 @@ def export_to_google_calendar_sync(
         "created_count": len(created),
         "created": created,
         "errors": errors,
+        "calendar_name": calendar_name,
     }

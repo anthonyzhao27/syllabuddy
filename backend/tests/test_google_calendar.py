@@ -1,131 +1,214 @@
-"""Tests for Google Calendar export service."""
+"""Tests for Google Calendar service."""
 
+import pytest
 from datetime import datetime
-from unittest.mock import MagicMock, Mock, patch
+from unittest.mock import MagicMock, patch
 
-from app.models.schemas import EventType, ParsedEvent
+from app.models.schemas import ParsedEvent
 from app.services.google_calendar import (
-    _build_calendar_event,
-    _build_summary,
+    _find_calendar_by_name,
+    _create_calendar,
+    _get_or_create_calendar,
     export_to_google_calendar_sync,
 )
+from app.services.calendar_utils import MissingCourseCodeError, MixedCourseError
 
 
-class TestBuildSummary:
-    def test_with_course(self):
-        event = ParsedEvent(
-            title="Homework 1",
-            due_date=datetime(2025, 1, 30, 23, 59),
-            course="CS 101",
+class TestFindCalendarByName:
+    def test_finds_existing_calendar_on_first_page(self):
+        mock_service = MagicMock()
+        mock_service.calendarList().list().execute.return_value = {
+            "items": [
+                {"id": "cal-1", "summary": "Personal"},
+                {"id": "cal-2", "summary": "Syllabuddy - CSC413"},
+            ],
+        }
+
+        result = _find_calendar_by_name(mock_service, "Syllabuddy - CSC413")
+
+        assert result == "cal-2"
+
+    def test_finds_existing_calendar_with_pagination(self):
+        mock_service = MagicMock()
+        mock_calendar_list = MagicMock()
+        mock_service.calendarList.return_value = mock_calendar_list
+        mock_list = MagicMock()
+        mock_calendar_list.list.return_value = mock_list
+        mock_list.execute.side_effect = [
+            {
+                "items": [{"id": "cal-1", "summary": "Personal"}],
+                "nextPageToken": "token123",
+            },
+            {
+                "items": [{"id": "cal-2", "summary": "Syllabuddy - CSC413"}],
+            },
+        ]
+
+        result = _find_calendar_by_name(mock_service, "Syllabuddy - CSC413")
+
+        assert result == "cal-2"
+
+    def test_returns_none_when_not_found(self):
+        mock_service = MagicMock()
+        mock_service.calendarList().list().execute.return_value = {
+            "items": [{"id": "cal-1", "summary": "Personal"}],
+        }
+
+        result = _find_calendar_by_name(mock_service, "Syllabuddy - CSC413")
+
+        assert result is None
+
+
+class TestCreateCalendar:
+    def test_creates_calendar_with_correct_params(self):
+        mock_service = MagicMock()
+        mock_calendars = MagicMock()
+        mock_service.calendars.return_value = mock_calendars
+        mock_insert = MagicMock()
+        mock_calendars.insert.return_value = mock_insert
+        mock_insert.execute.return_value = {"id": "new-cal-id"}
+
+        result = _create_calendar(
+            mock_service, "Syllabuddy - CSC413", "CSC413", "America/New_York"
         )
-        assert _build_summary(event) == "[CS 101] Homework 1"
 
-    def test_without_course(self):
-        event = ParsedEvent(
-            title="Project Due",
-            due_date=datetime(2025, 1, 30, 23, 59),
+        assert result == "new-cal-id"
+        mock_calendars.insert.assert_called_once()
+        call_args = mock_calendars.insert.call_args
+        body = call_args[1]["body"]
+        assert body["summary"] == "Syllabuddy - CSC413"
+        assert body["timeZone"] == "America/New_York"
+        assert "CSC413" in body["description"]
+
+
+class TestGetOrCreateCalendar:
+    @patch("app.services.google_calendar._find_calendar_by_name")
+    @patch("app.services.google_calendar._create_calendar")
+    def test_reuses_existing_calendar(self, mock_create, mock_find):
+        mock_find.return_value = "existing-cal-id"
+        mock_service = MagicMock()
+
+        result = _get_or_create_calendar(
+            mock_service, "Syllabuddy - CSC413", "CSC413", "America/New_York"
         )
-        assert _build_summary(event) == "Project Due"
 
+        assert result == "existing-cal-id"
+        mock_find.assert_called_once_with(mock_service, "Syllabuddy - CSC413")
+        mock_create.assert_not_called()
 
-class TestBuildCalendarEvent:
-    def test_all_day_event(self):
-        event = ParsedEvent(
-            title="Homework 1",
-            due_date=datetime(2025, 1, 30, 23, 59),
-            course="CS 101",
-            event_type=EventType.ASSIGNMENT,
-            time_specified=False,
+    @patch("app.services.google_calendar._find_calendar_by_name")
+    @patch("app.services.google_calendar._create_calendar")
+    def test_creates_new_when_not_found(self, mock_create, mock_find):
+        mock_find.return_value = None
+        mock_create.return_value = "new-cal-id"
+        mock_service = MagicMock()
+
+        result = _get_or_create_calendar(
+            mock_service, "Syllabuddy - CSC413", "CSC413", "America/New_York"
         )
-        result = _build_calendar_event(event, "America/Los_Angeles")
 
-        assert result["summary"] == "[CS 101] Homework 1"
-        assert result["start"]["date"] == "2025-01-30"
-        assert result["end"]["date"] == "2025-01-31"
-        assert "dateTime" not in result["start"]
-
-    def test_timed_event(self):
-        event = ParsedEvent(
-            title="Midterm Exam",
-            due_date=datetime(2025, 3, 10, 14, 0),
-            course="CS 101",
-            event_type=EventType.EXAM,
+        assert result == "new-cal-id"
+        mock_find.assert_called_once()
+        mock_create.assert_called_once_with(
+            mock_service, "Syllabuddy - CSC413", "CSC413", "America/New_York"
         )
-        result = _build_calendar_event(event, "America/New_York")
-
-        assert result["summary"] == "[CS 101] Midterm Exam"
-        assert "dateTime" in result["start"]
-        assert result["start"]["timeZone"] == "America/New_York"
-        assert "2025-03-10T14:00:00" in result["start"]["dateTime"]
-        assert "2025-03-10T15:00:00" in result["end"]["dateTime"]
-
-    def test_includes_description(self):
-        event = ParsedEvent(
-            title="Quiz",
-            due_date=datetime(2025, 2, 15, 10, 0),
-            description="Covers chapters 1-5",
-        )
-        result = _build_calendar_event(event, "UTC")
-
-        assert result["description"] == "Covers chapters 1-5"
 
 
-@patch("app.services.google_calendar.build")
-def test_export_to_google_calendar_success(mock_build):
-    """Test successful export to Google Calendar."""
-    mock_service = MagicMock()
-    mock_build.return_value = mock_service
-    mock_service.events().insert().execute.return_value = {
-        "id": "test-event-id",
-        "htmlLink": "https://calendar.google.com/event/test",
-    }
+class TestGoogleCalendarExport:
+    @patch("app.services.google_calendar.build")
+    @patch("app.services.google_calendar._get_or_create_calendar")
+    def test_uses_syllabuddy_prefix_in_calendar_name(
+        self, mock_get_or_create, mock_build
+    ):
+        mock_service = MagicMock()
+        mock_build.return_value = mock_service
+        mock_get_or_create.return_value = "cal-id"
+        mock_service.events().insert().execute.return_value = {
+            "id": "evt-1",
+            "htmlLink": "https://...",
+        }
 
-    events = [
-        ParsedEvent(
-            title="Test Event",
-            due_date=datetime(2025, 1, 30, 23, 59),
-            course="TEST 101",
-        )
-    ]
+        events = [
+            ParsedEvent(
+                title="HW1",
+                due_date=datetime(2024, 1, 15),
+                course="CSC413",
+                type="assignment",
+            ),
+        ]
 
-    result = export_to_google_calendar_sync(
-        events,
-        "fake-access-token",
-        timezone="America/Toronto",
-    )
+        result = export_to_google_calendar_sync(events, "token", "America/New_York")
 
-    assert result["created_count"] == 1
-    assert len(result["errors"]) == 0
-    assert result["created"][0]["title"] == "Test Event"
-    assert result["created"][0]["id"] == "test-event-id"
+        assert result["calendar_name"] == "Syllabuddy - CSC413"
+        mock_get_or_create.assert_called_once()
+        call_args = mock_get_or_create.call_args[0]
+        assert call_args[1] == "Syllabuddy - CSC413"
+        assert call_args[2] == "CSC413"
+        assert call_args[3] == "America/New_York"
 
+    def test_raises_error_for_missing_course(self):
+        events = [
+            ParsedEvent(
+                title="HW1",
+                due_date=datetime(2024, 1, 15),
+                course="",
+                type="assignment",
+            ),
+        ]
 
-@patch("app.services.google_calendar.build")
-def test_export_to_google_calendar_partial_failure(mock_build):
-    """Test export with some events failing."""
-    from googleapiclient.errors import HttpError
+        with pytest.raises(MissingCourseCodeError):
+            export_to_google_calendar_sync(events, "token")
 
-    mock_service = MagicMock()
-    mock_build.return_value = mock_service
+    def test_raises_error_for_mixed_courses(self):
+        events = [
+            ParsedEvent(
+                title="HW1",
+                due_date=datetime(2024, 1, 15),
+                course="CSC413",
+                type="assignment",
+            ),
+            ParsedEvent(
+                title="HW2",
+                due_date=datetime(2024, 1, 20),
+                course="CSC420",
+                type="assignment",
+            ),
+        ]
 
-    mock_response = Mock()
-    mock_response.status = 403
-    mock_service.events().insert().execute.side_effect = [
-        {"id": "success-id", "htmlLink": "https://example.com"},
-        HttpError(resp=mock_response, content=b"Forbidden"),
-    ]
+        with pytest.raises(MixedCourseError):
+            export_to_google_calendar_sync(events, "token")
 
-    events = [
-        ParsedEvent(title="Event 1", due_date=datetime(2025, 1, 30, 23, 59)),
-        ParsedEvent(title="Event 2", due_date=datetime(2025, 2, 15, 14, 0)),
-    ]
+    @patch("app.services.google_calendar.build")
+    @patch("app.services.google_calendar._get_or_create_calendar")
+    def test_returns_created_count_and_calendar_name(
+        self, mock_get_or_create, mock_build
+    ):
+        mock_service = MagicMock()
+        mock_build.return_value = mock_service
+        mock_get_or_create.return_value = "cal-id"
+        mock_service.events().insert().execute.return_value = {
+            "id": "evt-1",
+            "htmlLink": "https://calendar.google.com/...",
+        }
 
-    result = export_to_google_calendar_sync(
-        events,
-        "fake-token",
-        timezone="America/Toronto",
-    )
+        events = [
+            ParsedEvent(
+                title="HW1",
+                due_date=datetime(2024, 1, 15),
+                course="csc413",
+                type="assignment",
+            ),
+            ParsedEvent(
+                title="HW2",
+                due_date=datetime(2024, 1, 20),
+                course="CSC413",
+                type="assignment",
+            ),
+        ]
 
-    assert result["created_count"] == 1
-    assert len(result["errors"]) == 1
-    assert result["errors"][0]["title"] == "Event 2"
+        result = export_to_google_calendar_sync(events, "token")
+
+        assert result["created_count"] == 2
+        assert result["calendar_name"] == "Syllabuddy - CSC413"
+        assert len(result["created"]) == 2
+        assert len(result["errors"]) == 0

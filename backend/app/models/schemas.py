@@ -2,9 +2,9 @@
 
 from datetime import datetime
 from enum import StrEnum
-from typing import Literal
 
 from pydantic import BaseModel
+
 
 class EventType(StrEnum):
     ASSIGNMENT = "assignment"
@@ -54,11 +54,6 @@ class OutlookExportRequest(BaseModel):
     timezone: str
 
 
-class OutlookExportResponse(BaseModel):
-    method: Literal["deep_link"]
-    url: str
-
-
 class GoogleExportRequest(BaseModel):
     events: list[ParsedEvent]
     access_token: str | None = None
@@ -70,3 +65,4 @@ class GoogleExportResponse(BaseModel):
     created_count: int
     created: list[dict]
     errors: list[dict]
+    calendar_name: str

@@ -179,3 +179,27 @@ class TestCreateIcs:
 
         assert ics.count("BEGIN:VEVENT") == 3
         assert ics.count("END:VEVENT") == 3
+
+    def test_default_calendar_name(self):
+        events = [
+            ParsedEvent(title="Test", due_date=datetime(2025, 1, 30, 23, 59)),
+        ]
+        ics = create_ics(events, "UTC")
+
+        assert "X-WR-CALNAME:Syllabus Events" in ics
+
+    def test_custom_calendar_name(self):
+        events = [
+            ParsedEvent(title="HW1", due_date=datetime(2025, 1, 15), course="CSC413"),
+        ]
+        ics = create_ics(events, "UTC", calendar_name="Syllabuddy - CSC413")
+
+        assert "X-WR-CALNAME:Syllabuddy - CSC413" in ics
+
+    def test_escapes_special_chars_in_calendar_name(self):
+        events = [
+            ParsedEvent(title="HW1", due_date=datetime(2025, 1, 15)),
+        ]
+        ics = create_ics(events, "UTC", calendar_name="Math, Logic & More")
+
+        assert "X-WR-CALNAME:Math\\, Logic & More" in ics
