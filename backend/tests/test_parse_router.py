@@ -61,24 +61,6 @@ def test_parse_pdf_upload(mock_llm: AsyncMock) -> None:
     new_callable=AsyncMock,
 )
 @patch(
-    "app.routers.parse.fetch_google_doc",
-    new_callable=AsyncMock,
-    return_value="some text",
-)
-def test_parse_google_doc(mock_gdoc: AsyncMock, mock_llm: AsyncMock) -> None:
-    mock_llm.return_value = _mock_events()
-    resp = client.post(
-        "/parse/",
-        data={"google_doc_url": "https://docs.google.com/document/d/abc/edit"},
-    )
-    assert resp.status_code == 200
-
-
-@patch(
-    "app.routers.parse.extract_events",
-    new_callable=AsyncMock,
-)
-@patch(
     "app.routers.parse.extract_text_from_images",
     new_callable=AsyncMock,
     return_value="Quiz 1 due Feb 14",
@@ -100,4 +82,5 @@ def test_parse_screenshot_batch(mock_vision: AsyncMock, mock_llm: AsyncMock) -> 
 
 def test_parse_no_input() -> None:
     resp = client.post("/parse/")
-    assert resp.status_code in (400, 422)
+    assert resp.status_code == 400
+    assert "No file provided" in resp.json()["detail"]
