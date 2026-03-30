@@ -2,24 +2,16 @@
 
 import { useState, useRef } from "react";
 import { useRouter } from "next/navigation";
-import { Upload, Link, FileText } from "lucide-react";
+import { Upload, FileText } from "lucide-react";
 import { parseSyllabus } from "@/lib/api";
 import { LoadingScreen } from "./loading-screen";
-import type { UploadMode } from "@/types";
 
 const ACCEPTED_TYPES = ".pdf,.docx,.png,.jpg,.jpeg,.webp";
-
-const MODES: { key: UploadMode; label: string; icon: React.ReactNode }[] = [
-  { key: "file", label: "File Upload", icon: <Upload className="w-4 h-4" /> },
-  { key: "url", label: "Google Docs URL", icon: <Link className="w-4 h-4" /> },
-];
 
 export function UploadForm() {
   const router = useRouter();
 
-  const [mode, setMode] = useState<UploadMode>("file");
   const [file, setFile] = useState<File | null>(null);
-  const [url, setUrl] = useState("");
   const [semesterStart, setSemesterStart] = useState("");
   const [semesterEnd, setSemesterEnd] = useState("");
 
@@ -50,15 +42,12 @@ export function UploadForm() {
     try {
       const formData = new FormData();
 
-      if (mode === "file" && file) {
-        formData.append("files", file);
-      } else if (mode === "url" && url.trim()) {
-        formData.append("google_doc_url", url.trim());
-      } else {
-        setError("Please provide a file or URL.");
+      if (!file) {
+        setError("Please select a file.");
         setLoading(false);
         return;
       }
+      formData.append("files", file);
 
       const result = await parseSyllabus(formData);
 
@@ -81,85 +70,50 @@ export function UploadForm() {
     <>
       <LoadingScreen isVisible={loading} />
       <div className="w-full space-y-6">
-        <div className="flex gap-2 p-1.5 bg-warm-50 rounded-xl">
-          {MODES.map((m) => (
-            <button
-              key={m.key}
-              onClick={() => setMode(m.key)}
-              className={`flex-1 flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-medium rounded-lg transition-all duration-200 cursor-pointer ${
-                mode === m.key
-                  ? "bg-white text-warm-700 shadow-sm"
-                  : "text-warm-400 hover:text-warm-600 hover:bg-white/50"
-              }`}
-            >
-              {m.icon}
-              {m.label}
-            </button>
-          ))}
-        </div>
-
-        <div>
-          {mode === "file" && (
-            <div
-              onDragEnter={handleDrag}
-              onDragOver={handleDrag}
-              onDragLeave={handleDrag}
-              onDrop={handleDrop}
-              onClick={() => fileInputRef.current?.click()}
-              className={`border-2 border-dashed rounded-xl p-12 text-center cursor-pointer transition-all duration-200 ${
-                dragActive
-                  ? "border-mint-400 bg-mint-50"
-                  : "border-warm-200 bg-white hover:border-mint-300 hover:bg-mint-50/30"
-              }`}
-            >
-              <input
-                ref={fileInputRef}
-                type="file"
-                accept={ACCEPTED_TYPES}
-                onChange={(e) => setFile(e.target.files?.[0] ?? null)}
-                className="hidden"
-              />
-              {file ? (
-                <div className="flex flex-col items-center gap-2">
-                  <div className="w-12 h-12 rounded-full bg-mint-100 flex items-center justify-center">
-                    <FileText className="w-6 h-6 text-mint-600" />
-                  </div>
-                  <p className="text-sm font-medium text-warm-700">{file.name}</p>
-                  <p className="text-xs text-warm-400">
-                    {(file.size / 1024).toFixed(1)} KB
-                  </p>
-                </div>
-              ) : (
-                <div className="flex flex-col items-center gap-3">
-                  <div className="w-14 h-14 rounded-full bg-mint-100 flex items-center justify-center">
-                    <Upload className="w-7 h-7 text-mint-500" />
-                  </div>
-                  <div>
-                    <p className="text-warm-700 font-medium mb-1">
-                      Drop a file here or click to browse
-                    </p>
-                    <p className="text-sm text-warm-400">
-                      PDF, DOCX, or image (PNG, JPG, WebP)
-                    </p>
-                  </div>
-                </div>
-              )}
+        <div
+          onDragEnter={handleDrag}
+          onDragOver={handleDrag}
+          onDragLeave={handleDrag}
+          onDrop={handleDrop}
+          onClick={() => fileInputRef.current?.click()}
+          className={`border-2 border-dashed rounded-xl p-12 text-center cursor-pointer transition-all duration-200 ${
+            dragActive
+              ? "border-mint-400 bg-mint-50"
+              : "border-warm-200 bg-white hover:border-mint-300 hover:bg-mint-50/30"
+          }`}
+        >
+          <input
+            ref={fileInputRef}
+            type="file"
+            accept={ACCEPTED_TYPES}
+            onChange={(e) => setFile(e.target.files?.[0] ?? null)}
+            className="hidden"
+          />
+          {file ? (
+            <div className="flex flex-col items-center gap-2">
+              <div className="w-12 h-12 rounded-full bg-mint-100 flex items-center justify-center">
+                <FileText className="w-6 h-6 text-mint-600" />
+              </div>
+              <p className="text-sm font-medium text-warm-700">{file.name}</p>
+              <p className="text-xs text-warm-400">
+                {(file.size / 1024).toFixed(1)} KB
+              </p>
+            </div>
+          ) : (
+            <div className="flex flex-col items-center gap-3">
+              <div className="w-14 h-14 rounded-full bg-mint-100 flex items-center justify-center">
+                <Upload className="w-7 h-7 text-mint-500" />
+              </div>
+              <div>
+                <p className="text-warm-700 font-medium mb-1">
+                  Drop a file here or click to browse
+                </p>
+                <p className="text-sm text-warm-400">
+                  PDF, DOCX, or image (PNG, JPG, WebP)
+                </p>
+              </div>
             </div>
           )}
-
-          {mode === "url" && (
-            <div className="relative">
-              <Link className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-warm-300" />
-              <input
-                type="url"
-                value={url}
-                onChange={(e) => setUrl(e.target.value)}
-                placeholder="https://docs.google.com/document/d/..."
-                className="w-full bg-white border border-warm-200 rounded-xl pl-12 pr-4 py-3.5 text-sm text-warm-700 placeholder:text-warm-400 focus:outline-none focus:border-mint-400 focus:ring-2 focus:ring-mint-100 transition-all duration-200"
-              />
-            </div>
-          )}
-
         </div>
 
         <div className="flex gap-4">
