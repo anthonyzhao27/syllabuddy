@@ -39,19 +39,24 @@ ALTER TABLE public.events ENABLE ROW LEVEL SECURITY;
 
 CREATE POLICY "Users can view own events"
     ON public.events FOR SELECT
-    USING (auth.uid() = user_id);
+    TO authenticated
+    USING (auth.uid() IS NOT NULL AND auth.uid() = user_id);
 
 CREATE POLICY "Users can insert own events"
     ON public.events FOR INSERT
-    WITH CHECK (auth.uid() = user_id);
+    TO authenticated
+    WITH CHECK (auth.uid() IS NOT NULL AND auth.uid() = user_id);
 
 CREATE POLICY "Users can update own events"
     ON public.events FOR UPDATE
-    USING (auth.uid() = user_id);
+    TO authenticated
+    USING (auth.uid() IS NOT NULL AND auth.uid() = user_id)
+    WITH CHECK (auth.uid() IS NOT NULL AND auth.uid() = user_id);
 
 CREATE POLICY "Users can delete own events"
     ON public.events FOR DELETE
-    USING (auth.uid() = user_id);
+    TO authenticated
+    USING (auth.uid() IS NOT NULL AND auth.uid() = user_id);
 
 CREATE TRIGGER set_events_updated_at
     BEFORE UPDATE ON public.events

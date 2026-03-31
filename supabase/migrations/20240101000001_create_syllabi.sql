@@ -35,19 +35,24 @@ ALTER TABLE public.syllabi ENABLE ROW LEVEL SECURITY;
 
 CREATE POLICY "Users can view own syllabi"
     ON public.syllabi FOR SELECT
-    USING (auth.uid() = user_id);
+    TO authenticated
+    USING (auth.uid() IS NOT NULL AND auth.uid() = user_id);
 
 CREATE POLICY "Users can insert own syllabi"
     ON public.syllabi FOR INSERT
-    WITH CHECK (auth.uid() = user_id);
+    TO authenticated
+    WITH CHECK (auth.uid() IS NOT NULL AND auth.uid() = user_id);
 
 CREATE POLICY "Users can update own syllabi"
     ON public.syllabi FOR UPDATE
-    USING (auth.uid() = user_id);
+    TO authenticated
+    USING (auth.uid() IS NOT NULL AND auth.uid() = user_id)
+    WITH CHECK (auth.uid() IS NOT NULL AND auth.uid() = user_id);
 
 CREATE POLICY "Users can delete own syllabi"
     ON public.syllabi FOR DELETE
-    USING (auth.uid() = user_id);
+    TO authenticated
+    USING (auth.uid() IS NOT NULL AND auth.uid() = user_id);
 
 CREATE TRIGGER set_syllabi_updated_at
     BEFORE UPDATE ON public.syllabi

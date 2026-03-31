@@ -15,7 +15,9 @@ ALTER TABLE public.reminder_preferences ENABLE ROW LEVEL SECURITY;
 
 CREATE POLICY "Users can manage own reminder preferences"
     ON public.reminder_preferences FOR ALL
-    USING (auth.uid() = user_id);
+    TO authenticated
+    USING (auth.uid() IS NOT NULL AND auth.uid() = user_id)
+    WITH CHECK (auth.uid() IS NOT NULL AND auth.uid() = user_id);
 
 CREATE TRIGGER set_reminder_preferences_updated_at
     BEFORE UPDATE ON public.reminder_preferences

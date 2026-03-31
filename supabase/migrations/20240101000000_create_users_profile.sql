@@ -13,11 +13,35 @@ ALTER TABLE public.profiles ENABLE ROW LEVEL SECURITY;
 
 CREATE POLICY "Users can view own profile"
     ON public.profiles FOR SELECT
-    USING (auth.uid() = id);
+    TO authenticated
+    USING (auth.uid() IS NOT NULL AND auth.uid() = id);
 
 CREATE POLICY "Users can update own profile"
     ON public.profiles FOR UPDATE
-    USING (auth.uid() = id);
+    TO authenticated
+    USING (auth.uid() IS NOT NULL AND auth.uid() = id)
+    WITH CHECK (auth.uid() IS NOT NULL AND auth.uid() = id);
+
+-- Prevent direct updates to email column (must be synced via auth.users trigger)
+-- Only allows email changes when called from the sync trigger (SECURITY DEFINER context)
+CREATE OR REPLACE FUNCTION public.prevent_email_update()
+RETURNS TRIGGER AS $$
+BEGIN
+    IF NEW.email IS DISTINCT FROM OLD.email THEN
+        -- Allow if called from SECURITY DEFINER context (sync trigger runs as postgres)
+        IF current_setting('role', true) IS DISTINCT FROM 'authenticated'
+           AND current_setting('role', true) IS DISTINCT FROM 'anon' THEN
+            RETURN NEW;
+        END IF;
+        RAISE EXCEPTION 'Cannot update email directly. Email is synced from auth.users.';
+    END IF;
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER prevent_profiles_email_update
+    BEFORE UPDATE ON public.profiles
+    FOR EACH ROW EXECUTE FUNCTION public.prevent_email_update();
 
 -- Auto-create profile on signup
 CREATE OR REPLACE FUNCTION public.handle_new_user()
@@ -31,7 +55,7 @@ BEGIN
     );
     RETURN NEW;
 END;
-$$ LANGUAGE plpgsql SECURITY DEFINER;
+$$ LANGUAGE plpgsql SECURITY DEFINER SET search_path = public;
 
 -- Reusable trigger to maintain updated_at timestamps
 CREATE OR REPLACE FUNCTION public.set_updated_at()
@@ -56,7 +80,7 @@ BEGIN
     WHERE id = NEW.id;
     RETURN NEW;
 END;
-$$ LANGUAGE plpgsql SECURITY DEFINER;
+$$ LANGUAGE plpgsql SECURITY DEFINER SET search_path = public;
 
 CREATE TRIGGER on_auth_user_updated
     AFTER UPDATE OF email ON auth.users
