@@ -2,12 +2,12 @@
 
 import logging
 
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, Depends, HTTPException
 from fastapi.concurrency import run_in_threadpool
 from fastapi.responses import Response
 
+from app.middleware.auth import AuthenticatedUser, get_current_user
 from app.models.schemas import (
-    ExportRequest,
     GoogleExportRequest,
     GoogleExportResponse,
     IcsExportRequest,
@@ -26,8 +26,12 @@ from app.services.ics import create_ics
 logger = logging.getLogger(__name__)
 router = APIRouter()
 
+
 @router.post("/ics")
-async def export_ics(request: IcsExportRequest) -> Response:
+async def export_ics(
+    request: IcsExportRequest,
+    user: AuthenticatedUser = Depends(get_current_user),
+) -> Response:
     """Generate and return an .ics file for download."""
     if not request.events:
         raise HTTPException(status_code=400, detail="No events to export")
@@ -49,7 +53,10 @@ async def export_ics(request: IcsExportRequest) -> Response:
 
 
 @router.post("/outlook")
-async def export_outlook(request: OutlookExportRequest) -> Response:
+async def export_outlook(
+    request: OutlookExportRequest,
+    user: AuthenticatedUser = Depends(get_current_user),
+) -> Response:
     """Export events to Outlook as ICS file."""
     if not request.events:
         raise HTTPException(status_code=400, detail="No events to export")
@@ -71,7 +78,10 @@ async def export_outlook(request: OutlookExportRequest) -> Response:
 
 
 @router.post("/google", response_model=GoogleExportResponse)
-async def export_google(request: GoogleExportRequest):
+async def export_google(
+    request: GoogleExportRequest,
+    user: AuthenticatedUser = Depends(get_current_user),
+):
     """Export events to Google Calendar using OAuth token."""
     if not request.events:
         raise HTTPException(status_code=400, detail="No events to export")

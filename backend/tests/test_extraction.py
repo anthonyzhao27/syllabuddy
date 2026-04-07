@@ -17,14 +17,11 @@ from app.services.extraction import (
     extract_text_from_images,
 )
 
-FIXTURES = Path(__file__).parent / "fixtures"
-
-
 # ── PDF ──────────────────────────────────────────────
 
 
-def test_extract_pdf_text() -> None:
-    data = (FIXTURES / "sample.pdf").read_bytes()
+def test_extract_pdf_text(generated_pdf_path: Path) -> None:
+    data = generated_pdf_path.read_bytes()
     text = _extract_pdf_text(data)
     assert "Homework 1" in text
     assert "January 30" in text
@@ -33,8 +30,8 @@ def test_extract_pdf_text() -> None:
 # ── DOCX ─────────────────────────────────────────────
 
 
-def test_extract_docx() -> None:
-    data = (FIXTURES / "sample.docx").read_bytes()
+def test_extract_docx(generated_docx_path: Path) -> None:
+    data = generated_docx_path.read_bytes()
     text = _extract_docx(data)
     assert "Midterm Exam" in text
     assert "Quiz 1" in text
@@ -44,11 +41,11 @@ def test_extract_docx() -> None:
 
 
 @pytest.mark.asyncio
-async def test_extract_text_pdf() -> None:
+async def test_extract_text_pdf(generated_pdf_path: Path) -> None:
     file = AsyncMock()
     file.content_type = "application/pdf"
     file.filename = "syllabus.pdf"
-    file.read = AsyncMock(return_value=(FIXTURES / "sample.pdf").read_bytes())
+    file.read = AsyncMock(return_value=generated_pdf_path.read_bytes())
 
     text = await extract_text(file)
     assert "Homework 1" in text
@@ -95,9 +92,11 @@ async def test_extract_pdf_falls_back_to_vision() -> None:
 
 
 @pytest.mark.asyncio
-async def test_extract_pdf_skips_vision_when_text_found() -> None:
+async def test_extract_pdf_skips_vision_when_text_found(
+    generated_pdf_path: Path,
+) -> None:
     """When text extraction succeeds, vision is NOT called."""
-    data = (FIXTURES / "sample.pdf").read_bytes()
+    data = generated_pdf_path.read_bytes()
 
     with patch("app.services.extraction._extract_pdf_via_vision") as mock_vision:
         text = await _extract_pdf(data)
@@ -105,9 +104,9 @@ async def test_extract_pdf_skips_vision_when_text_found() -> None:
         mock_vision.assert_not_called()
 
 
-def test_pdf_pages_to_base64_images() -> None:
+def test_pdf_pages_to_base64_images(generated_pdf_path: Path) -> None:
     """Verify page-to-image conversion produces valid base64."""
-    data = (FIXTURES / "sample.pdf").read_bytes()
+    data = generated_pdf_path.read_bytes()
     images = _pdf_pages_to_base64_images(data, max_pages=1)
     assert len(images) == 1
     decoded = base64.b64decode(images[0])

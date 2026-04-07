@@ -87,6 +87,7 @@ class LLMExtractionResult(BaseModel):
 
 
 class ParseResponse(BaseModel):
+    syllabus_id: str
     events: list[ParsedEvent]
 
 
@@ -119,8 +120,64 @@ class GoogleExportRequest(BaseModel):
     timezone: str = "UTC"
 
 
+class GoogleCreatedEvent(BaseModel):
+    title: str
+    id: str
+    link: str
+
+
+class GoogleExportError(BaseModel):
+    title: str
+    error: str
+
+
 class GoogleExportResponse(BaseModel):
     created_count: int
-    created: list[dict]
-    errors: list[dict]
+    created: list[GoogleCreatedEvent]
+    errors: list[GoogleExportError]
     calendar_name: str
+
+
+class SyllabusResponse(BaseModel):
+    id: str
+    name: str
+    course_code: str | None = None
+    source_type: str
+    original_filename: str | None = None
+    created_at: str
+    event_count: int
+
+
+class SyllabusListResponse(BaseModel):
+    syllabi: list[SyllabusResponse]
+
+
+class EventResponse(BaseModel):
+    id: str
+    title: str
+    due_date: str
+    course: str
+    event_type: str
+    description: str
+    time_specified: bool
+    duration_minutes: int | None = None
+    is_edited: bool
+
+
+class SyllabusDetailResponse(BaseModel):
+    syllabus: SyllabusResponse
+    events: list[EventResponse]
+
+
+class DeleteResponse(BaseModel):
+    message: str
+
+
+class EventUpdateRequest(BaseModel):
+    title: str | None = None
+    due_date: date | datetime | None = None
+    course: str | None = None
+    event_type: EventType | None = None
+    description: str | None = None
+    time_specified: bool | None = None
+    duration_minutes: int | None = Field(default=None, gt=0)

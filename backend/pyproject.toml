@@ -22,6 +22,7 @@ dependencies = [
     "google-api-python-client>=2.100",
     "google-auth>=2.25",
     "python-dateutil>=2.8.0",
+    "PyJWT[crypto]>=2.8",
 ]
 
 [project.optional-dependencies]
