@@ -87,8 +87,12 @@ class LLMExtractionResult(BaseModel):
 
 
 class ParseResponse(BaseModel):
-    syllabus_id: str
     events: list[ParsedEvent]
+    course_code: str | None = None
+
+
+class SaveResponse(BaseModel):
+    syllabus_id: str
 
 
 class ExportRequest(BaseModel):

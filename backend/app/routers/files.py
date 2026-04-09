@@ -1,7 +1,10 @@
+import json
+import logging
 import mimetypes
+from collections import Counter
 from datetime import date, datetime, time
 
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, File, Form, HTTPException, UploadFile
 from fastapi.responses import Response
 
 from app.middleware.auth import AuthenticatedUser, get_current_user
@@ -9,14 +12,107 @@ from app.models.schemas import (
     DeleteResponse,
     EventResponse,
     EventUpdateRequest,
+    ParsedEvent,
+    SaveResponse,
     SyllabusDetailResponse,
     SyllabusListResponse,
     SyllabusResponse,
 )
 from app.services import storage as storage_service
 from app.services import syllabi as syllabi_service
+from app.services.extraction import _is_image
+
+logger = logging.getLogger(__name__)
 
 router = APIRouter()
+
+
+@router.post("/", response_model=SaveResponse)
+async def save_syllabus(
+    files: list[UploadFile] = File(default=[]),
+    events_json: str = Form(...),
+    syllabus_name: str | None = Form(default=None),
+    user: AuthenticatedUser = Depends(get_current_user),
+) -> SaveResponse:
+    """Save parsed syllabus events and files to storage.
+
+    This endpoint should be called after reviewing the parsed events from /parse.
+    """
+    if not files or not files[0].filename:
+        raise HTTPException(status_code=400, detail="Please upload a file.")
+
+    try:
+        events_data = json.loads(events_json)
+        events = [ParsedEvent(**e) for e in events_data]
+    except (json.JSONDecodeError, TypeError) as e:
+        raise HTTPException(status_code=400, detail=f"Invalid events JSON: {e}")
+
+    if _is_image(files[0]):
+        source_type = "screenshots"
+        original_filename = None
+    else:
+        source_type = "file"
+        original_filename = files[0].filename
+
+    course_codes = [event.course.strip() for event in events if event.course.strip()]
+    course_code = Counter(course_codes).most_common(1)[0][0] if course_codes else None
+
+    storage_paths: list[str] = []
+    syllabus: dict[str, object] | None = None
+
+    try:
+        upload_result = await storage_service.upload_files(
+            files,
+            user.id,
+            user.access_token,
+        )
+        storage_paths_value = upload_result["paths"]
+        if not isinstance(storage_paths_value, list):
+            raise RuntimeError("Invalid upload response")
+        storage_paths = [path for path in storage_paths_value if isinstance(path, str)]
+        total_size = upload_result["total_size"]
+        if not isinstance(total_size, int):
+            raise RuntimeError("Invalid upload response")
+
+        syllabus = await syllabi_service.create_syllabus(
+            user.access_token,
+            user.id,
+            name=syllabus_name or original_filename or f"Syllabus - {course_code or 'Unknown'}",
+            source_type=source_type,
+            course_code=course_code,
+            original_filename=original_filename,
+            storage_paths=storage_paths,
+            total_file_size_bytes=total_size,
+        )
+        syllabus_id = syllabus.get("id")
+        if not isinstance(syllabus_id, str):
+            raise RuntimeError("Invalid syllabus response")
+
+        await syllabi_service.save_events(
+            user.access_token,
+            syllabus_id,
+            user.id,
+            events,
+        )
+    except HTTPException:
+        raise
+    except Exception:
+        logger.exception("Failed to save syllabus")
+        for path in storage_paths:
+            await storage_service.delete_file_best_effort(path, user.access_token)
+        if syllabus is not None:
+            syllabus_id = syllabus.get("id")
+            if isinstance(syllabus_id, str):
+                try:
+                    await syllabi_service.delete_syllabus(user.access_token, syllabus_id)
+                except Exception:
+                    pass
+        raise HTTPException(
+            status_code=503,
+            detail="Failed to save syllabus. Please try again.",
+        )
+
+    return SaveResponse(syllabus_id=syllabus_id)
 
 
 def _require_str(row: dict[str, object], key: str) -> str:

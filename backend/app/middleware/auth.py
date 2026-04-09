@@ -1,6 +1,8 @@
+import ssl
 from dataclasses import dataclass
 from functools import lru_cache
 
+import certifi
 import jwt
 from fastapi import Depends, HTTPException
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
@@ -25,10 +27,12 @@ def get_jwks_client() -> PyJWKClient:
             status_code=503,
             detail="Authentication is not configured",
         )
+    ssl_context = ssl.create_default_context(cafile=certifi.where())
     return PyJWKClient(
         f"{settings.supabase_url}/auth/v1/.well-known/jwks.json",
         cache_keys=True,
         lifespan=3600,
+        ssl_context=ssl_context,
     )
 
 
@@ -38,7 +42,7 @@ def decode_jwt(token: str) -> dict[str, object]:
         payload = jwt.decode(
             token,
             signing_key.key,
-            algorithms=["RS256"],
+            algorithms=["ES256", "RS256"],
             audience="authenticated",
             issuer=f"{settings.supabase_url}/auth/v1",
         )
