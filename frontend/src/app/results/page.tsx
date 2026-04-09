@@ -1,6 +1,6 @@
 "use client";
 
-import { Suspense, useEffect, useState } from "react";
+import { Suspense, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
@@ -43,10 +43,13 @@ function ResultsContent() {
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [showDiscardDialog, setShowDiscardDialog] = useState(false);
+  const isNavigatingAway = useRef(false);
 
   useEffect(() => {
     if (!data) {
-      router.replace("/upload");
+      if (!isNavigatingAway.current) {
+        router.replace("/upload");
+      }
       return;
     }
 
@@ -87,6 +90,7 @@ function ResultsContent() {
         syllabusName.trim() || undefined
       );
 
+      isNavigatingAway.current = true;
       clear();
       router.push(`/dashboard/${result.syllabusId}?from=parse`);
     } catch (nextError) {
