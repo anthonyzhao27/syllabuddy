@@ -36,7 +36,9 @@ async def create_syllabus(
         "parsed_at": datetime.now(timezone.utc).isoformat(),
         "timezone": tz,
     }
-    rows = _rows(get_authenticated_client(access_token).table("syllabi").insert(data).execute())
+    rows = _rows(
+        get_authenticated_client(access_token).table("syllabi").insert(data).execute()
+    )
     if not rows:
         raise RuntimeError("Failed to create syllabus")
     return rows[0]
@@ -194,3 +196,16 @@ async def soft_delete_event(access_token: str, event_id: str, syllabus_id: str) 
         .execute()
     )
     return bool(rows)
+
+
+async def update_syllabus_timezone(
+    access_token: str, syllabus_id: str, tz: str
+) -> Row | None:
+    rows = _rows(
+        get_authenticated_client(access_token)
+        .table("syllabi")
+        .update({"timezone": tz})
+        .eq("id", syllabus_id)
+        .execute()
+    )
+    return rows[0] if rows else None

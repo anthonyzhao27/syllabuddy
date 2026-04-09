@@ -388,3 +388,18 @@ export async function exportToGoogleCalendar(
 
   return (await response.json()) as GoogleExportResponse;
 }
+
+export async function updateSyllabusTimezone(
+  syllabusId: string,
+  timezone: string
+): Promise<SavedSyllabus> {
+  const response = await apiFetch(`/files/${syllabusId}`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ timezone }),
+  });
+  const data = (await response.json()) as ApiSyllabus;
+  return toSavedSyllabus(data);
+}

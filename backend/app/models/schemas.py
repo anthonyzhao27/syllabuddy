@@ -186,3 +186,7 @@ class EventUpdateRequest(BaseModel):
     description: str | None = None
     time_specified: bool | None = None
     duration_minutes: int | None = Field(default=None, gt=0)
+
+
+class SyllabusUpdateRequest(BaseModel):
+    timezone: str | None = None

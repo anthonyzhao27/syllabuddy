@@ -6,6 +6,7 @@ import { useParams, useRouter, useSearchParams } from "next/navigation";
 import { motion } from "framer-motion";
 import {
   ArrowLeft,
+  Check,
   Download,
   FileText,
   Images,
@@ -18,6 +19,7 @@ import {
   downloadSyllabusFiles,
   getSyllabusDetail,
   updateEvent,
+  updateSyllabusTimezone,
 } from "@/lib/api";
 import type { SyllabusDetail } from "@/types";
 import { getDefaultTimezone } from "@/lib/timezones";
@@ -57,6 +59,8 @@ function SyllabusDetailContent() {
   const [downloadLoading, setDownloadLoading] = useState(false);
   const [deleteLoading, setDeleteLoading] = useState(false);
   const [showDeleteDialog, setShowDeleteDialog] = useState(false);
+  const [savingTimezone, setSavingTimezone] = useState(false);
+  const [timezoneSaved, setTimezoneSaved] = useState(false);
 
   const fromParse = searchParams.get("from") === "parse";
 
@@ -201,6 +205,43 @@ function SyllabusDetailContent() {
     }
   }
 
+  async function handleSaveTimezone() {
+    if (!detail) {
+      return;
+    }
+
+    setSavingTimezone(true);
+    setTimezoneSaved(false);
+
+    try {
+      const updatedSyllabus = await updateSyllabusTimezone(
+        detail.syllabus.id,
+        timezone
+      );
+      setDetail((current) =>
+        current
+          ? {
+              ...current,
+              syllabus: {
+                ...current.syllabus,
+                timezone: updatedSyllabus.timezone,
+              },
+            }
+          : current
+      );
+      setTimezoneSaved(true);
+      setTimeout(() => setTimezoneSaved(false), 2000);
+    } catch (nextError) {
+      setError(
+        nextError instanceof Error
+          ? nextError.message
+          : "Failed to save timezone"
+      );
+    } finally {
+      setSavingTimezone(false);
+    }
+  }
+
   if (loading) {
     return (
       <div className="min-h-screen flex flex-col">
@@ -280,8 +321,27 @@ function SyllabusDetailContent() {
                 <label className="block text-sm font-medium text-warm-600">
                   Event timezone
                 </label>
-                <div className="mt-2">
-                  <TimezonePicker value={timezone} onChange={setTimezone} />
+                <div className="mt-2 flex items-center gap-3">
+                  <div className="flex-1">
+                    <TimezonePicker value={timezone} onChange={setTimezone} />
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => void handleSaveTimezone()}
+                    disabled={savingTimezone || timezone === detail.syllabus.timezone}
+                    className="inline-flex items-center gap-1.5 rounded-full bg-mint-500 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-mint-600 disabled:cursor-not-allowed disabled:opacity-60"
+                  >
+                    {timezoneSaved ? (
+                      <>
+                        <Check className="h-4 w-4" />
+                        Saved
+                      </>
+                    ) : savingTimezone ? (
+                      "Saving..."
+                    ) : (
+                      "Save"
+                    )}
+                  </button>
                 </div>
                 <ExportButtons events={detail.events} timezone={timezone} />
               </div>
@@ -351,8 +411,27 @@ function SyllabusDetailContent() {
                   <label className="block text-sm font-medium text-warm-600">
                     Event timezone
                   </label>
-                  <div className="mt-2">
-                    <TimezonePicker value={timezone} onChange={setTimezone} />
+                  <div className="mt-2 flex items-center gap-3">
+                    <div className="flex-1">
+                      <TimezonePicker value={timezone} onChange={setTimezone} />
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => void handleSaveTimezone()}
+                      disabled={savingTimezone || timezone === detail.syllabus.timezone}
+                      className="inline-flex items-center gap-1.5 rounded-full bg-mint-500 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-mint-600 disabled:cursor-not-allowed disabled:opacity-60"
+                    >
+                      {timezoneSaved ? (
+                        <>
+                          <Check className="h-4 w-4" />
+                          Saved
+                        </>
+                      ) : savingTimezone ? (
+                        "Saving..."
+                      ) : (
+                        "Save"
+                      )}
+                    </button>
                   </div>
                   <ExportButtons events={detail.events} timezone={timezone} />
                 </div>

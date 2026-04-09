@@ -17,6 +17,7 @@ from app.models.schemas import (
     SyllabusDetailResponse,
     SyllabusListResponse,
     SyllabusResponse,
+    SyllabusUpdateRequest,
 )
 from app.services import storage as storage_service
 from app.services import syllabi as syllabi_service
@@ -78,7 +79,9 @@ async def save_syllabus(
         syllabus = await syllabi_service.create_syllabus(
             user.access_token,
             user.id,
-            name=syllabus_name or original_filename or f"Syllabus - {course_code or 'Unknown'}",
+            name=syllabus_name
+            or original_filename
+            or f"Syllabus - {course_code or 'Unknown'}",
             source_type=source_type,
             course_code=course_code,
             original_filename=original_filename,
@@ -106,7 +109,9 @@ async def save_syllabus(
             syllabus_id = syllabus.get("id")
             if isinstance(syllabus_id, str):
                 try:
-                    await syllabi_service.delete_syllabus(user.access_token, syllabus_id)
+                    await syllabi_service.delete_syllabus(
+                        user.access_token, syllabus_id
+                    )
                 except Exception:
                     pass
         raise HTTPException(
@@ -141,7 +146,9 @@ def _require_bool(row: dict[str, object], key: str) -> bool:
     raise HTTPException(status_code=500, detail="Unexpected database response")
 
 
-def _syllabus_response(syllabus: dict[str, object], event_count: int) -> SyllabusResponse:
+def _syllabus_response(
+    syllabus: dict[str, object], event_count: int
+) -> SyllabusResponse:
     return SyllabusResponse(
         id=_require_str(syllabus, "id"),
         name=_require_str(syllabus, "name"),
@@ -191,11 +198,16 @@ def _normalize_due_date_update(
             detail="time_specified=true requires a full datetime value for due_date",
         )
 
-    if explicit_time_specified is False or not _require_bool(existing_event, "time_specified"):
+    if explicit_time_specified is False or not _require_bool(
+        existing_event, "time_specified"
+    ):
         return datetime.combine(due_date_value, time(23, 59)).isoformat(), False
 
     existing_due_date = datetime.fromisoformat(_require_str(existing_event, "due_date"))
-    return datetime.combine(due_date_value, existing_due_date.timetz()).isoformat(), True
+    return (
+        datetime.combine(due_date_value, existing_due_date.timetz()).isoformat(),
+        True,
+    )
 
 
 @router.get("/", response_model=SyllabusListResponse)
@@ -227,11 +239,38 @@ async def get_syllabus_detail(
     if syllabus is None:
         raise HTTPException(status_code=404, detail="Syllabus not found")
 
-    events = await syllabi_service.get_events_for_syllabus(user.access_token, syllabus_id)
+    events = await syllabi_service.get_events_for_syllabus(
+        user.access_token, syllabus_id
+    )
     return SyllabusDetailResponse(
         syllabus=_syllabus_response(syllabus, len(events)),
         events=[_event_response(event) for event in events],
     )
+
+
+@router.patch("/{syllabus_id}", response_model=SyllabusResponse)
+async def update_syllabus(
+    syllabus_id: str,
+    updates: SyllabusUpdateRequest,
+    user: AuthenticatedUser = Depends(get_current_user),
+) -> SyllabusResponse:
+    syllabus = await syllabi_service.get_syllabus(user.access_token, syllabus_id)
+    if syllabus is None:
+        raise HTTPException(status_code=404, detail="Syllabus not found")
+
+    if updates.timezone is None:
+        raise HTTPException(status_code=400, detail="No updates provided")
+
+    updated = await syllabi_service.update_syllabus_timezone(
+        user.access_token, syllabus_id, updates.timezone
+    )
+    if updated is None:
+        raise HTTPException(status_code=404, detail="Syllabus not found")
+
+    events = await syllabi_service.get_events_for_syllabus(
+        user.access_token, syllabus_id
+    )
+    return _syllabus_response(updated, len(events))
 
 
 @router.delete("/{syllabus_id}", response_model=DeleteResponse)
@@ -279,9 +318,14 @@ async def download_original_file(
         raise HTTPException(status_code=404, detail="No files stored for this syllabus")
 
     if len(storage_paths) == 1:
-        filename = _optional_str(syllabus, "original_filename") or storage_paths[0].split("/")[-1]
+        filename = (
+            _optional_str(syllabus, "original_filename")
+            or storage_paths[0].split("/")[-1]
+        )
         return Response(
-            content=await storage_service.download_file(storage_paths[0], user.access_token),
+            content=await storage_service.download_file(
+                storage_paths[0], user.access_token
+            ),
             media_type=mimetypes.guess_type(filename)[0] or "application/octet-stream",
             headers={"Content-Disposition": f'attachment; filename="{filename}"'},
         )
