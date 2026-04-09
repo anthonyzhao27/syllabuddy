@@ -64,7 +64,7 @@ export function TimezonePicker({ value, onChange }: TimezonePickerProps) {
           </ComboboxButton>
         </div>
 
-        <ComboboxOptions className="absolute z-50 mt-1 max-h-60 w-full overflow-auto rounded-xl border border-warm-200 bg-white py-1 text-sm shadow-lg focus:outline-none">
+        <ComboboxOptions className="absolute z-50 mt-1 max-h-60 w-full overflow-auto rounded-xl border border-warm-200 bg-white pb-1 text-sm shadow-lg focus:outline-none">
           {!hasResults && (
             <div className="px-4 py-2 text-warm-500">No timezones found</div>
           )}
