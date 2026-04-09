@@ -150,6 +150,7 @@ class SyllabusResponse(BaseModel):
     original_filename: str | None = None
     created_at: str
     event_count: int
+    timezone: str | None = None
 
 
 class SyllabusListResponse(BaseModel):

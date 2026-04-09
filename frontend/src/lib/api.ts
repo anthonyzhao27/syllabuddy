@@ -60,6 +60,7 @@ function toSavedSyllabus(raw: ApiSyllabus): SavedSyllabus {
     originalFilename: raw.original_filename,
     createdAt: raw.created_at,
     eventCount: raw.event_count,
+    timezone: raw.timezone,
   };
 }
 
@@ -237,7 +238,8 @@ export async function parseSyllabus(
 export async function saveSyllabus(
   files: File[],
   events: ParsedEvent[],
-  syllabusName?: string
+  syllabusName?: string,
+  timezone?: string
 ): Promise<SaveSyllabusResult> {
   const formData = new FormData();
 
@@ -249,6 +251,10 @@ export async function saveSyllabus(
 
   if (syllabusName) {
     formData.append("syllabus_name", syllabusName);
+  }
+
+  if (timezone) {
+    formData.append("timezone", timezone);
   }
 
   const response = await apiFetch("/files/", {

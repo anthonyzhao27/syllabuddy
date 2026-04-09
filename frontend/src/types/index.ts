@@ -60,6 +60,7 @@ export type ApiSyllabus = {
   original_filename: string | null;
   created_at: string;
   event_count: number;
+  timezone: string | null;
 };
 
 export type ApiSyllabusListResponse = {
@@ -95,6 +96,7 @@ export type SavedSyllabus = {
   originalFilename: string | null;
   createdAt: string;
   eventCount: number;
+  timezone: string | null;
 };
 
 export type SavedEvent = {

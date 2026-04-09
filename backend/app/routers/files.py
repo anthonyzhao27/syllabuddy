@@ -32,6 +32,7 @@ async def save_syllabus(
     files: list[UploadFile] = File(default=[]),
     events_json: str = Form(...),
     syllabus_name: str | None = Form(default=None),
+    timezone: str | None = Form(default=None),
     user: AuthenticatedUser = Depends(get_current_user),
 ) -> SaveResponse:
     """Save parsed syllabus events and files to storage.
@@ -83,6 +84,7 @@ async def save_syllabus(
             original_filename=original_filename,
             storage_paths=storage_paths,
             total_file_size_bytes=total_size,
+            tz=timezone,
         )
         syllabus_id = syllabus.get("id")
         if not isinstance(syllabus_id, str):
@@ -148,6 +150,7 @@ def _syllabus_response(syllabus: dict[str, object], event_count: int) -> Syllabu
         original_filename=_optional_str(syllabus, "original_filename"),
         created_at=_require_str(syllabus, "created_at"),
         event_count=event_count,
+        timezone=_optional_str(syllabus, "timezone"),
     )
 
 

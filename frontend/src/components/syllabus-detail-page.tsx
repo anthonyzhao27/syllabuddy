@@ -20,19 +20,13 @@ import {
   updateEvent,
 } from "@/lib/api";
 import type { SyllabusDetail } from "@/types";
+import { getDefaultTimezone } from "@/lib/timezones";
 import { ConfirmDialog } from "./confirm-dialog";
 import { EventList } from "./event-list";
 import { ExportButtons } from "./export-buttons";
 import { Header } from "./header";
 import { RequireAuth } from "./require-auth";
-
-function getDefaultTimezone(): string {
-  if (typeof window === "undefined") {
-    return "UTC";
-  }
-
-  return Intl.DateTimeFormat().resolvedOptions().timeZone;
-}
+import { TimezonePicker } from "./timezone-picker";
 
 function formatCreatedAt(value: string): string {
   return new Date(value).toLocaleString();
@@ -78,6 +72,7 @@ function SyllabusDetailContent() {
         }
 
         setDetail(nextDetail);
+        setTimezone(nextDetail.syllabus.timezone || getDefaultTimezone());
         setError(null);
         setNotFound(false);
       } catch (nextError) {
@@ -285,12 +280,9 @@ function SyllabusDetailContent() {
                 <label className="block text-sm font-medium text-warm-600">
                   Event timezone
                 </label>
-                <input
-                  type="text"
-                  value={timezone}
-                  onChange={(event) => setTimezone(event.target.value)}
-                  className="mt-2 w-full rounded-xl border border-warm-200 bg-white px-3 py-2 text-sm text-warm-700 focus:border-mint-400 focus:outline-none focus:ring-2 focus:ring-mint-100"
-                />
+                <div className="mt-2">
+                  <TimezonePicker value={timezone} onChange={setTimezone} />
+                </div>
                 <ExportButtons events={detail.events} timezone={timezone} />
               </div>
             </div>
@@ -359,12 +351,9 @@ function SyllabusDetailContent() {
                   <label className="block text-sm font-medium text-warm-600">
                     Event timezone
                   </label>
-                  <input
-                    type="text"
-                    value={timezone}
-                    onChange={(event) => setTimezone(event.target.value)}
-                    className="mt-2 w-full rounded-xl border border-warm-200 bg-white px-3 py-2 text-sm text-warm-700 focus:border-mint-400 focus:outline-none focus:ring-2 focus:ring-mint-100"
-                  />
+                  <div className="mt-2">
+                    <TimezonePicker value={timezone} onChange={setTimezone} />
+                  </div>
                   <ExportButtons events={detail.events} timezone={timezone} />
                 </div>
               ) : null}

@@ -13,6 +13,8 @@ import { Header } from "@/components/header";
 import { RequireAuth } from "@/components/require-auth";
 import { LoadingScreen } from "@/components/loading-screen";
 import { ParsedEventList } from "@/components/parsed-event-list";
+import { TimezonePicker } from "@/components/timezone-picker";
+import { getDefaultTimezone } from "@/lib/timezones";
 
 export default function ResultsPage() {
   return (
@@ -40,6 +42,7 @@ function ResultsContent() {
   const { data, clear } = useParsedData();
   const [events, setEvents] = useState<ParsedEvent[]>([]);
   const [syllabusName, setSyllabusName] = useState("");
+  const [timezone, setTimezone] = useState(getDefaultTimezone);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [showDiscardDialog, setShowDiscardDialog] = useState(false);
@@ -87,7 +90,8 @@ function ResultsContent() {
       const result = await saveSyllabus(
         data.files,
         events,
-        syllabusName.trim() || undefined
+        syllabusName.trim() || undefined,
+        timezone
       );
 
       isNavigatingAway.current = true;
@@ -146,16 +150,26 @@ function ResultsContent() {
                 Review and edit the events below, then save to your dashboard.
               </p>
 
-              <div className="mt-5 rounded-2xl bg-white/80 p-4">
-                <label className="block text-sm font-medium text-warm-600">
-                  Syllabus name
-                </label>
-                <input
-                  type="text"
-                  value={syllabusName}
-                  onChange={(e) => setSyllabusName(e.target.value)}
-                  className="mt-2 w-full rounded-xl border border-warm-200 bg-white px-3 py-2 text-sm text-warm-700 focus:border-mint-400 focus:outline-none focus:ring-2 focus:ring-mint-100"
-                />
+              <div className="mt-5 grid gap-4 rounded-2xl bg-white/80 p-4 sm:grid-cols-2">
+                <div>
+                  <label className="block text-sm font-medium text-warm-600">
+                    Syllabus name
+                  </label>
+                  <input
+                    type="text"
+                    value={syllabusName}
+                    onChange={(e) => setSyllabusName(e.target.value)}
+                    className="mt-2 w-full rounded-xl border border-warm-200 bg-white px-3 py-2 text-sm text-warm-700 focus:border-mint-400 focus:outline-none focus:ring-2 focus:ring-mint-100"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-warm-600">
+                    Event timezone
+                  </label>
+                  <div className="mt-2">
+                    <TimezonePicker value={timezone} onChange={setTimezone} />
+                  </div>
+                </div>
               </div>
 
               {error ? (

@@ -23,6 +23,7 @@ async def create_syllabus(
     original_filename: str | None = None,
     storage_paths: list[str] | None = None,
     total_file_size_bytes: int | None = None,
+    tz: str | None = None,
 ) -> Row:
     data: Row = {
         "user_id": user_id,
@@ -33,6 +34,7 @@ async def create_syllabus(
         "storage_paths": storage_paths or [],
         "total_file_size_bytes": total_file_size_bytes,
         "parsed_at": datetime.now(timezone.utc).isoformat(),
+        "timezone": tz,
     }
     rows = _rows(get_authenticated_client(access_token).table("syllabi").insert(data).execute())
     if not rows:
