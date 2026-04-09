@@ -90,7 +90,7 @@ export function Header() {
   }
 
   return (
-    <header className="w-full px-6 py-6 md:px-8">
+    <header className="fixed top-0 left-0 z-50 w-full bg-cream px-6 py-6 md:px-8">
       <div className="mx-auto flex w-full max-w-6xl items-center gap-4">
         <Link href={user ? "/dashboard" : "/"} className="flex items-center gap-2">
           <Calendar className="h-7 w-7 text-mint-500" />

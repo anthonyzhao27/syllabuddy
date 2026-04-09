@@ -10,7 +10,7 @@ export function UploadPage() {
     <RequireAuth>
       <div className="min-h-screen flex flex-col">
         <Header />
-        <main className="flex-1 px-6 pb-16 pt-8 md:px-8 md:pt-12">
+        <main className="flex-1 px-6 pb-16 pt-28 md:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
