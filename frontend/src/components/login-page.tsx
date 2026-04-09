@@ -87,7 +87,7 @@ export function LoginPage() {
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
-      <main className="flex flex-1 items-center justify-center px-6 pb-16 pt-8 md:px-8">
+      <main className="flex flex-1 items-center justify-center px-6 pb-16 pt-28 md:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -95,9 +95,6 @@ export function LoginPage() {
           className="w-full max-w-md rounded-[2rem] border border-white/70 bg-white/90 p-8 shadow-lg shadow-mint-100/40"
         >
           <div className="mb-8 text-center">
-            <p className="text-sm font-semibold uppercase tracking-[0.22em] text-mint-600">
-              Authentication
-            </p>
             <h1 className="mt-3 text-3xl font-semibold text-warm-700 font-[family-name:var(--font-quicksand)]">
               {mode === "sign-in" ? "Sign in" : "Create account"}
             </h1>

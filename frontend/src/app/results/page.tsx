@@ -28,7 +28,7 @@ function ResultsLoading() {
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
-      <main className="flex flex-1 items-center justify-center px-6">
+      <main className="flex flex-1 items-center justify-center px-6 pt-28">
         <p className="text-sm font-medium text-warm-500">Loading...</p>
       </main>
     </div>
@@ -112,7 +112,7 @@ function ResultsContent() {
 
       <div className="min-h-screen flex flex-col">
         <Header />
-        <main className="flex-1 px-6 pb-16 pt-8 md:px-8">
+        <main className="flex-1 px-6 pb-16 pt-28 md:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
