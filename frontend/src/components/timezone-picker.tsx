@@ -71,7 +71,7 @@ export function TimezonePicker({ value, onChange }: TimezonePickerProps) {
           {filteredGroups.map((group) =>
             group.timezones.length > 0 ? (
               <div key={group.region}>
-                <div className="sticky top-0 bg-warm-50 px-3 py-1.5 text-xs font-semibold uppercase tracking-wider text-warm-500">
+                <div className="sticky top-0 z-10 bg-white border-b border-warm-100 px-3 py-1.5 text-xs font-semibold uppercase tracking-wider text-warm-500">
                   {group.region}
                 </div>
                 {group.timezones.map((tz) => (
