@@ -3,6 +3,8 @@
 :root {
   --background: #e8f5ee;
   --foreground: #1f1e1b;
+  --font-nunito: "Avenir Next", "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-quicksand: "Trebuchet MS", "Avenir Next", "Segoe UI", sans-serif;
 }
 
 @theme inline {
@@ -87,4 +89,8 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-quicksand), system-ui, sans-serif;
+}
+
+button {
+  cursor: pointer;
 }

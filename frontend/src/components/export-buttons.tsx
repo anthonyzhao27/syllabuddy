@@ -1,21 +1,44 @@
 "use client";
 
 import { useState } from "react";
-import { Calendar, Apple, Mail, CheckCircle } from "lucide-react";
+import type { ReactNode } from "react";
+import { Apple, Calendar, CheckCircle, Mail } from "lucide-react";
 import {
+  exportToGoogleCalendar,
   exportToIcs,
   exportToOutlook,
-  exportToGoogleCalendar,
 } from "@/lib/api";
 import { getGoogleAccessToken } from "@/lib/google-auth";
-import type { ParsedEvent } from "@/types";
+import type { SavedEvent } from "@/types";
 
 type ExportButtonsProps = {
-  events: ParsedEvent[];
+  events: SavedEvent[];
   timezone: string;
 };
 
 type ExportStatus = "idle" | "loading" | "success" | "error";
+
+type ExportButtonProps = {
+  onClick: () => void;
+  disabled: boolean;
+  loading: boolean;
+  success: boolean;
+  icon: ReactNode;
+  label: string;
+  variant: "google" | "apple" | "outlook";
+};
+
+const VARIANT_STYLES = {
+  google: {
+    gradient: "linear-gradient(to bottom, #60a5fa, #3b82f6)",
+  },
+  apple: {
+    gradient: "linear-gradient(to bottom, #4ade80, #22c55e)",
+  },
+  outlook: {
+    gradient: "linear-gradient(to bottom, #38bdf8, #0ea5e9)",
+  },
+} as const;
 
 export function ExportButtons({ events, timezone }: ExportButtonsProps) {
   const [icsStatus, setIcsStatus] = useState<ExportStatus>("idle");
@@ -24,23 +47,26 @@ export function ExportButtons({ events, timezone }: ExportButtonsProps) {
   const [error, setError] = useState<string | null>(null);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
 
-  const isDisabled = events.length === 0;
+  const disabled = events.length === 0;
 
-  const handleIcsExport = async () => {
+  async function handleIcsExport() {
     setIcsStatus("loading");
     setError(null);
     setSuccessMessage(null);
+
     try {
       await exportToIcs(events, timezone);
       setIcsStatus("success");
       setSuccessMessage("Calendar file downloaded");
-    } catch (err) {
+    } catch (nextError) {
       setIcsStatus("error");
-      setError(err instanceof Error ? err.message : "Export failed");
+      setError(
+        nextError instanceof Error ? nextError.message : "Export failed"
+      );
     }
-  };
+  }
 
-  const handleOutlookExport = async () => {
+  async function handleOutlookExport() {
     setOutlookStatus("loading");
     setError(null);
     setSuccessMessage(null);
@@ -49,13 +75,15 @@ export function ExportButtons({ events, timezone }: ExportButtonsProps) {
       await exportToOutlook(events, timezone);
       setOutlookStatus("success");
       setSuccessMessage("Calendar file downloaded for Outlook");
-    } catch (err) {
+    } catch (nextError) {
       setOutlookStatus("error");
-      setError(err instanceof Error ? err.message : "Export failed");
+      setError(
+        nextError instanceof Error ? nextError.message : "Export failed"
+      );
     }
-  };
+  }
 
-  const handleGoogleExport = async () => {
+  async function handleGoogleExport() {
     setGoogleStatus("loading");
     setError(null);
     setSuccessMessage(null);
@@ -72,86 +100,63 @@ export function ExportButtons({ events, timezone }: ExportButtonsProps) {
       if (result.errors.length > 0) {
         setError(`${result.errors.length} event(s) failed to export`);
       }
-    } catch (err) {
+    } catch (nextError) {
       setGoogleStatus("error");
-      setError(err instanceof Error ? err.message : "Export failed");
+      setError(
+        nextError instanceof Error ? nextError.message : "Export failed"
+      );
     }
-  };
+  }
 
   return (
     <div className="mt-6 space-y-4">
-      <p className="text-sm font-medium text-warm-600 text-center">
+      <p className="text-center text-sm font-medium text-warm-600">
         Export to your calendar
       </p>
+
       <div className="flex flex-wrap justify-center gap-3">
         <ExportButton
-          onClick={handleGoogleExport}
-          disabled={isDisabled}
+          onClick={() => void handleGoogleExport()}
+          disabled={disabled}
           loading={googleStatus === "loading"}
           success={googleStatus === "success"}
-          icon={<Calendar className="w-4 h-4" />}
+          icon={<Calendar className="h-4 w-4" />}
           label="Google Calendar"
           variant="google"
         />
 
         <ExportButton
-          onClick={handleIcsExport}
-          disabled={isDisabled}
+          onClick={() => void handleIcsExport()}
+          disabled={disabled}
           loading={icsStatus === "loading"}
           success={icsStatus === "success"}
-          icon={<Apple className="w-4 h-4" />}
+          icon={<Apple className="h-4 w-4" />}
           label="Apple Calendar"
           variant="apple"
         />
 
         <ExportButton
-          onClick={handleOutlookExport}
-          disabled={isDisabled}
+          onClick={() => void handleOutlookExport()}
+          disabled={disabled}
           loading={outlookStatus === "loading"}
           success={outlookStatus === "success"}
-          icon={<Mail className="w-4 h-4" />}
+          icon={<Mail className="h-4 w-4" />}
           label="Outlook"
           variant="outlook"
         />
       </div>
 
-      {successMessage && (
-        <div className="flex items-center justify-center gap-2 text-sm text-success font-medium">
-          <CheckCircle className="w-4 h-4" />
+      {successMessage ? (
+        <div className="flex items-center justify-center gap-2 text-sm font-medium text-success">
+          <CheckCircle className="h-4 w-4" />
           {successMessage}
         </div>
-      )}
-      {error && (
-        <p className="text-sm text-error text-center font-medium">{error}</p>
-      )}
+      ) : null}
+
+      {error ? <p className="text-center text-sm font-medium text-error">{error}</p> : null}
     </div>
   );
 }
-
-type ExportButtonProps = {
-  onClick: () => void;
-  disabled: boolean;
-  loading: boolean;
-  success: boolean;
-  icon: React.ReactNode;
-  label: string;
-  variant: "google" | "apple" | "outlook";
-};
-
-const VARIANT_STYLES = {
-  google: {
-    gradient: "linear-gradient(to bottom, #60a5fa, #3b82f6)",
-    hoverGradient: "linear-gradient(to bottom, #3b82f6, #2563eb)",
-  },
-  apple: {
-    gradient: "linear-gradient(to bottom, #4ade80, #22c55e)",
-    hoverGradient: "linear-gradient(to bottom, #22c55e, #16a34a)",
-  },
-  outlook: {
-    gradient: "linear-gradient(to bottom, #38bdf8, #0ea5e9)",
-    hoverGradient: "linear-gradient(to bottom, #0ea5e9, #0284c7)",
-  },
-};
 
 function ExportButton({
   onClick,
@@ -162,27 +167,18 @@ function ExportButton({
   label,
   variant,
 }: ExportButtonProps) {
-  const styles = VARIANT_STYLES[variant];
-
   return (
     <button
+      type="button"
       onClick={onClick}
       disabled={disabled || loading}
-      className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-white text-sm font-semibold disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer transition-all duration-200 shadow-sm hover:shadow-md active:scale-[0.98]"
-      style={{ background: styles.gradient }}
-      onMouseEnter={(e) => {
-        if (!disabled && !loading) {
-          e.currentTarget.style.background = styles.hoverGradient;
-        }
-      }}
-      onMouseLeave={(e) => {
-        e.currentTarget.style.background = styles.gradient;
-      }}
+      className="inline-flex items-center gap-2 rounded-lg px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-all duration-200 hover:shadow-md disabled:cursor-not-allowed disabled:opacity-50"
+      style={{ background: VARIANT_STYLES[variant].gradient }}
     >
       {loading ? (
-        <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+        <span className="h-4 w-4 animate-spin rounded-full border-2 border-white/30 border-t-white" />
       ) : success ? (
-        <CheckCircle className="w-4 h-4" />
+        <CheckCircle className="h-4 w-4" />
       ) : (
         icon
       )}

@@ -58,27 +58,29 @@ export function LoadingScreen({ isVisible }: LoadingScreenProps) {
   return (
     <AnimatePresence>
       {isVisible && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.3 }}
-          className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-cream"
-        >
-          <div className="flex flex-col items-center gap-8">
-            <CalendarAnimation isVisible={isVisible} />
-            <motion.p
-              key={messageIndex}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: 0.3 }}
-              className="text-lg text-warm-500 font-medium font-[family-name:var(--font-nunito)]"
-            >
-              {MESSAGES[messageIndex]}
-            </motion.p>
-          </div>
-        </motion.div>
+        <div className="fixed inset-0 z-50 bg-cream">
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="flex h-full flex-col items-center justify-center"
+          >
+            <div className="flex flex-col items-center gap-8">
+              <CalendarAnimation isVisible={isVisible} />
+              <motion.p
+                key={messageIndex}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.3 }}
+                className="text-lg text-warm-500 font-medium font-[family-name:var(--font-nunito)]"
+              >
+                {MESSAGES[messageIndex]}
+              </motion.p>
+            </div>
+          </motion.div>
+        </div>
       )}
     </AnimatePresence>
   );

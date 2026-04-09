@@ -1,1 +1,4 @@
-export { exportToIcs as downloadIcs, exportToOutlook as openOutlookCalendar } from "./api";
+export {
+  exportToIcs as downloadIcs,
+  exportToOutlook as openOutlookCalendar,
+} from "./api";
