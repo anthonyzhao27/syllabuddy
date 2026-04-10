@@ -35,6 +35,13 @@ type EventConfig = {
   label: string;
 };
 
+function formatTime12Hour(time: string): string {
+  const [hours, minutes] = time.split(":").map(Number);
+  const period = hours >= 12 ? "PM" : "AM";
+  const hours12 = hours % 12 || 12;
+  return `${hours12}:${minutes.toString().padStart(2, "0")} ${period}`;
+}
+
 const EVENT_CONFIG: Record<EventType, EventConfig> = {
   assignment: {
     icon: <FileText className="h-4 w-4" />,
@@ -383,7 +390,7 @@ function EventCard({
           <p className="flex items-center gap-1.5 text-sm text-warm-500">
             <Calendar className="h-3.5 w-3.5" />
             {event.date}
-            {event.time ? ` at ${event.time}` : ""}
+            {event.time ? ` at ${formatTime12Hour(event.time)}` : ""}
           </p>
           {event.description ? (
             <p className="mt-2 text-sm text-warm-400">{event.description}</p>
