@@ -16,6 +16,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <meta name="google-site-verification" content="yFuhT_4lbxBNRSGIZMglaXW6tPPn_s5-eMwkUnD0N7k" />
       <body className="antialiased flex min-h-screen flex-col">
         <Providers>
           <div className="flex-1">{children}</div>
