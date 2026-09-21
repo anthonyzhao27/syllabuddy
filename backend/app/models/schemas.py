@@ -98,7 +98,6 @@ class SaveResponse(BaseModel):
 class ExportRequest(BaseModel):
     events: list[ParsedEvent]
     format: str = "ics"
-    google_token: str | None = None
 
 
 class ReminderRequest(BaseModel):
@@ -115,31 +114,6 @@ class IcsExportRequest(BaseModel):
 class OutlookExportRequest(BaseModel):
     events: list[ParsedEvent]
     timezone: str
-
-
-class GoogleExportRequest(BaseModel):
-    events: list[ParsedEvent]
-    access_token: str | None = Field(default=None, repr=False)
-    calendar_id: str = "primary"
-    timezone: str = "UTC"
-
-
-class GoogleCreatedEvent(BaseModel):
-    title: str
-    id: str
-    link: str
-
-
-class GoogleExportError(BaseModel):
-    title: str
-    error: str
-
-
-class GoogleExportResponse(BaseModel):
-    created_count: int
-    created: list[GoogleCreatedEvent]
-    errors: list[GoogleExportError]
-    calendar_name: str
 
 
 class SyllabusResponse(BaseModel):

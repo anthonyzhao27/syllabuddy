@@ -2,13 +2,8 @@
 
 import { useState } from "react";
 import type { ReactNode } from "react";
-import { Apple, Calendar, CheckCircle, Mail } from "lucide-react";
-import {
-  exportToGoogleCalendar,
-  exportToIcs,
-  exportToOutlook,
-} from "@/lib/api";
-import { getGoogleAccessToken } from "@/lib/google-auth";
+import { Apple, CheckCircle, Mail } from "lucide-react";
+import { exportToIcs, exportToOutlook } from "@/lib/api";
 import type { SavedEvent } from "@/types";
 
 type ExportButtonsProps = {
@@ -25,13 +20,10 @@ type ExportButtonProps = {
   success: boolean;
   icon: ReactNode;
   label: string;
-  variant: "google" | "apple" | "outlook";
+  variant: "apple" | "outlook";
 };
 
 const VARIANT_STYLES = {
-  google: {
-    gradient: "linear-gradient(to bottom, #60a5fa, #3b82f6)",
-  },
   apple: {
     gradient: "linear-gradient(to bottom, #4ade80, #22c55e)",
   },
@@ -43,7 +35,6 @@ const VARIANT_STYLES = {
 export function ExportButtons({ events, timezone }: ExportButtonsProps) {
   const [icsStatus, setIcsStatus] = useState<ExportStatus>("idle");
   const [outlookStatus, setOutlookStatus] = useState<ExportStatus>("idle");
-  const [googleStatus, setGoogleStatus] = useState<ExportStatus>("idle");
   const [error, setError] = useState<string | null>(null);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
 
@@ -83,31 +74,6 @@ export function ExportButtons({ events, timezone }: ExportButtonsProps) {
     }
   }
 
-  async function handleGoogleExport() {
-    setGoogleStatus("loading");
-    setError(null);
-    setSuccessMessage(null);
-
-    try {
-      const accessToken = await getGoogleAccessToken();
-      const result = await exportToGoogleCalendar(events, accessToken, timezone);
-
-      setGoogleStatus("success");
-      setSuccessMessage(
-        `${result.created_count} event(s) added to "${result.calendar_name}"`
-      );
-
-      if (result.errors.length > 0) {
-        setError(`${result.errors.length} event(s) failed to export`);
-      }
-    } catch (nextError) {
-      setGoogleStatus("error");
-      setError(
-        nextError instanceof Error ? nextError.message : "Export failed"
-      );
-    }
-  }
-
   return (
     <div className="mt-6 space-y-4">
       <p className="text-center text-sm font-medium text-warm-600">
@@ -115,16 +81,6 @@ export function ExportButtons({ events, timezone }: ExportButtonsProps) {
       </p>
 
       <div className="flex flex-wrap justify-center gap-3">
-        <ExportButton
-          onClick={() => void handleGoogleExport()}
-          disabled={disabled}
-          loading={googleStatus === "loading"}
-          success={googleStatus === "success"}
-          icon={<Calendar className="h-4 w-4" />}
-          label="Google Calendar"
-          variant="google"
-        />
-
         <ExportButton
           onClick={() => void handleIcsExport()}
           disabled={disabled}

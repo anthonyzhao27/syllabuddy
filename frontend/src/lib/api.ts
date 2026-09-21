@@ -8,7 +8,6 @@ import type {
   ApiSyllabusDetailResponse,
   ApiSyllabusListResponse,
   EventType,
-  GoogleExportResponse,
   ParsedEvent,
   ParseSyllabusResult,
   SavedEvent,
@@ -383,26 +382,6 @@ export async function exportToOutlook(
 
   const blob = await response.blob();
   downloadBlob(blob, getFilenameFromResponse(response, "calendar.ics"));
-}
-
-export async function exportToGoogleCalendar(
-  events: SavedEvent[],
-  accessToken: string,
-  timezone: string
-): Promise<GoogleExportResponse> {
-  const response = await apiFetch("/export/google", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      events: events.map(toApiExportEvent),
-      access_token: accessToken,
-      timezone,
-    }),
-  });
-
-  return (await response.json()) as GoogleExportResponse;
 }
 
 export async function updateSyllabusTimezone(

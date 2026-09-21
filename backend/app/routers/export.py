@@ -3,14 +3,11 @@
 import logging
 
 from fastapi import APIRouter, Depends, HTTPException, Request
-from fastapi.concurrency import run_in_threadpool
 from fastapi.responses import Response
 
 from app.middleware.auth import AuthenticatedUser, get_current_user
 from app.middleware.limiter import limiter
 from app.models.schemas import (
-    GoogleExportRequest,
-    GoogleExportResponse,
     IcsExportRequest,
     OutlookExportRequest,
 )
@@ -21,7 +18,6 @@ from app.services.calendar_utils import (
     MissingCourseCodeError,
     MixedCourseError,
 )
-from app.services.google_calendar import export_to_google_calendar_sync
 from app.services.ics import create_ics
 
 logger = logging.getLogger(__name__)
@@ -80,32 +76,3 @@ async def export_outlook(
         media_type="text/calendar; charset=utf-8",
         headers={"Content-Disposition": f'attachment; filename="{filename}"'},
     )
-
-
-@router.post("/google", response_model=GoogleExportResponse)
-@limiter.limit("15/hour;40/day")
-async def export_google(
-    request: Request,
-    body: GoogleExportRequest,
-    user: AuthenticatedUser = Depends(get_current_user),
-):
-    """Export events to Google Calendar using OAuth token."""
-    if not body.events:
-        raise HTTPException(status_code=400, detail="No events to export")
-
-    if not body.access_token:
-        raise HTTPException(status_code=400, detail="Access token required")
-
-    try:
-        result = await run_in_threadpool(
-            export_to_google_calendar_sync,
-            body.events,
-            body.access_token,
-            body.timezone,
-        )
-        return GoogleExportResponse(**result)
-    except (MissingCourseCodeError, MixedCourseError) as e:
-        raise HTTPException(status_code=400, detail=str(e))
-    except Exception:
-        logger.exception("Google Calendar export failed")
-        raise HTTPException(status_code=502, detail="Google Calendar export failed")

@@ -118,7 +118,7 @@ export default function TermsOfServicePage() {
               </h2>
               <p className="text-warm-500">
                 The Service relies on third-party providers (OpenAI for extraction, Supabase for storage and
-                authentication, Google for optional calendar export). See our{" "}
+                authentication). See our{" "}
                 <Link
                   href="/privacy"
                   className="text-mint-600 transition-colors hover:text-mint-700"
