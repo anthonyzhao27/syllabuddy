@@ -365,25 +365,6 @@ export async function exportToIcs(
   downloadBlob(blob, getFilenameFromResponse(response, "calendar.ics"));
 }
 
-export async function exportToOutlook(
-  events: SavedEvent[],
-  timezone: string
-): Promise<void> {
-  const response = await apiFetch("/export/outlook", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      events: events.map(toApiExportEvent),
-      timezone,
-    }),
-  });
-
-  const blob = await response.blob();
-  downloadBlob(blob, getFilenameFromResponse(response, "calendar.ics"));
-}
-
 export async function updateSyllabusTimezone(
   syllabusId: string,
   timezone: string
