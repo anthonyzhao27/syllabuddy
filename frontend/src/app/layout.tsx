@@ -3,7 +3,7 @@ import { Providers } from "@/components/providers";
 import { Footer } from "@/components/footer";
 import "./globals.css";
 
-const SITE_URL = "https://syllabuddy-pi.vercel.app";
+const SITE_URL = "https://syllabuddy.dev";
 const SITE_DESCRIPTION =
   "Extract assignments and due dates from your course syllabi";
 
