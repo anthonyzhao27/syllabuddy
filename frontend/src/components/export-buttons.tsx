@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 import type { ReactNode } from "react";
-import { Apple, CheckCircle, Mail } from "lucide-react";
-import { exportToIcs, exportToOutlook } from "@/lib/api";
+import { Calendar, CheckCircle } from "lucide-react";
+import { exportToIcs } from "@/lib/api";
 import type { SavedEvent } from "@/types";
 
 type ExportButtonsProps = {
@@ -20,21 +20,12 @@ type ExportButtonProps = {
   success: boolean;
   icon: ReactNode;
   label: string;
-  variant: "apple" | "outlook";
 };
 
-const VARIANT_STYLES = {
-  apple: {
-    gradient: "linear-gradient(to bottom, #4ade80, #22c55e)",
-  },
-  outlook: {
-    gradient: "linear-gradient(to bottom, #38bdf8, #0ea5e9)",
-  },
-} as const;
+const BUTTON_GRADIENT = "linear-gradient(to bottom, #4ade80, #22c55e)";
 
 export function ExportButtons({ events, timezone }: ExportButtonsProps) {
   const [icsStatus, setIcsStatus] = useState<ExportStatus>("idle");
-  const [outlookStatus, setOutlookStatus] = useState<ExportStatus>("idle");
   const [error, setError] = useState<string | null>(null);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
 
@@ -57,23 +48,6 @@ export function ExportButtons({ events, timezone }: ExportButtonsProps) {
     }
   }
 
-  async function handleOutlookExport() {
-    setOutlookStatus("loading");
-    setError(null);
-    setSuccessMessage(null);
-
-    try {
-      await exportToOutlook(events, timezone);
-      setOutlookStatus("success");
-      setSuccessMessage("Calendar file downloaded for Outlook");
-    } catch (nextError) {
-      setOutlookStatus("error");
-      setError(
-        nextError instanceof Error ? nextError.message : "Export failed"
-      );
-    }
-  }
-
   return (
     <div className="mt-6 space-y-4">
       <p className="text-center text-sm font-medium text-warm-600">
@@ -86,21 +60,14 @@ export function ExportButtons({ events, timezone }: ExportButtonsProps) {
           disabled={disabled}
           loading={icsStatus === "loading"}
           success={icsStatus === "success"}
-          icon={<Apple className="h-4 w-4" />}
-          label="Apple Calendar"
-          variant="apple"
-        />
-
-        <ExportButton
-          onClick={() => void handleOutlookExport()}
-          disabled={disabled}
-          loading={outlookStatus === "loading"}
-          success={outlookStatus === "success"}
-          icon={<Mail className="h-4 w-4" />}
-          label="Outlook"
-          variant="outlook"
+          icon={<Calendar className="h-4 w-4" />}
+          label="Export to calendar (.ics)"
         />
       </div>
+
+      <p className="text-center text-xs text-warm-400">
+        Works with Apple Calendar, Google Calendar, and Outlook
+      </p>
 
       {successMessage ? (
         <div className="flex items-center justify-center gap-2 text-sm font-medium text-success">
@@ -121,7 +88,6 @@ function ExportButton({
   success,
   icon,
   label,
-  variant,
 }: ExportButtonProps) {
   return (
     <button
@@ -129,7 +95,7 @@ function ExportButton({
       onClick={onClick}
       disabled={disabled || loading}
       className="inline-flex items-center gap-2 rounded-lg px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-all duration-200 hover:shadow-md disabled:cursor-not-allowed disabled:opacity-50"
-      style={{ background: VARIANT_STYLES[variant].gradient }}
+      style={{ background: BUTTON_GRADIENT }}
     >
       {loading ? (
         <span className="h-4 w-4 animate-spin rounded-full border-2 border-white/30 border-t-white" />
