@@ -111,11 +111,6 @@ class IcsExportRequest(BaseModel):
     timezone: str
 
 
-class OutlookExportRequest(BaseModel):
-    events: list[ParsedEvent]
-    timezone: str
-
-
 class SyllabusResponse(BaseModel):
     id: str
     name: str
