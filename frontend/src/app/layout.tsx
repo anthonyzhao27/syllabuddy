@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Script from "next/script";
 import { Providers } from "@/components/providers";
 import { Footer } from "@/components/footer";
 import "./globals.css";
@@ -47,10 +46,6 @@ export default function RootLayout({
           <div className="flex-1">{children}</div>
         </Providers>
         <Footer />
-        <Script
-          src="https://accounts.google.com/gsi/client"
-          strategy="afterInteractive"
-        />
       </body>
     </html>
   );

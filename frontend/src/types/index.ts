@@ -126,9 +126,3 @@ export type SavedEventUpdateInput = {
   durationMinutes?: number;
 };
 
-export type GoogleExportResponse = {
-  created_count: number;
-  created: Array<{ title: string; id: string; link: string }>;
-  errors: Array<{ title: string; error: string }>;
-  calendar_name: string;
-};

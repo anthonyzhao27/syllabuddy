@@ -3,7 +3,6 @@ import {
   ApiError,
   deleteEvent,
   downloadSyllabusFiles,
-  exportToGoogleCalendar,
   getSyllabi,
   saveSyllabus,
   toApiEventUpdate,
@@ -182,48 +181,6 @@ describe("api helpers", () => {
     expect(appendChild).toHaveBeenCalledWith(anchor);
     expect(removeChild).toHaveBeenCalledWith(anchor);
     expect(revokeObjectUrl).toHaveBeenCalledWith("blob:download");
-  });
-
-  it("keeps Google export using the GIS token plus the app bearer token", async () => {
-    const fetchMock = vi.fn<typeof fetch>().mockResolvedValue(
-      new Response(
-        JSON.stringify({
-          created_count: 1,
-          created: [
-            {
-              title: "Midterm",
-              id: "calendar-event",
-              link: "https://calendar.google.com/event",
-            },
-          ],
-          errors: [],
-          calendar_name: "CSC209",
-        }),
-        { status: 200 }
-      )
-    );
-
-    vi.stubGlobal("fetch", fetchMock);
-
-    await exportToGoogleCalendar([sampleEvent], "google-token", "America/Toronto");
-
-    expect(fetchMock.mock.calls[0][1]?.body).toBe(
-      JSON.stringify({
-        events: [
-          {
-            title: "Midterm",
-            due_date: "2026-04-20T13:30:00",
-            course: "CSC209",
-            event_type: "exam",
-            description: "In-person",
-            time_specified: true,
-            duration_minutes: 90,
-          },
-        ],
-        access_token: "google-token",
-        timezone: "America/Toronto",
-      })
-    );
   });
 
   it("deletes events through the protected files endpoint", async () => {

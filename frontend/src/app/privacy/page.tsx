@@ -41,7 +41,6 @@ export default function PrivacyPolicyPage() {
               <h3 className="mb-2 mt-4 font-semibold text-warm-600">Account Information</h3>
               <ul className="ml-4 list-disc space-y-1 text-warm-500">
                 <li>Email address (used for authentication)</li>
-                <li>Display name and profile picture (if signing in with Google)</li>
                 <li>Password (securely hashed, never stored in plain text)</li>
               </ul>
 
@@ -78,8 +77,8 @@ export default function PrivacyPolicyPage() {
                   to extract assignment and event information using AI technology.
                 </li>
                 <li>
-                  <strong className="text-warm-600">Calendar Export:</strong> Extracted events can be exported to
-                  Google Calendar, Apple Calendar, or Outlook at your request.
+                  <strong className="text-warm-600">Calendar Export:</strong> Extracted events can be downloaded
+                  as a calendar (.ics) file and imported into Google Calendar, Apple Calendar, or Outlook.
                 </li>
                 <li>
                   <strong className="text-warm-600">Account Management:</strong> Your email is used to authenticate
@@ -93,23 +92,6 @@ export default function PrivacyPolicyPage() {
                 Third-Party Services
               </h2>
               <p className="mb-3">We use the following third-party services to provide our functionality:</p>
-
-              <h3 className="mb-2 mt-4 font-semibold text-warm-600">Google OAuth & Calendar</h3>
-              <p className="text-warm-500">
-                When you sign in with Google or export to Google Calendar, we request access to create calendar
-                events on your behalf. We do not store your Google access tokens permanently&mdash;they are only
-                used during the export process. Syllabuddy&apos;s use of information received from Google APIs
-                adheres to the{" "}
-                <a
-                  href="https://developers.google.com/terms/api-services-user-data-policy"
-                  className="text-mint-600 transition-colors hover:text-mint-700"
-                  target="_blank"
-                  rel="noreferrer noopener"
-                >
-                  Google API Services User Data Policy
-                </a>
-                , including the Limited Use requirements.
-              </p>
 
               <h3 className="mb-2 mt-4 font-semibold text-warm-600">OpenAI</h3>
               <p className="text-warm-500">

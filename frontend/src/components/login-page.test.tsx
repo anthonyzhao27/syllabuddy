@@ -32,7 +32,6 @@ describe("LoginPage", () => {
       },
       signIn: vi.fn(),
       signUp: vi.fn(),
-      signInWithGoogle: vi.fn(),
     });
 
     render(<LoginPage />);
@@ -56,7 +55,6 @@ describe("LoginPage", () => {
       session: null,
       signIn: vi.fn(),
       signUp,
-      signInWithGoogle: vi.fn(),
     });
 
     render(<LoginPage />);

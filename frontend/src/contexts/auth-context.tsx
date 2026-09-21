@@ -22,10 +22,6 @@ type EmailAuthResult = {
   requiresEmailConfirmation: boolean;
 };
 
-type OAuthAuthResult = {
-  error: AuthError | null;
-};
-
 type SignOutResult = {
   error: AuthError | null;
 };
@@ -36,7 +32,6 @@ type AuthContextValue = {
   loading: boolean;
   signIn: (credentials: EmailAuthCredentials) => Promise<EmailAuthResult>;
   signUp: (credentials: EmailAuthCredentials) => Promise<EmailAuthResult>;
-  signInWithGoogle: (redirectTo: string) => Promise<OAuthAuthResult>;
   signOut: () => Promise<SignOutResult>;
 };
 
@@ -150,22 +145,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     };
   }
 
-  async function signInWithGoogle(
-    redirectTo: string
-  ): Promise<OAuthAuthResult> {
-    const { error } = await supabase.auth.signInWithOAuth({
-      provider: "google",
-      options: {
-        redirectTo,
-        queryParams: {
-          prompt: "select_account",
-        },
-      },
-    });
-
-    return { error };
-  }
-
   async function signOut(): Promise<SignOutResult> {
     const { error } = await supabase.auth.signOut();
 
@@ -185,7 +164,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         loading,
         signIn,
         signUp,
-        signInWithGoogle,
         signOut,
       }}
     >
