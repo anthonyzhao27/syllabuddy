@@ -261,3 +261,122 @@ def test_parse_cleans_up_when_event_save_fails(
     assert resp.json()["detail"] == "Failed to save parsed syllabus. Please try again."
     assert mock_delete_file_best_effort.await_count == 2
     mock_delete_syllabus.assert_awaited_once_with("test-token", "syllabus-123")
+
+
+_EXTRACTION = {
+    "course_code": "CSC263H1S",
+    "term": {"season": "winter", "year": 2026, "campus": "st_george", "evidence": ""},
+    "schedule_anchor": {
+        "week1_month": None,
+        "week1_day": None,
+        "evidence": "",
+        "reading_week_numbered": False,
+    },
+    "meetings": [],
+    "week_dates": [],
+    "events": [
+        {
+            "title": "Essay",
+            "event_type": "assignment",
+            "description": "",
+            "date_kind": "week",
+            "date": None,
+            "stated_weekday": None,
+            "week": 3,
+            "in_class": False,
+            "meeting_kind": None,
+            "time": None,
+            "duration_minutes": None,
+            "source_text": "Week 3: essay",
+        }
+    ],
+    "recurring": [],
+}
+
+
+@patch("app.routers.parse.extract_text", new_callable=AsyncMock)
+@patch("app.routers.parse.extract_syllabus", new_callable=AsyncMock)
+def test_parse_returns_term_context_and_extraction(
+    mock_extract: AsyncMock,
+    mock_extract_text: AsyncMock,
+    authenticated_client: TestClient,
+    generated_pdf_path,
+) -> None:
+    from datetime import date
+
+    from app.models.schemas import LLMSyllabus
+    from app.services.llm import ExtractionOutcome, resolve_extraction
+
+    ext = LLMSyllabus.model_validate(_EXTRACTION)
+    events, ctx = resolve_extraction(ext, date(2025, 12, 29))
+    mock_extract_text.return_value = "syllabus text"
+    mock_extract.return_value = ExtractionOutcome(
+        events=events, term_context=ctx, extraction=ext, raw=""
+    )
+    resp = authenticated_client.post(
+        "/parse/",
+        files=[
+            ("files", ("s.pdf", generated_pdf_path.read_bytes(), "application/pdf"))
+        ],
+    )
+    assert resp.status_code == 200
+    body = resp.json()
+    assert body["term_context"]["term_id"] == "2026W"
+    assert body["extraction"]["course_code"] == "CSC263H1S"
+    assert body["events"][0]["date_confidence"] == "estimated"
+
+
+def test_resolve_requires_auth(api_client: TestClient) -> None:
+    resp = api_client.post("/parse/resolve", json={"extraction": _EXTRACTION})
+    assert resp.status_code == 401
+
+
+def test_resolve_applies_week1_override(authenticated_client: TestClient) -> None:
+    base = authenticated_client.post(
+        "/parse/resolve", json={"extraction": _EXTRACTION, "today": "2025-12-29"}
+    )
+    moved = authenticated_client.post(
+        "/parse/resolve",
+        json={
+            "extraction": _EXTRACTION,
+            "today": "2025-12-29",
+            "override": {"week1_monday": "2026-01-12"},
+        },
+    )
+    assert base.status_code == 200 and moved.status_code == 200
+    d0 = base.json()["events"][0]["due_date"][:10]
+    d1 = moved.json()["events"][0]["due_date"][:10]
+    assert moved.json()["term_context"]["anchor_source"] == "user"
+    assert d1 == "2026-01-26"
+    assert d0 != d1
+
+
+def test_resolve_rejects_bad_extraction(authenticated_client: TestClient) -> None:
+    resp = authenticated_client.post("/parse/resolve", json={"extraction": {"nope": 1}})
+    assert resp.status_code == 422
+
+
+@patch("app.routers.parse.extract_text", new_callable=AsyncMock)
+@patch("app.routers.parse.extract_syllabus", new_callable=AsyncMock)
+def test_parse_fallback_returns_events_without_term_context(
+    mock_extract: AsyncMock,
+    mock_extract_text: AsyncMock,
+    authenticated_client: TestClient,
+    generated_pdf_path,
+) -> None:
+    from app.services.llm import ExtractionOutcome
+
+    mock_extract_text.return_value = "syllabus text"
+    mock_extract.return_value = ExtractionOutcome(
+        events=_mock_events(), term_context=None, extraction=None, raw=""
+    )
+    resp = authenticated_client.post(
+        "/parse/",
+        files=[
+            ("files", ("s.pdf", generated_pdf_path.read_bytes(), "application/pdf"))
+        ],
+    )
+    assert resp.status_code == 200
+    assert resp.json()["term_context"] is None
+    assert resp.json()["extraction"] is None
+    assert len(resp.json()["events"]) == 1

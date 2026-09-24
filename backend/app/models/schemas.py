@@ -3,8 +3,9 @@
 from datetime import date, datetime
 from datetime import time as dt_time
 from enum import StrEnum
+from typing import Literal
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class EventType(StrEnum):
@@ -77,6 +78,43 @@ class ParsedEvent(BaseModel):
     description: str = ""
     time_specified: bool = True
     duration_minutes: int | None = None
+    # "exact" = date printed in the syllabus; "inferred" = derived from a week
+    # number + known day; "estimated" = best guess (e.g. no day given, exam TBA)
+    date_confidence: str | None = None
+    date_source: str = ""
+    # Stable identity of the syllabus item across re-dates (see date_resolver)
+    source_key: str = ""
+
+
+class TermContext(BaseModel):
+    """The calendar anchor used to turn week numbers into dates."""
+
+    term_id: str
+    label: str
+    season: str
+    year: int
+    campus: str
+    division: str
+    week1_monday: date
+    reading_week_numbered: bool = False
+    classes_start: date
+    classes_end: date
+    reading_week: list[date] | None = None
+    exam_period: list[date] | None = None
+    # user | syllabus_anchor | syllabus_dates | table | heuristic
+    anchor_source: str
+    # user | stated | weekday_votes | upload_date
+    year_source: str
+
+
+class TermOverride(BaseModel):
+    """User corrections to the inferred term anchor."""
+
+    season: str | None = None
+    year: int | None = None
+    campus: str | None = None
+    week1_monday: date | None = None
+    reading_week_numbered: bool | None = None
 
 
 class LLMExtractionResult(BaseModel):
@@ -89,6 +127,15 @@ class LLMExtractionResult(BaseModel):
 class ParseResponse(BaseModel):
     events: list[ParsedEvent]
     course_code: str | None = None
+    term_context: TermContext | None = None
+    # Raw LLM transcription; sent back to /parse/resolve to re-date events
+    extraction: dict | None = None
+
+
+class ResolveRequest(BaseModel):
+    extraction: dict
+    override: TermOverride = Field(default_factory=TermOverride)
+    today: date | None = None
 
 
 class SaveResponse(BaseModel):
@@ -120,6 +167,9 @@ class SyllabusResponse(BaseModel):
     created_at: str
     event_count: int
     timezone: str | None = None
+    term_context: TermContext | None = None
+    # True when the stored transcription allows re-dating via /files/{id}/resolve
+    can_redate: bool = False
 
 
 class SyllabusListResponse(BaseModel):
@@ -136,6 +186,13 @@ class EventResponse(BaseModel):
     time_specified: bool
     duration_minutes: int | None = None
     is_edited: bool
+    date_confidence: str | None = None
+    date_source: str = ""
+    source_key: str = ""
+
+
+class SyllabusResolveRequest(BaseModel):
+    override: TermOverride = Field(default_factory=TermOverride)
 
 
 class SyllabusDetailResponse(BaseModel):
@@ -159,3 +216,113 @@ class EventUpdateRequest(BaseModel):
 
 class SyllabusUpdateRequest(BaseModel):
     timezone: str | None = None
+
+
+# --------------------------------------------------------------------------
+# Strict schema the LLM fills in. It transcribes; Python does the date math
+# (services/date_resolver.py). Every field is required and nullable where
+# optional, so it can drive OpenAI strict json_schema structured outputs.
+# --------------------------------------------------------------------------
+WeekdayName = Literal[
+    "monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"
+]
+EventTypeName = Literal[
+    "assignment",
+    "exam",
+    "quiz",
+    "project",
+    "lab",
+    "presentation",
+    "milestone",
+    "deadline",
+    "discussion",
+    "other",
+]
+MeetingKind = Literal["lecture", "tutorial", "lab", "seminar", "other"]
+
+
+class _Strict(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+
+class TermInfo(_Strict):
+    season: Literal[
+        "fall",
+        "winter",
+        "summer",
+        "summer_first",
+        "summer_second",
+        "full_year",
+        "unknown",
+    ]
+    year: int | None
+    campus: Literal["st_george", "mississauga", "scarborough", "unknown"]
+    evidence: str
+
+
+class ScheduleAnchor(_Strict):
+    week1_month: int | None
+    week1_day: int | None
+    evidence: str
+    reading_week_numbered: bool | None
+
+
+class Meeting(_Strict):
+    kind: MeetingKind
+    weekday: WeekdayName
+    start_time: str | None
+    end_time: str | None
+
+
+class MonthDay(_Strict):
+    month: int
+    day: int
+    year: int | None
+
+
+class LLMEvent(_Strict):
+    title: str
+    event_type: EventTypeName
+    description: str
+    date_kind: Literal["explicit_date", "week", "last_class", "exam_period", "tbd"]
+    date: MonthDay | None
+    stated_weekday: WeekdayName | None
+    week: int | None
+    in_class: bool
+    meeting_kind: MeetingKind | None
+    time: str | None
+    duration_minutes: int | None
+    source_text: str
+
+
+class LLMRecurring(_Strict):
+    title: str
+    event_type: EventTypeName
+    description: str
+    weekday: WeekdayName | None
+    in_class: bool
+    meeting_kind: MeetingKind | None
+    time: str | None
+    weeks: list[int]
+    first_date: MonthDay | None
+    last_date: MonthDay | None
+    every_n_weeks: int
+    excluded_weeks: list[int]
+    duration_minutes: int | None
+    source_text: str
+
+
+class WeekDate(_Strict):
+    week: int
+    month: int
+    day: int
+
+
+class LLMSyllabus(_Strict):
+    course_code: str
+    term: TermInfo
+    schedule_anchor: ScheduleAnchor
+    meetings: list[Meeting]
+    week_dates: list[WeekDate]
+    events: list[LLMEvent]
+    recurring: list[LLMRecurring]
