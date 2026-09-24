@@ -21,16 +21,23 @@ from app.models.schemas import (
     DeleteResponse,
     EventResponse,
     EventUpdateRequest,
+    LLMSyllabus,
     ParsedEvent,
     SaveResponse,
     SyllabusDetailResponse,
     SyllabusListResponse,
+    SyllabusResolveRequest,
     SyllabusResponse,
     SyllabusUpdateRequest,
+    TermContext,
 )
 from app.services import storage as storage_service
 from app.services import syllabi as syllabi_service
 from app.services.extraction import classify_upload
+from app.services.llm import resolve_extraction
+
+# The stored transcription is echoed back from /parse; cap what we accept.
+MAX_EXTRACTION_JSON_BYTES = 512 * 1024
 
 logger = logging.getLogger(__name__)
 
@@ -45,6 +52,8 @@ async def save_syllabus(
     events_json: str = Form(...),
     syllabus_name: str | None = Form(default=None),
     timezone: str | None = Form(default=None),
+    term_context_json: str | None = Form(default=None),
+    extraction_json: str | None = Form(default=None),
     user: AuthenticatedUser = Depends(get_current_user),
 ) -> SaveResponse:
     """Save parsed syllabus events and files to storage.
@@ -59,6 +68,8 @@ async def save_syllabus(
         events = [ParsedEvent(**e) for e in events_data]
     except (json.JSONDecodeError, TypeError) as e:
         raise HTTPException(status_code=400, detail=f"Invalid events JSON: {e}")
+
+    term_context, extraction = _parse_term_payload(term_context_json, extraction_json)
 
     first_kind = await classify_upload(files[0])
     if first_kind == "image":
@@ -100,6 +111,8 @@ async def save_syllabus(
             storage_paths=storage_paths,
             total_file_size_bytes=total_size,
             tz=timezone,
+            term_context=term_context,
+            extraction=extraction,
         )
         syllabus_id = syllabus.get("id")
         if not isinstance(syllabus_id, str):
@@ -134,6 +147,28 @@ async def save_syllabus(
     return SaveResponse(syllabus_id=syllabus_id)
 
 
+def _parse_term_payload(
+    term_context_json: str | None, extraction_json: str | None
+) -> tuple[dict | None, dict | None]:
+    """Validate the optional term anchor + transcription sent back from /parse.
+
+    Both are optional (older clients, screenshot flows); a bad payload is
+    dropped rather than failing the save, since the events are what matter.
+    """
+    if not term_context_json or not extraction_json:
+        return None, None
+    if len(extraction_json) > MAX_EXTRACTION_JSON_BYTES:
+        logger.warning("Dropping oversized extraction payload on save")
+        return None, None
+    try:
+        term_context = TermContext.model_validate_json(term_context_json)
+        extraction = LLMSyllabus.model_validate_json(extraction_json)
+    except Exception:
+        logger.warning("Dropping invalid term context / extraction on save")
+        return None, None
+    return term_context.model_dump(mode="json"), extraction.model_dump(mode="json")
+
+
 def _require_str(row: dict[str, object], key: str) -> str:
     value = row.get(key)
     if isinstance(value, str):
@@ -158,9 +193,20 @@ def _require_bool(row: dict[str, object], key: str) -> bool:
     raise HTTPException(status_code=500, detail="Unexpected database response")
 
 
+def _term_context(syllabus: dict[str, object]) -> TermContext | None:
+    raw = syllabus.get("term_context")
+    if not isinstance(raw, dict):
+        return None
+    try:
+        return TermContext.model_validate(raw)
+    except Exception:
+        return None
+
+
 def _syllabus_response(
     syllabus: dict[str, object], event_count: int
 ) -> SyllabusResponse:
+    term_context = _term_context(syllabus)
     return SyllabusResponse(
         id=_require_str(syllabus, "id"),
         name=_require_str(syllabus, "name"),
@@ -170,6 +216,9 @@ def _syllabus_response(
         created_at=_require_str(syllabus, "created_at"),
         event_count=event_count,
         timezone=_optional_str(syllabus, "timezone"),
+        term_context=term_context,
+        can_redate=term_context is not None
+        and isinstance(syllabus.get("extraction"), dict),
     )
 
 
@@ -184,6 +233,9 @@ def _event_response(event: dict[str, object]) -> EventResponse:
         time_specified=_require_bool(event, "time_specified"),
         duration_minutes=_optional_int(event, "duration_minutes"),
         is_edited=_require_bool(event, "is_edited"),
+        date_confidence=_optional_str(event, "date_confidence"),
+        date_source=_optional_str(event, "date_source") or "",
+        source_key=_optional_str(event, "source_key") or "",
     )
 
 
@@ -392,6 +444,9 @@ async def update_event(
         )
         update_data["due_date"] = due_date
         update_data["time_specified"] = time_specified
+        # A date the user set by hand is no longer our inference
+        update_data["date_confidence"] = None
+        update_data["date_source"] = ""
 
     if updates.event_type is not None:
         update_data["event_type"] = updates.event_type.value
@@ -412,6 +467,84 @@ async def update_event(
         )
 
     return _event_response(updated)
+
+
+@router.post("/{syllabus_id}/resolve", response_model=SyllabusDetailResponse)
+@limiter.limit("60/hour")
+async def resolve_saved_syllabus(
+    request: Request,
+    syllabus_id: str,
+    body: SyllabusResolveRequest,
+    user: AuthenticatedUser = Depends(get_current_user),
+) -> SyllabusDetailResponse:
+    """Re-date a saved syllabus with a corrected term anchor. No LLM call.
+
+    Events the user edited are kept as-is; every other event is replaced by
+    the re-resolved set, skipping items the user edited or deleted (matched by
+    source_key, or by title for rows saved without one) so deletions stay
+    deleted and edits aren't duplicated.
+    """
+    syllabus = await syllabi_service.get_syllabus(user.access_token, syllabus_id)
+    if syllabus is None:
+        raise HTTPException(status_code=404, detail="Syllabus not found")
+    raw_extraction = syllabus.get("extraction")
+    if not isinstance(raw_extraction, dict):
+        raise HTTPException(
+            status_code=409, detail="This syllabus can't be re-dated automatically."
+        )
+    try:
+        extraction = LLMSyllabus.model_validate(raw_extraction)
+    except Exception:
+        raise HTTPException(
+            status_code=409, detail="This syllabus can't be re-dated automatically."
+        )
+
+    parsed_at = _optional_str(syllabus, "parsed_at") or _require_str(
+        syllabus, "created_at"
+    )
+    upload_day = datetime.fromisoformat(parsed_at).date()
+    new_events, term_context = resolve_extraction(extraction, upload_day, body.override)
+
+    existing = await syllabi_service.get_events_for_syllabus(
+        user.access_token, syllabus_id
+    )
+    deleted = await syllabi_service.get_deleted_events(user.access_token, syllabus_id)
+    claimed = [e for e in existing if e.get("is_edited")] + deleted
+    claimed_keys = {k for e in claimed if (k := _optional_str(e, "source_key"))}
+    claimed_titles = {
+        _norm_title(_require_str(e, "title"))
+        for e in claimed
+        if not _optional_str(e, "source_key")
+    }
+    stale_ids = [_require_str(e, "id") for e in existing if not e.get("is_edited")]
+    to_insert = [
+        e
+        for e in new_events
+        if e.source_key not in claimed_keys
+        and _norm_title(e.title) not in claimed_titles
+    ]
+
+    # Insert first, then remove the superseded rows by id, so a failure
+    # part-way never leaves the syllabus with no events.
+    await syllabi_service.save_events(
+        user.access_token, syllabus_id, user.id, to_insert
+    )
+    await syllabi_service.delete_events(user.access_token, syllabus_id, stale_ids)
+    updated = await syllabi_service.update_syllabus_term_context(
+        user.access_token, syllabus_id, term_context.model_dump(mode="json")
+    )
+
+    events = await syllabi_service.get_events_for_syllabus(
+        user.access_token, syllabus_id
+    )
+    return SyllabusDetailResponse(
+        syllabus=_syllabus_response(updated or syllabus, len(events)),
+        events=[_event_response(event) for event in events],
+    )
+
+
+def _norm_title(title: str) -> str:
+    return " ".join(title.lower().split())
 
 
 @router.delete("/{syllabus_id}/events/{event_id}", response_model=DeleteResponse)

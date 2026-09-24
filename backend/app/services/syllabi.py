@@ -26,6 +26,8 @@ async def create_syllabus(
     storage_paths: list[str] | None = None,
     total_file_size_bytes: int | None = None,
     tz: str | None = None,
+    term_context: dict | None = None,
+    extraction: dict | None = None,
 ) -> Row:
     data: Row = {
         "user_id": user_id,
@@ -37,6 +39,8 @@ async def create_syllabus(
         "total_file_size_bytes": total_file_size_bytes,
         "parsed_at": datetime.now(timezone.utc).isoformat(),
         "timezone": tz,
+        "term_context": term_context,
+        "extraction": extraction,
     }
 
     def _create_sync() -> list[Row]:
@@ -115,6 +119,9 @@ async def save_events(
             "description": event.description,
             "time_specified": event.time_specified,
             "duration_minutes": event.duration_minutes,
+            "date_confidence": event.date_confidence,
+            "date_source": event.date_source,
+            "source_key": event.source_key,
         }
         for event in events
     ]
@@ -143,6 +150,22 @@ async def get_events_for_syllabus(access_token: str, syllabus_id: str) -> list[R
         )
 
     return await run_in_threadpool(_get_events_sync)
+
+
+async def get_deleted_events(access_token: str, syllabus_id: str) -> list[Row]:
+    """Events the user deleted (soft-deleted rows)."""
+
+    def _get_sync() -> list[Row]:
+        return _rows(
+            get_authenticated_client(access_token)
+            .table("events")
+            .select("title, source_key")
+            .eq("syllabus_id", syllabus_id)
+            .eq("is_deleted", True)
+            .execute()
+        )
+
+    return await run_in_threadpool(_get_sync)
 
 
 async def get_event_counts_for_syllabi(
@@ -249,3 +272,43 @@ async def update_syllabus_timezone(
 
     rows = await run_in_threadpool(_update_tz_sync)
     return rows[0] if rows else None
+
+
+async def update_syllabus_term_context(
+    access_token: str, syllabus_id: str, term_context: dict
+) -> Row | None:
+    def _update_sync() -> list[Row]:
+        return _rows(
+            get_authenticated_client(access_token)
+            .table("syllabi")
+            .update({"term_context": term_context})
+            .eq("id", syllabus_id)
+            .execute()
+        )
+
+    rows = await run_in_threadpool(_update_sync)
+    return rows[0] if rows else None
+
+
+async def delete_events(
+    access_token: str, syllabus_id: str, event_ids: list[str]
+) -> None:
+    """Hard-delete rows superseded by a re-date.
+
+    Soft delete is reserved for user deletions: re-dating uses the titles of
+    soft-deleted events to keep user-deleted items from coming back.
+    """
+    if not event_ids:
+        return
+
+    def _delete_sync() -> list[Row]:
+        return _rows(
+            get_authenticated_client(access_token)
+            .table("events")
+            .delete()
+            .eq("syllabus_id", syllabus_id)
+            .in_("id", event_ids)
+            .execute()
+        )
+
+    await run_in_threadpool(_delete_sync)
