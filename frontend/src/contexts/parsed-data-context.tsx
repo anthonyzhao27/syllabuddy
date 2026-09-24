@@ -6,13 +6,15 @@ import {
   useState,
   type ReactNode,
 } from "react";
-import type { ParsedEvent } from "@/types";
+import type { ParsedEvent, SyllabusExtraction, TermContext } from "@/types";
 
 type ParsedData = {
   files: File[];
   events: ParsedEvent[];
   courseCode: string | null;
   syllabusName: string;
+  termContext: TermContext | null;
+  extraction: SyllabusExtraction | null;
 };
 
 type ParsedDataContextValue = {

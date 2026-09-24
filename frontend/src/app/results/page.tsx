@@ -5,14 +5,15 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { ArrowLeft, Calendar, Save, X } from "lucide-react";
-import { saveSyllabus } from "@/lib/api";
+import { resolveSyllabusDates, saveSyllabus } from "@/lib/api";
 import { useParsedData } from "@/contexts/parsed-data-context";
-import type { ParsedEvent } from "@/types";
+import type { ParsedEvent, TermOverride } from "@/types";
 import { ConfirmDialog } from "@/components/confirm-dialog";
 import { Header } from "@/components/header";
 import { RequireAuth } from "@/components/require-auth";
 import { LoadingScreen } from "@/components/loading-screen";
 import { ParsedEventList } from "@/components/parsed-event-list";
+import { TermContextBanner } from "@/components/term-context-banner";
 import { TimezonePicker } from "@/components/timezone-picker";
 import { getDefaultTimezone } from "@/lib/timezones";
 
@@ -39,7 +40,7 @@ function ResultsLoading() {
 
 function ResultsContent() {
   const router = useRouter();
-  const { data, clear } = useParsedData();
+  const { data, setData, clear } = useParsedData();
   const [events, setEvents] = useState<ParsedEvent[]>(() => data?.events ?? []);
   const [syllabusName, setSyllabusName] = useState(() =>
     data
@@ -69,6 +70,23 @@ function ResultsContent() {
     setEvents((current) => current.filter((_, i) => i !== index));
   }
 
+  async function handleResolveDates(override: TermOverride) {
+    if (!data?.extraction) {
+      return;
+    }
+
+    const result = await resolveSyllabusDates(data.extraction, override);
+
+    setEvents(result.events);
+    setData({
+      ...data,
+      events: result.events,
+      courseCode: result.courseCode ?? data.courseCode,
+      termContext: result.termContext,
+      extraction: result.extraction ?? data.extraction,
+    });
+  }
+
   async function handleSave() {
     if (!data) {
       return;
@@ -87,7 +105,9 @@ function ResultsContent() {
         data.files,
         events,
         syllabusName.trim() || undefined,
-        timezone
+        timezone,
+        // Context is kept current when the user re-dates via the banner.
+        { termContext: data.termContext, extraction: data.extraction }
       );
 
       isNavigatingAway.current = true;
@@ -109,6 +129,9 @@ function ResultsContent() {
   if (!data) {
     return null;
   }
+
+  // Edits and deletes produce a new array; untouched events share the context's.
+  const hasEdits = events !== data.events;
 
   return (
     <>
@@ -205,6 +228,16 @@ function ResultsContent() {
               <p className="mt-2 text-sm text-warm-500">
                 Click the edit button to modify any event before saving.
               </p>
+
+              {data.termContext ? (
+                <div className="mt-4">
+                  <TermContextBanner
+                    termContext={data.termContext}
+                    hasEdits={hasEdits}
+                    onApply={data.extraction ? handleResolveDates : undefined}
+                  />
+                </div>
+              ) : null}
 
               {events.length === 0 ? (
                 <div className="mt-8 py-12 text-center">

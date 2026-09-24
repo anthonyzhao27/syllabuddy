@@ -18,7 +18,7 @@ import {
   Trash2,
   Flag,
 } from "lucide-react";
-import type { EventType, ParsedEvent } from "@/types";
+import type { DateConfidence, EventType, ParsedEvent } from "@/types";
 
 type ParsedEventListProps = {
   events: ParsedEvent[];
@@ -39,6 +39,11 @@ function formatTime12Hour(time: string): string {
   const hours12 = hours % 12 || 12;
   return `${hours12}:${minutes.toString().padStart(2, "0")} ${period}`;
 }
+
+const DATE_CONFIDENCE_LABELS: Partial<Record<DateConfidence, string>> = {
+  inferred: "from week #",
+  estimated: "estimated",
+};
 
 const EVENT_CONFIG: Record<EventType, EventConfig> = {
   assignment: {
@@ -191,6 +196,9 @@ function ParsedEventCard({
   const [error, setError] = useState<string | null>(null);
 
   const config = EVENT_CONFIG[event.type];
+  const confidenceLabel = event.dateConfidence
+    ? DATE_CONFIDENCE_LABELS[event.dateConfidence]
+    : undefined;
 
   function handleSave() {
     if (!title.trim()) {
@@ -211,6 +219,9 @@ function ParsedEventCard({
       type,
       description,
       durationMinutes: event.durationMinutes,
+      // A hand-picked date is no longer inferred or estimated.
+      dateConfidence: date === event.date ? event.dateConfidence : null,
+      dateSource: date === event.date ? event.dateSource : "",
     });
   }
 
@@ -316,6 +327,14 @@ function ParsedEventCard({
             <Calendar className="h-3.5 w-3.5" />
             {event.date}
             {event.time ? ` at ${formatTime12Hour(event.time)}` : ""}
+            {confidenceLabel ? (
+              <span
+                title={event.dateSource || undefined}
+                className="ml-1 rounded-full bg-white/80 px-2 py-0.5 text-xs font-medium text-warm-400"
+              >
+                {confidenceLabel}
+              </span>
+            ) : null}
           </p>
           {event.description ? (
             <p className="mt-2 text-sm text-warm-400">{event.description}</p>

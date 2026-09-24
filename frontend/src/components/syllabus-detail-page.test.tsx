@@ -4,12 +4,14 @@ import userEvent from "@testing-library/user-event";
 import { vi } from "vitest";
 import { ApiError } from "@/lib/api";
 import { SyllabusDetailPage } from "@/components/syllabus-detail-page";
+import type { SyllabusDetail, TermContext } from "@/types";
 
 const mockGetSyllabusDetail = vi.fn();
 const mockUpdateEvent = vi.fn();
 const mockDeleteEvent = vi.fn();
 const mockDeleteSyllabus = vi.fn();
 const mockDownloadSyllabusFiles = vi.fn();
+const mockResolveSavedSyllabusDates = vi.fn();
 const mockUseParams = vi.fn();
 const mockUseSearchParams = vi.fn();
 const mockReplace = vi.fn<(href: string) => void>();
@@ -44,6 +46,9 @@ vi.mock("@/lib/api", async () => {
     downloadSyllabusFiles: (
       ...args: Parameters<typeof mockDownloadSyllabusFiles>
     ) => mockDownloadSyllabusFiles(...args),
+    resolveSavedSyllabusDates: (
+      ...args: Parameters<typeof mockResolveSavedSyllabusDates>
+    ) => mockResolveSavedSyllabusDates(...args),
   };
 });
 
@@ -80,6 +85,50 @@ const detailResponse = {
   ],
 };
 
+const termContext: TermContext = {
+  termId: "2026-fall-stg",
+  label: "Fall 2026 · St. George",
+  season: "fall",
+  year: 2026,
+  campus: "St. George",
+  division: "ArtSci",
+  week1Monday: "2026-09-07",
+  readingWeekNumbered: false,
+  classesStart: "2026-09-08",
+  classesEnd: "2026-12-07",
+  readingWeek: ["2026-10-26", "2026-10-30"],
+  examPeriod: null,
+  anchorSource: "table",
+  yearSource: "stated",
+};
+
+const datedDetailResponse: SyllabusDetail = {
+  syllabus: {
+    ...detailResponse.syllabus,
+    timezone: "America/Toronto",
+    termContext,
+    canRedate: true,
+  },
+  events: [
+    {
+      ...detailResponse.events[0],
+      title: "Problem Set 3",
+      date: "2026-10-02",
+      time: null,
+      type: "assignment",
+      durationMinutes: null,
+      dateConfidence: "inferred",
+      dateSource: "Week 4 Friday",
+    },
+    {
+      ...detailResponse.events[0],
+      id: "event-2",
+      dateConfidence: "exact",
+      dateSource: "Oct 20",
+    },
+  ],
+};
+
 describe("SyllabusDetailPage", () => {
   beforeEach(() => {
     mockUseParams.mockReturnValue({
@@ -99,6 +148,7 @@ describe("SyllabusDetailPage", () => {
       message: "Syllabus deleted",
     });
     mockDownloadSyllabusFiles.mockResolvedValue(undefined);
+    mockResolveSavedSyllabusDates.mockReset();
   });
 
   it("hydrates from /files/{id} on direct visit", async () => {
@@ -165,5 +215,75 @@ describe("SyllabusDetailPage", () => {
     await waitFor(() => {
       expect(mockDeleteEvent).toHaveBeenCalledWith("syllabus-1", "event-1");
     });
+  });
+
+  it("shows the term banner and date confidence badges for saved events", async () => {
+    mockGetSyllabusDetail.mockResolvedValue({
+      ...datedDetailResponse,
+      syllabus: { ...datedDetailResponse.syllabus, canRedate: false },
+    });
+
+    render(<SyllabusDetailPage />);
+
+    expect(
+      await screen.findByText(
+        "Dates based on Fall 2026 · St. George · Week 1 starts Mon, Sep 7"
+      )
+    ).toBeInTheDocument();
+    expect(screen.getByText("from week #")).toHaveAttribute(
+      "title",
+      "Week 4 Friday"
+    );
+    // Exact dates get no badge.
+    expect(screen.queryByText("estimated")).not.toBeInTheDocument();
+    expect(screen.getAllByText(/from week #|estimated/)).toHaveLength(1);
+    // Without a stored extraction the anchor can't be changed.
+    // Only the banner's Edit toggle carries aria-expanded.
+    expect(
+      screen.queryByRole("button", { name: "Edit", expanded: false })
+    ).not.toBeInTheDocument();
+  });
+
+  it("re-dates a saved syllabus after confirming", async () => {
+    const user = userEvent.setup();
+    mockGetSyllabusDetail.mockResolvedValue(datedDetailResponse);
+    mockResolveSavedSyllabusDates.mockResolvedValue({
+      syllabus: {
+        ...datedDetailResponse.syllabus,
+        termContext: { ...termContext, label: "Fall 2027 · St. George", year: 2027 },
+      },
+      events: [
+        {
+          ...datedDetailResponse.events[0],
+          id: "event-3",
+          title: "Problem Set 3 (re-dated)",
+          date: "2027-10-01",
+        },
+      ],
+    });
+
+    render(<SyllabusDetailPage />);
+
+    await user.click(await screen.findByRole("button", { name: "Edit", expanded: false }));
+    await user.clear(screen.getByLabelText("Year"));
+    await user.type(screen.getByLabelText("Year"), "2027");
+    await user.click(screen.getByRole("button", { name: "Apply" }));
+
+    expect(mockResolveSavedSyllabusDates).not.toHaveBeenCalled();
+    expect(screen.getByText("Recalculate event dates?")).toBeInTheDocument();
+    expect(
+      screen.getByText(/events you edited are kept as they are/i)
+    ).toBeInTheDocument();
+
+    await user.click(screen.getByRole("button", { name: "Recalculate" }));
+
+    expect(mockResolveSavedSyllabusDates).toHaveBeenCalledWith("syllabus-1", {
+      year: 2027,
+    });
+    expect(
+      await screen.findByText("Problem Set 3 (re-dated)")
+    ).toBeInTheDocument();
+    expect(screen.queryByText("Midterm")).not.toBeInTheDocument();
+    expect(screen.getByText(/Dates based on Fall 2027/)).toBeInTheDocument();
   });
 });
