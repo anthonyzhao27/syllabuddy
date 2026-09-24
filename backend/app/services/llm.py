@@ -3,20 +3,32 @@
 import json
 import logging
 import re
+import time
+from dataclasses import dataclass
 from datetime import date
 from datetime import time as dt_time
 
 from openai import AsyncOpenAI
 
 from app.config import settings
+from openai.lib._pydantic import to_strict_json_schema
+
 from app.models.schemas import (
     EventType,
     LLMExtractionResult,
+    LLMSyllabus,
     ParsedEvent,
     RecurringEvent,
+    TermContext,
+    TermOverride,
 )
+from app.services import date_resolver
 from app.services.recurrence import expand_all_recurrences
-from app.utils.prompts import EXTRACTION_PROMPT
+from app.utils.prompts import (
+    EXTRACTION_PROMPT,
+    SYLLABUS_PROMPT,
+    SYLLABUS_USER_TEMPLATE,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -274,6 +286,150 @@ async def extract_events(text: str) -> list[ParsedEvent]:
     all_events = _apply_all_smart_defaults(all_events)
 
     return all_events
+
+
+SYLLABUS_RESPONSE_FORMAT = {
+    "type": "json_schema",
+    "json_schema": {
+        "name": "syllabus",
+        "strict": True,
+        "schema": to_strict_json_schema(LLMSyllabus),
+    },
+}
+
+# Output budget for the transcription call. Long week-by-week schedules with
+# source_text snippets can run several thousand tokens.
+SYLLABUS_MAX_OUTPUT_TOKENS = 12_000
+
+
+@dataclass
+class ExtractionOutcome:
+    events: list[ParsedEvent]
+    # None when the structured pipeline failed and we fell back to the legacy
+    # single-shot extraction (no term anchor, nothing to re-date).
+    term_context: TermContext | None
+    extraction: LLMSyllabus | None
+    raw: str
+
+
+def _completion_kwargs(model: str) -> dict:
+    """Sampling params differ between classic chat models and reasoning models."""
+    if model.startswith(("gpt-5", "o1", "o3", "o4")):
+        return {
+            "max_completion_tokens": SYLLABUS_MAX_OUTPUT_TOKENS + 8_000,
+            "reasoning_effort": "low",
+        }
+    return {"temperature": 0.0, "max_tokens": SYLLABUS_MAX_OUTPUT_TOKENS}
+
+
+async def transcribe_syllabus(
+    text: str, today: date, model: str | None = None
+) -> tuple[LLMSyllabus, str]:
+    """Ask the LLM to transcribe the syllabus schedule into LLMSyllabus."""
+    if len(text) > MAX_PROMPT_CHARS:
+        logger.warning(
+            "Syllabus text of %d chars exceeds cap, truncating to %d chars",
+            len(text),
+            MAX_PROMPT_CHARS,
+        )
+        text = text[:MAX_PROMPT_CHARS]
+    model = model or settings.openai_model
+    client = AsyncOpenAI(
+        api_key=settings.openai_api_key, timeout=OPENAI_TIMEOUT_SECONDS * 3
+    )
+    user = SYLLABUS_USER_TEMPLATE.format(
+        today=today.isoformat(), weekday=today.strftime("%A"), text=text
+    )
+    response = await client.chat.completions.create(
+        model=model,
+        messages=[
+            {"role": "system", "content": SYLLABUS_PROMPT},
+            {"role": "user", "content": user},
+        ],
+        response_format=SYLLABUS_RESPONSE_FORMAT,  # type: ignore[arg-type]
+        **_completion_kwargs(model),
+    )
+    raw = response.choices[0].message.content or ""
+    try:
+        return LLMSyllabus.model_validate_json(raw), raw
+    except Exception as e:
+        raise ValueError(f"Could not parse LLM response: {raw[:200]}") from e
+
+
+def _apply_defaults_keep_meta(events: list[ParsedEvent]) -> list[ParsedEvent]:
+    out = []
+    for e in events:
+        d = _apply_smart_defaults(e)
+        out.append(
+            d.model_copy(
+                update={
+                    "date_confidence": e.date_confidence,
+                    "date_source": e.date_source,
+                    "source_key": e.source_key,
+                }
+            )
+        )
+    return out
+
+
+def resolve_extraction(
+    extraction: LLMSyllabus, today: date, override: TermOverride | None = None
+) -> tuple[list[ParsedEvent], TermContext]:
+    """Pure-Python re-dating of a stored transcription (no LLM call)."""
+    events, ctx = date_resolver.resolve(extraction, today, override)
+    return _apply_defaults_keep_meta(events), ctx
+
+
+async def extract_syllabus(
+    text: str,
+    today: date | None = None,
+    model: str | None = None,
+    override: TermOverride | None = None,
+) -> ExtractionOutcome:
+    """Transcribe with the LLM, then resolve dates deterministically.
+
+    If the structured call fails (schema/refusal/timeout), fall back to the
+    legacy one-shot extraction so the user still gets events.
+    """
+    today = today or date.today()
+    started = time.monotonic()
+    try:
+        extraction, raw = await transcribe_syllabus(text, today, model)
+        extraction = date_resolver.sanitize(extraction, text)
+        events, ctx = resolve_extraction(extraction, today, override)
+    except Exception:
+        logger.exception("Structured syllabus extraction failed; using legacy path")
+        events = await extract_events(text)
+        logger.info(
+            "syllabus_extraction fallback=true model=%s events=%d seconds=%.1f",
+            model or settings.openai_model,
+            len(events),
+            time.monotonic() - started,
+        )
+        return ExtractionOutcome(
+            events=events, term_context=None, extraction=None, raw=""
+        )
+
+    confidence = {
+        c: sum(e.date_confidence == c for e in events)
+        for c in ("exact", "inferred", "estimated")
+    }
+    logger.info(
+        "syllabus_extraction fallback=false model=%s events=%d exact=%d inferred=%d "
+        "estimated=%d term=%s anchor=%s year=%s seconds=%.1f",
+        model or settings.openai_model,
+        len(events),
+        confidence["exact"],
+        confidence["inferred"],
+        confidence["estimated"],
+        ctx.term_id,
+        ctx.anchor_source,
+        ctx.year_source,
+        time.monotonic() - started,
+    )
+    return ExtractionOutcome(
+        events=events, term_context=ctx, extraction=extraction, raw=raw
+    )
 
 
 def _parse_events(raw: str) -> list[ParsedEvent]:

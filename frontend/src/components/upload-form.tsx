@@ -111,6 +111,8 @@ export function UploadForm() {
         events: result.events,
         courseCode: result.courseCode,
         syllabusName: syllabusName.trim(),
+        termContext: result.termContext,
+        extraction: result.extraction,
       });
 
       router.push("/results");

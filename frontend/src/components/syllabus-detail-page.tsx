@@ -18,17 +18,26 @@ import {
   deleteSyllabus,
   downloadSyllabusFiles,
   getSyllabusDetail,
+  resolveSavedSyllabusDates,
   updateEvent,
   updateSyllabusTimezone,
 } from "@/lib/api";
-import type { SyllabusDetail } from "@/types";
+import type { SyllabusDetail, TermOverride } from "@/types";
 import { getDefaultTimezone } from "@/lib/timezones";
 import { ConfirmDialog } from "./confirm-dialog";
 import { EventList } from "./event-list";
 import { ExportButtons } from "./export-buttons";
 import { Header } from "./header";
 import { RequireAuth } from "./require-auth";
+import { TermContextBanner } from "./term-context-banner";
 import { TimezonePicker } from "./timezone-picker";
+
+const REDATE_CONFIRM_COPY = {
+  title: "Recalculate event dates?",
+  message:
+    "Events you edited are kept as they are. Events you deleted stay deleted. All other events are recalculated from the new term dates.",
+  confirmText: "Recalculate",
+};
 
 function formatCreatedAt(value: string): string {
   return new Date(value).toLocaleString();
@@ -161,6 +170,18 @@ function SyllabusDetailContent() {
           }
         : current
     );
+  }
+
+  async function handleResolveDates(override: TermOverride) {
+    if (!detail) {
+      return;
+    }
+
+    const nextDetail = await resolveSavedSyllabusDates(
+      detail.syllabus.id,
+      override
+    );
+    setDetail(nextDetail);
   }
 
   async function handleDownload() {
@@ -448,6 +469,19 @@ function SyllabusDetailContent() {
                 Edit details in place. Changes are persisted to the backend
                 immediately when you save.
               </p>
+              {detail.syllabus.termContext ? (
+                <div className="mt-4">
+                  <TermContextBanner
+                    termContext={detail.syllabus.termContext}
+                    // Re-dating rewrites saved events, so always confirm.
+                    hasEdits
+                    onApply={
+                      detail.syllabus.canRedate ? handleResolveDates : undefined
+                    }
+                    confirmCopy={REDATE_CONFIRM_COPY}
+                  />
+                </div>
+              ) : null}
               <div className="mt-6">
                 <EventList
                   events={detail.events}

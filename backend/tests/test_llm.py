@@ -718,3 +718,144 @@ class TestCostAndTimeoutGuards:
     def test_timeout_is_bounded(self) -> None:
         """Timeout is well under the SDK's 600s default."""
         assert 0 < OPENAI_TIMEOUT_SECONDS < 600
+
+
+# ---------------------------------------------------------------------------
+# Transcribe-then-resolve pipeline (extract_syllabus)
+# ---------------------------------------------------------------------------
+
+_TRANSCRIPTION = {
+    "course_code": "CSC263H1S",
+    "term": {"season": "winter", "year": 2026, "campus": "st_george", "evidence": ""},
+    "schedule_anchor": {
+        "week1_month": None,
+        "week1_day": None,
+        "evidence": "",
+        "reading_week_numbered": None,
+    },
+    "meetings": [],
+    "week_dates": [],
+    "events": [
+        {
+            "title": "Quiz 1",
+            "event_type": "quiz",
+            "description": "",
+            "date_kind": "week",
+            "date": None,
+            "stated_weekday": "wednesday",
+            "week": 3,
+            "in_class": False,
+            "meeting_kind": None,
+            "time": None,
+            "duration_minutes": None,
+            "source_text": "Week 3: Quiz 1",
+        }
+    ],
+    "recurring": [],
+}
+
+
+def _mock_client(content: str) -> MagicMock:
+    client = MagicMock()
+    message = MagicMock()
+    message.content = content
+    choice = MagicMock()
+    choice.message = message
+    response = MagicMock()
+    response.choices = [choice]
+    client.chat.completions.create = AsyncMock(return_value=response)
+    return client
+
+
+class TestExtractSyllabus:
+    @pytest.mark.asyncio
+    async def test_uses_strict_schema_and_injects_upload_date(self) -> None:
+        from datetime import date
+
+        from app.services.llm import extract_syllabus
+
+        client = _mock_client(json.dumps(_TRANSCRIPTION))
+        with patch("app.services.llm.AsyncOpenAI", return_value=client):
+            await extract_syllabus("Week 3: Quiz 1", today=date(2025, 12, 29))
+
+        kwargs = client.chat.completions.create.await_args.kwargs
+        assert kwargs["response_format"]["type"] == "json_schema"
+        assert kwargs["response_format"]["json_schema"]["strict"] is True
+        assert kwargs["messages"][1]["content"].startswith(
+            "Upload date: 2025-12-29 (Monday)"
+        )
+        assert kwargs["temperature"] == 0.0
+
+    @pytest.mark.asyncio
+    async def test_reasoning_models_get_reasoning_params(self) -> None:
+        from datetime import date
+
+        from app.services.llm import extract_syllabus
+
+        client = _mock_client(json.dumps(_TRANSCRIPTION))
+        with patch("app.services.llm.AsyncOpenAI", return_value=client):
+            await extract_syllabus("x", today=date(2025, 12, 29), model="gpt-5.6-luna")
+
+        kwargs = client.chat.completions.create.await_args.kwargs
+        assert "temperature" not in kwargs
+        assert kwargs["reasoning_effort"] == "low"
+        assert "max_completion_tokens" in kwargs
+
+    @pytest.mark.asyncio
+    async def test_grounding_applied_and_dates_resolved(self) -> None:
+        from datetime import date
+
+        from app.services.llm import extract_syllabus
+
+        client = _mock_client(json.dumps(_TRANSCRIPTION))
+        with patch("app.services.llm.AsyncOpenAI", return_value=client):
+            outcome = await extract_syllabus(
+                "Schedule\nWeek 3: Quiz 1\n", today=date(2025, 12, 29)
+            )
+
+        # "wednesday" is not printed anywhere -> dropped -> Monday of week 3
+        assert outcome.extraction.events[0].stated_weekday is None
+        assert outcome.events[0].due_date.date().weekday() == 0
+        assert outcome.events[0].date_confidence == "estimated"
+        assert outcome.term_context.term_id == "2026W"
+
+    @pytest.mark.asyncio
+    async def test_invalid_json_raises_value_error(self) -> None:
+        from datetime import date
+
+        from app.services.llm import extract_syllabus
+
+        client = _mock_client("not json")
+        with patch("app.services.llm.AsyncOpenAI", return_value=client):
+            with pytest.raises(ValueError):
+                await extract_syllabus("x", today=date(2025, 12, 29))
+
+
+@pytest.mark.asyncio
+async def test_extract_syllabus_falls_back_to_legacy_on_failure() -> None:
+    from datetime import date
+
+    from app.services.llm import extract_syllabus
+
+    legacy = [
+        ParsedEvent(
+            title="Midterm", due_date=datetime(2026, 2, 26, 10, 0), event_type="exam"
+        )
+    ]
+    with (
+        patch(
+            "app.services.llm.transcribe_syllabus",
+            new_callable=AsyncMock,
+            side_effect=ValueError("bad schema"),
+        ),
+        patch(
+            "app.services.llm.extract_events",
+            new_callable=AsyncMock,
+            return_value=legacy,
+        ),
+    ):
+        outcome = await extract_syllabus("text", today=date(2025, 12, 29))
+
+    assert outcome.events == legacy
+    assert outcome.term_context is None
+    assert outcome.extraction is None

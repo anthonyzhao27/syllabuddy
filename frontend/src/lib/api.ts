@@ -1,12 +1,14 @@
 import type {
   ApiDeleteResponse,
   ApiEvent,
+  ApiEventInput,
   ApiParseResponse,
   ApiSavedEvent,
   ApiSaveResponse,
   ApiSyllabus,
   ApiSyllabusDetailResponse,
   ApiSyllabusListResponse,
+  ApiTermContext,
   EventType,
   ParsedEvent,
   ParseSyllabusResult,
@@ -15,6 +17,9 @@ import type {
   SavedSyllabus,
   SaveSyllabusResult,
   SyllabusDetail,
+  SyllabusExtraction,
+  TermContext,
+  TermOverride,
 } from "@/types";
 import { EVENT_TYPES } from "@/types";
 import { getCurrentPath, redirectToLogin } from "./auth-redirect";
@@ -76,6 +81,8 @@ function toSavedSyllabus(raw: ApiSyllabus): SavedSyllabus {
     createdAt: raw.created_at,
     eventCount: raw.event_count,
     timezone: raw.timezone,
+    termContext: raw.term_context ? toTermContext(raw.term_context) : null,
+    canRedate: raw.can_redate ?? false,
   };
 }
 
@@ -90,6 +97,8 @@ export function toSavedEvent(raw: ApiSavedEvent): SavedEvent {
     description: raw.description,
     durationMinutes: raw.duration_minutes,
     isEdited: raw.is_edited,
+    dateConfidence: raw.date_confidence ?? null,
+    dateSource: raw.date_source ?? "",
   };
 }
 
@@ -102,11 +111,78 @@ export function toParsedEvent(raw: ApiEvent): ParsedEvent {
     type: normalizeEventType(raw.event_type),
     description: raw.description,
     durationMinutes: raw.duration_minutes,
+    dateConfidence: raw.date_confidence ?? null,
+    dateSource: raw.date_source ?? "",
+    sourceKey: raw.source_key ?? "",
   };
 }
 
-function toApiEvent(event: ParsedEvent): ApiEvent {
+export function toTermContext(raw: ApiTermContext): TermContext {
   return {
+    termId: raw.term_id,
+    label: raw.label,
+    season: raw.season,
+    year: raw.year,
+    campus: raw.campus,
+    division: raw.division,
+    week1Monday: raw.week1_monday,
+    readingWeekNumbered: raw.reading_week_numbered,
+    classesStart: raw.classes_start,
+    classesEnd: raw.classes_end,
+    readingWeek: raw.reading_week,
+    examPeriod: raw.exam_period,
+    anchorSource: raw.anchor_source,
+    yearSource: raw.year_source,
+  };
+}
+
+function toApiTermContext(context: TermContext): ApiTermContext {
+  return {
+    term_id: context.termId,
+    label: context.label,
+    season: context.season,
+    year: context.year,
+    campus: context.campus,
+    division: context.division,
+    week1_monday: context.week1Monday,
+    reading_week_numbered: context.readingWeekNumbered,
+    classes_start: context.classesStart,
+    classes_end: context.classesEnd,
+    reading_week: context.readingWeek,
+    exam_period: context.examPeriod,
+    anchor_source: context.anchorSource,
+    year_source: context.yearSource,
+  };
+}
+
+function toApiTermOverride(override: TermOverride) {
+  return {
+    season: override.season,
+    year: override.year,
+    campus: override.campus,
+    week1_monday: override.week1Monday,
+    reading_week_numbered: override.readingWeekNumbered,
+  };
+}
+
+function toSyllabusDetail(data: ApiSyllabusDetailResponse): SyllabusDetail {
+  return {
+    syllabus: toSavedSyllabus(data.syllabus),
+    events: data.events.map(toSavedEvent),
+  };
+}
+
+function toParseSyllabusResult(data: ApiParseResponse): ParseSyllabusResult {
+  return {
+    events: data.events.map(toParsedEvent),
+    courseCode: data.course_code,
+    termContext: data.term_context ? toTermContext(data.term_context) : null,
+    extraction: data.extraction ?? null,
+  };
+}
+
+function toApiEvent(event: ParsedEvent): ApiEventInput {
+  const apiEvent: ApiEventInput = {
     title: event.title,
     due_date: event.time
       ? `${event.date}T${event.time}:00`
@@ -117,9 +193,23 @@ function toApiEvent(event: ParsedEvent): ApiEvent {
     time_specified: event.time !== null,
     duration_minutes: event.durationMinutes,
   };
+
+  if (event.dateConfidence) {
+    apiEvent.date_confidence = event.dateConfidence;
+  }
+
+  if (event.dateSource) {
+    apiEvent.date_source = event.dateSource;
+  }
+
+  if (event.sourceKey) {
+    apiEvent.source_key = event.sourceKey;
+  }
+
+  return apiEvent;
 }
 
-function toApiExportEvent(event: SavedEvent): ApiEvent {
+function toApiExportEvent(event: SavedEvent): ApiEventInput {
   return {
     title: event.title,
     due_date: event.time
@@ -243,18 +333,38 @@ export async function parseSyllabus(
     body: formData,
   });
   const data = (await response.json()) as ApiParseResponse;
-
-  return {
-    events: data.events.map(toParsedEvent),
-    courseCode: data.course_code,
-  };
+  return toParseSyllabusResult(data);
 }
+
+export async function resolveSyllabusDates(
+  extraction: SyllabusExtraction,
+  override: TermOverride
+): Promise<ParseSyllabusResult> {
+  const response = await apiFetch("/parse/resolve", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      extraction,
+      override: toApiTermOverride(override),
+    }),
+  });
+  const data = (await response.json()) as ApiParseResponse;
+  return toParseSyllabusResult(data);
+}
+
+type SaveSyllabusTermData = {
+  termContext?: TermContext | null;
+  extraction?: SyllabusExtraction | null;
+};
 
 export async function saveSyllabus(
   files: File[],
   events: ParsedEvent[],
   syllabusName?: string,
-  timezone?: string
+  timezone?: string,
+  termData: SaveSyllabusTermData = {}
 ): Promise<SaveSyllabusResult> {
   const formData = new FormData();
 
@@ -270,6 +380,18 @@ export async function saveSyllabus(
 
   if (timezone) {
     formData.append("timezone", timezone);
+  }
+
+  // Lets the saved syllabus be re-dated later without another LLM call.
+  if (termData.termContext) {
+    formData.append(
+      "term_context_json",
+      JSON.stringify(toApiTermContext(termData.termContext))
+    );
+  }
+
+  if (termData.extraction) {
+    formData.append("extraction_json", JSON.stringify(termData.extraction));
   }
 
   const response = await apiFetch("/files/", {
@@ -292,11 +414,24 @@ export async function getSyllabi(): Promise<SavedSyllabus[]> {
 export async function getSyllabusDetail(id: string): Promise<SyllabusDetail> {
   const response = await apiFetch(`/files/${id}`);
   const data = (await response.json()) as ApiSyllabusDetailResponse;
+  return toSyllabusDetail(data);
+}
 
-  return {
-    syllabus: toSavedSyllabus(data.syllabus),
-    events: data.events.map(toSavedEvent),
-  };
+export async function resolveSavedSyllabusDates(
+  syllabusId: string,
+  override: TermOverride
+): Promise<SyllabusDetail> {
+  const response = await apiFetch(`/files/${syllabusId}/resolve`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      override: toApiTermOverride(override),
+    }),
+  });
+  const data = (await response.json()) as ApiSyllabusDetailResponse;
+  return toSyllabusDetail(data);
 }
 
 export async function deleteSyllabus(id: string): Promise<ApiDeleteResponse> {

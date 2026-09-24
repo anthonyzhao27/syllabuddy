@@ -261,3 +261,288 @@ def test_delete_event(
 
     assert response.status_code == 200
     assert response.json()["message"] == "Event deleted"
+
+
+_EXTRACTION = {
+    "course_code": "CSC263H1S",
+    "term": {"season": "winter", "year": 2026, "campus": "st_george", "evidence": ""},
+    "schedule_anchor": {
+        "week1_month": None,
+        "week1_day": None,
+        "evidence": "",
+        "reading_week_numbered": False,
+    },
+    "meetings": [],
+    "week_dates": [],
+    "events": [
+        {
+            "title": "Essay",
+            "event_type": "assignment",
+            "description": "",
+            "date_kind": "week",
+            "date": None,
+            "stated_weekday": None,
+            "week": 3,
+            "in_class": False,
+            "meeting_kind": None,
+            "time": None,
+            "duration_minutes": None,
+            "source_text": "Week 3: essay",
+        },
+        {
+            "title": "Quiz 1",
+            "event_type": "quiz",
+            "description": "",
+            "date_kind": "week",
+            "date": None,
+            "stated_weekday": None,
+            "week": 4,
+            "in_class": False,
+            "meeting_kind": None,
+            "time": None,
+            "duration_minutes": None,
+            "source_text": "Week 4: quiz 1",
+        },
+    ],
+    "recurring": [],
+}
+
+
+def _term_context() -> dict:
+    from datetime import date
+
+    from app.models.schemas import LLMSyllabus
+    from app.services.llm import resolve_extraction
+
+    _, ctx = resolve_extraction(
+        LLMSyllabus.model_validate(_EXTRACTION), date(2025, 12, 29)
+    )
+    return ctx.model_dump(mode="json")
+
+
+@patch("app.routers.files.syllabi_service.get_event", new_callable=AsyncMock)
+@patch("app.routers.files.syllabi_service.update_event", new_callable=AsyncMock)
+def test_update_event_date_clears_confidence(
+    mock_update_event: AsyncMock,
+    mock_get_event: AsyncMock,
+    authenticated_client: TestClient,
+) -> None:
+    mock_get_event.return_value = _event_row()
+    mock_update_event.return_value = {**_event_row(), "is_edited": True}
+
+    response = authenticated_client.patch(
+        "/files/syllabus-1/events/event-1", json={"due_date": "2025-02-01"}
+    )
+
+    assert response.status_code == 200
+    update_data = mock_update_event.await_args.args[3]
+    assert update_data["date_confidence"] is None
+    assert update_data["date_source"] == ""
+
+
+@patch("app.routers.files.syllabi_service.get_syllabus", new_callable=AsyncMock)
+@patch(
+    "app.routers.files.syllabi_service.get_events_for_syllabus",
+    new_callable=AsyncMock,
+)
+def test_detail_exposes_term_context_and_confidence(
+    mock_get_events: AsyncMock,
+    mock_get_syllabus: AsyncMock,
+    authenticated_client: TestClient,
+) -> None:
+    mock_get_syllabus.return_value = {
+        **_syllabus_row(),
+        "term_context": _term_context(),
+        "extraction": _EXTRACTION,
+    }
+    mock_get_events.return_value = [
+        {**_event_row(), "date_confidence": "inferred", "date_source": "Week 3"}
+    ]
+
+    body = authenticated_client.get("/files/syllabus-1").json()
+
+    assert body["syllabus"]["term_context"]["term_id"] == "2026W"
+    assert body["syllabus"]["can_redate"] is True
+    assert body["events"][0]["date_confidence"] == "inferred"
+
+
+@patch("app.routers.files.syllabi_service.get_syllabus", new_callable=AsyncMock)
+def test_resolve_saved_requires_stored_extraction(
+    mock_get_syllabus: AsyncMock,
+    authenticated_client: TestClient,
+) -> None:
+    mock_get_syllabus.return_value = _syllabus_row()
+    response = authenticated_client.post("/files/syllabus-1/resolve", json={})
+    assert response.status_code == 409
+
+
+@patch("app.routers.files.syllabi_service.get_syllabus", new_callable=AsyncMock)
+@patch(
+    "app.routers.files.syllabi_service.get_events_for_syllabus",
+    new_callable=AsyncMock,
+)
+@patch("app.routers.files.syllabi_service.save_events", new_callable=AsyncMock)
+@patch("app.routers.files.syllabi_service.delete_events", new_callable=AsyncMock)
+@patch(
+    "app.routers.files.syllabi_service.update_syllabus_term_context",
+    new_callable=AsyncMock,
+)
+@patch(
+    "app.routers.files.syllabi_service.get_deleted_events",
+    new_callable=AsyncMock,
+    return_value=[{"title": "Quiz 1", "source_key": "e1"}],
+)
+def test_resolve_saved_keeps_edited_and_replaces_rest(
+    mock_deleted: AsyncMock,
+    mock_update_ctx: AsyncMock,
+    mock_soft_delete: AsyncMock,
+    mock_save: AsyncMock,
+    mock_get_events: AsyncMock,
+    mock_get_syllabus: AsyncMock,
+    authenticated_client: TestClient,
+) -> None:
+    row = {
+        **_syllabus_row(),
+        "parsed_at": "2025-12-29T12:00:00+00:00",
+        "term_context": _term_context(),
+        "extraction": _EXTRACTION,
+    }
+    mock_get_syllabus.return_value = row
+    mock_update_ctx.return_value = row
+    edited = {
+        **_event_row("e-edited"),
+        "title": "Midterm",
+        "is_edited": True,
+        "source_key": "e9",
+    }
+    stale = {**_event_row("e-stale"), "title": "Essay", "source_key": "e0"}
+    mock_get_events.side_effect = [[edited, stale], [edited]]
+
+    response = authenticated_client.post(
+        "/files/syllabus-1/resolve",
+        json={"override": {"week1_monday": "2026-01-12"}},
+    )
+
+    assert response.status_code == 200
+    saved = mock_save.await_args.args[3]
+    assert [e.title for e in saved] == ["Essay"]
+    # week 3 with week 1 = Jan 12 -> Monday Jan 26
+    assert saved[0].due_date.date().isoformat() == "2026-01-26"
+    assert mock_soft_delete.await_args.args[2] == ["e-stale"]
+    assert mock_update_ctx.await_args.args[2]["anchor_source"] == "user"
+
+
+@pytest.mark.parametrize("valid", [True, False])
+@patch("app.routers.files.classify_upload", new_callable=AsyncMock)
+@patch("app.routers.files.storage_service.upload_files", new_callable=AsyncMock)
+@patch("app.routers.files.syllabi_service.create_syllabus", new_callable=AsyncMock)
+@patch("app.routers.files.syllabi_service.save_events", new_callable=AsyncMock)
+def test_save_persists_term_context_and_extraction(
+    mock_save_events: AsyncMock,
+    mock_create: AsyncMock,
+    mock_upload: AsyncMock,
+    mock_classify: AsyncMock,
+    valid: bool,
+    authenticated_client: TestClient,
+    generated_pdf_path,
+) -> None:
+    import json
+
+    mock_classify.return_value = "application/pdf"
+    mock_upload.return_value = {"paths": ["u/s.pdf"], "total_size": 10}
+    mock_create.return_value = {"id": "syllabus-1"}
+    events = [
+        {
+            "title": "Essay",
+            "due_date": "2026-01-19T23:59:00",
+            "course": "CSC263H1S",
+            "event_type": "assignment",
+            "description": "",
+            "time_specified": False,
+            "duration_minutes": None,
+            "date_confidence": "estimated",
+            "date_source": "Week 3 → Monday (no day given)",
+        }
+    ]
+    response = authenticated_client.post(
+        "/files/",
+        files=[
+            ("files", ("s.pdf", generated_pdf_path.read_bytes(), "application/pdf"))
+        ],
+        data={
+            "events_json": json.dumps(events),
+            "term_context_json": json.dumps(_term_context()) if valid else "{bad",
+            "extraction_json": json.dumps(_EXTRACTION),
+        },
+    )
+
+    assert response.status_code == 200
+    kwargs = mock_create.await_args.kwargs
+    if valid:
+        assert kwargs["term_context"]["term_id"] == "2026W"
+        assert kwargs["extraction"]["course_code"] == "CSC263H1S"
+    else:
+        assert kwargs["term_context"] is None and kwargs["extraction"] is None
+    saved = mock_save_events.await_args.args[3]
+    assert saved[0].date_confidence == "estimated"
+
+
+@patch("app.routers.files.syllabi_service.get_syllabus", new_callable=AsyncMock)
+@patch(
+    "app.routers.files.syllabi_service.get_events_for_syllabus",
+    new_callable=AsyncMock,
+)
+@patch("app.routers.files.syllabi_service.save_events", new_callable=AsyncMock)
+@patch("app.routers.files.syllabi_service.delete_events", new_callable=AsyncMock)
+@patch(
+    "app.routers.files.syllabi_service.update_syllabus_term_context",
+    new_callable=AsyncMock,
+)
+@patch("app.routers.files.syllabi_service.get_deleted_events", new_callable=AsyncMock)
+def test_resolve_saved_deleting_one_recurring_instance_keeps_the_rest(
+    mock_deleted: AsyncMock,
+    mock_update_ctx: AsyncMock,
+    mock_delete: AsyncMock,
+    mock_save: AsyncMock,
+    mock_get_events: AsyncMock,
+    mock_get_syllabus: AsyncMock,
+    authenticated_client: TestClient,
+) -> None:
+    extraction = {
+        **_EXTRACTION,
+        "events": [],
+        "recurring": [
+            {
+                "title": "Weekly Quiz",
+                "event_type": "quiz",
+                "description": "",
+                "weekday": "friday",
+                "in_class": False,
+                "meeting_kind": None,
+                "time": None,
+                "weeks": [2, 3, 4],
+                "first_date": None,
+                "last_date": None,
+                "every_n_weeks": 1,
+                "excluded_weeks": [],
+                "duration_minutes": None,
+                "source_text": "quiz every Friday, weeks 2-4",
+            }
+        ],
+    }
+    row = {
+        **_syllabus_row(),
+        "parsed_at": "2025-12-29T12:00:00+00:00",
+        "term_context": _term_context(),
+        "extraction": extraction,
+    }
+    mock_get_syllabus.return_value = row
+    mock_update_ctx.return_value = row
+    mock_deleted.return_value = [{"title": "Weekly Quiz", "source_key": "r0:1"}]
+    mock_get_events.side_effect = [[], []]
+
+    response = authenticated_client.post("/files/syllabus-1/resolve", json={})
+
+    assert response.status_code == 200
+    saved = mock_save.await_args.args[3]
+    assert [e.source_key for e in saved] == ["r0:0", "r0:2"]

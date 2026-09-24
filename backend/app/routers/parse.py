@@ -1,17 +1,18 @@
 import logging
 from collections import Counter
+from datetime import date
 
 from fastapi import APIRouter, Depends, File, HTTPException, Request, UploadFile
 
 from app.middleware.auth import AuthenticatedUser, get_current_user
 from app.middleware.limiter import limiter
-from app.models.schemas import ParseResponse
+from app.models.schemas import LLMSyllabus, ParseResponse, ResolveRequest
 from app.services.extraction import (
     classify_upload,
     extract_text,
     extract_text_from_images,
 )
-from app.services.llm import extract_events
+from app.services.llm import extract_syllabus, resolve_extraction
 from app.services import storage as storage_service
 
 router = APIRouter()
@@ -58,7 +59,7 @@ async def parse_syllabus(
         text = await extract_text(files[0], user.access_token, mime=first_kind)
 
     try:
-        events = await extract_events(text)
+        outcome = await extract_syllabus(text, today=date.today())
     except ValueError as e:
         raise HTTPException(
             status_code=502,
@@ -73,7 +74,45 @@ async def parse_syllabus(
             detail="LLM service unavailable. Please try again.",
         )
 
+    events = outcome.events
     course_codes = [event.course.strip() for event in events if event.course.strip()]
     course_code = Counter(course_codes).most_common(1)[0][0] if course_codes else None
 
-    return ParseResponse(events=events, course_code=course_code)
+    return ParseResponse(
+        events=events,
+        course_code=course_code,
+        term_context=outcome.term_context,
+        extraction=(
+            outcome.extraction.model_dump(mode="json") if outcome.extraction else None
+        ),
+    )
+
+
+@router.post("/resolve", response_model=ParseResponse)
+@limiter.limit("120/hour")
+async def resolve_syllabus_dates(
+    request: Request,
+    body: ResolveRequest,
+    user: AuthenticatedUser = Depends(get_current_user),
+) -> ParseResponse:
+    """Re-date a parsed syllabus with a corrected term anchor. No LLM call."""
+    try:
+        extraction = LLMSyllabus.model_validate(body.extraction)
+    except Exception:
+        raise HTTPException(status_code=422, detail="Invalid extraction payload.")
+
+    events, ctx = resolve_extraction(
+        extraction, body.today or date.today(), body.override
+    )
+    logger.info(
+        "syllabus_resolve anchor=%s year=%s override=%s",
+        ctx.anchor_source,
+        ctx.year_source,
+        body.override.model_dump(exclude_none=True, mode="json"),
+    )
+    return ParseResponse(
+        events=events,
+        course_code=extraction.course_code or None,
+        term_context=ctx,
+        extraction=extraction.model_dump(mode="json"),
+    )

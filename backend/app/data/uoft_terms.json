@@ -1,0 +1,2989 @@
+{
+  "terms": [
+    {
+      "term_id": "2019F",
+      "division": "artsci_stg",
+      "classes_start": "2019-09-05",
+      "classes_end": "2019-12-05",
+      "reading_week": [
+        "2019-11-04",
+        "2019-11-08"
+      ],
+      "holidays": [
+        {
+          "date": "2019-10-14",
+          "name": "Thanksgiving"
+        }
+      ],
+      "notes": "Dec 4, 2019 was the last day of regularly scheduled classes; Dec 5 was a make-up day for Monday classes (instructor's discretion) due to Thanksgiving. Study break Dec 6. University closed for Winter Holidays Dec 23, 2019 - Jan 3, 2020 inclusive. Labour Day (Sept 2, 2019) preceded the start of classes and is not counted as an in-term holiday.",
+      "exam_period": [
+        "2019-12-07",
+        "2019-12-20"
+      ],
+      "source_url": "https://www.artsci.utoronto.ca/current/dates-deadlines/archived-academic-dates-deadlines"
+    },
+    {
+      "term_id": "2020W",
+      "division": "artsci_stg",
+      "classes_start": "2020-01-06",
+      "classes_end": "2020-04-03",
+      "reading_week": [
+        "2020-02-17",
+        "2020-02-21"
+      ],
+      "holidays": [
+        {
+          "date": "2020-02-17",
+          "name": "Family Day"
+        },
+        {
+          "date": "2020-04-10",
+          "name": "Good Friday"
+        }
+      ],
+      "notes": "Family Day fell on the first day of Reading Week. Good Friday (Apr 10, 2020) fell after classes ended (Apr 3) and before the exam period (Apr 6-25); no makeup-day rule was stated this term (COVID-19 transition term; several deadlines extended, e.g. last day to cancel S/Y courses pushed to May 12, 2020).",
+      "exam_period": [
+        "2020-04-06",
+        "2020-04-25"
+      ],
+      "source_url": "https://www.artsci.utoronto.ca/current/dates-deadlines/archived-academic-dates-deadlines"
+    },
+    {
+      "term_id": "2020SF",
+      "division": "artsci_stg",
+      "classes_start": "2020-05-04",
+      "classes_end": "2020-06-15",
+      "reading_week": null,
+      "holidays": [
+        {
+          "date": "2020-05-18",
+          "name": "Victoria Day"
+        }
+      ],
+      "notes": "No make-up day listed for F courses. Study day June 16, 2020.",
+      "exam_period": [
+        "2020-06-17",
+        "2020-06-25"
+      ],
+      "source_url": "https://www.artsci.utoronto.ca/current/dates-deadlines/archived-academic-dates-deadlines"
+    },
+    {
+      "term_id": "2020SS",
+      "division": "artsci_stg",
+      "classes_start": "2020-07-06",
+      "classes_end": "2020-08-17",
+      "reading_week": null,
+      "holidays": [
+        {
+          "date": "2020-08-03",
+          "name": "Civic Holiday"
+        }
+      ],
+      "notes": "Canada Day (Jul 1) and Presidential Days (Jun 29-30) preceded the start of S classes (Jul 6) and are not counted as in-term holidays for S.",
+      "exam_period": [
+        "2020-08-19",
+        "2020-08-27"
+      ],
+      "source_url": "https://www.artsci.utoronto.ca/current/dates-deadlines/archived-academic-dates-deadlines"
+    },
+    {
+      "term_id": "2020SY",
+      "division": "artsci_stg",
+      "classes_start": "2020-05-04",
+      "classes_end": "2020-08-17",
+      "reading_week": null,
+      "holidays": [
+        {
+          "date": "2020-05-18",
+          "name": "Victoria Day"
+        },
+        {
+          "date": "2020-06-29",
+          "name": "Presidential Day"
+        },
+        {
+          "date": "2020-06-30",
+          "name": "Presidential Day"
+        },
+        {
+          "date": "2020-07-01",
+          "name": "Canada Day"
+        },
+        {
+          "date": "2020-08-03",
+          "name": "Civic Holiday"
+        }
+      ],
+      "notes": "Y courses ran continuously May 4 - Aug 17, 2020 spanning both F and S sub-sessions.",
+      "exam_period": [
+        "2020-08-19",
+        "2020-08-27"
+      ],
+      "source_url": "https://www.artsci.utoronto.ca/current/dates-deadlines/archived-academic-dates-deadlines"
+    },
+    {
+      "term_id": "2020F",
+      "division": "artsci_stg",
+      "classes_start": "2020-09-10",
+      "classes_end": "2020-12-10",
+      "reading_week": [
+        "2020-11-09",
+        "2020-11-13"
+      ],
+      "holidays": [
+        {
+          "date": "2020-10-12",
+          "name": "Thanksgiving"
+        }
+      ],
+      "notes": "Dec 9, 2020 last regular class day; Dec 10 make-up day (instructor discretion). University closed for Winter Holidays Dec 23, 2020 - Jan 1, 2021 inclusive. Remote-instruction (COVID-19) term.",
+      "exam_period": [
+        "2020-12-11",
+        "2020-12-22"
+      ],
+      "source_url": "https://www.artsci.utoronto.ca/current/dates-deadlines/archived-academic-dates-deadlines"
+    },
+    {
+      "term_id": "2021W",
+      "division": "artsci_stg",
+      "classes_start": "2021-01-11",
+      "classes_end": "2021-04-12",
+      "reading_week": [
+        "2021-02-15",
+        "2021-02-19"
+      ],
+      "holidays": [
+        {
+          "date": "2021-02-15",
+          "name": "Family Day"
+        },
+        {
+          "date": "2021-04-02",
+          "name": "Good Friday"
+        }
+      ],
+      "notes": "Family Day fell on first day of Reading Week. Classes ended Apr 9; Apr 12 make-up day for Good Friday (Apr 2). Most final assessments scheduled Apr 13-23, but some had due dates up to and including Apr 30 (COVID-19 era flexibility).",
+      "exam_period": [
+        "2021-04-13",
+        "2021-04-23"
+      ],
+      "source_url": "https://www.artsci.utoronto.ca/current/dates-deadlines/archived-academic-dates-deadlines"
+    },
+    {
+      "term_id": "2021SF",
+      "division": "artsci_stg",
+      "classes_start": "2021-05-03",
+      "classes_end": "2021-06-15",
+      "reading_week": null,
+      "holidays": [
+        {
+          "date": "2021-05-21",
+          "name": "Presidential Day"
+        },
+        {
+          "date": "2021-05-24",
+          "name": "Victoria Day"
+        }
+      ],
+      "notes": "Jun 14, 2021 last regular class day; Jun 15 make-up day for classes missed on May 21 (President's Day).",
+      "exam_period": [
+        "2021-06-17",
+        "2021-06-28"
+      ],
+      "source_url": "https://www.artsci.utoronto.ca/current/dates-deadlines/archived-academic-dates-deadlines"
+    },
+    {
+      "term_id": "2021SS",
+      "division": "artsci_stg",
+      "classes_start": "2021-07-05",
+      "classes_end": "2021-08-16",
+      "reading_week": null,
+      "holidays": [
+        {
+          "date": "2021-08-02",
+          "name": "Civic Holiday"
+        }
+      ],
+      "notes": "Canada Day (Jul 1) and President's Day (Jul 2) preceded S classes (Jul 5) and are not counted as in-term holidays for S. No make-up day listed for Civic Holiday.",
+      "exam_period": [
+        "2021-08-18",
+        "2021-08-30"
+      ],
+      "source_url": "https://www.artsci.utoronto.ca/current/dates-deadlines/archived-academic-dates-deadlines"
+    },
+    {
+      "term_id": "2021SY",
+      "division": "artsci_stg",
+      "classes_start": "2021-05-03",
+      "classes_end": "2021-08-16",
+      "reading_week": null,
+      "holidays": [
+        {
+          "date": "2021-05-21",
+          "name": "Presidential Day"
+        },
+        {
+          "date": "2021-05-24",
+          "name": "Victoria Day"
+        },
+        {
+          "date": "2021-07-01",
+          "name": "Canada Day"
+        },
+        {
+          "date": "2021-07-02",
+          "name": "Presidential Day"
+        },
+        {
+          "date": "2021-08-02",
+          "name": "Civic Holiday"
+        }
+      ],
+      "notes": null,
+      "exam_period": [
+        "2021-08-18",
+        "2021-08-30"
+      ],
+      "source_url": "https://www.artsci.utoronto.ca/current/dates-deadlines/archived-academic-dates-deadlines"
+    },
+    {
+      "term_id": "2021F",
+      "division": "artsci_stg",
+      "classes_start": "2021-09-09",
+      "classes_end": "2021-12-09",
+      "reading_week": [
+        "2021-11-08",
+        "2021-11-12"
+      ],
+      "holidays": [
+        {
+          "date": "2021-10-11",
+          "name": "Thanksgiving"
+        }
+      ],
+      "notes": "Dec 8, 2021 last regular class day; classes scheduled on Mondays held their last class on Thursday Dec 9 to make up for Thanksgiving (Oct 11). University closed for Winter Holidays Dec 22-31, 2021 inclusive.",
+      "exam_period": [
+        "2021-12-10",
+        "2021-12-21"
+      ],
+      "source_url": "https://www.artsci.utoronto.ca/current/dates-deadlines/archived-academic-dates-deadlines"
+    },
+    {
+      "term_id": "2022W",
+      "division": "artsci_stg",
+      "classes_start": "2022-01-10",
+      "classes_end": "2022-04-08",
+      "reading_week": [
+        "2022-02-21",
+        "2022-02-25"
+      ],
+      "holidays": [
+        {
+          "date": "2022-02-21",
+          "name": "Family Day"
+        },
+        {
+          "date": "2022-04-15",
+          "name": "Good Friday"
+        }
+      ],
+      "notes": "Family Day fell on first day of Reading Week. Good Friday (Apr 15, 2022) fell within the final exam period (Apr 11-29); source explicitly notes 'no classes or final assessments' that day. No make-up day rule stated.",
+      "exam_period": [
+        "2022-04-11",
+        "2022-04-29"
+      ],
+      "source_url": "https://www.artsci.utoronto.ca/current/dates-deadlines/archived-academic-dates-deadlines"
+    },
+    {
+      "term_id": "2022SF",
+      "division": "artsci_stg",
+      "classes_start": "2022-05-09",
+      "classes_end": "2022-06-20",
+      "reading_week": null,
+      "holidays": [
+        {
+          "date": "2022-05-23",
+          "name": "Victoria Day"
+        }
+      ],
+      "notes": "No make-up day listed for F courses.",
+      "exam_period": [
+        "2022-06-22",
+        "2022-06-27"
+      ],
+      "source_url": "https://www.artsci.utoronto.ca/current/dates-deadlines/archived-academic-dates-deadlines"
+    },
+    {
+      "term_id": "2022SS",
+      "division": "artsci_stg",
+      "classes_start": "2022-07-04",
+      "classes_end": "2022-08-15",
+      "reading_week": null,
+      "holidays": [
+        {
+          "date": "2022-08-01",
+          "name": "Civic Holiday"
+        }
+      ],
+      "notes": "President's Day (Jun 30) and Canada Day (Jul 1) preceded S classes (Jul 4) and are not counted as in-term holidays for S. No make-up day listed.",
+      "exam_period": [
+        "2022-08-17",
+        "2022-08-25"
+      ],
+      "source_url": "https://www.artsci.utoronto.ca/current/dates-deadlines/archived-academic-dates-deadlines"
+    },
+    {
+      "term_id": "2022SY",
+      "division": "artsci_stg",
+      "classes_start": "2022-05-09",
+      "classes_end": "2022-08-15",
+      "reading_week": null,
+      "holidays": [
+        {
+          "date": "2022-05-23",
+          "name": "Victoria Day"
+        },
+        {
+          "date": "2022-06-30",
+          "name": "Presidential Day"
+        },
+        {
+          "date": "2022-07-01",
+          "name": "Canada Day"
+        },
+        {
+          "date": "2022-08-01",
+          "name": "Civic Holiday"
+        }
+      ],
+      "notes": null,
+      "exam_period": [
+        "2022-08-17",
+        "2022-08-25"
+      ],
+      "source_url": "https://www.artsci.utoronto.ca/current/dates-deadlines/archived-academic-dates-deadlines"
+    },
+    {
+      "term_id": "2022F",
+      "division": "artsci_stg",
+      "classes_start": "2022-09-08",
+      "classes_end": "2022-12-08",
+      "reading_week": [
+        "2022-11-07",
+        "2022-11-11"
+      ],
+      "holidays": [
+        {
+          "date": "2022-10-10",
+          "name": "Thanksgiving"
+        }
+      ],
+      "notes": "Dec 7, 2022 last regular class day; classes scheduled on Mondays held their last class Dec 8 to make up for Thanksgiving (Oct 10). Study Day Dec 9. University closed for Winter Holidays Dec 21-30, 2022 inclusive.",
+      "exam_period": [
+        "2022-12-10",
+        "2022-12-20"
+      ],
+      "source_url": "https://www.artsci.utoronto.ca/current/dates-deadlines/archived-academic-dates-deadlines"
+    },
+    {
+      "term_id": "2023W",
+      "division": "artsci_stg",
+      "classes_start": "2023-01-09",
+      "classes_end": "2023-04-10",
+      "reading_week": [
+        "2023-02-20",
+        "2023-02-24"
+      ],
+      "holidays": [
+        {
+          "date": "2023-02-20",
+          "name": "Family Day"
+        },
+        {
+          "date": "2023-04-07",
+          "name": "Good Friday"
+        }
+      ],
+      "notes": "Family Day fell on first day of Reading Week. Classes ended (regularly) Apr 6; Good Friday was Apr 7; Apr 10 (Monday) held as Friday-timetable make-up day for Good Friday.",
+      "exam_period": [
+        "2023-04-11",
+        "2023-04-28"
+      ],
+      "source_url": "https://www.artsci.utoronto.ca/current/dates-deadlines/archived-academic-dates-deadlines"
+    },
+    {
+      "term_id": "2023SF",
+      "division": "artsci_stg",
+      "classes_start": "2023-05-08",
+      "classes_end": "2023-06-19",
+      "reading_week": null,
+      "holidays": [
+        {
+          "date": "2023-05-22",
+          "name": "Victoria Day"
+        }
+      ],
+      "notes": "No make-up day listed for F courses.",
+      "exam_period": [
+        "2023-06-21",
+        "2023-06-26"
+      ],
+      "source_url": "https://www.artsci.utoronto.ca/current/dates-deadlines/archived-academic-dates-deadlines"
+    },
+    {
+      "term_id": "2023SS",
+      "division": "artsci_stg",
+      "classes_start": "2023-07-04",
+      "classes_end": "2023-08-15",
+      "reading_week": null,
+      "holidays": [
+        {
+          "date": "2023-08-07",
+          "name": "Civic Holiday"
+        }
+      ],
+      "notes": "Aug 14, 2023 last regular class day; classes scheduled on Mondays held their last class Aug 15 to make up for Civic Holiday (Aug 7). President's Day (Jun 30) and Canada Day (observed Jul 3, since Jul 1 fell on a Saturday) preceded S classes (Jul 4) and are not counted as in-term holidays for S.",
+      "exam_period": [
+        "2023-08-17",
+        "2023-08-25"
+      ],
+      "source_url": "https://www.artsci.utoronto.ca/current/dates-deadlines/archived-academic-dates-deadlines"
+    },
+    {
+      "term_id": "2023SY",
+      "division": "artsci_stg",
+      "classes_start": "2023-05-08",
+      "classes_end": "2023-08-15",
+      "reading_week": null,
+      "holidays": [
+        {
+          "date": "2023-05-22",
+          "name": "Victoria Day"
+        },
+        {
+          "date": "2023-06-30",
+          "name": "Presidential Day"
+        },
+        {
+          "date": "2023-07-03",
+          "name": "Canada Day"
+        },
+        {
+          "date": "2023-08-07",
+          "name": "Civic Holiday"
+        }
+      ],
+      "notes": "Canada Day observed Jul 3, 2023 (Jul 1 fell on a Saturday).",
+      "exam_period": [
+        "2023-08-17",
+        "2023-08-25"
+      ],
+      "source_url": "https://www.artsci.utoronto.ca/current/dates-deadlines/archived-academic-dates-deadlines"
+    },
+    {
+      "term_id": "2023F",
+      "division": "artsci_stg",
+      "classes_start": "2023-09-07",
+      "classes_end": "2023-12-07",
+      "reading_week": [
+        "2023-11-06",
+        "2023-11-10"
+      ],
+      "holidays": [
+        {
+          "date": "2023-10-09",
+          "name": "Thanksgiving"
+        }
+      ],
+      "notes": "Dec 6, 2023 last regular class day; classes scheduled on Mondays held their last class Dec 7 to make up for Thanksgiving. Study Day Dec 8. University closed for Winter Holidays Dec 21, 2023 - Jan 2, 2024 inclusive.",
+      "exam_period": [
+        "2023-12-09",
+        "2023-12-20"
+      ],
+      "source_url": "https://www.artsci.utoronto.ca/current/dates-deadlines/archived-academic-dates-deadlines"
+    },
+    {
+      "term_id": "2024W",
+      "division": "artsci_stg",
+      "classes_start": "2024-01-08",
+      "classes_end": "2024-04-08",
+      "reading_week": [
+        "2024-02-19",
+        "2024-02-23"
+      ],
+      "holidays": [
+        {
+          "date": "2024-02-19",
+          "name": "Family Day"
+        },
+        {
+          "date": "2024-03-29",
+          "name": "Good Friday"
+        }
+      ],
+      "notes": "Family Day fell on first day of Reading Week. Classes ended (regularly) Apr 5; Apr 8 (Monday) held as Friday-timetable make-up day for Good Friday (Mar 29). Study day Apr 9.",
+      "exam_period": [
+        "2024-04-10",
+        "2024-04-30"
+      ],
+      "source_url": "https://www.artsci.utoronto.ca/current/dates-deadlines/archived-academic-dates-deadlines"
+    },
+    {
+      "term_id": "2024SF",
+      "division": "artsci_stg",
+      "classes_start": "2024-05-06",
+      "classes_end": "2024-06-17",
+      "reading_week": null,
+      "holidays": [
+        {
+          "date": "2024-05-20",
+          "name": "Victoria Day"
+        }
+      ],
+      "notes": "No make-up day listed for F courses.",
+      "exam_period": [
+        "2024-06-19",
+        "2024-06-24"
+      ],
+      "source_url": "https://www.artsci.utoronto.ca/current/dates-deadlines/archived-academic-dates-deadlines"
+    },
+    {
+      "term_id": "2024SS",
+      "division": "artsci_stg",
+      "classes_start": "2024-07-02",
+      "classes_end": "2024-08-13",
+      "reading_week": null,
+      "holidays": [
+        {
+          "date": "2024-08-05",
+          "name": "Civic Holiday"
+        }
+      ],
+      "notes": "Aug 12, 2024 last regular class day; classes scheduled on Mondays held their last class Aug 13 to make up for Civic Holiday (Aug 5). President's Day (Jun 28) and Canada Day (Jul 1) preceded S classes (Jul 2) and are not counted as in-term holidays for S.",
+      "exam_period": [
+        "2024-08-15",
+        "2024-08-23"
+      ],
+      "source_url": "https://www.artsci.utoronto.ca/current/dates-deadlines/archived-academic-dates-deadlines"
+    },
+    {
+      "term_id": "2024SY",
+      "division": "artsci_stg",
+      "classes_start": "2024-05-06",
+      "classes_end": "2024-08-13",
+      "reading_week": null,
+      "holidays": [
+        {
+          "date": "2024-05-20",
+          "name": "Victoria Day"
+        },
+        {
+          "date": "2024-06-28",
+          "name": "Presidential Day"
+        },
+        {
+          "date": "2024-07-01",
+          "name": "Canada Day"
+        },
+        {
+          "date": "2024-08-05",
+          "name": "Civic Holiday"
+        }
+      ],
+      "notes": null,
+      "exam_period": [
+        "2024-08-15",
+        "2024-08-23"
+      ],
+      "source_url": "https://www.artsci.utoronto.ca/current/dates-deadlines/archived-academic-dates-deadlines"
+    },
+    {
+      "term_id": "2024F",
+      "division": "artsci_stg",
+      "classes_start": "2024-09-03",
+      "classes_end": "2024-12-03",
+      "reading_week": [
+        "2024-10-28",
+        "2024-11-01"
+      ],
+      "holidays": [
+        {
+          "date": "2024-10-14",
+          "name": "Thanksgiving"
+        }
+      ],
+      "notes": "Dec 2, 2024 last day for most regularly scheduled classes; Dec 3 official last day of classes, Monday-timetable make-up for Thanksgiving. Study days Dec 4-5. University closed for Winter Holidays Dec 24, 2024 - Jan 5, 2025 inclusive.",
+      "exam_period": [
+        "2024-12-06",
+        "2024-12-21"
+      ],
+      "source_url": "https://www.artsci.utoronto.ca/current/dates-deadlines/archived-academic-dates-deadlines"
+    },
+    {
+      "term_id": "2025W",
+      "division": "artsci_stg",
+      "classes_start": "2025-01-06",
+      "classes_end": "2025-04-04",
+      "reading_week": [
+        "2025-02-17",
+        "2025-02-21"
+      ],
+      "holidays": [
+        {
+          "date": "2025-02-17",
+          "name": "Family Day"
+        },
+        {
+          "date": "2025-04-18",
+          "name": "Good Friday"
+        }
+      ],
+      "notes": "Family Day fell on first day of Reading Week. Good Friday (Apr 18, 2025) fell within the final exam period (Apr 9-30); no classes or final exams that day. Study days Apr 7-8. No Friday-timetable make-up day was listed this year.",
+      "exam_period": [
+        "2025-04-09",
+        "2025-04-30"
+      ],
+      "source_url": "https://www.artsci.utoronto.ca/current/dates-deadlines/archived-academic-dates-deadlines"
+    },
+    {
+      "term_id": "2025SF",
+      "division": "artsci_stg",
+      "classes_start": "2025-05-05",
+      "classes_end": "2025-06-17",
+      "reading_week": null,
+      "holidays": [
+        {
+          "date": "2025-05-16",
+          "name": "Presidential Day"
+        },
+        {
+          "date": "2025-05-19",
+          "name": "Victoria Day"
+        }
+      ],
+      "notes": "Jun 16, 2025 last regular class day; Jun 17 (Friday-timetable) make-up day for Presidential holiday (May 16).",
+      "exam_period": [
+        "2025-06-19",
+        "2025-06-24"
+      ],
+      "source_url": "https://www.artsci.utoronto.ca/current/dates-deadlines/archived-academic-dates-deadlines"
+    },
+    {
+      "term_id": "2025SS",
+      "division": "artsci_stg",
+      "classes_start": "2025-07-02",
+      "classes_end": "2025-08-14",
+      "reading_week": null,
+      "holidays": [
+        {
+          "date": "2025-08-01",
+          "name": "Presidential Day"
+        },
+        {
+          "date": "2025-08-04",
+          "name": "Civic Holiday"
+        }
+      ],
+      "notes": "Aug 12, 2025 last regular class day; Aug 13-14 (Monday/Friday-timetable) make-up days for Presidential Day (Aug 1) and Civic Holiday (Aug 4). Presidential Day (Jun 30) and Canada Day (Jul 1) preceded S classes (Jul 2) and are not counted as in-term holidays for S.",
+      "exam_period": [
+        "2025-08-15",
+        "2025-08-21"
+      ],
+      "source_url": "https://www.artsci.utoronto.ca/current/dates-deadlines/archived-academic-dates-deadlines"
+    },
+    {
+      "term_id": "2025SY",
+      "division": "artsci_stg",
+      "classes_start": "2025-05-05",
+      "classes_end": "2025-08-14",
+      "reading_week": null,
+      "holidays": [
+        {
+          "date": "2025-05-16",
+          "name": "Presidential Day"
+        },
+        {
+          "date": "2025-05-19",
+          "name": "Victoria Day"
+        },
+        {
+          "date": "2025-06-30",
+          "name": "Presidential Day"
+        },
+        {
+          "date": "2025-07-01",
+          "name": "Canada Day"
+        },
+        {
+          "date": "2025-08-01",
+          "name": "Presidential Day"
+        },
+        {
+          "date": "2025-08-04",
+          "name": "Civic Holiday"
+        }
+      ],
+      "notes": null,
+      "exam_period": [
+        "2025-08-15",
+        "2025-08-21"
+      ],
+      "source_url": "https://www.artsci.utoronto.ca/current/dates-deadlines/archived-academic-dates-deadlines"
+    },
+    {
+      "term_id": "2025F",
+      "division": "artsci_stg",
+      "classes_start": "2025-09-02",
+      "classes_end": "2025-12-02",
+      "reading_week": [
+        "2025-10-27",
+        "2025-10-31"
+      ],
+      "holidays": [
+        {
+          "date": "2025-10-13",
+          "name": "Thanksgiving"
+        }
+      ],
+      "notes": "Dec 1, 2025 last day for most regularly scheduled classes; Dec 2 official last day, Monday-timetable make-up for Thanksgiving. Study days Dec 3-4. University closed for Winter Holidays Dec 24, 2025 - Jan 2, 2026 inclusive.",
+      "exam_period": [
+        "2025-12-05",
+        "2025-12-19"
+      ],
+      "source_url": "https://www.artsci.utoronto.ca/current/dates-deadlines/archived-academic-dates-deadlines"
+    },
+    {
+      "term_id": "2026W",
+      "division": "artsci_stg",
+      "classes_start": "2026-01-05",
+      "classes_end": "2026-04-06",
+      "reading_week": [
+        "2026-02-17",
+        "2026-02-20"
+      ],
+      "holidays": [
+        {
+          "date": "2026-02-16",
+          "name": "Family Day"
+        },
+        {
+          "date": "2026-04-03",
+          "name": "Good Friday"
+        }
+      ],
+      "notes": "Family Day (Feb 16, 2026) is the day immediately before Winter Reading Week (Feb 17-20, 2026), not within it. Apr 2, 2026 last day for most regularly scheduled classes; Apr 6 (Monday) official last day, Friday-timetable make-up for Good Friday. Study days Apr 7-8.",
+      "exam_period": [
+        "2026-04-09",
+        "2026-04-29"
+      ],
+      "source_url": "https://www.artsci.utoronto.ca/current/dates-deadlines/archived-academic-dates-deadlines"
+    },
+    {
+      "term_id": "2026SF",
+      "division": "artsci_stg",
+      "classes_start": "2026-05-04",
+      "classes_end": "2026-06-16",
+      "reading_week": null,
+      "holidays": [
+        {
+          "date": "2026-05-15",
+          "name": "Presidential Day"
+        },
+        {
+          "date": "2026-05-18",
+          "name": "Victoria Day"
+        }
+      ],
+      "notes": "Jun 15, 2026 last day for most regularly scheduled classes; Jun 16 official last day, Friday-timetable make-up for Presidential holiday (May 15).",
+      "exam_period": [
+        "2026-06-18",
+        "2026-06-24"
+      ],
+      "source_url": "https://www.artsci.utoronto.ca/current/dates-deadlines/academic-dates"
+    },
+    {
+      "term_id": "2026SS",
+      "division": "artsci_stg",
+      "classes_start": "2026-07-02",
+      "classes_end": "2026-08-13",
+      "reading_week": null,
+      "holidays": [
+        {
+          "date": "2026-08-03",
+          "name": "Civic Holiday"
+        }
+      ],
+      "notes": "Aug 12, 2026 last day for most regularly scheduled classes; Aug 13 official last day, Monday-timetable make-up for Civic Holiday. Canada Day (Jul 1) preceded S classes (Jul 2) and is not counted as an in-term holiday for S.",
+      "exam_period": [
+        "2026-08-15",
+        "2026-08-22"
+      ],
+      "source_url": "https://www.artsci.utoronto.ca/current/dates-deadlines/academic-dates"
+    },
+    {
+      "term_id": "2026SY",
+      "division": "artsci_stg",
+      "classes_start": "2026-05-04",
+      "classes_end": "2026-08-13",
+      "reading_week": null,
+      "holidays": [
+        {
+          "date": "2026-05-15",
+          "name": "Presidential Day"
+        },
+        {
+          "date": "2026-05-18",
+          "name": "Victoria Day"
+        },
+        {
+          "date": "2026-06-29",
+          "name": "Presidential Day"
+        },
+        {
+          "date": "2026-06-30",
+          "name": "Presidential Day"
+        },
+        {
+          "date": "2026-07-01",
+          "name": "Canada Day"
+        },
+        {
+          "date": "2026-08-03",
+          "name": "Civic Holiday"
+        }
+      ],
+      "notes": null,
+      "exam_period": [
+        "2026-08-15",
+        "2026-08-22"
+      ],
+      "source_url": "https://www.artsci.utoronto.ca/current/dates-deadlines/academic-dates"
+    },
+    {
+      "term_id": "2026F",
+      "division": "artsci_stg",
+      "classes_start": "2026-09-08",
+      "classes_end": "2026-12-08",
+      "reading_week": [
+        "2026-10-26",
+        "2026-10-30"
+      ],
+      "holidays": [
+        {
+          "date": "2026-10-12",
+          "name": "Thanksgiving"
+        }
+      ],
+      "notes": "Dec 7, 2026 last day for most regularly scheduled classes; Dec 8 official last day, Monday-timetable make-up for Thanksgiving. Study day Dec 9. University closed for Winter Holidays Dec 24, 2026 - Jan 5, 2027 inclusive. Labour Day (Sept 7, 2026) preceded the start of classes and is not counted as an in-term holiday.",
+      "exam_period": [
+        "2026-12-10",
+        "2026-12-22"
+      ],
+      "source_url": "https://www.artsci.utoronto.ca/current/dates-deadlines/academic-dates"
+    },
+    {
+      "term_id": "2027W",
+      "division": "artsci_stg",
+      "classes_start": "2027-01-11",
+      "classes_end": "2027-04-12",
+      "reading_week": [
+        "2027-02-15",
+        "2027-02-19"
+      ],
+      "holidays": [
+        {
+          "date": "2027-02-15",
+          "name": "Family Day"
+        },
+        {
+          "date": "2027-03-26",
+          "name": "Good Friday"
+        }
+      ],
+      "notes": "Family Day (Feb 15, 2027) falls within Winter Reading Week (Feb 15-19, 2027). Apr 9, 2027 last day for most regularly scheduled classes; Apr 12 official last day, Friday-timetable make-up for Good Friday. Study day Apr 13. Presidential Days (Jan 4-5, 2027, university closed) occur before classes begin (Jan 11) and are not counted as in-term holidays.",
+      "exam_period": [
+        "2027-04-14",
+        "2027-04-29"
+      ],
+      "source_url": "https://www.artsci.utoronto.ca/current/dates-deadlines/academic-dates"
+    },
+    {
+      "term_id": "2019F",
+      "division": "utm",
+      "classes_start": "2019-09-05",
+      "classes_end": "2019-12-04",
+      "reading_week": [
+        "2019-10-15",
+        "2019-10-18"
+      ],
+      "holidays": [
+        {
+          "date": "2019-10-14",
+          "name": "Thanksgiving"
+        }
+      ],
+      "notes": "Labour Day (Sept 2, 2019) fell before classes start (Sept 5) so is excluded per convention.",
+      "exam_period": [
+        "2019-12-07",
+        "2019-12-19"
+      ],
+      "source_url": "https://web.archive.org/web/20190731084324/https://student.utm.utoronto.ca/importantDates/importantDates.php?sub_type=&sub_session=Fall&sub_search_term="
+    },
+    {
+      "term_id": "2020W",
+      "division": "utm",
+      "classes_start": "2020-01-06",
+      "classes_end": "2020-04-03",
+      "reading_week": [
+        "2020-02-18",
+        "2020-02-21"
+      ],
+      "holidays": [
+        {
+          "date": "2020-02-17",
+          "name": "Family Day"
+        },
+        {
+          "date": "2020-04-10",
+          "name": "Good Friday"
+        }
+      ],
+      "notes": "Source snapshot is dated July 2019 (pre-pandemic publication). COVID-19 disrupted in-person delivery starting mid-March 2020; no later official source was found to confirm whether the originally-published exam dates below were realized as-is or adjusted for remote delivery.",
+      "exam_period": [
+        "2020-04-06",
+        "2020-04-22"
+      ],
+      "source_url": "https://web.archive.org/web/20190731084324/https://student.utm.utoronto.ca/importantDates/importantDates.php?sub_type=&sub_session=Fall&sub_search_term="
+    },
+    {
+      "term_id": "2020F",
+      "division": "utm",
+      "classes_start": "2020-09-09",
+      "classes_end": "2020-12-08",
+      "reading_week": [
+        "2020-10-13",
+        "2020-10-16"
+      ],
+      "holidays": [
+        {
+          "date": "2020-10-12",
+          "name": "Thanksgiving"
+        }
+      ],
+      "notes": "Labour Day (Sept 7, 2020) fell before classes start (Sept 9) so is excluded.",
+      "exam_period": [
+        "2020-12-10",
+        "2020-12-22"
+      ],
+      "source_url": "https://web.archive.org/web/20210515171245/https://student.utm.utoronto.ca/importantDates/importantDates.php"
+    },
+    {
+      "term_id": "2021W",
+      "division": "utm",
+      "classes_start": "2021-01-11",
+      "classes_end": "2021-04-09",
+      "reading_week": [
+        "2021-02-16",
+        "2021-02-19"
+      ],
+      "holidays": [
+        {
+          "date": "2021-02-15",
+          "name": "Family Day"
+        },
+        {
+          "date": "2021-04-02",
+          "name": "Good Friday"
+        }
+      ],
+      "notes": "COVID-delayed term: official term start pushed to Jan 11, 2021. Classes missed on Good Friday (Apr 2) were made up on a designated make-up day, Apr 12, 2021 (Monday timetable substitution). Exam period was shifted from originally planned Apr 8-23 and now includes a Sunday exam (Apr 18).",
+      "exam_period": [
+        "2021-04-13",
+        "2021-04-23"
+      ],
+      "source_url": "https://web.archive.org/web/20210515171245/https://student.utm.utoronto.ca/importantDates/importantDates.php"
+    },
+    {
+      "term_id": "2021F",
+      "division": "utm",
+      "classes_start": "2021-09-08",
+      "classes_end": "2021-12-07",
+      "reading_week": [
+        "2021-10-12",
+        "2021-10-15"
+      ],
+      "holidays": [
+        {
+          "date": "2021-10-11",
+          "name": "Thanksgiving"
+        }
+      ],
+      "notes": "Labour Day (Sept 6, 2021) fell before classes start (Sept 8) so is excluded.",
+      "exam_period": [
+        "2021-12-09",
+        "2021-12-21"
+      ],
+      "source_url": "https://web.archive.org/web/20211211231609/https://student.utm.utoronto.ca/importantDates/importantDates.php"
+    },
+    {
+      "term_id": "2022W",
+      "division": "utm",
+      "classes_start": "2022-01-10",
+      "classes_end": "2022-04-08",
+      "reading_week": [
+        "2022-02-22",
+        "2022-02-25"
+      ],
+      "holidays": [
+        {
+          "date": "2022-02-21",
+          "name": "Family Day"
+        },
+        {
+          "date": "2022-04-15",
+          "name": "Good Friday"
+        }
+      ],
+      "notes": "",
+      "exam_period": [
+        "2022-04-11",
+        "2022-04-25"
+      ],
+      "source_url": "https://web.archive.org/web/20211211231609/https://student.utm.utoronto.ca/importantDates/importantDates.php"
+    },
+    {
+      "term_id": "2022F",
+      "division": "utm",
+      "classes_start": "2022-09-08",
+      "classes_end": "2022-12-07",
+      "reading_week": [
+        "2022-10-11",
+        "2022-10-14"
+      ],
+      "holidays": [
+        {
+          "date": "2022-10-10",
+          "name": "Thanksgiving"
+        }
+      ],
+      "notes": "Labour Day (Sept 5, 2022) fell before classes start (Sept 8) so is excluded.",
+      "exam_period": [
+        "2022-12-09",
+        "2022-12-20"
+      ],
+      "source_url": "https://web.archive.org/web/20221023052244/https://student.utm.utoronto.ca/importantDates/importantDates.php"
+    },
+    {
+      "term_id": "2023W",
+      "division": "utm",
+      "classes_start": "2023-01-09",
+      "classes_end": "2023-04-06",
+      "reading_week": [
+        "2023-02-21",
+        "2023-02-24"
+      ],
+      "holidays": [
+        {
+          "date": "2023-02-20",
+          "name": "Family Day"
+        },
+        {
+          "date": "2023-04-07",
+          "name": "Good Friday"
+        }
+      ],
+      "notes": "",
+      "exam_period": [
+        "2023-04-12",
+        "2023-04-24"
+      ],
+      "source_url": "https://web.archive.org/web/20221023052244/https://student.utm.utoronto.ca/importantDates/importantDates.php"
+    },
+    {
+      "term_id": "2023F",
+      "division": "utm",
+      "classes_start": "2023-09-06",
+      "classes_end": "2023-12-05",
+      "reading_week": [
+        "2023-10-10",
+        "2023-10-13"
+      ],
+      "holidays": [
+        {
+          "date": "2023-10-09",
+          "name": "Thanksgiving"
+        }
+      ],
+      "notes": "Labour Day (Sept 4, 2023) fell before classes start (Sept 6) so is excluded. Cross-validated against UTM Academic Calendar sessional-dates page.",
+      "exam_period": [
+        "2023-12-07",
+        "2023-12-20"
+      ],
+      "source_url": "https://web.archive.org/web/20230922151648/https://student.utm.utoronto.ca/importantDates/importantDates.php"
+    },
+    {
+      "term_id": "2024W",
+      "division": "utm",
+      "classes_start": "2024-01-08",
+      "classes_end": "2024-04-05",
+      "reading_week": [
+        "2024-02-20",
+        "2024-02-23"
+      ],
+      "holidays": [
+        {
+          "date": "2024-02-19",
+          "name": "Family Day"
+        },
+        {
+          "date": "2024-03-29",
+          "name": "Good Friday"
+        }
+      ],
+      "notes": "Cross-validated against UTM Academic Calendar sessional-dates page.",
+      "exam_period": [
+        "2024-04-11",
+        "2024-04-25"
+      ],
+      "source_url": "https://web.archive.org/web/20230922151648/https://student.utm.utoronto.ca/importantDates/importantDates.php"
+    },
+    {
+      "term_id": "2024F",
+      "division": "utm",
+      "classes_start": "2024-09-03",
+      "classes_end": "2024-12-03",
+      "reading_week": [
+        "2024-10-28",
+        "2024-11-01"
+      ],
+      "holidays": [
+        {
+          "date": "2024-10-14",
+          "name": "Thanksgiving"
+        }
+      ],
+      "notes": "Labour Day (Sept 2, 2024) fell before classes start (Sept 3) so is excluded. Fall reading week/break format changed this year to a 5-day (Mon-Fri) block no longer tied to the week immediately after Thanksgiving.",
+      "exam_period": [
+        "2024-12-06",
+        "2024-12-20"
+      ],
+      "source_url": "https://web.archive.org/web/20250207143755/https://utm.calendar.utoronto.ca/sessional-dates"
+    },
+    {
+      "term_id": "2025W",
+      "division": "utm",
+      "classes_start": "2025-01-06",
+      "classes_end": "2025-04-04",
+      "reading_week": [
+        "2025-02-18",
+        "2025-02-21"
+      ],
+      "holidays": [
+        {
+          "date": "2025-02-17",
+          "name": "Family Day"
+        },
+        {
+          "date": "2025-04-18",
+          "name": "Good Friday"
+        }
+      ],
+      "notes": "Final exam period has a minor source discrepancy: Registrar's Fall2024-Winter2025 Guide states Apr 9-25, 2025; UTM Academic Calendar sessional-dates page states Apr 9-26, 2025 (the 26th, a Saturday, is likely an unused exam contingency day, consistent with the pattern seen in other years where a contingency day is listed separately from the core exam period). Reported range below uses the Registrar Guide's tighter figure.",
+      "exam_period": [
+        "2025-04-09",
+        "2025-04-25"
+      ],
+      "source_url": "https://web.archive.org/web/20250207143755/https://utm.calendar.utoronto.ca/sessional-dates"
+    },
+    {
+      "term_id": "2025F",
+      "division": "utm",
+      "classes_start": "2025-09-02",
+      "classes_end": "2025-12-02",
+      "reading_week": null,
+      "holidays": [
+        {
+          "date": "2025-10-13",
+          "name": "Thanksgiving"
+        }
+      ],
+      "notes": "UTM's own Registrar 'Important Dates' page and UTM Academic Calendar sessional-dates page both went content-blank/404 for this academic year (confirmed live and via archive.org, no captures found with holiday/reading-week detail for 2025-2026). Class start/end and exam period dates are from the Registrar's Fall2025-Winter2026 Guide. Thanksgiving date is from the University of Toronto central HR holiday-schedule memo (not UTM-specific), but this source's dates for 2024 and 2026 were independently cross-validated as exact matches against UTM's own published Thanksgiving dates for those adjacent years, giving confidence in its accuracy here. Fall reading week could NOT be verified from any official UTM source (only an unofficial third-party aggregator claimed Oct 27-31, 2025) and is left as a gap rather than guessed. Labour Day (Sept 1, 2025) fell before classes start (Sept 2) so is excluded.",
+      "exam_period": [
+        "2025-12-05",
+        "2025-12-18"
+      ],
+      "source_url": "https://web.archive.org/web/20250907060236/https://www.utm.utoronto.ca/registrar/registration/FWguide"
+    },
+    {
+      "term_id": "2026W",
+      "division": "utm",
+      "classes_start": "2026-01-05",
+      "classes_end": "2026-04-06",
+      "reading_week": [
+        "2026-02-17",
+        "2026-02-20"
+      ],
+      "holidays": [
+        {
+          "date": "2026-02-16",
+          "name": "Family Day"
+        },
+        {
+          "date": "2026-04-03",
+          "name": "Good Friday"
+        }
+      ],
+      "notes": "As with 2025F, UTM's own registrar/calendar pages had no year-specific published table for this year. Holidays are from the University of Toronto HR holiday-schedule memo (cross-validated against UTM's own adjacent-year data). Reading week was NOT directly published for this year; it is derived from an explicit policy statement on UTM's Academic Calendar ('Reading Weeks are scheduled ... in the Spring four days following Family Day') applied to the confirmed Family Day date (Feb 16, 2026) -> Feb 17-20, 2026. This is a rule-based derivation from stated UTM policy, not a guess, but flagged since no year-specific table was found.",
+      "exam_period": [
+        "2026-04-09",
+        "2026-04-23"
+      ],
+      "source_url": "https://web.archive.org/web/20250907060236/https://www.utm.utoronto.ca/registrar/registration/FWguide"
+    },
+    {
+      "term_id": "2026F",
+      "division": "utm",
+      "classes_start": "2026-09-08",
+      "classes_end": "2026-12-08",
+      "reading_week": [
+        "2026-10-26",
+        "2026-10-30"
+      ],
+      "holidays": [
+        {
+          "date": "2026-10-12",
+          "name": "Thanksgiving"
+        }
+      ],
+      "notes": "From UTM's live, official 'Future Sessional Dates' page (approved planning dates). Labour Day (Sept 7, 2026) fell before classes start (Sept 8) so is excluded.",
+      "exam_period": [
+        "2026-12-10",
+        "2026-12-22"
+      ],
+      "source_url": "https://www.utm.utoronto.ca/registrar/future-dates"
+    },
+    {
+      "term_id": "2027W",
+      "division": "utm",
+      "classes_start": "2027-01-11",
+      "classes_end": "2027-04-12",
+      "reading_week": [
+        "2027-02-15",
+        "2027-02-19"
+      ],
+      "holidays": [
+        {
+          "date": "2027-02-15",
+          "name": "Family Day"
+        },
+        {
+          "date": "2027-03-26",
+          "name": "Good Friday"
+        }
+      ],
+      "notes": "From UTM's live, official 'Future Sessional Dates' page. This page labels the Feb 15-19, 2027 block as 'Winter Break & Fall Term Deferred Exam Period', doubling as the reading week.",
+      "exam_period": [
+        "2027-04-14",
+        "2027-04-29"
+      ],
+      "source_url": "https://www.utm.utoronto.ca/registrar/future-dates"
+    },
+    {
+      "term_id": "2022SF",
+      "division": "utm",
+      "classes_start": "2022-05-09",
+      "classes_end": "2022-06-20",
+      "reading_week": null,
+      "holidays": [
+        {
+          "date": "2022-05-23",
+          "name": "Victoria Day"
+        }
+      ],
+      "notes": "Summer First-half (F) session.",
+      "exam_period": [
+        "2022-06-22",
+        "2022-06-24"
+      ],
+      "source_url": "https://web.archive.org/web/20220118161603/https://utm.calendar.utoronto.ca/sessional-dates"
+    },
+    {
+      "term_id": "2022SY",
+      "division": "utm",
+      "classes_start": "2022-05-09",
+      "classes_end": "2022-08-15",
+      "reading_week": null,
+      "holidays": [
+        {
+          "date": "2022-05-23",
+          "name": "Victoria Day"
+        },
+        {
+          "date": "2022-07-01",
+          "name": "Canada Day"
+        },
+        {
+          "date": "2022-08-01",
+          "name": "Civic Holiday"
+        }
+      ],
+      "notes": "Summer full-session (Y) courses; term break for Y classes Jun21-Jul1, resuming Jul4.",
+      "exam_period": [
+        "2022-08-17",
+        "2022-08-19"
+      ],
+      "source_url": "https://web.archive.org/web/20220118161603/https://utm.calendar.utoronto.ca/sessional-dates"
+    },
+    {
+      "term_id": "2022SS",
+      "division": "utm",
+      "classes_start": "2022-07-04",
+      "classes_end": "2022-08-15",
+      "reading_week": null,
+      "holidays": [
+        {
+          "date": "2022-08-01",
+          "name": "Civic Holiday"
+        }
+      ],
+      "notes": "Summer Second-half (S) session.",
+      "exam_period": [
+        "2022-08-17",
+        "2022-08-19"
+      ],
+      "source_url": "https://web.archive.org/web/20220118161603/https://utm.calendar.utoronto.ca/sessional-dates"
+    },
+    {
+      "term_id": "2023SF",
+      "division": "utm",
+      "classes_start": "2023-05-08",
+      "classes_end": "2023-06-19",
+      "reading_week": null,
+      "holidays": [
+        {
+          "date": "2023-05-22",
+          "name": "Victoria Day"
+        }
+      ],
+      "notes": "Exam period source discrepancy: Academic Calendar states Jun 21-23; Registrar's Summer 2023 Registration Guide states Jun 21-24 (likely includes a contingency day). Tighter Academic Calendar figure used below.",
+      "exam_period": [
+        "2023-06-21",
+        "2023-06-23"
+      ],
+      "source_url": "https://web.archive.org/web/20230127211642/https://utm.calendar.utoronto.ca/sessional-dates"
+    },
+    {
+      "term_id": "2023SY",
+      "division": "utm",
+      "classes_start": "2023-05-08",
+      "classes_end": "2023-08-14",
+      "reading_week": null,
+      "holidays": [
+        {
+          "date": "2023-05-22",
+          "name": "Victoria Day"
+        },
+        {
+          "date": "2023-07-01",
+          "name": "Canada Day"
+        },
+        {
+          "date": "2023-08-07",
+          "name": "Civic Holiday"
+        }
+      ],
+      "notes": "Exam period source discrepancy: Academic Calendar states Aug 17-19 (with Aug15 make-up day, Aug16 study break); Registrar's Summer Guide states Aug 17-21. Tighter Academic Calendar figure used below.",
+      "exam_period": [
+        "2023-08-17",
+        "2023-08-19"
+      ],
+      "source_url": "https://web.archive.org/web/20230127211642/https://utm.calendar.utoronto.ca/sessional-dates"
+    },
+    {
+      "term_id": "2023SS",
+      "division": "utm",
+      "classes_start": "2023-07-04",
+      "classes_end": "2023-08-14",
+      "reading_week": null,
+      "holidays": [
+        {
+          "date": "2023-08-07",
+          "name": "Civic Holiday"
+        }
+      ],
+      "notes": "Same exam-period discrepancy as 2023SY (Academic Calendar Aug17-19 vs Registrar Guide Aug17-21).",
+      "exam_period": [
+        "2023-08-17",
+        "2023-08-19"
+      ],
+      "source_url": "https://web.archive.org/web/20230127211642/https://utm.calendar.utoronto.ca/sessional-dates"
+    },
+    {
+      "term_id": "2024SF",
+      "division": "utm",
+      "classes_start": "2024-05-06",
+      "classes_end": "2024-06-17",
+      "reading_week": null,
+      "holidays": [
+        {
+          "date": "2024-05-20",
+          "name": "Victoria Day"
+        }
+      ],
+      "notes": "Cross-validated: Academic Calendar and Registrar Summer Guide agree exactly.",
+      "exam_period": [
+        "2024-06-19",
+        "2024-06-21"
+      ],
+      "source_url": "https://web.archive.org/web/20240126211248/https://utm.calendar.utoronto.ca/sessional-dates"
+    },
+    {
+      "term_id": "2024SY",
+      "division": "utm",
+      "classes_start": "2024-05-06",
+      "classes_end": "2024-08-12",
+      "reading_week": null,
+      "holidays": [
+        {
+          "date": "2024-05-20",
+          "name": "Victoria Day"
+        },
+        {
+          "date": "2024-07-01",
+          "name": "Canada Day"
+        },
+        {
+          "date": "2024-08-05",
+          "name": "Civic Holiday"
+        }
+      ],
+      "notes": "Cross-validated: Academic Calendar and Registrar Summer Guide agree exactly.",
+      "exam_period": [
+        "2024-08-15",
+        "2024-08-17"
+      ],
+      "source_url": "https://web.archive.org/web/20240126211248/https://utm.calendar.utoronto.ca/sessional-dates"
+    },
+    {
+      "term_id": "2024SS",
+      "division": "utm",
+      "classes_start": "2024-07-02",
+      "classes_end": "2024-08-12",
+      "reading_week": null,
+      "holidays": [
+        {
+          "date": "2024-08-05",
+          "name": "Civic Holiday"
+        }
+      ],
+      "notes": "Cross-validated: Academic Calendar and Registrar Summer Guide agree exactly.",
+      "exam_period": [
+        "2024-08-15",
+        "2024-08-17"
+      ],
+      "source_url": "https://web.archive.org/web/20240126211248/https://utm.calendar.utoronto.ca/sessional-dates"
+    },
+    {
+      "term_id": "2025SF",
+      "division": "utm",
+      "classes_start": "2025-05-05",
+      "classes_end": "2025-06-17",
+      "reading_week": null,
+      "holidays": [
+        {
+          "date": "2025-05-19",
+          "name": "Victoria Day"
+        }
+      ],
+      "notes": "UTM Academic Calendar dropped its Summer sessional-dates table this year; class/exam dates are from the Registrar's Summer 2025 Registration Guide. Holiday date from University of Toronto HR holiday-schedule memo.",
+      "exam_period": [
+        "2025-06-19",
+        "2025-06-21"
+      ],
+      "source_url": "https://web.archive.org/web/20260124211359/https://www.utm.utoronto.ca/registrar/registration/summer"
+    },
+    {
+      "term_id": "2025SY",
+      "division": "utm",
+      "classes_start": "2025-05-05",
+      "classes_end": "2025-08-14",
+      "reading_week": null,
+      "holidays": [
+        {
+          "date": "2025-05-19",
+          "name": "Victoria Day"
+        },
+        {
+          "date": "2025-07-01",
+          "name": "Canada Day"
+        },
+        {
+          "date": "2025-08-04",
+          "name": "Civic Holiday"
+        }
+      ],
+      "notes": "Class/exam dates from Registrar's Summer 2025 Registration Guide; holidays from University of Toronto HR holiday-schedule memo.",
+      "exam_period": [
+        "2025-08-18",
+        "2025-08-20"
+      ],
+      "source_url": "https://web.archive.org/web/20260124211359/https://www.utm.utoronto.ca/registrar/registration/summer"
+    },
+    {
+      "term_id": "2025SS",
+      "division": "utm",
+      "classes_start": "2025-07-02",
+      "classes_end": "2025-08-14",
+      "reading_week": null,
+      "holidays": [
+        {
+          "date": "2025-08-04",
+          "name": "Civic Holiday"
+        }
+      ],
+      "notes": "Canada Day (Jul 1, 2025) fell before this sub-term's start (Jul 2) so is excluded.",
+      "exam_period": [
+        "2025-08-18",
+        "2025-08-20"
+      ],
+      "source_url": "https://web.archive.org/web/20260124211359/https://www.utm.utoronto.ca/registrar/registration/summer"
+    },
+    {
+      "term_id": "2026SF",
+      "division": "utm",
+      "classes_start": "2026-05-04",
+      "classes_end": "2026-06-16",
+      "reading_week": null,
+      "holidays": [
+        {
+          "date": "2026-05-18",
+          "name": "Victoria Day"
+        }
+      ],
+      "notes": "From live/archived Registrar Summer 2026 Registration Guide.",
+      "exam_period": [
+        "2026-06-18",
+        "2026-06-22"
+      ],
+      "source_url": "https://web.archive.org/web/20260412234657/https://www.utm.utoronto.ca/registrar/registration/summer"
+    },
+    {
+      "term_id": "2026SY",
+      "division": "utm",
+      "classes_start": "2026-05-04",
+      "classes_end": "2026-08-13",
+      "reading_week": null,
+      "holidays": [
+        {
+          "date": "2026-05-18",
+          "name": "Victoria Day"
+        },
+        {
+          "date": "2026-07-01",
+          "name": "Canada Day"
+        },
+        {
+          "date": "2026-08-03",
+          "name": "Civic Holiday"
+        }
+      ],
+      "notes": "Holidays cross-validated against UTM's own live 'Holiday Closures' page and the University of Toronto HR memo (exact match).",
+      "exam_period": [
+        "2026-08-17",
+        "2026-08-20"
+      ],
+      "source_url": "https://web.archive.org/web/20260412234657/https://www.utm.utoronto.ca/registrar/registration/summer"
+    },
+    {
+      "term_id": "2026SS",
+      "division": "utm",
+      "classes_start": "2026-07-02",
+      "classes_end": "2026-08-13",
+      "reading_week": null,
+      "holidays": [
+        {
+          "date": "2026-08-03",
+          "name": "Civic Holiday"
+        }
+      ],
+      "notes": "Canada Day (Jul 1, 2026) fell before this sub-term's start (Jul 2) so is excluded.",
+      "exam_period": [
+        "2026-08-17",
+        "2026-08-20"
+      ],
+      "source_url": "https://web.archive.org/web/20260412234657/https://www.utm.utoronto.ca/registrar/registration/summer"
+    },
+    {
+      "term_id": "2019F",
+      "division": "utsc",
+      "classes_start": "2019-09-03",
+      "classes_end": "2019-12-02",
+      "reading_week": [
+        "2019-10-12",
+        "2019-10-18"
+      ],
+      "holidays": [
+        {
+          "date": "2019-09-02",
+          "name": "Labour Day"
+        },
+        {
+          "date": "2019-10-14",
+          "name": "Thanksgiving"
+        }
+      ],
+      "notes": "Source: '2019-2020 Sessional Dates' combined doc (last updated Dec 11, 2018) and dedicated Fall 2019-Winter 2020 Academic Dates table (consistent). F/Y sections both start Sept 3, 2019.",
+      "exam_period": [
+        "2019-12-06",
+        "2019-12-21"
+      ],
+      "source_url": "https://web.archive.org/web/20200905104217/https://www.utsc.utoronto.ca/registrar/sites/utsc.utoronto.ca.registrar/files/resource-files/Fall%202019%20-%20Winter%202020%20Academic%20Dates%20_0.pdf"
+    },
+    {
+      "term_id": "2020W",
+      "division": "utsc",
+      "classes_start": "2020-01-06",
+      "classes_end": "2020-04-03",
+      "reading_week": [
+        "2020-02-15",
+        "2020-02-21"
+      ],
+      "holidays": [
+        {
+          "date": "2020-02-17",
+          "name": "Family Day"
+        },
+        {
+          "date": "2020-04-10",
+          "name": "Good Friday"
+        }
+      ],
+      "notes": "S-section (Jan-Apr) dates shown; Y-section resumed same Jan 6, 2020 date and also ended Apr 3, 2020. No revised sessional-dates document was found despite the university's mid-March 2020 shift to remote delivery; the term-date structure (start/end/exam period) itself was not changed in the registrar's published dates for this term as far as could be verified.",
+      "exam_period": [
+        "2020-04-08",
+        "2020-04-25"
+      ],
+      "source_url": "https://web.archive.org/web/20200905104217/https://www.utsc.utoronto.ca/registrar/sites/utsc.utoronto.ca.registrar/files/resource-files/Fall%202019%20-%20Winter%202020%20Academic%20Dates%20_0.pdf"
+    },
+    {
+      "term_id": "2020F",
+      "division": "utsc",
+      "classes_start": "2020-09-08",
+      "classes_end": "2020-12-07",
+      "reading_week": [
+        "2020-10-10",
+        "2020-10-16"
+      ],
+      "holidays": [
+        {
+          "date": "2020-09-07",
+          "name": "Labour Day"
+        },
+        {
+          "date": "2020-10-12",
+          "name": "Thanksgiving"
+        }
+      ],
+      "notes": "From 'Fall 2020/Winter 2021 Academic Dates' PDF, last updated Nov 20, 2020 (final revision). Fall-session dates were unchanged between the June 16, 2020 and Nov 20, 2020 revisions; only the Winter/S-session dates were revised (see 2021W notes).",
+      "exam_period": [
+        "2020-12-10",
+        "2020-12-22"
+      ],
+      "source_url": "https://www.utsc.utoronto.ca/registrar/sites/utsc.utoronto.ca.registrar/files/2023-01/Fall%202020%20-%20Winter%202021%20Academic%20Dates.pdf"
+    },
+    {
+      "term_id": "2021W",
+      "division": "utsc",
+      "classes_start": "2021-01-11",
+      "classes_end": "2021-04-12",
+      "reading_week": [
+        "2021-02-13",
+        "2021-02-19"
+      ],
+      "holidays": [
+        {
+          "date": "2021-02-15",
+          "name": "Family Day"
+        },
+        {
+          "date": "2021-04-02",
+          "name": "Good Friday"
+        }
+      ],
+      "notes": "S-section dates per final Nov 20, 2020 revision of the 'Fall 2020/Winter 2021 Academic Dates' PDF: classes Jan 11-Apr 12, exam period Apr 13-23. An earlier version (last updated June 16, 2020, due to COVID-19) had shown S-section classes Jan 4-Apr 5 and exam period Apr 9-23 instead; the Nov 20, 2020 version supersedes it.",
+      "exam_period": [
+        "2021-04-13",
+        "2021-04-23"
+      ],
+      "source_url": "https://www.utsc.utoronto.ca/registrar/sites/utsc.utoronto.ca.registrar/files/2023-01/Fall%202020%20-%20Winter%202021%20Academic%20Dates.pdf"
+    },
+    {
+      "term_id": "2021F",
+      "division": "utsc",
+      "classes_start": "2021-09-07",
+      "classes_end": "2021-12-06",
+      "reading_week": [
+        "2021-10-09",
+        "2021-10-15"
+      ],
+      "holidays": [
+        {
+          "date": "2021-09-06",
+          "name": "Labour Day"
+        },
+        {
+          "date": "2021-10-11",
+          "name": "Thanksgiving"
+        }
+      ],
+      "notes": "From 'Fall 2021 - Winter 2022 Academic Dates' page.",
+      "exam_period": [
+        "2021-12-09",
+        "2021-12-21"
+      ],
+      "source_url": "https://www.utsc.utoronto.ca/registrar/fall-2021-winter-2022-academic-dates"
+    },
+    {
+      "term_id": "2022W",
+      "division": "utsc",
+      "classes_start": "2022-01-10",
+      "classes_end": "2022-04-08",
+      "reading_week": [
+        "2022-02-22",
+        "2022-02-25"
+      ],
+      "holidays": [
+        {
+          "date": "2022-02-21",
+          "name": "Family Day"
+        },
+        {
+          "date": "2022-04-15",
+          "name": "Good Friday"
+        }
+      ],
+      "notes": "S-section. Reading week is a shortened Tue-Fri block (Feb 22-25, 2022) per source.",
+      "exam_period": [
+        "2022-04-13",
+        "2022-04-29"
+      ],
+      "source_url": "https://www.utsc.utoronto.ca/registrar/fall-2021-winter-2022-academic-dates"
+    },
+    {
+      "term_id": "2022F",
+      "division": "utsc",
+      "classes_start": "2022-09-06",
+      "classes_end": "2022-12-05",
+      "reading_week": [
+        "2022-10-08",
+        "2022-10-14"
+      ],
+      "holidays": [
+        {
+          "date": "2022-09-05",
+          "name": "Labour Day"
+        },
+        {
+          "date": "2022-10-10",
+          "name": "Thanksgiving"
+        }
+      ],
+      "notes": "From 'Fall 2022 - Winter 2023 Academic Dates' page.",
+      "exam_period": [
+        "2022-12-08",
+        "2022-12-20"
+      ],
+      "source_url": "https://www.utsc.utoronto.ca/registrar/fall-2022-winter-2023-academic-dates"
+    },
+    {
+      "term_id": "2023W",
+      "division": "utsc",
+      "classes_start": "2023-01-09",
+      "classes_end": "2023-04-11",
+      "reading_week": [
+        "2023-02-18",
+        "2023-02-24"
+      ],
+      "holidays": [
+        {
+          "date": "2023-02-20",
+          "name": "Family Day"
+        },
+        {
+          "date": "2023-04-07",
+          "name": "Good Friday"
+        }
+      ],
+      "notes": "S-section. April 10, 2023 is a make-up date for classes regularly scheduled on Fridays (Good Friday Apr 7 shifted). April 11, 2023 is a make-up date for classes cancelled from 4:00 PM onward on Wed, Jan 25, 2023 due to inclement weather.",
+      "exam_period": [
+        "2023-04-13",
+        "2023-04-27"
+      ],
+      "source_url": "https://www.utsc.utoronto.ca/registrar/fall-2022-winter-2023-academic-dates"
+    },
+    {
+      "term_id": "2023F",
+      "division": "utsc",
+      "classes_start": "2023-09-05",
+      "classes_end": "2023-12-04",
+      "reading_week": [
+        "2023-10-07",
+        "2023-10-13"
+      ],
+      "holidays": [
+        {
+          "date": "2023-09-04",
+          "name": "Labour Day"
+        },
+        {
+          "date": "2023-10-09",
+          "name": "Thanksgiving"
+        }
+      ],
+      "notes": "From 'Fall 2023 - Winter 2024 Academic Dates' page.",
+      "exam_period": [
+        "2023-12-07",
+        "2023-12-20"
+      ],
+      "source_url": "https://www.utsc.utoronto.ca/registrar/fall-2023-winter-2024-academic-dates"
+    },
+    {
+      "term_id": "2024W",
+      "division": "utsc",
+      "classes_start": "2024-01-08",
+      "classes_end": "2024-04-08",
+      "reading_week": [
+        "2024-02-17",
+        "2024-02-23"
+      ],
+      "holidays": [
+        {
+          "date": "2024-02-19",
+          "name": "Family Day"
+        },
+        {
+          "date": "2024-03-29",
+          "name": "Good Friday"
+        }
+      ],
+      "notes": "S-section. April 8, 2024 is a make-up date for classes regularly scheduled on Fridays.",
+      "exam_period": [
+        "2024-04-12",
+        "2024-04-26"
+      ],
+      "source_url": "https://www.utsc.utoronto.ca/registrar/fall-2023-winter-2024-academic-dates"
+    },
+    {
+      "term_id": "2024F",
+      "division": "utsc",
+      "classes_start": "2024-09-03",
+      "classes_end": "2024-12-03",
+      "reading_week": [
+        "2024-10-28",
+        "2024-11-01"
+      ],
+      "holidays": [
+        {
+          "date": "2024-09-02",
+          "name": "Labour Day"
+        },
+        {
+          "date": "2024-10-14",
+          "name": "Thanksgiving"
+        }
+      ],
+      "notes": "From 'Fall 2024 - Winter 2025 Academic Dates' page. Tuesday, Dec 3, 2024 is a make-up date for classes scheduled Monday, Oct 14 (Thanksgiving).",
+      "exam_period": [
+        "2024-12-06",
+        "2024-12-21"
+      ],
+      "source_url": "https://www.utsc.utoronto.ca/registrar/fall-2024-winter-2025-academic-dates"
+    },
+    {
+      "term_id": "2025W",
+      "division": "utsc",
+      "classes_start": "2025-01-06",
+      "classes_end": "2025-04-04",
+      "reading_week": [
+        "2025-02-17",
+        "2025-02-21"
+      ],
+      "holidays": [
+        {
+          "date": "2025-02-17",
+          "name": "Family Day"
+        },
+        {
+          "date": "2025-04-18",
+          "name": "Good Friday"
+        }
+      ],
+      "notes": "S-section. April 7, 2025 is an additional make-up date for classes cancelled due to snow on Thursday, Feb 13, 2025 (not all courses affected; updated Feb 13, 2025). Family Day (Feb 17) coincides with the first day of reading week this year.",
+      "exam_period": [
+        "2025-04-09",
+        "2025-04-30"
+      ],
+      "source_url": "https://www.utsc.utoronto.ca/registrar/fall-2024-winter-2025-academic-dates"
+    },
+    {
+      "term_id": "2025F",
+      "division": "utsc",
+      "classes_start": "2025-09-02",
+      "classes_end": "2025-12-02",
+      "reading_week": [
+        "2025-10-27",
+        "2025-10-31"
+      ],
+      "holidays": [
+        {
+          "date": "2025-09-01",
+          "name": "Labour Day"
+        },
+        {
+          "date": "2025-10-13",
+          "name": "Thanksgiving"
+        }
+      ],
+      "notes": "From 'Fall 2025 - Winter 2026 Academic Dates' page. Tuesday, Dec 2, 2025 is a make-up date for classes scheduled Monday, Oct 13 (Thanksgiving).",
+      "exam_period": [
+        "2025-12-05",
+        "2025-12-19"
+      ],
+      "source_url": "https://www.utsc.utoronto.ca/registrar/fall-2025-winter-2026-academic-dates"
+    },
+    {
+      "term_id": "2026W",
+      "division": "utsc",
+      "classes_start": "2026-01-05",
+      "classes_end": "2026-04-06",
+      "reading_week": [
+        "2026-02-17",
+        "2026-02-21"
+      ],
+      "holidays": [
+        {
+          "date": "2026-02-16",
+          "name": "Family Day"
+        },
+        {
+          "date": "2026-04-03",
+          "name": "Good Friday"
+        }
+      ],
+      "notes": "S-section. Monday, April 6, 2026 is a make-up date for classes scheduled Friday, April 3 (Good Friday).",
+      "exam_period": [
+        "2026-04-09",
+        "2026-04-24"
+      ],
+      "source_url": "https://www.utsc.utoronto.ca/registrar/fall-2025-winter-2026-academic-dates"
+    },
+    {
+      "term_id": "2026F",
+      "division": "utsc",
+      "classes_start": "2026-09-08",
+      "classes_end": "2026-12-08",
+      "reading_week": [
+        "2026-10-26",
+        "2026-10-30"
+      ],
+      "holidays": [
+        {
+          "date": "2026-09-07",
+          "name": "Labour Day"
+        },
+        {
+          "date": "2026-10-12",
+          "name": "Thanksgiving"
+        }
+      ],
+      "notes": "From 'Fall 2026 - Winter 2027 Academic Dates' page (live, fetched via raw HTML). Tuesday, Dec 8, 2026 is a make-up date for classes scheduled Monday, Oct 12 (Thanksgiving). Note: a separate registrar 'Future Sessional Dates' projection page lists slightly different, seemingly unconfirmed placeholder figures (e.g. exam period ending Dec 23, reading week Feb 15-19) for 2026F/2027W -- those were NOT used here in favor of the dedicated, session-specific academic-dates page.",
+      "exam_period": [
+        "2026-12-10",
+        "2026-12-22"
+      ],
+      "source_url": "https://www.utsc.utoronto.ca/registrar/fall-2026-winter-2027-academic-dates"
+    },
+    {
+      "term_id": "2027W",
+      "division": "utsc",
+      "classes_start": "2027-01-11",
+      "classes_end": "2027-04-12",
+      "reading_week": [
+        "2027-02-13",
+        "2027-02-19"
+      ],
+      "holidays": [
+        {
+          "date": "2027-02-15",
+          "name": "Family Day"
+        },
+        {
+          "date": "2027-03-26",
+          "name": "Good Friday"
+        }
+      ],
+      "notes": "S-section. Monday, April 12, 2027 is a make-up date for classes scheduled Friday, March 26 (Good Friday). See caveat under 2026F re: discrepancy with the 'Future Sessional Dates' projection page.",
+      "exam_period": [
+        "2027-04-14",
+        "2027-04-28"
+      ],
+      "source_url": "https://www.utsc.utoronto.ca/registrar/fall-2026-winter-2027-academic-dates"
+    },
+    {
+      "term_id": "2020SF",
+      "division": "utsc",
+      "classes_start": "2020-05-11",
+      "classes_end": "2020-06-22",
+      "reading_week": null,
+      "holidays": [
+        {
+          "date": "2020-05-18",
+          "name": "Victoria Day"
+        }
+      ],
+      "notes": "F-section (first half summer). Dates per COVID-19-revised 'Summer 2020 Academic Dates' (last updated April 13, 2020; supersedes the March 30, 2020 revision, which used the same class/exam dates). A 'Virtual Monday' make-up for the Aug 3 Civic Holiday closure was held Thursday, Aug 13.",
+      "exam_period": [
+        "2020-06-23",
+        "2020-06-27"
+      ],
+      "source_url": "https://www.utsc.utoronto.ca/registrar/sites/utsc.utoronto.ca.registrar/files/2023-01/Summer%202020%20Revised%20Academic%20Dates.pdf"
+    },
+    {
+      "term_id": "2020SS",
+      "division": "utsc",
+      "classes_start": "2020-07-02",
+      "classes_end": "2020-08-13",
+      "reading_week": null,
+      "holidays": [
+        {
+          "date": "2020-08-03",
+          "name": "Civic Holiday"
+        }
+      ],
+      "notes": "S-section (second half summer). Dates per COVID-19-revised 'Summer 2020 Academic Dates' (last updated April 13, 2020; supersedes the March 30, 2020 revision, which used the same class/exam dates). A 'Virtual Monday' make-up for the Aug 3 Civic Holiday closure was held Thursday, Aug 13.",
+      "exam_period": [
+        "2020-08-18",
+        "2020-08-30"
+      ],
+      "source_url": "https://www.utsc.utoronto.ca/registrar/sites/utsc.utoronto.ca.registrar/files/2023-01/Summer%202020%20Revised%20Academic%20Dates.pdf"
+    },
+    {
+      "term_id": "2020SY",
+      "division": "utsc",
+      "classes_start": "2020-05-11",
+      "classes_end": "2020-08-13",
+      "reading_week": null,
+      "holidays": [
+        {
+          "date": "2020-05-18",
+          "name": "Victoria Day"
+        },
+        {
+          "date": "2020-06-29",
+          "name": "Presidential Day"
+        },
+        {
+          "date": "2020-06-30",
+          "name": "Presidential Day"
+        },
+        {
+          "date": "2020-07-01",
+          "name": "Canada Day"
+        },
+        {
+          "date": "2020-08-03",
+          "name": "Civic Holiday"
+        }
+      ],
+      "notes": "Y-section (full summer session). UTSC publishes an internal reading week/study break for the Y-section in late June (not populated in reading_week field, which this schema scopes to Fall/Winter only). Dates per COVID-19-revised 'Summer 2020 Academic Dates' (last updated April 13, 2020). A 'Virtual Monday' make-up for the Aug 3 Civic Holiday closure was held Thursday, Aug 13.",
+      "exam_period": [
+        "2020-08-18",
+        "2020-08-30"
+      ],
+      "source_url": "https://www.utsc.utoronto.ca/registrar/sites/utsc.utoronto.ca.registrar/files/2023-01/Summer%202020%20Revised%20Academic%20Dates.pdf"
+    },
+    {
+      "term_id": "2021SF",
+      "division": "utsc",
+      "classes_start": "2021-05-07",
+      "classes_end": "2021-06-21",
+      "reading_week": null,
+      "holidays": [
+        {
+          "date": "2021-05-21",
+          "name": "Victoria Day"
+        },
+        {
+          "date": "2021-05-24",
+          "name": "Presidential Day"
+        }
+      ],
+      "notes": "F-section (first half summer).",
+      "exam_period": [
+        "2021-06-22",
+        "2021-06-26"
+      ],
+      "source_url": "https://www.utsc.utoronto.ca/registrar/sites/utsc.utoronto.ca.registrar/files/2023-01/Summer%202021%20Sessional%20Dates.pdf"
+    },
+    {
+      "term_id": "2021SS",
+      "division": "utsc",
+      "classes_start": "2021-06-28",
+      "classes_end": "2021-08-11",
+      "reading_week": null,
+      "holidays": [
+        {
+          "date": "2021-07-01",
+          "name": "Canada Day"
+        },
+        {
+          "date": "2021-07-02",
+          "name": "Presidential Day"
+        },
+        {
+          "date": "2021-08-02",
+          "name": "Civic Holiday"
+        }
+      ],
+      "notes": "S-section (second half summer).",
+      "exam_period": [
+        "2021-08-16",
+        "2021-08-29"
+      ],
+      "source_url": "https://www.utsc.utoronto.ca/registrar/sites/utsc.utoronto.ca.registrar/files/2023-01/Summer%202021%20Sessional%20Dates.pdf"
+    },
+    {
+      "term_id": "2021SY",
+      "division": "utsc",
+      "classes_start": "2021-05-07",
+      "classes_end": "2021-08-11",
+      "reading_week": null,
+      "holidays": [
+        {
+          "date": "2021-05-21",
+          "name": "Victoria Day"
+        },
+        {
+          "date": "2021-05-24",
+          "name": "Presidential Day"
+        },
+        {
+          "date": "2021-07-01",
+          "name": "Canada Day"
+        },
+        {
+          "date": "2021-07-02",
+          "name": "Presidential Day"
+        },
+        {
+          "date": "2021-08-02",
+          "name": "Civic Holiday"
+        }
+      ],
+      "notes": "Y-section (full summer session). UTSC publishes an internal reading week/study break for the Y-section in late June (not populated in reading_week field, which this schema scopes to Fall/Winter only).",
+      "exam_period": [
+        "2021-08-16",
+        "2021-08-29"
+      ],
+      "source_url": "https://www.utsc.utoronto.ca/registrar/sites/utsc.utoronto.ca.registrar/files/2023-01/Summer%202021%20Sessional%20Dates.pdf"
+    },
+    {
+      "term_id": "2022SF",
+      "division": "utsc",
+      "classes_start": "2022-05-09",
+      "classes_end": "2022-06-20",
+      "reading_week": null,
+      "holidays": [
+        {
+          "date": "2022-05-23",
+          "name": "Victoria Day"
+        }
+      ],
+      "notes": "F-section (first half summer). Tue Aug 9, 2022 is a make-up Thursday (for Thu June 30); Wed Aug 10, 2022 is a make-up Friday (for Fri July 1).",
+      "exam_period": [
+        "2022-06-21",
+        "2022-06-25"
+      ],
+      "source_url": "https://www.utsc.utoronto.ca/registrar/summer-2022-academic-dates"
+    },
+    {
+      "term_id": "2022SS",
+      "division": "utsc",
+      "classes_start": "2022-06-27",
+      "classes_end": "2022-08-10",
+      "reading_week": null,
+      "holidays": [
+        {
+          "date": "2022-06-30",
+          "name": "Presidential Day"
+        },
+        {
+          "date": "2022-07-01",
+          "name": "Canada Day"
+        },
+        {
+          "date": "2022-08-01",
+          "name": "Civic Holiday"
+        }
+      ],
+      "notes": "S-section (second half summer). Tue Aug 9, 2022 is a make-up Thursday (for Thu June 30); Wed Aug 10, 2022 is a make-up Friday (for Fri July 1).",
+      "exam_period": [
+        "2022-08-15",
+        "2022-08-26"
+      ],
+      "source_url": "https://www.utsc.utoronto.ca/registrar/summer-2022-academic-dates"
+    },
+    {
+      "term_id": "2022SY",
+      "division": "utsc",
+      "classes_start": "2022-05-09",
+      "classes_end": "2022-08-10",
+      "reading_week": null,
+      "holidays": [
+        {
+          "date": "2022-05-23",
+          "name": "Victoria Day"
+        },
+        {
+          "date": "2022-06-30",
+          "name": "Presidential Day"
+        },
+        {
+          "date": "2022-07-01",
+          "name": "Canada Day"
+        },
+        {
+          "date": "2022-08-01",
+          "name": "Civic Holiday"
+        }
+      ],
+      "notes": "Y-section (full summer session). UTSC publishes an internal reading week/study break for the Y-section in late June (not populated in reading_week field, which this schema scopes to Fall/Winter only). Tue Aug 9, 2022 is a make-up Thursday (for Thu June 30); Wed Aug 10, 2022 is a make-up Friday (for Fri July 1).",
+      "exam_period": [
+        "2022-08-15",
+        "2022-08-26"
+      ],
+      "source_url": "https://www.utsc.utoronto.ca/registrar/summer-2022-academic-dates"
+    },
+    {
+      "term_id": "2023SF",
+      "division": "utsc",
+      "classes_start": "2023-05-08",
+      "classes_end": "2023-06-19",
+      "reading_week": null,
+      "holidays": [
+        {
+          "date": "2023-05-22",
+          "name": "Victoria Day (observed; in lieu of May 21)"
+        }
+      ],
+      "notes": "F-section (first half summer). Tue Aug 8, 2023 is a make-up Monday (for Mon Aug 7, Civic Holiday); Wed Aug 9, 2023 is a make-up Friday (for Fri June 30). Deadline to drop Y-section courses without penalty was rescheduled from July 26 to July 27.",
+      "exam_period": [
+        "2023-06-20",
+        "2023-06-24"
+      ],
+      "source_url": "https://www.utsc.utoronto.ca/registrar/summer-2023-academic-dates"
+    },
+    {
+      "term_id": "2023SS",
+      "division": "utsc",
+      "classes_start": "2023-06-26",
+      "classes_end": "2023-08-09",
+      "reading_week": null,
+      "holidays": [
+        {
+          "date": "2023-06-30",
+          "name": "Presidential Day"
+        },
+        {
+          "date": "2023-07-03",
+          "name": "Canada Day (observed; in lieu of July 1)"
+        },
+        {
+          "date": "2023-08-07",
+          "name": "Civic Holiday"
+        }
+      ],
+      "notes": "S-section (second half summer). Tue Aug 8, 2023 is a make-up Monday (for Mon Aug 7, Civic Holiday); Wed Aug 9, 2023 is a make-up Friday (for Fri June 30). Deadline to drop Y-section courses without penalty was rescheduled from July 26 to July 27.",
+      "exam_period": [
+        "2023-08-12",
+        "2023-08-23"
+      ],
+      "source_url": "https://www.utsc.utoronto.ca/registrar/summer-2023-academic-dates"
+    },
+    {
+      "term_id": "2023SY",
+      "division": "utsc",
+      "classes_start": "2023-05-08",
+      "classes_end": "2023-08-09",
+      "reading_week": null,
+      "holidays": [
+        {
+          "date": "2023-05-22",
+          "name": "Victoria Day (observed; in lieu of May 21)"
+        },
+        {
+          "date": "2023-06-30",
+          "name": "Presidential Day"
+        },
+        {
+          "date": "2023-07-03",
+          "name": "Canada Day (observed; in lieu of July 1)"
+        },
+        {
+          "date": "2023-08-07",
+          "name": "Civic Holiday"
+        }
+      ],
+      "notes": "Y-section (full summer session). UTSC publishes an internal reading week/study break for the Y-section in late June (not populated in reading_week field, which this schema scopes to Fall/Winter only). Tue Aug 8, 2023 is a make-up Monday (for Mon Aug 7, Civic Holiday); Wed Aug 9, 2023 is a make-up Friday (for Fri June 30).",
+      "exam_period": [
+        "2023-08-12",
+        "2023-08-23"
+      ],
+      "source_url": "https://www.utsc.utoronto.ca/registrar/summer-2023-academic-dates"
+    },
+    {
+      "term_id": "2024SF",
+      "division": "utsc",
+      "classes_start": "2024-05-06",
+      "classes_end": "2024-06-17",
+      "reading_week": null,
+      "holidays": [
+        {
+          "date": "2024-05-20",
+          "name": "Victoria Day"
+        }
+      ],
+      "notes": "F-section (first half summer). Aug 6, 2024 is a make-up Monday (for Mon July 1); Aug 7, 2024 is a make-up Friday (for Fri June 28).",
+      "exam_period": [
+        "2024-06-18",
+        "2024-06-22"
+      ],
+      "source_url": "https://www.utsc.utoronto.ca/registrar/summer-2024-academic-dates"
+    },
+    {
+      "term_id": "2024SS",
+      "division": "utsc",
+      "classes_start": "2024-06-24",
+      "classes_end": "2024-08-07",
+      "reading_week": null,
+      "holidays": [
+        {
+          "date": "2024-06-28",
+          "name": "Presidential Day"
+        },
+        {
+          "date": "2024-07-01",
+          "name": "Canada Day"
+        },
+        {
+          "date": "2024-08-05",
+          "name": "Civic Holiday"
+        }
+      ],
+      "notes": "S-section (second half summer). Aug 6, 2024 is a make-up Monday (for Mon July 1); Aug 7, 2024 is a make-up Friday (for Fri June 28).",
+      "exam_period": [
+        "2024-08-10",
+        "2024-08-24"
+      ],
+      "source_url": "https://www.utsc.utoronto.ca/registrar/summer-2024-academic-dates"
+    },
+    {
+      "term_id": "2024SY",
+      "division": "utsc",
+      "classes_start": "2024-05-06",
+      "classes_end": "2024-08-07",
+      "reading_week": null,
+      "holidays": [
+        {
+          "date": "2024-05-20",
+          "name": "Victoria Day"
+        },
+        {
+          "date": "2024-06-28",
+          "name": "Presidential Day"
+        },
+        {
+          "date": "2024-07-01",
+          "name": "Canada Day"
+        },
+        {
+          "date": "2024-08-05",
+          "name": "Civic Holiday"
+        }
+      ],
+      "notes": "Y-section (full summer session). UTSC publishes an internal reading week/study break for the Y-section in late June (not populated in reading_week field, which this schema scopes to Fall/Winter only). Aug 6, 2024 is a make-up Monday (for Mon July 1); Aug 7, 2024 is a make-up Friday (for Fri June 28).",
+      "exam_period": [
+        "2024-08-10",
+        "2024-08-24"
+      ],
+      "source_url": "https://www.utsc.utoronto.ca/registrar/summer-2024-academic-dates"
+    },
+    {
+      "term_id": "2025SF",
+      "division": "utsc",
+      "classes_start": "2025-05-02",
+      "classes_end": "2025-06-16",
+      "reading_week": null,
+      "holidays": [
+        {
+          "date": "2025-05-16",
+          "name": "Presidential Day"
+        },
+        {
+          "date": "2025-05-19",
+          "name": "Victoria Day"
+        }
+      ],
+      "notes": "F-section (first half summer). Aug 5, 2025 is a make-up Monday (for Mon June 30); Aug 6 a make-up Tuesday (for Tue July 1); Aug 7 a make-up Friday (for Fri Aug 1). Good Friday (Apr 18, 2025) closure precedes this term's May 2 start and is excluded.",
+      "exam_period": [
+        "2025-06-17",
+        "2025-06-21"
+      ],
+      "source_url": "https://www.utsc.utoronto.ca/registrar/summer-2025-academic-dates"
+    },
+    {
+      "term_id": "2025SS",
+      "division": "utsc",
+      "classes_start": "2025-06-23",
+      "classes_end": "2025-08-07",
+      "reading_week": null,
+      "holidays": [
+        {
+          "date": "2025-06-30",
+          "name": "Presidential Day"
+        },
+        {
+          "date": "2025-07-01",
+          "name": "Canada Day"
+        },
+        {
+          "date": "2025-08-01",
+          "name": "Presidential Day"
+        },
+        {
+          "date": "2025-08-04",
+          "name": "Civic Holiday"
+        }
+      ],
+      "notes": "S-section (second half summer). Aug 5, 2025 is a make-up Monday (for Mon June 30); Aug 6 a make-up Tuesday (for Tue July 1); Aug 7 a make-up Friday (for Fri Aug 1).",
+      "exam_period": [
+        "2025-08-11",
+        "2025-08-23"
+      ],
+      "source_url": "https://www.utsc.utoronto.ca/registrar/summer-2025-academic-dates"
+    },
+    {
+      "term_id": "2025SY",
+      "division": "utsc",
+      "classes_start": "2025-05-02",
+      "classes_end": "2025-08-07",
+      "reading_week": null,
+      "holidays": [
+        {
+          "date": "2025-05-16",
+          "name": "Presidential Day"
+        },
+        {
+          "date": "2025-05-19",
+          "name": "Victoria Day"
+        },
+        {
+          "date": "2025-06-30",
+          "name": "Presidential Day"
+        },
+        {
+          "date": "2025-07-01",
+          "name": "Canada Day"
+        },
+        {
+          "date": "2025-08-01",
+          "name": "Presidential Day"
+        },
+        {
+          "date": "2025-08-04",
+          "name": "Civic Holiday"
+        }
+      ],
+      "notes": "Y-section (full summer session). UTSC publishes an internal reading week/study break for the Y-section in late June (not populated in reading_week field, which this schema scopes to Fall/Winter only). Aug 5, 2025 makeup Monday; Aug 6 makeup Tuesday; Aug 7 makeup Friday.",
+      "exam_period": [
+        "2025-08-11",
+        "2025-08-23"
+      ],
+      "source_url": "https://www.utsc.utoronto.ca/registrar/summer-2025-academic-dates"
+    },
+    {
+      "term_id": "2026SF",
+      "division": "utsc",
+      "classes_start": "2026-05-04",
+      "classes_end": "2026-06-16",
+      "reading_week": null,
+      "holidays": [
+        {
+          "date": "2026-05-15",
+          "name": "Presidential Day"
+        },
+        {
+          "date": "2026-05-18",
+          "name": "Victoria Day"
+        }
+      ],
+      "notes": "F-section (first half summer). June 16, 2026 is a make-up Friday (for Fri May 15); Aug 6, 2026 is a make-up Monday (for Mon June 29). Good Friday (Apr 3, 2026) closure precedes this term's May 4 start and is excluded.",
+      "exam_period": [
+        "2026-06-17",
+        "2026-06-20"
+      ],
+      "source_url": "https://www.utsc.utoronto.ca/registrar/summer-2026-academic-dates"
+    },
+    {
+      "term_id": "2026SS",
+      "division": "utsc",
+      "classes_start": "2026-06-22",
+      "classes_end": "2026-08-06",
+      "reading_week": null,
+      "holidays": [
+        {
+          "date": "2026-06-29",
+          "name": "Presidential Day"
+        },
+        {
+          "date": "2026-06-30",
+          "name": "Presidential Day"
+        },
+        {
+          "date": "2026-07-01",
+          "name": "Canada Day"
+        },
+        {
+          "date": "2026-08-03",
+          "name": "Civic Holiday"
+        }
+      ],
+      "notes": "S-section (second half summer). June 16, 2026 is a make-up Friday (for Fri May 15); Aug 6, 2026 is a make-up Monday (for Mon June 29).",
+      "exam_period": [
+        "2026-08-10",
+        "2026-08-22"
+      ],
+      "source_url": "https://www.utsc.utoronto.ca/registrar/summer-2026-academic-dates"
+    },
+    {
+      "term_id": "2026SY",
+      "division": "utsc",
+      "classes_start": "2026-05-04",
+      "classes_end": "2026-08-06",
+      "reading_week": null,
+      "holidays": [
+        {
+          "date": "2026-05-15",
+          "name": "Presidential Day"
+        },
+        {
+          "date": "2026-05-18",
+          "name": "Victoria Day"
+        },
+        {
+          "date": "2026-06-29",
+          "name": "Presidential Day"
+        },
+        {
+          "date": "2026-06-30",
+          "name": "Presidential Day"
+        },
+        {
+          "date": "2026-07-01",
+          "name": "Canada Day"
+        },
+        {
+          "date": "2026-08-03",
+          "name": "Civic Holiday"
+        }
+      ],
+      "notes": "Y-section (full summer session). UTSC publishes an internal reading week/study break for the Y-section in late June (not populated in reading_week field, which this schema scopes to Fall/Winter only). June 16, 2026 makeup Friday; Aug 6, 2026 makeup Monday.",
+      "exam_period": [
+        "2026-08-10",
+        "2026-08-22"
+      ],
+      "source_url": "https://www.utsc.utoronto.ca/registrar/summer-2026-academic-dates"
+    },
+    {
+      "term_id": "2019F",
+      "division": "engineering",
+      "classes_start": "2019-09-05",
+      "classes_end": "2019-12-04",
+      "reading_week": null,
+      "holidays": [
+        {
+          "date": "2019-10-14",
+          "name": "Thanksgiving"
+        }
+      ],
+      "notes": "No explicit 'Engineering Fall Study Break' language found for 2019 (unlike 2020 onward, which explicitly states 'Engineering Fall Study Break. No Fall Engineering courses offered.'); the 2019-2020 calendar only lists an 'A&S Fall Reading Week' Nov 4-8, 2019 with no matching Engineering closure statement, so reading_week is left null rather than assumed. Fall study day Dec 5, 2019 (no Thanksgiving makeup-day rule stated this year).",
+      "exam_period": [
+        "2019-12-06",
+        "2019-12-20"
+      ],
+      "source_url": "https://engineering.calendar.utoronto.ca/sites/default/files/PDFs/Engineering-2019-2020.pdf"
+    },
+    {
+      "term_id": "2020F",
+      "division": "engineering",
+      "classes_start": "2020-09-10",
+      "classes_end": "2020-12-09",
+      "reading_week": [
+        "2020-11-09",
+        "2020-11-13"
+      ],
+      "holidays": [
+        {
+          "date": "2020-10-12",
+          "name": "Thanksgiving"
+        }
+      ],
+      "notes": "COVID-19 year; winter break for Winter 2021 was later extended per Nov 20, 2020 Dean's Message (affects 2021W, not this term). No explicit Makeup-day rule stated for Thanksgiving this term.",
+      "exam_period": [
+        "2020-12-11",
+        "2020-12-22"
+      ],
+      "source_url": "https://engineering.calendar.utoronto.ca/sites/default/files/PDFs/Engineering-2020-2021.pdf"
+    },
+    {
+      "term_id": "2021F",
+      "division": "engineering",
+      "classes_start": "2021-09-09",
+      "classes_end": "2021-12-08",
+      "reading_week": [
+        "2021-11-08",
+        "2021-11-12"
+      ],
+      "holidays": [
+        {
+          "date": "2021-10-11",
+          "name": "Thanksgiving"
+        }
+      ],
+      "notes": "Fall study day / Makeup Monday both fall on Dec 9, 2021 (day before exams start); explicitly noted as a one-time overlap of Study Day and Makeup Monday 'for the 2021 Fall Term only'.",
+      "exam_period": [
+        "2021-12-10",
+        "2021-12-21"
+      ],
+      "source_url": "https://engineering.calendar.utoronto.ca/sites/default/files/PDFs/Engineering-2021-2022.pdf"
+    },
+    {
+      "term_id": "2022F",
+      "division": "engineering",
+      "classes_start": "2022-09-08",
+      "classes_end": "2022-12-07",
+      "reading_week": [
+        "2022-11-07",
+        "2022-11-11"
+      ],
+      "holidays": [
+        {
+          "date": "2022-10-10",
+          "name": "Thanksgiving"
+        }
+      ],
+      "notes": "Fall study day / Makeup Monday both Dec 8, 2022 (optional makeup use for missed Thanksgiving Monday; otherwise a study day).",
+      "exam_period": [
+        "2022-12-09",
+        "2022-12-20"
+      ],
+      "source_url": "https://engineering.calendar.utoronto.ca/sites/default/files/PDFs/Engineering-2022-2023.pdf"
+    },
+    {
+      "term_id": "2023F",
+      "division": "engineering",
+      "classes_start": "2023-09-07",
+      "classes_end": "2023-12-06",
+      "reading_week": [
+        "2023-11-06",
+        "2023-11-10"
+      ],
+      "holidays": [
+        {
+          "date": "2023-10-09",
+          "name": "Thanksgiving"
+        }
+      ],
+      "notes": "Reading week is in November (not late Oct) this year. Dec 7 is both Fall study day and Makeup Monday (optional; otherwise a study day).",
+      "exam_period": [
+        "2023-12-08",
+        "2023-12-20"
+      ],
+      "source_url": "https://engineering.calendar.utoronto.ca/sites/default/files/PDFs/Engineering-2023-2024.pdf"
+    },
+    {
+      "term_id": "2024F",
+      "division": "engineering",
+      "classes_start": "2024-09-03",
+      "classes_end": "2024-12-04",
+      "reading_week": [
+        "2024-10-28",
+        "2024-11-01"
+      ],
+      "holidays": [
+        {
+          "date": "2024-10-14",
+          "name": "Thanksgiving"
+        }
+      ],
+      "notes": "Makeup Monday Dec 5, 2024 (optional, for Thanksgiving); students with exam conflicts/religious observance at end of exam period may reschedule to Sunday Dec 22.",
+      "exam_period": [
+        "2024-12-06",
+        "2024-12-21"
+      ],
+      "source_url": "https://engineering.calendar.utoronto.ca/sites/default/files/PDFs/Engineering-2024-2025.pdf"
+    },
+    {
+      "term_id": "2025F",
+      "division": "engineering",
+      "classes_start": "2025-09-02",
+      "classes_end": "2025-12-03",
+      "reading_week": [
+        "2025-10-27",
+        "2025-10-31"
+      ],
+      "holidays": [
+        {
+          "date": "2025-10-13",
+          "name": "Thanksgiving"
+        }
+      ],
+      "notes": "Makeup Monday Dec 4, 2025 (optional; otherwise a study day). Exam-conflict/religious-observance accommodation may move an exam to Monday Dec 22.",
+      "exam_period": [
+        "2025-12-05",
+        "2025-12-19"
+      ],
+      "source_url": "https://engineering.calendar.utoronto.ca/sessional-dates"
+    },
+    {
+      "term_id": "2026F",
+      "division": "engineering",
+      "classes_start": "2026-09-08",
+      "classes_end": "2026-12-08",
+      "reading_week": [
+        "2026-10-26",
+        "2026-10-30"
+      ],
+      "holidays": [
+        {
+          "date": "2026-10-12",
+          "name": "Thanksgiving"
+        }
+      ],
+      "notes": "Makeup Monday Dec 9, 2026 (optional, for Thanksgiving; otherwise a study day). Emergency winter exam date Jan 9, 2027 for cancelled December exams.",
+      "exam_period": [
+        "2026-12-10",
+        "2026-12-22"
+      ],
+      "source_url": "https://engineering.calendar.utoronto.ca/sessional-dates"
+    },
+    {
+      "term_id": "2020W",
+      "division": "engineering",
+      "classes_start": "2020-01-06",
+      "classes_end": "2020-04-09",
+      "reading_week": [
+        "2020-02-17",
+        "2020-02-21"
+      ],
+      "holidays": [
+        {
+          "date": "2020-02-17",
+          "name": "Family Day"
+        },
+        {
+          "date": "2020-04-10",
+          "name": "Good Friday"
+        }
+      ],
+      "notes": "Winter study day April 13, 2020. Dates marked 'pending approval by Faculty Council' in source (standard annual caveat).",
+      "exam_period": [
+        "2020-04-14",
+        "2020-04-28"
+      ],
+      "source_url": "https://engineering.calendar.utoronto.ca/sites/default/files/PDFs/Engineering-2019-2020.pdf"
+    },
+    {
+      "term_id": "2021W",
+      "division": "engineering",
+      "classes_start": "2021-01-11",
+      "classes_end": "2021-04-16",
+      "reading_week": [
+        "2021-02-15",
+        "2021-02-19"
+      ],
+      "holidays": [
+        {
+          "date": "2021-02-15",
+          "name": "Family Day"
+        },
+        {
+          "date": "2021-04-02",
+          "name": "Good Friday"
+        }
+      ],
+      "notes": "COVID-19 year: several dates/deadlines moved per Nov 20, 2020 Dean's Message extending winter break (marked with a dagger in source); extended late-withdrawal-without-documentation deadline May 14, 2021. Winter study days spread over April 17-19 (Exam Jam). A separate 'Make-up day for FAS [A&S] courses' is listed April 5 for Good Friday, not stated as an Engineering rule.",
+      "exam_period": [
+        "2021-04-20",
+        "2021-04-30"
+      ],
+      "source_url": "https://engineering.calendar.utoronto.ca/sites/default/files/PDFs/Engineering-2020-2021.pdf"
+    },
+    {
+      "term_id": "2022W",
+      "division": "engineering",
+      "classes_start": "2022-01-10",
+      "classes_end": "2022-04-14",
+      "reading_week": [
+        "2022-02-21",
+        "2022-02-25"
+      ],
+      "holidays": [
+        {
+          "date": "2022-02-21",
+          "name": "Family Day"
+        },
+        {
+          "date": "2022-04-15",
+          "name": "Good Friday"
+        }
+      ],
+      "notes": "Winter study day April 18, 2022 (Exam Jam).",
+      "exam_period": [
+        "2022-04-19",
+        "2022-04-30"
+      ],
+      "source_url": "https://engineering.calendar.utoronto.ca/sites/default/files/PDFs/Engineering-2021-2022.pdf"
+    },
+    {
+      "term_id": "2023W",
+      "division": "engineering",
+      "classes_start": "2023-01-09",
+      "classes_end": "2023-04-14",
+      "reading_week": [
+        "2023-02-20",
+        "2023-02-24"
+      ],
+      "holidays": [
+        {
+          "date": "2023-02-20",
+          "name": "Family Day"
+        },
+        {
+          "date": "2023-04-07",
+          "name": "Good Friday"
+        }
+      ],
+      "notes": "Winter study day April 17, 2023 (Exam Jam).",
+      "exam_period": [
+        "2023-04-18",
+        "2023-04-30"
+      ],
+      "source_url": "https://engineering.calendar.utoronto.ca/sites/default/files/PDFs/Engineering-2022-2023.pdf"
+    },
+    {
+      "term_id": "2024W",
+      "division": "engineering",
+      "classes_start": "2024-01-08",
+      "classes_end": "2024-04-12",
+      "reading_week": [
+        "2024-02-19",
+        "2024-02-23"
+      ],
+      "holidays": [
+        {
+          "date": "2024-02-19",
+          "name": "Family Day"
+        },
+        {
+          "date": "2024-03-29",
+          "name": "Good Friday"
+        }
+      ],
+      "notes": "Winter study day April 15, 2024 (Exam Jam). Reading week reserved in part for special deferred exams from Dec 2023 exam period.",
+      "exam_period": [
+        "2024-04-16",
+        "2024-04-30"
+      ],
+      "source_url": "https://engineering.calendar.utoronto.ca/sites/default/files/PDFs/Engineering-2023-2024.pdf"
+    },
+    {
+      "term_id": "2025W",
+      "division": "engineering",
+      "classes_start": "2025-01-06",
+      "classes_end": "2025-04-07",
+      "reading_week": [
+        "2025-02-17",
+        "2025-02-21"
+      ],
+      "holidays": [
+        {
+          "date": "2025-02-17",
+          "name": "Family Day"
+        },
+        {
+          "date": "2025-04-18",
+          "name": "Good Friday"
+        }
+      ],
+      "notes": "Winter study day April 8, 2025 (Exam Jam). Reading week reserved in part for special deferred exams from Dec 2024 exam period.",
+      "exam_period": [
+        "2025-04-09",
+        "2025-04-30"
+      ],
+      "source_url": "https://engineering.calendar.utoronto.ca/sites/default/files/PDFs/Engineering-2024-2025.pdf"
+    },
+    {
+      "term_id": "2026W",
+      "division": "engineering",
+      "classes_start": "2026-01-05",
+      "classes_end": "2026-04-07",
+      "reading_week": [
+        "2026-02-16",
+        "2026-02-20"
+      ],
+      "holidays": [
+        {
+          "date": "2026-02-16",
+          "name": "Family Day"
+        },
+        {
+          "date": "2026-04-03",
+          "name": "Good Friday"
+        }
+      ],
+      "notes": "Makeup Friday April 8, 2026 (optional, for Good Friday; otherwise a study day). Reading week reserved in part for special deferred exams from Dec 2025 exam period.",
+      "exam_period": [
+        "2026-04-09",
+        "2026-04-30"
+      ],
+      "source_url": "https://engineering.calendar.utoronto.ca/sessional-dates"
+    },
+    {
+      "term_id": "2027W",
+      "division": "engineering",
+      "classes_start": "2027-01-11",
+      "classes_end": "2027-04-13",
+      "reading_week": [
+        "2027-02-15",
+        "2027-02-19"
+      ],
+      "holidays": [
+        {
+          "date": "2027-02-15",
+          "name": "Family Day"
+        },
+        {
+          "date": "2027-03-26",
+          "name": "Good Friday"
+        }
+      ],
+      "notes": "Makeup Friday April 14, 2027 (optional, for Good Friday; otherwise a study day). Reading week reserved in part for special deferred exams from Dec 2026 exam period.",
+      "exam_period": [
+        "2027-04-15",
+        "2027-04-29"
+      ],
+      "source_url": "https://engineering.calendar.utoronto.ca/sessional-dates"
+    }
+  ]
+}
